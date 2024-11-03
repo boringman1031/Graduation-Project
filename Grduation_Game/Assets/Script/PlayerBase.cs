@@ -13,7 +13,7 @@ public class PlayerBase : MonoBehaviour,GameData
     Rigidbody2D Player_rb;
     Animator Player_animator;
     private float InputX,InputY;
-    private bool isFlip = false;
+    private bool isFlip=true;
     private int AttackState = 0;
     public int Health { get; set; }
     public int Defence { get; set; }
@@ -31,11 +31,17 @@ public class PlayerBase : MonoBehaviour,GameData
     void Update()
     {
         Player_rb.velocity = new Vector2(Speed * InputX, Player_rb.velocity.y);
+        Player_animator.SetFloat("yVelocity", Player_rb.velocity.y);
         if (Player_rb.velocity.magnitude == 0)
         {
             Player_animator.SetBool("isRun", false);
             Player_front.SetActive(true);
-            Player_side.SetActive(false);
+            Player_side.SetActive(false);          
+        }
+        if ((Player_rb.velocity.x < 0 && !isFlip) || (Player_rb.velocity.x > 0 && isFlip))
+        {
+            isFlip = !isFlip;
+            transform.Rotate(0, 180, 0);
         }
     }
     public void PlayerMove(InputAction.CallbackContext context)
@@ -43,11 +49,14 @@ public class PlayerBase : MonoBehaviour,GameData
         Player_front.SetActive(false);
         Player_side.SetActive(true);
         Player_animator.SetBool("isRun", true);
-        InputX = context.ReadValue<Vector2>().x;
-        if ((Player_rb.velocity.x < 0 && !isFlip) || (Player_rb.velocity.x > 0 && isFlip))
+        InputX = context.ReadValue<Vector2>().x;        
+    }
+    public void PlayerJump(InputAction.CallbackContext context)
+    {
+        if (context.performed)
         {
-            isFlip = !isFlip;
-            transform.Rotate(0, 180, 0);
+            Player_animator.SetBool("isGround", false);
+            Player_rb.AddForce(Vector2.up * 10, ForceMode2D.Impulse);
         }
     }
     public void PlayerAttack(InputAction.CallbackContext context)
@@ -96,5 +105,13 @@ public class PlayerBase : MonoBehaviour,GameData
     private  void PlayerDie()
     {
         Debug.Log("Player Die");
-    }       
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "Ground")
+        {
+            Player_animator.SetBool("isGround", true);
+        }
+    }
 }
