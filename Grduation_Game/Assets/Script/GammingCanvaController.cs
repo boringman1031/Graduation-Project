@@ -3,14 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using static PlayerBase;
-
+/*------------------by 017-----------------------*/
 public class GammingCanvaController : MonoBehaviour
 {
     private PlayerBase player;
-    [SerializeField]
-    private Image hp;
-    [SerializeField]
-    private Image mp;
+
     [SerializeField]
     private Text money_Count;
     [SerializeField]    
@@ -39,7 +36,6 @@ public class GammingCanvaController : MonoBehaviour
     {
         player = FindObjectOfType<PlayerBase>();
         healthBar.maxValue = player.PlayerHp;
-        healthBar.value = player.PlayerHp;
 
         // 訂閱事件
         player.OnPlayerHit += UpdateHealthBar;
@@ -63,5 +59,6 @@ public class GammingCanvaController : MonoBehaviour
     {
         // 取消訂閱
         player.OnPlayerHit -= UpdateHealthBar;
+        player.OnPlayerUseSkill1 -= UpdatePowerBar;
     }
 }

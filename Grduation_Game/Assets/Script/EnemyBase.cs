@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+/*------------------by017-----------------------*/
 public class EnemyBase : MonoBehaviour
 {
     [SerializeField]
@@ -75,7 +75,7 @@ public class EnemyBase : MonoBehaviour
         }
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+   /* private void OnCollisionEnter2D(Collision2D collision)
     {
         // 檢查是否碰到玩家
         if (collision.gameObject.CompareTag("Player"))
@@ -86,5 +86,5 @@ public class EnemyBase : MonoBehaviour
                 Debug.Log($"Enemy attacked Player for {EnemyAttack} damage.");
             }
         }
-    }
+    }*/
 }
