@@ -43,10 +43,10 @@ public class PlayerBase : MonoBehaviour
     public delegate void PlayerUseSkill1(int powercoust);
     public event PlayerUseSkill1 OnPlayerUseSkill1;
 
-    public delegate void PlayerUseSkill2(int powercoust));
+    public delegate void PlayerUseSkill2(int powercoust);
     public event PlayerUseSkill2 OnPlayerUseSkill2;
 
-    public delegate void PlayerUseSkill3(int powercoust));
+    public delegate void PlayerUseSkill3(int powercoust);
     public event PlayerUseSkill3 OnPlayerUseSkill3;
 
     public delegate void PlayerDie();
