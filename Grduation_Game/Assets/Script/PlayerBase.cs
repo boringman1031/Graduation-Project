@@ -56,7 +56,7 @@ public class PlayerBase : MonoBehaviour
     {
         Player_rb = GetComponent<Rigidbody2D>();
         Player_animator = GetComponent<Animator>();
-        PlayerHp = PlayerHp + Defence;//玩家生命值為血量+防禦力
+        PlayerHp = Health + Defence;//玩家生命值為血量+防禦力
         PlayerPower= Power;//玩家魔力值
     }
 

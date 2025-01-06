@@ -35,14 +35,25 @@ public class GammingCanvaController : MonoBehaviour
     private void Awake()
     {
         player = FindObjectOfType<PlayerBase>();
-        healthBar.maxValue = player.PlayerHp;
-
+        if (player == null)
+        {
+            Debug.LogWarning("Player not found in the scene.");
+            return;
+        }
         // ­q¾\¨Æ¥ó
         player.OnPlayerHit += UpdateHealthBar;
         player.OnPlayerUseSkill1 += UpdatePowerBar;
     }
-
-
+    private void Start()
+    {  
+        healthBar.maxValue = player.PlayerHp;
+        PowerBar.maxValue = player.PlayerPower;
+        healthBar.value = healthBar.maxValue;
+        PowerBar.value = PowerBar.maxValue;
+        Debug.Log($"Health bar max value: {player.PlayerHp}");
+        Debug.Log($"Power bar max value: {player.PlayerPower}");
+    }
+   
     private void UpdateHealthBar(int damage)
     {
         healthBar.value = player.PlayerHp;
