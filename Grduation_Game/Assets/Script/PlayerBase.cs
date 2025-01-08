@@ -2,36 +2,23 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem   ;
-using static PlayerBase;
+using Zenject;
 /*------------------by 017-----------------------*/
 public class PlayerBase : MonoBehaviour
 {
-    [SerializeField]
-    private GameObject Player_front;
-    [SerializeField]
-    private GameObject Player_side;
-    //--------基礎角色數值------------
-    [SerializeField]
-    private int Health = 100;
-    [SerializeField]
-    private int Defence = 100;
-    [SerializeField]
-    private float Speed = 10.0f;
-    [SerializeField]
-    private int Power = 100;
-    [SerializeField]
-    private int Attack = 100;
-   
-    public  int PlayerHp;
-    public int PlayerPower;
+    [SerializeField] private GameObject Player_front;
+    [SerializeField] private GameObject Player_side;
 
-    Rigidbody2D Player_rb;
-    Animator Player_animator;
-    private float InputX, InputY;
-    private float attack_CD = 1.0f;
-    private float attackTimer;
-    private int AttackState = 0;//打第幾下了
+    private PlayerStats stats;//玩家屬性
+    private Rigidbody2D rb;
+    private Animator animator;
+
+    private float inputX;
+    private int attackState = 0;//攻擊狀態
     private bool isFlip = true;
+
+    public int PlayerHp { get; private set; }
+    public int PlayerPower { get; private set; }
 
     //--------事件宣告區------------
     public delegate void PlayerGetHit(int damage);
@@ -52,36 +39,48 @@ public class PlayerBase : MonoBehaviour
     public delegate void PlayerDie();
     public event PlayerDie OnPlayerDie;
 
-    void Awake()
+    [Inject]
+    public void Construct(PlayerStats injectedStats)
     {
-        Player_rb = GetComponent<Rigidbody2D>();
-        Player_animator = GetComponent<Animator>();
-        PlayerHp = Health + Defence;//玩家生命值為血量+防禦力
-        PlayerPower= Power;//玩家魔力值
+        stats = injectedStats;
+        InitializeStats();
     }
 
-    void Update()
+    private void InitializeStats()
     {
-        // 玩家移動邏輯
-        Player_rb.velocity = new Vector2(Speed * InputX, Player_rb.velocity.y);
-        Player_animator.SetFloat("yVelocity", Player_rb.velocity.y);
+        PlayerHp = stats.Health + stats.Defence;
+        PlayerPower = stats.Power;
+        Debug.Log($"Player Stats Initialized: HP={PlayerHp}, Power={PlayerPower}");
+    }
 
-        // 攻擊計時器
-        attackTimer -= Time.deltaTime;
-        if (attackTimer <= 0)
-        {
-            AttackState = 0;
-        }
+    private void Awake()
+    {
+        rb = GetComponent<Rigidbody2D>();
+        animator = GetComponent<Animator>();
+    }
 
-        if (Player_rb.velocity.sqrMagnitude == 0)
+    private void Update()
+    {
+        HandleMovement();
+        HandleFlip();
+    }
+
+    private void HandleMovement()
+    {
+        rb.velocity = new Vector2(stats.Speed * inputX, rb.velocity.y);
+        animator.SetFloat("yVelocity", rb.velocity.y);
+
+        if (rb.velocity.sqrMagnitude == 0)
         {
-            Player_animator.SetBool("isRun", false);
+            animator.SetBool("isRun", false);
             Player_front.SetActive(true);
             Player_side.SetActive(false);
         }
+    }
 
-        // 玩家翻轉邏輯
-        float velocityX = Player_rb.velocity.x;
+    private void HandleFlip()
+    {
+        float velocityX = rb.velocity.x;
         if ((velocityX < 0 && !isFlip) || (velocityX > 0 && isFlip))
         {
             isFlip = !isFlip;
@@ -93,16 +92,16 @@ public class PlayerBase : MonoBehaviour
     {
         Player_front.SetActive(false);
         Player_side.SetActive(true);
-        Player_animator.SetBool("isRun", true);
-        InputX = context.ReadValue<Vector2>().x;
+        animator.SetBool("isRun", true);
+        inputX = context.ReadValue<Vector2>().x;
     }
 
     public void Player_Jump(InputAction.CallbackContext context)
     {
         if (context.performed)
         {
-            Player_animator.SetBool("isGround", false);
-            Player_rb.AddForce(Vector2.up * 10, ForceMode2D.Impulse);
+            animator.SetBool("isGround", false);
+            rb.AddForce(Vector2.up * 10, ForceMode2D.Impulse);
         }
     }
 
@@ -110,46 +109,29 @@ public class PlayerBase : MonoBehaviour
     {
         if (context.performed)
         {
-            attackTimer = attack_CD;
-            switch (AttackState)
+            switch (attackState)
             {
                 case 0:
-                    Player_animator.SetTrigger("Attack1");
-                    AttackState += 1;
+                    animator.SetTrigger("Attack1");
+                    attackState += 1;
                     break;
                 case 1:
-                    Player_animator.SetTrigger("Attack2");
-                    AttackState += 1;
+                    animator.SetTrigger("Attack2");
+                    attackState += 1;
                     break;
                 case 2:
-                    Player_animator.SetTrigger("Attack3");
-                    AttackState = 0;
+                    animator.SetTrigger("Attack3");
+                    attackState = 0;
                     break;
             }
         }
     }
 
-    public void PlayerSkill1(InputAction.CallbackContext context)
+    public void Player_Hit(int damage)
     {
-        Debug.Log("Player Connected");
+        PlayerHp -= damage;
+        OnPlayerHit?.Invoke(damage);
 
-    }
-
-    public void PlayerSkill2(InputAction.CallbackContext context)
-    {
-        Debug.Log("Player Skill2");
-    }
-
-    public void PlayerSkill3(InputAction.CallbackContext context)
-    {
-        Debug.Log("Player Skill3");
-    }
-
-    public void Player_Hit(int _damage)
-    {
-        PlayerHp -= _damage;
-        OnPlayerHit?.Invoke(_damage);
-        // 判斷死亡
         if (PlayerHp <= 0)
         {
             Player_Die();
@@ -158,14 +140,15 @@ public class PlayerBase : MonoBehaviour
 
     private void Player_Die()
     {
-        Debug.Log("Player Die");
+        Debug.Log("Player Died");
+        OnPlayerDie?.Invoke();
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.tag == "Ground")
+        if (collision.gameObject.CompareTag("Ground"))
         {
-            Player_animator.SetBool("isGround", true);
+            animator.SetBool("isGround", true);
         }
     }
 }
