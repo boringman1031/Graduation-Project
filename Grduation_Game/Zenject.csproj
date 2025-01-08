@@ -1,0 +1,1982 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <!-- Generated file, do not modify, your changes will be overwritten (use AssetPostprocessor.OnGeneratedCSProject) -->
+  <PropertyGroup>
+    <LangVersion>9.0</LangVersion>
+  </PropertyGroup>
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>10.0.20506</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <RootNamespace></RootNamespace>
+    <ProjectGuid>{E4E02EA2-E272-C846-ED98-A35564840CB7}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <AssemblyName>Zenject</AssemblyName>
+    <TargetFrameworkVersion>v4.7.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <BaseDirectory>.</BaseDirectory>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>Temp\bin\Debug\</OutputPath>
+    <DefineConstants>UNITY_2022_3_36;UNITY_2022_3;UNITY_2022;UNITY_5_3_OR_NEWER;UNITY_5_4_OR_NEWER;UNITY_5_5_OR_NEWER;UNITY_5_6_OR_NEWER;UNITY_2017_1_OR_NEWER;UNITY_2017_2_OR_NEWER;UNITY_2017_3_OR_NEWER;UNITY_2017_4_OR_NEWER;UNITY_2018_1_OR_NEWER;UNITY_2018_2_OR_NEWER;UNITY_2018_3_OR_NEWER;UNITY_2018_4_OR_NEWER;UNITY_2019_1_OR_NEWER;UNITY_2019_2_OR_NEWER;UNITY_2019_3_OR_NEWER;UNITY_2019_4_OR_NEWER;UNITY_2020_1_OR_NEWER;UNITY_2020_2_OR_NEWER;UNITY_2020_3_OR_NEWER;UNITY_2021_1_OR_NEWER;UNITY_2021_2_OR_NEWER;UNITY_2021_3_OR_NEWER;UNITY_2022_1_OR_NEWER;UNITY_2022_2_OR_NEWER;UNITY_2022_3_OR_NEWER;PLATFORM_ARCH_64;UNITY_64;UNITY_INCLUDE_TESTS;ENABLE_AR;ENABLE_AUDIO;ENABLE_CACHING;ENABLE_CLOTH;ENABLE_EVENT_QUEUE;ENABLE_MICROPHONE;ENABLE_MULTIPLE_DISPLAYS;ENABLE_PHYSICS;ENABLE_TEXTURE_STREAMING;ENABLE_VIRTUALTEXTURING;ENABLE_LZMA;ENABLE_UNITYEVENTS;ENABLE_VR;ENABLE_WEBCAM;ENABLE_UNITYWEBREQUEST;ENABLE_WWW;ENABLE_CLOUD_SERVICES;ENABLE_CLOUD_SERVICES_ADS;ENABLE_CLOUD_SERVICES_USE_WEBREQUEST;ENABLE_CLOUD_SERVICES_CRASH_REPORTING;ENABLE_CLOUD_SERVICES_PURCHASING;ENABLE_CLOUD_SERVICES_ANALYTICS;ENABLE_CLOUD_SERVICES_BUILD;ENABLE_EDITOR_GAME_SERVICES;ENABLE_UNITY_GAME_SERVICES_ANALYTICS_SUPPORT;ENABLE_CLOUD_LICENSE;ENABLE_EDITOR_HUB_LICENSE;ENABLE_WEBSOCKET_CLIENT;ENABLE_GENERATE_NATIVE_PLUGINS_FOR_ASSEMBLIES_API;ENABLE_DIRECTOR_AUDIO;ENABLE_DIRECTOR_TEXTURE;ENABLE_MANAGED_JOBS;ENABLE_MANAGED_TRANSFORM_JOBS;ENABLE_MANAGED_ANIMATION_JOBS;ENABLE_MANAGED_AUDIO_JOBS;ENABLE_MANAGED_UNITYTLS;INCLUDE_DYNAMIC_GI;ENABLE_SCRIPTING_GC_WBARRIERS;PLATFORM_SUPPORTS_MONO;RENDER_SOFTWARE_CURSOR;ENABLE_VIDEO;ENABLE_ACCELERATOR_CLIENT_DEBUGGING;ENABLE_NAVIGATION_PACKAGE_DEBUG_VISUALIZATION;ENABLE_NAVIGATION_HEIGHTMESH_RUNTIME_SUPPORT;ENABLE_NAVIGATION_UI_REQUIRES_PACKAGE;PLATFORM_STANDALONE;TEXTCORE_1_0_OR_NEWER;PLATFORM_STANDALONE_WIN;UNITY_STANDALONE_WIN;UNITY_STANDALONE;ENABLE_RUNTIME_GI;ENABLE_MOVIES;ENABLE_NETWORK;ENABLE_NVIDIA;ENABLE_CRUNCH_TEXTURE_COMPRESSION;ENABLE_OUT_OF_PROCESS_CRASH_HANDLER;ENABLE_CLUSTER_SYNC;ENABLE_CLUSTERINPUT;PLATFORM_UPDATES_TIME_OUTSIDE_OF_PLAYER_LOOP;GFXDEVICE_WAITFOREVENT_MESSAGEPUMP;PLATFORM_INITIALIZES_MEMORY_MANAGER_EXPLICITLY;ENABLE_MONO;NET_STANDARD_2_0;NET_STANDARD;NET_STANDARD_2_1;NETSTANDARD;NETSTANDARD2_1;ENABLE_PROFILER;DEBUG;TRACE;UNITY_ASSERTIONS;UNITY_EDITOR;UNITY_EDITOR_64;UNITY_EDITOR_WIN;ENABLE_UNITY_COLLECTIONS_CHECKS;ENABLE_BURST_AOT;UNITY_TEAM_LICENSE;ENABLE_CUSTOM_RENDER_TEXTURE;ENABLE_DIRECTOR;ENABLE_LOCALIZATION;ENABLE_SPRITES;ENABLE_TERRAIN;ENABLE_TILEMAP;ENABLE_TIMELINE;ENABLE_INPUT_SYSTEM;ENABLE_LEGACY_INPUT_MANAGER;TEXTCORE_FONT_ENGINE_1_5_OR_NEWER;DOTWEEN;CSHARP_7_OR_LATER;CSHARP_7_3_OR_NEWER</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <NoWarn>0169;USG0001</NoWarn>
+    <AllowUnsafeBlocks>False</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>Temp\bin\Release\</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <NoWarn>0169;USG0001</NoWarn>
+    <AllowUnsafeBlocks>False</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <PropertyGroup>
+    <NoConfig>true</NoConfig>
+    <NoStdLib>true</NoStdLib>
+    <AddAdditionalExplicitAssemblyReferences>false</AddAdditionalExplicitAssemblyReferences>
+    <ImplicitlyExpandNETStandardFacades>false</ImplicitlyExpandNETStandardFacades>
+    <ImplicitlyExpandDesignTimeFacades>false</ImplicitlyExpandDesignTimeFacades>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ProjectTypeGuids>{E097FAD1-6243-4DAD-9C02-E9B9EFC3FFC1};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <UnityProjectGenerator>Package</UnityProjectGenerator>
+    <UnityProjectGeneratorVersion>2.0.22</UnityProjectGeneratorVersion>
+    <UnityProjectGeneratorStyle>Legacy</UnityProjectGeneratorStyle>
+    <UnityProjectType>Game:1</UnityProjectType>
+    <UnityBuildTarget>StandaloneWindows64:19</UnityBuildTarget>
+    <UnityVersion>2022.3.36f1</UnityVersion>
+  </PropertyGroup>
+  <ItemGroup>
+    <Analyzer Include="C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\Extensions\Microsoft\Visual Studio Tools for Unity\Analyzers\Microsoft.Unity.Analyzers.dll" />
+    <Analyzer Include="D:\2022.3.36f1\Editor\Data\Tools\Unity.SourceGenerators\Unity.SourceGenerators.dll" />
+    <Analyzer Include="D:\2022.3.36f1\Editor\Data\Tools\Unity.SourceGenerators\Unity.Properties.SourceGenerator.dll" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="C:\Users\User\Desktop\Zenject-master\Zenject-master\UnityProject\Assets\Plugins\Zenject\Source\Internal\Assert.cs">
+      <Link>Source\Internal\Assert.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\User\Desktop\Zenject-master\Zenject-master\UnityProject\Assets\Plugins\Zenject\Source\Binding\Binders\Factory\FactoryToChoiceBinder\DecoratorToChoiceFromBinder.cs">
+      <Link>Source\Binding\Binders\Factory\FactoryToChoiceBinder\DecoratorToChoiceFromBinder.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\User\Desktop\Zenject-master\Zenject-master\UnityProject\Assets\Plugins\Zenject\Source\Providers\IFactoryProvider.cs">
+      <Link>Source\Providers\IFactoryProvider.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\User\Desktop\Zenject-master\Zenject-master\UnityProject\Assets\Plugins\Zenject\OptionalExtras\SampleGame1 (Beginner)\Scripts\Misc\GuiHandler.cs">
+      <Link>OptionalExtras\SampleGame1 (Beginner)\Scripts\Misc\GuiHandler.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\User\Desktop\Zenject-master\Zenject-master\UnityProject\Assets\Plugins\Zenject\Source\Util\ReflectionInfoTypeInfoConverter.cs">
+      <Link>Source\Util\ReflectionInfoTypeInfoConverter.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\User\Desktop\Zenject-master\Zenject-master\UnityProject\Assets\Plugins\Zenject\Source\Binding\Binders\Factory\Pooling\MemoryPoolInitialSizeBinder.cs">
+      <Link>Source\Binding\Binders\Factory\Pooling\MemoryPoolInitialSizeBinder.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\User\Desktop\Zenject-master\Zenject-master\UnityProject\Assets\Plugins\Zenject\Source\Providers\ComponentProviders\AddToGameObjectComponentProviders\AddToGameObjectComponentProviderBase.cs">
+      <Link>Source\Providers\ComponentProviders\AddToGameObjectComponentProviders\AddToGameObjectComponentProviderBase.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\User\Desktop\Zenject-master\Zenject-master\UnityProject\Assets\Plugins\Zenject\Source\Binding\Binders\Factory\FactoryFromBinder\FactoryFromBinder4.cs">
+      <Link>Source\Binding\Binders\Factory\FactoryFromBinder\FactoryFromBinder4.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\User\Desktop\Zenject-master\Zenject-master\UnityProject\Assets\Plugins\Zenject\OptionalExtras\SampleGame1 (Beginner)\Scripts\Installers\GameSettingsInstaller.cs">
+      <Link>OptionalExtras\SampleGame1 (Beginner)\Scripts\Installers\GameSettingsInstaller.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\User\Desktop\Zenject-master\Zenject-master\UnityProject\Assets\Plugins\Zenject\Source\Binding\Binders\Factory\FactoryArgumentsToChoiceBinder\FactoryArgumentsToChoiceBinder6.cs">
+      <Link>Source\Binding\Binders\Factory\FactoryArgumentsToChoiceBinder\FactoryArgumentsToChoiceBinder6.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\User\Desktop\Zenject-master\Zenject-master\UnityProject\Assets\Plugins\Zenject\Source\Binding\Binders\Factory\FactoryFromBinder\FactoryFromBinder10.cs">
+      <Link>Source\Binding\Binders\Factory\FactoryFromBinder\FactoryFromBinder10.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\User\Desktop\Zenject-master\Zenject-master\UnityProject\Assets\Plugins\Zenject\OptionalExtras\Signals\Main\SignalBus.cs">
+      <Link>OptionalExtras\Signals\Main\SignalBus.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\User\Desktop\Zenject-master\Zenject-master\UnityProject\Assets\Plugins\Zenject\Source\Binding\Finalizers\PrefabResourceBindingFinalizer.cs">
+      <Link>Source\Binding\Finalizers\PrefabResourceBindingFinalizer.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\User\Desktop\Zenject-master\Zenject-master\UnityProject\Assets\Plugins\Zenject\Source\Binding\Binders\Factory\FactoryArgumentsToChoiceBinder\FactoryArgumentsToChoiceBinder10.cs">
+      <Link>Source\Binding\Binders\Factory\FactoryArgumentsToChoiceBinder\FactoryArgumentsToChoiceBinder10.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\User\Desktop\Zenject-master\Zenject-master\UnityProject\Assets\Plugins\Zenject\OptionalExtras\SampleGame2 (Advanced)\Scripts\Enemy\GameEvents.cs">
+      <Link>OptionalExtras\SampleGame2 (Advanced)\Scripts\Enemy\GameEvents.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\User\Desktop\Zenject-master\Zenject-master\UnityProject\Assets\Plugins\Zenject\Source\Binding\Binders\Factory\FactoryArgumentsToChoiceBinder\FactoryArgumentsToChoiceBinder3.cs">
+      <Link>Source\Binding\Binders\Factory\FactoryArgumentsToChoiceBinder\FactoryArgumentsToChoiceBinder3.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\User\Desktop\Zenject-master\Zenject-master\UnityProject\Assets\Plugins\Zenject\OptionalExtras\SampleGame2 (Advanced)\Scripts\Enemy\EnemyDeathHandler.cs">
+      <Link>OptionalExtras\SampleGame2 (Advanced)\Scripts\Enemy\EnemyDeathHandler.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\User\Desktop\Zenject-master\Zenject-master\UnityProject\Assets\Plugins\Zenject\OptionalExtras\SampleGame1 (Beginner)\Scripts\Main\GameController.cs">
+      <Link>OptionalExtras\SampleGame1 (Beginner)\Scripts\Main\GameController.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\User\Desktop\Zenject-master\Zenject-master\UnityProject\Assets\Plugins\Zenject\Source\Runtime\Kernels\ProjectKernel.cs">
+      <Link>Source\Runtime\Kernels\ProjectKernel.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\User\Desktop\Zenject-master\Zenject-master\UnityProject\Assets\Plugins\Zenject\Source\Validation\IValidatable.cs">
+      <Link>Source\Validation\IValidatable.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\User\Desktop\Zenject-master\Zenject-master\UnityProject\Assets\Plugins\Zenject\Source\Install\IInstaller.cs">
+      <Link>Source\Install\IInstaller.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\User\Desktop\Zenject-master\Zenject-master\UnityProject\Assets\Plugins\Zenject\Source\Util\ExecutionOrderInstaller.cs">
+      <Link>Source\Util\ExecutionOrderInstaller.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\User\Desktop\Zenject-master\Zenject-master\UnityProject\Assets\Plugins\Zenject\Source\Providers\PrefabProviders\PrefabProviderCustom.cs">
+      <Link>Source\Providers\PrefabProviders\PrefabProviderCustom.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\User\Desktop\Zenject-master\Zenject-master\UnityProject\Assets\Plugins\Zenject\Source\Binding\Binders\Factory\FactoryToChoiceIdBinder\FactoryToChoiceIdBinder10.cs">
+      <Link>Source\Binding\Binders\Factory\FactoryToChoiceIdBinder\FactoryToChoiceIdBinder10.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\User\Desktop\Zenject-master\Zenject-master\UnityProject\Assets\Plugins\Zenject\Source\Install\Contexts\ProjectContext.cs">
+      <Link>Source\Install\Contexts\ProjectContext.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\User\Desktop\Zenject-master\Zenject-master\UnityProject\Assets\Plugins\Zenject\Source\Util\ZenUtilInternal.cs">
+      <Link>Source\Util\ZenUtilInternal.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\User\Desktop\Zenject-master\Zenject-master\UnityProject\Assets\Plugins\Zenject\Source\Install\Contexts\StaticContext.cs">
+      <Link>Source\Install\Contexts\StaticContext.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\User\Desktop\Zenject-master\Zenject-master\UnityProject\Assets\Plugins\Zenject\Source\Binding\Binders\FromBinders\FromBinderGeneric.cs">
+      <Link>Source\Binding\Binders\FromBinders\FromBinderGeneric.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\User\Desktop\Zenject-master\Zenject-master\UnityProject\Assets\Plugins\Zenject\Source\Binding\Binders\DefaultParentScopeConcreteIdArgConditionCopyNonLazyBinder.cs">
+      <Link>Source\Binding\Binders\DefaultParentScopeConcreteIdArgConditionCopyNonLazyBinder.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\User\Desktop\Zenject-master\Zenject-master\UnityProject\Assets\Plugins\Zenject\Source\Install\CompositeInstallerExtensions.cs">
+      <Link>Source\Install\CompositeInstallerExtensions.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\User\Desktop\Zenject-master\Zenject-master\UnityProject\Assets\Plugins\Zenject\Source\Util\ReflectionUtil.cs">
+      <Link>Source\Util\ReflectionUtil.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\User\Desktop\Zenject-master\Zenject-master\UnityProject\Assets\Plugins\Zenject\OptionalExtras\Signals\Internal\Binders\BindSignal\BindSignalFromBinder.cs">
+      <Link>OptionalExtras\Signals\Internal\Binders\BindSignal\BindSignalFromBinder.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\User\Desktop\Zenject-master\Zenject-master\UnityProject\Assets\Plugins\Zenject\Source\Factories\Pooling\PoolFactory.cs">
+      <Link>Source\Factories\Pooling\PoolFactory.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\User\Desktop\Zenject-master\Zenject-master\UnityProject\Assets\Plugins\Zenject\OptionalExtras\SampleGame1 (Beginner)\Scripts\Ship\States\ExplosionFactory.cs">
+      <Link>OptionalExtras\SampleGame1 (Beginner)\Scripts\Ship\States\ExplosionFactory.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\User\Desktop\Zenject-master\Zenject-master\UnityProject\Assets\Plugins\Zenject\Source\Internal\PreserveAttribute.cs">
+      <Link>Source\Internal\PreserveAttribute.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\User\Desktop\Zenject-master\Zenject-master\UnityProject\Assets\Plugins\Zenject\Source\Runtime\GuiRenderer.cs">
+      <Link>Source\Runtime\GuiRenderer.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\User\Desktop\Zenject-master\Zenject-master\UnityProject\Assets\Plugins\Zenject\Source\Providers\ComponentProviders\GetFromGameObjectComponentProvider.cs">
+      <Link>Source\Providers\ComponentProviders\GetFromGameObjectComponentProvider.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\User\Desktop\Zenject-master\Zenject-master\UnityProject\Assets\Plugins\Zenject\Source\Internal\TypeExtensions.cs">
+      <Link>Source\Internal\TypeExtensions.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\User\Desktop\Zenject-master\Zenject-master\UnityProject\Assets\Plugins\Zenject\OptionalExtras\SampleGame1 (Beginner)\Scripts\Ship\ShipStateFactory.cs">
+      <Link>OptionalExtras\SampleGame1 (Beginner)\Scripts\Ship\ShipStateFactory.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\User\Desktop\Zenject-master\Zenject-master\UnityProject\Assets\Plugins\Zenject\Source\Binding\BindingUtil.cs">
+      <Link>Source\Binding\BindingUtil.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\User\Desktop\Zenject-master\Zenject-master\UnityProject\Assets\Plugins\Zenject\Source\Binding\Binders\FromBinders\FromBinderNonGeneric.cs">
+      <Link>Source\Binding\Binders\FromBinders\FromBinderNonGeneric.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\User\Desktop\Zenject-master\Zenject-master\UnityProject\Assets\Plugins\Zenject\Source\Providers\SubContainerCreators\SubContainerCreatorUtil.cs">
+      <Link>Source\Providers\SubContainerCreators\SubContainerCreatorUtil.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\User\Desktop\Zenject-master\Zenject-master\UnityProject\Assets\Plugins\Zenject\Source\Install\Contexts\RunnableContext.cs">
+      <Link>Source\Install\Contexts\RunnableContext.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\User\Desktop\Zenject-master\Zenject-master\UnityProject\Assets\Plugins\Zenject\Source\Binding\BindInfo\BindStatement.cs">
+      <Link>Source\Binding\BindInfo\BindStatement.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\User\Desktop\Zenject-master\Zenject-master\UnityProject\Assets\Plugins\Zenject\Source\Providers\ResolveProvider.cs">
+      <Link>Source\Providers\ResolveProvider.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\User\Desktop\Zenject-master\Zenject-master\UnityProject\Assets\Plugins\Zenject\Source\Factories\Pooling\MemoryPoolBase.cs">
+      <Link>Source\Factories\Pooling\MemoryPoolBase.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\User\Desktop\Zenject-master\Zenject-master\UnityProject\Assets\Plugins\Zenject\Source\Binding\Binders\Factory\FactoryFromBinder\FactoryFromBinder3.cs">
+      <Link>Source\Binding\Binders\Factory\FactoryFromBinder\FactoryFromBinder3.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\User\Desktop\Zenject-master\Zenject-master\UnityProject\Assets\Plugins\Zenject\Source\Factories\KeyedFactory.cs">
+      <Link>Source\Factories\KeyedFactory.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\User\Desktop\Zenject-master\Zenject-master\UnityProject\Assets\Plugins\Zenject\Source\Binding\Binders\Factory\FactoryFromBinder\SubContainerBinder\FactorySubContainerBinder1.cs">
+      <Link>Source\Binding\Binders\Factory\FactoryFromBinder\SubContainerBinder\FactorySubContainerBinder1.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\User\Desktop\Zenject-master\Zenject-master\UnityProject\Assets\Plugins\Zenject\Source\Binding\Binders\Factory\FactoryToChoiceBinder\FactoryToChoiceBinder10.cs">
+      <Link>Source\Binding\Binders\Factory\FactoryToChoiceBinder\FactoryToChoiceBinder10.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\User\Desktop\Zenject-master\Zenject-master\UnityProject\Assets\Plugins\Zenject\Source\Install\ScriptableObjectInstallerBase.cs">
+      <Link>Source\Install\ScriptableObjectInstallerBase.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\User\Desktop\Zenject-master\Zenject-master\UnityProject\Assets\Plugins\Zenject\OptionalExtras\SampleGame2 (Advanced)\Scripts\Misc\Bullet.cs">
+      <Link>OptionalExtras\SampleGame2 (Advanced)\Scripts\Misc\Bullet.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\User\Desktop\Zenject-master\Zenject-master\UnityProject\Assets\Plugins\Zenject\OptionalExtras\SampleGame2 (Advanced)\Scripts\Player\PlayerFacade.cs">
+      <Link>OptionalExtras\SampleGame2 (Advanced)\Scripts\Player\PlayerFacade.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\User\Desktop\Zenject-master\Zenject-master\UnityProject\Assets\Plugins\Zenject\Source\Providers\IProviderExtensions.cs">
+      <Link>Source\Providers\IProviderExtensions.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\User\Desktop\Zenject-master\Zenject-master\UnityProject\Assets\Plugins\Zenject\Source\Binding\Binders\ConcreteBinders\ConcreteIdBinderNonGeneric.cs">
+      <Link>Source\Binding\Binders\ConcreteBinders\ConcreteIdBinderNonGeneric.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\User\Desktop\Zenject-master\Zenject-master\UnityProject\Assets\Plugins\Zenject\OptionalExtras\SampleGame1 (Beginner)\Scripts\Ship\States\ShipStateWaitingToStart.cs">
+      <Link>OptionalExtras\SampleGame1 (Beginner)\Scripts\Ship\States\ShipStateWaitingToStart.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\User\Desktop\Zenject-master\Zenject-master\UnityProject\Assets\Plugins\Zenject\Source\Binding\Binders\WithKernelScopeConcreteIdArgConditionCopyNonLazyBinder.cs">
+      <Link>Source\Binding\Binders\WithKernelScopeConcreteIdArgConditionCopyNonLazyBinder.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\User\Desktop\Zenject-master\Zenject-master\UnityProject\Assets\Plugins\Zenject\OptionalExtras\Signals\Internal\Binders\DeclareSignal\SignalBindingBindInfo.cs">
+      <Link>OptionalExtras\Signals\Internal\Binders\DeclareSignal\SignalBindingBindInfo.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\User\Desktop\Zenject-master\Zenject-master\UnityProject\Assets\Plugins\Zenject\Source\Providers\SubContainerCreators\SubContainerCreatorByInstaller.cs">
+      <Link>Source\Providers\SubContainerCreators\SubContainerCreatorByInstaller.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\User\Desktop\Zenject-master\Zenject-master\UnityProject\Assets\Plugins\Zenject\Source\Binding\Binders\InstantiateCallbackConditionCopyNonLazyBinder.cs">
+      <Link>Source\Binding\Binders\InstantiateCallbackConditionCopyNonLazyBinder.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\User\Desktop\Zenject-master\Zenject-master\UnityProject\Assets\Plugins\Zenject\Source\Util\DefaultGameObjectParentInstaller.cs">
+      <Link>Source\Util\DefaultGameObjectParentInstaller.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\User\Desktop\Zenject-master\Zenject-master\UnityProject\Assets\Plugins\Zenject\Source\Binding\Binders\Factory\FactoryToChoiceBinder\FactoryToChoiceBinder6.cs">
+      <Link>Source\Binding\Binders\Factory\FactoryToChoiceBinder\FactoryToChoiceBinder6.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\User\Desktop\Zenject-master\Zenject-master\UnityProject\Assets\Plugins\Zenject\Source\Providers\ComponentProviders\AddToGameObjectComponentProviders\AddToExistingGameObjectComponentProvider.cs">
+      <Link>Source\Providers\ComponentProviders\AddToGameObjectComponentProviders\AddToExistingGameObjectComponentProvider.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\User\Desktop\Zenject-master\Zenject-master\UnityProject\Assets\Plugins\Zenject\Source\Binding\Binders\Factory\FactoryToChoiceIdBinder\FactoryToChoiceIdBinder1.cs">
+      <Link>Source\Binding\Binders\Factory\FactoryToChoiceIdBinder\FactoryToChoiceIdBinder1.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\User\Desktop\Zenject-master\Zenject-master\UnityProject\Assets\Plugins\Zenject\Source\Runtime\Kernels\DecoratableMonoKernel.cs">
+      <Link>Source\Runtime\Kernels\DecoratableMonoKernel.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\User\Desktop\Zenject-master\Zenject-master\UnityProject\Assets\Plugins\Zenject\Source\Util\ZenjectSceneLoader.cs">
+      <Link>Source\Util\ZenjectSceneLoader.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\User\Desktop\Zenject-master\Zenject-master\UnityProject\Assets\Plugins\Zenject\Source\Main\ZenjectSettings.cs">
+      <Link>Source\Main\ZenjectSettings.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\User\Desktop\Zenject-master\Zenject-master\UnityProject\Assets\Plugins\Zenject\Source\Install\Contexts\GameObjectContext.cs">
+      <Link>Source\Install\Contexts\GameObjectContext.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\User\Desktop\Zenject-master\Zenject-master\UnityProject\Assets\Plugins\Zenject\OptionalExtras\Signals\Internal\Binders\SignalCopyBinder.cs">
+      <Link>OptionalExtras\Signals\Internal\Binders\SignalCopyBinder.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\User\Desktop\Zenject-master\Zenject-master\UnityProject\Assets\Plugins\Zenject\Source\Providers\ComponentProviders\AddToGameObjectComponentProviders\AddToCurrentGameObjectComponentProvider.cs">
+      <Link>Source\Providers\ComponentProviders\AddToGameObjectComponentProviders\AddToCurrentGameObjectComponentProvider.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\User\Desktop\Zenject-master\Zenject-master\UnityProject\Assets\Plugins\Zenject\Source\Providers\CachedProvider.cs">
+      <Link>Source\Providers\CachedProvider.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\User\Desktop\Zenject-master\Zenject-master\UnityProject\Assets\Plugins\Zenject\OptionalExtras\Signals\Internal\Binders\DeclareSignal\DeclareSignalAsyncTickPriorityCopyBinder.cs">
+      <Link>OptionalExtras\Signals\Internal\Binders\DeclareSignal\DeclareSignalAsyncTickPriorityCopyBinder.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\User\Desktop\Zenject-master\Zenject-master\UnityProject\Assets\Plugins\Zenject\Source\Binding\Finalizers\ProviderBindingFinalizer.cs">
+      <Link>Source\Binding\Finalizers\ProviderBindingFinalizer.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\User\Desktop\Zenject-master\Zenject-master\UnityProject\Assets\Plugins\Zenject\OptionalExtras\SampleGame2 (Advanced)\Scripts\Misc\EnemySpawner.cs">
+      <Link>OptionalExtras\SampleGame2 (Advanced)\Scripts\Misc\EnemySpawner.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\User\Desktop\Zenject-master\Zenject-master\UnityProject\Assets\Plugins\Zenject\OptionalExtras\SampleGame1 (Beginner)\Scripts\Util\GameEvents.cs">
+      <Link>OptionalExtras\SampleGame1 (Beginner)\Scripts\Util\GameEvents.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\User\Desktop\Zenject-master\Zenject-master\UnityProject\Assets\Plugins\Zenject\Source\Providers\ResourceProvider.cs">
+      <Link>Source\Providers\ResourceProvider.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\User\Desktop\Zenject-master\Zenject-master\UnityProject\Assets\Plugins\Zenject\Source\Factories\PrefabResourceFactory.cs">
+      <Link>Source\Factories\PrefabResourceFactory.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\User\Desktop\Zenject-master\Zenject-master\UnityProject\Assets\Plugins\Zenject\Source\Binding\Binders\Conventions\ConventionSelectTypesBinder.cs">
+      <Link>Source\Binding\Binders\Conventions\ConventionSelectTypesBinder.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\User\Desktop\Zenject-master\Zenject-master\UnityProject\Assets\Plugins\Zenject\Source\Install\ScriptableObjectInstaller.cs">
+      <Link>Source\Install\ScriptableObjectInstaller.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\User\Desktop\Zenject-master\Zenject-master\UnityProject\Assets\Plugins\Zenject\Source\Main\DiContainer.cs">
+      <Link>Source\Main\DiContainer.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\User\Desktop\Zenject-master\Zenject-master\UnityProject\Assets\Plugins\Zenject\Source\Providers\ProviderUtil.cs">
+      <Link>Source\Providers\ProviderUtil.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\User\Desktop\Zenject-master\Zenject-master\UnityProject\Assets\Plugins\Zenject\Source\Install\InstallerBase.cs">
+      <Link>Source\Install\InstallerBase.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\User\Desktop\Zenject-master\Zenject-master\UnityProject\Assets\Plugins\Zenject\Source\Binding\Binders\Factory\FactoryFromBinder\SubContainerBinder\FactorySubContainerBinder0.cs">
+      <Link>Source\Binding\Binders\Factory\FactoryFromBinder\SubContainerBinder\FactorySubContainerBinder0.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\User\Desktop\Zenject-master\Zenject-master\UnityProject\Assets\Plugins\Zenject\Source\Binding\Finalizers\IBindingFinalizer.cs">
+      <Link>Source\Binding\Finalizers\IBindingFinalizer.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\User\Desktop\Zenject-master\Zenject-master\UnityProject\Assets\Plugins\Zenject\OptionalExtras\SampleGame1 (Beginner)\Scripts\Misc\TilingBackground.cs">
+      <Link>OptionalExtras\SampleGame1 (Beginner)\Scripts\Misc\TilingBackground.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\User\Desktop\Zenject-master\Zenject-master\UnityProject\Assets\Plugins\Zenject\Source\Binding\Binders\NonLazyBinder.cs">
+      <Link>Source\Binding\Binders\NonLazyBinder.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\User\Desktop\Zenject-master\Zenject-master\UnityProject\Assets\Plugins\Zenject\Source\Providers\SubContainerCreators\SubContainerCreatorByInstanceGetter.cs">
+      <Link>Source\Providers\SubContainerCreators\SubContainerCreatorByInstanceGetter.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\User\Desktop\Zenject-master\Zenject-master\UnityProject\Assets\Plugins\Zenject\Source\Factories\Pooling\Util\ListPool.cs">
+      <Link>Source\Factories\Pooling\Util\ListPool.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\User\Desktop\Zenject-master\Zenject-master\UnityProject\Assets\Plugins\Zenject\OptionalExtras\SampleGame2 (Advanced)\Scripts\Player\PlayerInputHandler.cs">
+      <Link>OptionalExtras\SampleGame2 (Advanced)\Scripts\Player\PlayerInputHandler.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\User\Desktop\Zenject-master\Zenject-master\UnityProject\Assets\Plugins\Zenject\Source\Binding\Binders\IdScopeConcreteIdArgConditionCopyNonLazyBinder.cs">
+      <Link>Source\Binding\Binders\IdScopeConcreteIdArgConditionCopyNonLazyBinder.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\User\Desktop\Zenject-master\Zenject-master\UnityProject\Assets\Plugins\Zenject\Source\Factories\Pooling\Util\StaticMemoryPoolRegistry.cs">
+      <Link>Source\Factories\Pooling\Util\StaticMemoryPoolRegistry.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\User\Desktop\Zenject-master\Zenject-master\UnityProject\Assets\Plugins\Zenject\Source\Providers\MethodProviderMultiple.cs">
+      <Link>Source\Providers\MethodProviderMultiple.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\User\Desktop\Zenject-master\Zenject-master\UnityProject\Assets\Plugins\Zenject\OptionalExtras\SampleGame1 (Beginner)\Scripts\Asteroid\Asteroid.cs">
+      <Link>OptionalExtras\SampleGame1 (Beginner)\Scripts\Asteroid\Asteroid.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\User\Desktop\Zenject-master\Zenject-master\UnityProject\Assets\Plugins\Zenject\Source\Providers\PrefabProviders\PrefabProviderResource.cs">
+      <Link>Source\Providers\PrefabProviders\PrefabProviderResource.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\User\Desktop\Zenject-master\Zenject-master\UnityProject\Assets\Plugins\Zenject\OptionalExtras\SampleGame2 (Advanced)\Scripts\Misc\LevelBoundary.cs">
+      <Link>OptionalExtras\SampleGame2 (Advanced)\Scripts\Misc\LevelBoundary.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\User\Desktop\Zenject-master\Zenject-master\UnityProject\Assets\Plugins\Zenject\Source\Binding\Binders\Factory\FactoryToChoiceBinder\FactoryToChoiceBinder4.cs">
+      <Link>Source\Binding\Binders\Factory\FactoryToChoiceBinder\FactoryToChoiceBinder4.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\User\Desktop\Zenject-master\Zenject-master\UnityProject\Assets\Plugins\Zenject\Source\Runtime\SceneContextRegistry.cs">
+      <Link>Source\Runtime\SceneContextRegistry.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\User\Desktop\Zenject-master\Zenject-master\UnityProject\Assets\Plugins\Zenject\Source\Binding\Binders\SubContainerBinder.cs">
+      <Link>Source\Binding\Binders\SubContainerBinder.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\User\Desktop\Zenject-master\Zenject-master\UnityProject\Assets\Plugins\Zenject\Source\Binding\Binders\Factory\FactoryToChoiceIdBinder\FactoryToChoiceIdBinder6.cs">
+      <Link>Source\Binding\Binders\Factory\FactoryToChoiceIdBinder\FactoryToChoiceIdBinder6.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\User\Desktop\Zenject-master\Zenject-master\UnityProject\Assets\Plugins\Zenject\OptionalExtras\SampleGame2 (Advanced)\Scripts\Player\PlayerHealthWatcher.cs">
+      <Link>OptionalExtras\SampleGame2 (Advanced)\Scripts\Player\PlayerHealthWatcher.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\User\Desktop\Zenject-master\Zenject-master\UnityProject\Assets\Plugins\Zenject\Source\Util\ZenReflectionTypeAnalyzer.cs">
+      <Link>Source\Util\ZenReflectionTypeAnalyzer.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\User\Desktop\Zenject-master\Zenject-master\UnityProject\Assets\Plugins\Zenject\OptionalExtras\SampleGame2 (Advanced)\Scripts\Installers\EnemyInstaller.cs">
+      <Link>OptionalExtras\SampleGame2 (Advanced)\Scripts\Installers\EnemyInstaller.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\User\Desktop\Zenject-master\Zenject-master\UnityProject\Assets\Plugins\Zenject\Source\Binding\Binders\Conventions\ConventionAssemblySelectionBinder.cs">
+      <Link>Source\Binding\Binders\Conventions\ConventionAssemblySelectionBinder.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\User\Desktop\Zenject-master\Zenject-master\UnityProject\Assets\Plugins\Zenject\Source\Util\ProfileBlock.cs">
+      <Link>Source\Util\ProfileBlock.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\User\Desktop\Zenject-master\Zenject-master\UnityProject\Assets\Plugins\Zenject\Source\Providers\SubContainerCreators\SubContainerCreatorByNewPrefab.cs">
+      <Link>Source\Providers\SubContainerCreators\SubContainerCreatorByNewPrefab.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\User\Desktop\Zenject-master\Zenject-master\UnityProject\Assets\Plugins\Zenject\Source\Providers\SubContainerCreators\SubContainerCreatorByInstance.cs">
+      <Link>Source\Providers\SubContainerCreators\SubContainerCreatorByInstance.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\User\Desktop\Zenject-master\Zenject-master\UnityProject\Assets\Plugins\Zenject\Source\Providers\GameObjectProviders\PrefabGameObjectProvider.cs">
+      <Link>Source\Providers\GameObjectProviders\PrefabGameObjectProvider.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\User\Desktop\Zenject-master\Zenject-master\UnityProject\Assets\Plugins\Zenject\OptionalExtras\Signals\Internal\Binders\DeclareSignal\DeclareSignalIdRequireHandlerAsyncTickPriorityCopyBinder.cs">
+      <Link>OptionalExtras\Signals\Internal\Binders\DeclareSignal\DeclareSignalIdRequireHandlerAsyncTickPriorityCopyBinder.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\User\Desktop\Zenject-master\Zenject-master\UnityProject\Assets\Plugins\Zenject\Source\Injection\InjectContext.cs">
+      <Link>Source\Injection\InjectContext.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\User\Desktop\Zenject-master\Zenject-master\UnityProject\Assets\Plugins\Zenject\OptionalExtras\SampleGame2 (Advanced)\Scripts\Enemy\States\EnemyStateFollow.cs">
+      <Link>OptionalExtras\SampleGame2 (Advanced)\Scripts\Enemy\States\EnemyStateFollow.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\User\Desktop\Zenject-master\Zenject-master\UnityProject\Assets\Plugins\Zenject\Source\Runtime\SceneContextRegistryAdderAndRemover.cs">
+      <Link>Source\Runtime\SceneContextRegistryAdderAndRemover.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\User\Desktop\Zenject-master\Zenject-master\UnityProject\Assets\Plugins\Zenject\Source\Binding\Binders\GameObject\TransformScopeConcreteIdArgConditionCopyNonLazyBinder.cs">
+      <Link>Source\Binding\Binders\GameObject\TransformScopeConcreteIdArgConditionCopyNonLazyBinder.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\User\Desktop\Zenject-master\Zenject-master\UnityProject\Assets\Plugins\Zenject\Source\Util\ZenPools.cs">
+      <Link>Source\Util\ZenPools.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\User\Desktop\Zenject-master\Zenject-master\UnityProject\Assets\Plugins\Zenject\Source\Injection\InjectUtil.cs">
+      <Link>Source\Injection\InjectUtil.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\User\Desktop\Zenject-master\Zenject-master\UnityProject\Assets\Plugins\Zenject\Source\Binding\Binders\ConcreteIdArgConditionCopyNonLazyBinder.cs">
+      <Link>Source\Binding\Binders\ConcreteIdArgConditionCopyNonLazyBinder.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\User\Desktop\Zenject-master\Zenject-master\UnityProject\Assets\Plugins\Zenject\Source\Factories\Pooling\Util\HashSetPool.cs">
+      <Link>Source\Factories\Pooling\Util\HashSetPool.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\User\Desktop\Zenject-master\Zenject-master\UnityProject\Assets\Plugins\Zenject\Source\Providers\ScriptableObjectResourceProvider.cs">
+      <Link>Source\Providers\ScriptableObjectResourceProvider.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\User\Desktop\Zenject-master\Zenject-master\UnityProject\Assets\Plugins\Zenject\Source\Factories\PlaceholderFactory.cs">
+      <Link>Source\Factories\PlaceholderFactory.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\User\Desktop\Zenject-master\Zenject-master\UnityProject\Assets\Plugins\Zenject\OptionalExtras\SampleGame1 (Beginner)\Scripts\Misc\AudioHandler.cs">
+      <Link>OptionalExtras\SampleGame1 (Beginner)\Scripts\Misc\AudioHandler.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\User\Desktop\Zenject-master\Zenject-master\UnityProject\Assets\Plugins\Zenject\Source\Internal\ValuePair.cs">
+      <Link>Source\Internal\ValuePair.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\User\Desktop\Zenject-master\Zenject-master\UnityProject\Assets\Plugins\Zenject\Source\Binding\Binders\Factory\FactoryArgumentsToChoiceBinder\FactoryArgumentsToChoiceBinder5.cs">
+      <Link>Source\Binding\Binders\Factory\FactoryArgumentsToChoiceBinder\FactoryArgumentsToChoiceBinder5.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\User\Desktop\Zenject-master\Zenject-master\UnityProject\Assets\Plugins\Zenject\Source\Binding\Binders\Factory\PlaceholderFactoryBindingFinalizer.cs">
+      <Link>Source\Binding\Binders\Factory\PlaceholderFactoryBindingFinalizer.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\User\Desktop\Zenject-master\Zenject-master\UnityProject\Assets\Plugins\Zenject\Source\Binding\BindInfo\GameObjectCreationParameters.cs">
+      <Link>Source\Binding\BindInfo\GameObjectCreationParameters.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\User\Desktop\Zenject-master\Zenject-master\UnityProject\Assets\Plugins\Zenject\OptionalExtras\SampleGame2 (Advanced)\Scripts\Misc\AudioPlayer.cs">
+      <Link>OptionalExtras\SampleGame2 (Advanced)\Scripts\Misc\AudioPlayer.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\User\Desktop\Zenject-master\Zenject-master\UnityProject\Assets\Plugins\Zenject\OptionalExtras\SampleGame2 (Advanced)\Scripts\Player\PlayerDamageHandler.cs">
+      <Link>OptionalExtras\SampleGame2 (Advanced)\Scripts\Player\PlayerDamageHandler.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\User\Desktop\Zenject-master\Zenject-master\UnityProject\Assets\Plugins\Zenject\Source\Util\DisposeBlock.cs">
+      <Link>Source\Util\DisposeBlock.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\User\Desktop\Zenject-master\Zenject-master\UnityProject\Assets\Plugins\Zenject\OptionalExtras\SampleGame2 (Advanced)\Scripts\Enemy\EnemyRotationHandler.cs">
+      <Link>OptionalExtras\SampleGame2 (Advanced)\Scripts\Enemy\EnemyRotationHandler.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\User\Desktop\Zenject-master\Zenject-master\UnityProject\Assets\Plugins\Zenject\OptionalExtras\SampleGame2 (Advanced)\Scripts\Installers\GameInstaller.cs">
+      <Link>OptionalExtras\SampleGame2 (Advanced)\Scripts\Installers\GameInstaller.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\User\Desktop\Zenject-master\Zenject-master\UnityProject\Assets\Plugins\Zenject\Source\Binding\Binders\Factory\FactoryFromBinder\FactoryFromBinder5.cs">
+      <Link>Source\Binding\Binders\Factory\FactoryFromBinder\FactoryFromBinder5.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\User\Desktop\Zenject-master\Zenject-master\UnityProject\Assets\Plugins\Zenject\Source\Providers\MethodProvider.cs">
+      <Link>Source\Providers\MethodProvider.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\User\Desktop\Zenject-master\Zenject-master\UnityProject\Assets\Plugins\Zenject\Source\Factories\Pooling\Util\PoolCleanupChecker.cs">
+      <Link>Source\Factories\Pooling\Util\PoolCleanupChecker.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\User\Desktop\Zenject-master\Zenject-master\UnityProject\Assets\Plugins\Zenject\Source\Runtime\TickableManager.cs">
+      <Link>Source\Runtime\TickableManager.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\User\Desktop\Zenject-master\Zenject-master\UnityProject\Assets\Plugins\Zenject\Source\Factories\Pooling\MonoPoolableMemoryPool.cs">
+      <Link>Source\Factories\Pooling\MonoPoolableMemoryPool.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\User\Desktop\Zenject-master\Zenject-master\UnityProject\Assets\Plugins\Zenject\Source\Runtime\DisposableManager.cs">
+      <Link>Source\Runtime\DisposableManager.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\User\Desktop\Zenject-master\Zenject-master\UnityProject\Assets\Plugins\Zenject\Source\Binding\Binders\WithKernelDefaultParentScopeConcreteIdArgConditionCopyNonLazyBinder.cs">
+      <Link>Source\Binding\Binders\WithKernelDefaultParentScopeConcreteIdArgConditionCopyNonLazyBinder.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\User\Desktop\Zenject-master\Zenject-master\UnityProject\Assets\Plugins\Zenject\Source\Factories\PlaceholderFactoryBase.cs">
+      <Link>Source\Factories\PlaceholderFactoryBase.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\User\Desktop\Zenject-master\Zenject-master\UnityProject\Assets\Plugins\Zenject\Source\Main\IInstantiator.cs">
+      <Link>Source\Main\IInstantiator.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\User\Desktop\Zenject-master\Zenject-master\UnityProject\Assets\Plugins\Zenject\Source\Install\Installer.cs">
+      <Link>Source\Install\Installer.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\User\Desktop\Zenject-master\Zenject-master\UnityProject\Assets\Plugins\Zenject\Source\Binding\Binders\Factory\FactoryToChoiceIdBinder\FactoryToChoiceIdBinder0.cs">
+      <Link>Source\Binding\Binders\Factory\FactoryToChoiceIdBinder\FactoryToChoiceIdBinder0.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\User\Desktop\Zenject-master\Zenject-master\UnityProject\Assets\Plugins\Zenject\OptionalExtras\SampleGame2 (Advanced)\Scripts\Player\PlayerGui.cs">
+      <Link>OptionalExtras\SampleGame2 (Advanced)\Scripts\Player\PlayerGui.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\User\Desktop\Zenject-master\Zenject-master\UnityProject\Assets\Plugins\Zenject\Source\Binding\Binders\Factory\FactoryFromBinder\SubContainerBinder\FactorySubContainerBinder3.cs">
+      <Link>Source\Binding\Binders\Factory\FactoryFromBinder\SubContainerBinder\FactorySubContainerBinder3.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\User\Desktop\Zenject-master\Zenject-master\UnityProject\Assets\Plugins\Zenject\Source\Runtime\Kernels\SceneKernel.cs">
+      <Link>Source\Runtime\Kernels\SceneKernel.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\User\Desktop\Zenject-master\Zenject-master\UnityProject\Assets\Plugins\Zenject\Source\Binding\BindInfo\MemoryPoolBindInfo.cs">
+      <Link>Source\Binding\BindInfo\MemoryPoolBindInfo.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\User\Desktop\Zenject-master\Zenject-master\UnityProject\Assets\Plugins\Zenject\Source\Providers\SubContainerCreators\SubContainerCreatorByNewPrefabWithParams.cs">
+      <Link>Source\Providers\SubContainerCreators\SubContainerCreatorByNewPrefabWithParams.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\User\Desktop\Zenject-master\Zenject-master\UnityProject\Assets\Plugins\Zenject\Source\Providers\TransientProvider.cs">
+      <Link>Source\Providers\TransientProvider.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\User\Desktop\Zenject-master\Zenject-master\UnityProject\Assets\Plugins\Zenject\OptionalExtras\SampleGame2 (Advanced)\Scripts\Enemy\EnemyTunables.cs">
+      <Link>OptionalExtras\SampleGame2 (Advanced)\Scripts\Enemy\EnemyTunables.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\User\Desktop\Zenject-master\Zenject-master\UnityProject\Assets\Plugins\Zenject\Source\Factories\Pooling\PoolableMemoryPool.cs">
+      <Link>Source\Factories\Pooling\PoolableMemoryPool.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\User\Desktop\Zenject-master\Zenject-master\UnityProject\Assets\Plugins\Zenject\OptionalExtras\SampleGame1 (Beginner)\Scripts\Misc\LevelHelper.cs">
+      <Link>OptionalExtras\SampleGame1 (Beginner)\Scripts\Misc\LevelHelper.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\User\Desktop\Zenject-master\Zenject-master\UnityProject\Assets\Plugins\Zenject\Source\Binding\Binders\ScopeConcreteIdArgConditionCopyNonLazyBinder.cs">
+      <Link>Source\Binding\Binders\ScopeConcreteIdArgConditionCopyNonLazyBinder.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\User\Desktop\Zenject-master\Zenject-master\UnityProject\Assets\Plugins\Zenject\OptionalExtras\SampleGame2 (Advanced)\Scripts\Installers\PlayerInstaller.cs">
+      <Link>OptionalExtras\SampleGame2 (Advanced)\Scripts\Installers\PlayerInstaller.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\User\Desktop\Zenject-master\Zenject-master\UnityProject\Assets\Plugins\Zenject\OptionalExtras\SampleGame2 (Advanced)\Scripts\Enemy\EnemyRegistry.cs">
+      <Link>OptionalExtras\SampleGame2 (Advanced)\Scripts\Enemy\EnemyRegistry.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\User\Desktop\Zenject-master\Zenject-master\UnityProject\Assets\Plugins\Zenject\Source\Binding\Binders\FromBinders\FromBinder.cs">
+      <Link>Source\Binding\Binders\FromBinders\FromBinder.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\User\Desktop\Zenject-master\Zenject-master\UnityProject\Assets\Plugins\Zenject\Source\Providers\Decorator\DecoratorProvider.cs">
+      <Link>Source\Providers\Decorator\DecoratorProvider.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\User\Desktop\Zenject-master\Zenject-master\UnityProject\Assets\Plugins\Zenject\Source\Runtime\InitializableManager.cs">
+      <Link>Source\Runtime\InitializableManager.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\User\Desktop\Zenject-master\Zenject-master\UnityProject\Assets\Plugins\Zenject\Source\Binding\Binders\ConcreteBinders\ConcreteBinderGeneric.cs">
+      <Link>Source\Binding\Binders\ConcreteBinders\ConcreteBinderGeneric.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\User\Desktop\Zenject-master\Zenject-master\UnityProject\Assets\Plugins\Zenject\OptionalExtras\SampleGame2 (Advanced)\Scripts\Misc\Explosion.cs">
+      <Link>OptionalExtras\SampleGame2 (Advanced)\Scripts\Misc\Explosion.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\User\Desktop\Zenject-master\Zenject-master\UnityProject\Assets\Plugins\Zenject\Source\Util\ZenjectStateMachineBehaviourAutoInjecter.cs">
+      <Link>Source\Util\ZenjectStateMachineBehaviourAutoInjecter.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\User\Desktop\Zenject-master\Zenject-master\UnityProject\Assets\Plugins\Zenject\OptionalExtras\SampleGame1 (Beginner)\Scripts\Ship\States\ShipStateMoving.cs">
+      <Link>OptionalExtras\SampleGame1 (Beginner)\Scripts\Ship\States\ShipStateMoving.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\User\Desktop\Zenject-master\Zenject-master\UnityProject\Assets\Plugins\Zenject\Source\Install\MonoInstaller.cs">
+      <Link>Source\Install\MonoInstaller.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\User\Desktop\Zenject-master\Zenject-master\UnityProject\Assets\Plugins\Zenject\Source\Binding\Binders\Factory\FactoryArgumentsToChoiceBinder\FactoryArgumentsToChoiceBinder0.cs">
+      <Link>Source\Binding\Binders\Factory\FactoryArgumentsToChoiceBinder\FactoryArgumentsToChoiceBinder0.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\User\Desktop\Zenject-master\Zenject-master\UnityProject\Assets\Plugins\Zenject\OptionalExtras\SampleGame2 (Advanced)\Scripts\Installers\GameSignalsInstaller.cs">
+      <Link>OptionalExtras\SampleGame2 (Advanced)\Scripts\Installers\GameSignalsInstaller.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\User\Desktop\Zenject-master\Zenject-master\UnityProject\Assets\Plugins\Zenject\Source\Providers\CachedOpenTypeProvider.cs">
+      <Link>Source\Providers\CachedOpenTypeProvider.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\User\Desktop\Zenject-master\Zenject-master\UnityProject\Assets\Plugins\Zenject\Source\Providers\PoolableMemoryPoolProvider.cs">
+      <Link>Source\Providers\PoolableMemoryPoolProvider.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\User\Desktop\Zenject-master\Zenject-master\UnityProject\Assets\Plugins\Zenject\Source\Binding\Binders\ConditionCopyNonLazyBinder.cs">
+      <Link>Source\Binding\Binders\ConditionCopyNonLazyBinder.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\User\Desktop\Zenject-master\Zenject-master\UnityProject\Assets\Plugins\Zenject\Source\Install\ICompositeInstaller.cs">
+      <Link>Source\Install\ICompositeInstaller.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\User\Desktop\Zenject-master\Zenject-master\UnityProject\Assets\Plugins\Zenject\Source\Providers\MethodMultipleProviderUntyped.cs">
+      <Link>Source\Providers\MethodMultipleProviderUntyped.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\User\Desktop\Zenject-master\Zenject-master\UnityProject\Assets\Plugins\Zenject\Source\Factories\Pooling\Static\StaticMemoryPool.cs">
+      <Link>Source\Factories\Pooling\Static\StaticMemoryPool.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\User\Desktop\Zenject-master\Zenject-master\UnityProject\Assets\Plugins\Zenject\Source\Binding\Binders\Factory\FactoryToChoiceIdBinder\FactoryToChoiceIdBinder5.cs">
+      <Link>Source\Binding\Binders\Factory\FactoryToChoiceIdBinder\FactoryToChoiceIdBinder5.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\User\Desktop\Zenject-master\Zenject-master\UnityProject\Assets\Plugins\Zenject\Source\Internal\MiscExtensions.cs">
+      <Link>Source\Internal\MiscExtensions.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\User\Desktop\Zenject-master\Zenject-master\UnityProject\Assets\Plugins\Zenject\Source\Binding\Binders\Factory\FactoryToChoiceBinder\FactoryToChoiceBinder3.cs">
+      <Link>Source\Binding\Binders\Factory\FactoryToChoiceBinder\FactoryToChoiceBinder3.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\User\Desktop\Zenject-master\Zenject-master\UnityProject\Assets\Plugins\Zenject\Source\Binding\Binders\Factory\FactoryFromBinder\SubContainerBinder\FactorySubContainerBinder2.cs">
+      <Link>Source\Binding\Binders\Factory\FactoryFromBinder\SubContainerBinder\FactorySubContainerBinder2.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\User\Desktop\Zenject-master\Zenject-master\UnityProject\Assets\Plugins\Zenject\Source\Binding\Binders\IdBinder.cs">
+      <Link>Source\Binding\Binders\IdBinder.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\User\Desktop\Zenject-master\Zenject-master\UnityProject\Assets\Plugins\Zenject\Source\Binding\Binders\Factory\FactoryArgumentsToChoiceBinder\FactoryArgumentsToChoiceBinder4.cs">
+      <Link>Source\Binding\Binders\Factory\FactoryArgumentsToChoiceBinder\FactoryArgumentsToChoiceBinder4.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\User\Desktop\Zenject-master\Zenject-master\UnityProject\Assets\Plugins\Zenject\Source\Install\ZenjectBinding.cs">
+      <Link>Source\Install\ZenjectBinding.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\User\Desktop\Zenject-master\Zenject-master\UnityProject\Assets\Plugins\Zenject\Source\Binding\Finalizers\PrefabBindingFinalizer.cs">
+      <Link>Source\Binding\Finalizers\PrefabBindingFinalizer.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\User\Desktop\Zenject-master\Zenject-master\UnityProject\Assets\Plugins\Zenject\OptionalExtras\SampleGame2 (Advanced)\Scripts\Misc\ControlsDisplay.cs">
+      <Link>OptionalExtras\SampleGame2 (Advanced)\Scripts\Misc\ControlsDisplay.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\User\Desktop\Zenject-master\Zenject-master\UnityProject\Assets\Plugins\Zenject\Source\Binding\Binders\Factory\FactoryFromBinder\FactoryFromBinder0.cs">
+      <Link>Source\Binding\Binders\Factory\FactoryFromBinder\FactoryFromBinder0.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\User\Desktop\Zenject-master\Zenject-master\UnityProject\Assets\Plugins\Zenject\Source\Binding\Binders\Factory\FactoryArgumentsToChoiceBinder\FactoryArgumentsToChoiceBinder1.cs">
+      <Link>Source\Binding\Binders\Factory\FactoryArgumentsToChoiceBinder\FactoryArgumentsToChoiceBinder1.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\User\Desktop\Zenject-master\Zenject-master\UnityProject\Assets\Plugins\Zenject\Source\Install\ZenjectManagersInstaller.cs">
+      <Link>Source\Install\ZenjectManagersInstaller.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\User\Desktop\Zenject-master\Zenject-master\UnityProject\Assets\Plugins\Zenject\Source\Runtime\AnimatorInterfaces\IAnimatorIkHandler.cs">
+      <Link>Source\Runtime\AnimatorInterfaces\IAnimatorIkHandler.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\User\Desktop\Zenject-master\Zenject-master\UnityProject\Assets\Plugins\Zenject\Source\Providers\SubContainerCreators\ISubContainerCreator.cs">
+      <Link>Source\Providers\SubContainerCreators\ISubContainerCreator.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\User\Desktop\Zenject-master\Zenject-master\UnityProject\Assets\Plugins\Zenject\OptionalExtras\SampleGame2 (Advanced)\Scripts\Player\PlayerMoveHandler.cs">
+      <Link>OptionalExtras\SampleGame2 (Advanced)\Scripts\Player\PlayerMoveHandler.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\User\Desktop\Zenject-master\Zenject-master\UnityProject\Assets\Plugins\Zenject\Source\Binding\Binders\Factory\FactoryToChoiceIdBinder\FactoryToChoiceIdBinder3.cs">
+      <Link>Source\Binding\Binders\Factory\FactoryToChoiceIdBinder\FactoryToChoiceIdBinder3.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\User\Desktop\Zenject-master\Zenject-master\UnityProject\Assets\Plugins\Zenject\OptionalExtras\Signals\Internal\SignalDeclaration.cs">
+      <Link>OptionalExtras\Signals\Internal\SignalDeclaration.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\User\Desktop\Zenject-master\Zenject-master\UnityProject\Assets\Plugins\Zenject\OptionalExtras\Signals\Internal\Binders\BindSignal\SignalCallbackWrapper.cs">
+      <Link>OptionalExtras\Signals\Internal\Binders\BindSignal\SignalCallbackWrapper.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\User\Desktop\Zenject-master\Zenject-master\UnityProject\Assets\Plugins\Zenject\Source\Binding\Binders\ArgConditionCopyNonLazyBinder.cs">
+      <Link>Source\Binding\Binders\ArgConditionCopyNonLazyBinder.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\User\Desktop\Zenject-master\Zenject-master\UnityProject\Assets\Plugins\Zenject\Source\Binding\Binders\Factory\FactoryToChoiceBinder\FactoryToChoiceBinder1.cs">
+      <Link>Source\Binding\Binders\Factory\FactoryToChoiceBinder\FactoryToChoiceBinder1.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\User\Desktop\Zenject-master\Zenject-master\UnityProject\Assets\Plugins\Zenject\Source\Factories\IFactory.cs">
+      <Link>Source\Factories\IFactory.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\User\Desktop\Zenject-master\Zenject-master\UnityProject\Assets\Plugins\Zenject\Source\Providers\PrefabCreators\PrefabInstantiator.cs">
+      <Link>Source\Providers\PrefabCreators\PrefabInstantiator.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\User\Desktop\Zenject-master\Zenject-master\UnityProject\Assets\Plugins\Zenject\Source\Providers\SubContainerCreators\SubContainerCreatorByMethod.cs">
+      <Link>Source\Providers\SubContainerCreators\SubContainerCreatorByMethod.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\User\Desktop\Zenject-master\Zenject-master\UnityProject\Assets\Plugins\Zenject\Source\Runtime\AnimatorInterfaces\AnimatorIkHandlerManager.cs">
+      <Link>Source\Runtime\AnimatorInterfaces\AnimatorIkHandlerManager.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\User\Desktop\Zenject-master\Zenject-master\UnityProject\Assets\Plugins\Zenject\Source\Binding\BindInfo\FactoryBindInfo.cs">
+      <Link>Source\Binding\BindInfo\FactoryBindInfo.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\User\Desktop\Zenject-master\Zenject-master\UnityProject\Assets\Plugins\Zenject\OptionalExtras\SampleGame2 (Advanced)\Scripts\Installers\GameSettingsInstaller.cs">
+      <Link>OptionalExtras\SampleGame2 (Advanced)\Scripts\Installers\GameSettingsInstaller.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\User\Desktop\Zenject-master\Zenject-master\UnityProject\Assets\Plugins\Zenject\OptionalExtras\SampleGame2 (Advanced)\Scripts\Enemy\EnemyView.cs">
+      <Link>OptionalExtras\SampleGame2 (Advanced)\Scripts\Enemy\EnemyView.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\User\Desktop\Zenject-master\Zenject-master\UnityProject\Assets\Plugins\Zenject\Source\Providers\GetterProvider.cs">
+      <Link>Source\Providers\GetterProvider.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\User\Desktop\Zenject-master\Zenject-master\UnityProject\Assets\Plugins\Zenject\Source\Injection\LazyInject.cs">
+      <Link>Source\Injection\LazyInject.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\User\Desktop\Zenject-master\Zenject-master\UnityProject\Assets\Plugins\Zenject\Source\Providers\ComponentProviders\GetFromGameObjectGetterComponentProvider.cs">
+      <Link>Source\Providers\ComponentProviders\GetFromGameObjectGetterComponentProvider.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\User\Desktop\Zenject-master\Zenject-master\UnityProject\Assets\Plugins\Zenject\Source\Binding\Binders\Factory\FactoryFromBinder\SubContainerBinder\FactorySubContainerBinder10.cs">
+      <Link>Source\Binding\Binders\Factory\FactoryFromBinder\SubContainerBinder\FactorySubContainerBinder10.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\User\Desktop\Zenject-master\Zenject-master\UnityProject\Assets\Plugins\Zenject\Source\Main\SingletonMarkRegistry.cs">
+      <Link>Source\Main\SingletonMarkRegistry.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\User\Desktop\Zenject-master\Zenject-master\UnityProject\Assets\Plugins\Zenject\Source\Providers\SubContainerCreators\SubContainerCreatorBindInfo.cs">
+      <Link>Source\Providers\SubContainerCreators\SubContainerCreatorBindInfo.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\User\Desktop\Zenject-master\Zenject-master\UnityProject\Assets\Plugins\Zenject\OptionalExtras\Signals\Internal\Binders\BindSignal\BindSignalIdToBinder.cs">
+      <Link>OptionalExtras\Signals\Internal\Binders\BindSignal\BindSignalIdToBinder.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\User\Desktop\Zenject-master\Zenject-master\UnityProject\Assets\Plugins\Zenject\OptionalExtras\Signals\Internal\Binders\DeclareSignal\SignalDeclarationBindInfo.cs">
+      <Link>OptionalExtras\Signals\Internal\Binders\DeclareSignal\SignalDeclarationBindInfo.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\User\Desktop\Zenject-master\Zenject-master\UnityProject\Assets\Plugins\Zenject\Source\Providers\PrefabCreators\PrefabInstantiatorCached.cs">
+      <Link>Source\Providers\PrefabCreators\PrefabInstantiatorCached.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\User\Desktop\Zenject-master\Zenject-master\UnityProject\Assets\Plugins\Zenject\Source\Install\CompositeMonoInstaller.cs">
+      <Link>Source\Install\CompositeMonoInstaller.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\User\Desktop\Zenject-master\Zenject-master\UnityProject\Assets\Plugins\Zenject\Source\Binding\BindInfo\BindInfo.cs">
+      <Link>Source\Binding\BindInfo\BindInfo.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\User\Desktop\Zenject-master\Zenject-master\UnityProject\Assets\Plugins\Zenject\Source\Binding\Binders\Factory\FactoryToChoiceBinder\FactoryToChoiceBinder2.cs">
+      <Link>Source\Binding\Binders\Factory\FactoryToChoiceBinder\FactoryToChoiceBinder2.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\User\Desktop\Zenject-master\Zenject-master\UnityProject\Assets\Plugins\Zenject\Source\Runtime\AnimatorInterfaces\AnimatorMoveHandlerManager.cs">
+      <Link>Source\Runtime\AnimatorInterfaces\AnimatorMoveHandlerManager.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\User\Desktop\Zenject-master\Zenject-master\UnityProject\Assets\Plugins\Zenject\Source\Providers\ComponentProviders\InstantiateOnPrefabComponentProvider.cs">
+      <Link>Source\Providers\ComponentProviders\InstantiateOnPrefabComponentProvider.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\User\Desktop\Zenject-master\Zenject-master\UnityProject\Assets\Plugins\Zenject\Source\Providers\SubContainerCreators\SubContainerCreatorDynamicContext.cs">
+      <Link>Source\Providers\SubContainerCreators\SubContainerCreatorDynamicContext.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\User\Desktop\Zenject-master\Zenject-master\UnityProject\Assets\Plugins\Zenject\Source\Binding\Binders\ConcreteBinders\ConcreteBinderNonGeneric.cs">
+      <Link>Source\Binding\Binders\ConcreteBinders\ConcreteBinderNonGeneric.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\User\Desktop\Zenject-master\Zenject-master\UnityProject\Assets\Plugins\Zenject\OptionalExtras\SampleGame2 (Advanced)\Scripts\Enemy\States\EnemyStateAttack.cs">
+      <Link>OptionalExtras\SampleGame2 (Advanced)\Scripts\Enemy\States\EnemyStateAttack.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\User\Desktop\Zenject-master\Zenject-master\UnityProject\Assets\Plugins\Zenject\Source\Binding\Binders\Factory\FactoryFromBinder\Untyped\FactoryFromBinderUntyped.cs">
+      <Link>Source\Binding\Binders\Factory\FactoryFromBinder\Untyped\FactoryFromBinderUntyped.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\User\Desktop\Zenject-master\Zenject-master\UnityProject\Assets\Plugins\Zenject\OptionalExtras\SampleGame1 (Beginner)\Scripts\Ship\Ship.cs">
+      <Link>OptionalExtras\SampleGame1 (Beginner)\Scripts\Ship\Ship.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\User\Desktop\Zenject-master\Zenject-master\UnityProject\Assets\Plugins\Zenject\Source\Util\CheatSheet.cs">
+      <Link>Source\Util\CheatSheet.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\User\Desktop\Zenject-master\Zenject-master\UnityProject\Assets\Plugins\Zenject\Source\Factories\PrefabFactory.cs">
+      <Link>Source\Factories\PrefabFactory.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\User\Desktop\Zenject-master\Zenject-master\UnityProject\Assets\Plugins\Zenject\Source\Binding\Binders\Factory\FactoryFromBinder\SubContainerBinder\FactorySubContainerBinder6.cs">
+      <Link>Source\Binding\Binders\Factory\FactoryFromBinder\SubContainerBinder\FactorySubContainerBinder6.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\User\Desktop\Zenject-master\Zenject-master\UnityProject\Assets\Plugins\Zenject\Source\Binding\Finalizers\NullBindingFinalizer.cs">
+      <Link>Source\Binding\Finalizers\NullBindingFinalizer.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\User\Desktop\Zenject-master\Zenject-master\UnityProject\Assets\Plugins\Zenject\Source\Providers\GameObjectProviders\EmptyGameObjectProvider.cs">
+      <Link>Source\Providers\GameObjectProviders\EmptyGameObjectProvider.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\User\Desktop\Zenject-master\Zenject-master\UnityProject\Assets\Plugins\Zenject\Source\Internal\Log.cs">
+      <Link>Source\Internal\Log.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\User\Desktop\Zenject-master\Zenject-master\UnityProject\Assets\Plugins\Zenject\Source\Binding\Binders\Factory\FactoryToChoiceIdBinder\FactoryToChoiceIdBinder2.cs">
+      <Link>Source\Binding\Binders\Factory\FactoryToChoiceIdBinder\FactoryToChoiceIdBinder2.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\User\Desktop\Zenject-master\Zenject-master\UnityProject\Assets\Plugins\Zenject\Source\Util\ValidationUtil.cs">
+      <Link>Source\Util\ValidationUtil.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\User\Desktop\Zenject-master\Zenject-master\UnityProject\Assets\Plugins\Zenject\Source\Runtime\AnimatorInterfaces\IAnimatorMoveHandler.cs">
+      <Link>Source\Runtime\AnimatorInterfaces\IAnimatorMoveHandler.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\User\Desktop\Zenject-master\Zenject-master\UnityProject\Assets\Plugins\Zenject\Source\Binding\Binders\Factory\FactoryFromBinder\FactoryFromBinder6.cs">
+      <Link>Source\Binding\Binders\Factory\FactoryFromBinder\FactoryFromBinder6.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\User\Desktop\Zenject-master\Zenject-master\UnityProject\Assets\Plugins\Zenject\Source\Internal\TypeStringFormatter.cs">
+      <Link>Source\Internal\TypeStringFormatter.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\User\Desktop\Zenject-master\Zenject-master\UnityProject\Assets\Plugins\Zenject\Source\Binding\Binders\Conventions\ConventionBindInfo.cs">
+      <Link>Source\Binding\Binders\Conventions\ConventionBindInfo.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\User\Desktop\Zenject-master\Zenject-master\UnityProject\Assets\Plugins\Zenject\Source\Binding\Binders\IfNotBoundBinder.cs">
+      <Link>Source\Binding\Binders\IfNotBoundBinder.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\User\Desktop\Zenject-master\Zenject-master\UnityProject\Assets\Plugins\Zenject\Source\Runtime\AnimatorInterfaces\AnimatorInstaller.cs">
+      <Link>Source\Runtime\AnimatorInterfaces\AnimatorInstaller.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\User\Desktop\Zenject-master\Zenject-master\UnityProject\Assets\Plugins\Zenject\OptionalExtras\SampleGame2 (Advanced)\Scripts\Enemy\EnemyFacade.cs">
+      <Link>OptionalExtras\SampleGame2 (Advanced)\Scripts\Enemy\EnemyFacade.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\User\Desktop\Zenject-master\Zenject-master\UnityProject\Assets\Plugins\Zenject\Source\Binding\Binders\Factory\FactoryFromBinderBase.cs">
+      <Link>Source\Binding\Binders\Factory\FactoryFromBinderBase.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\User\Desktop\Zenject-master\Zenject-master\UnityProject\Assets\Plugins\Zenject\Source\Providers\PrefabProviders\IPrefabProvider.cs">
+      <Link>Source\Providers\PrefabProviders\IPrefabProvider.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\User\Desktop\Zenject-master\Zenject-master\UnityProject\Assets\Plugins\Zenject\Source\Providers\ComponentProviders\GetFromPrefabComponentProvider.cs">
+      <Link>Source\Providers\ComponentProviders\GetFromPrefabComponentProvider.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\User\Desktop\Zenject-master\Zenject-master\UnityProject\Assets\Plugins\Zenject\Source\Runtime\GuiRenderableManager.cs">
+      <Link>Source\Runtime\GuiRenderableManager.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\User\Desktop\Zenject-master\Zenject-master\UnityProject\Assets\Plugins\Zenject\Source\Main\LazyInstanceInjector.cs">
+      <Link>Source\Main\LazyInstanceInjector.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\User\Desktop\Zenject-master\Zenject-master\UnityProject\Assets\Plugins\Zenject\Source\Binding\Binders\Factory\FactoryToChoiceIdBinder\FactoryToChoiceIdBinder4.cs">
+      <Link>Source\Binding\Binders\Factory\FactoryToChoiceIdBinder\FactoryToChoiceIdBinder4.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\User\Desktop\Zenject-master\Zenject-master\UnityProject\Assets\Plugins\Zenject\Source\Binding\Binders\Factory\FactoryFromBinder\FactoryFromBinder1.cs">
+      <Link>Source\Binding\Binders\Factory\FactoryFromBinder\FactoryFromBinder1.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\User\Desktop\Zenject-master\Zenject-master\UnityProject\Assets\Plugins\Zenject\Source\Factories\Pooling\Static\PoolableStaticMemoryPool.cs">
+      <Link>Source\Factories\Pooling\Static\PoolableStaticMemoryPool.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\User\Desktop\Zenject-master\Zenject-master\UnityProject\Assets\Plugins\Zenject\Source\Binding\Binders\Factory\Pooling\MemoryPoolExpandBinder.cs">
+      <Link>Source\Binding\Binders\Factory\Pooling\MemoryPoolExpandBinder.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\User\Desktop\Zenject-master\Zenject-master\UnityProject\Assets\Plugins\Zenject\Source\Internal\LinqExtensions.cs">
+      <Link>Source\Internal\LinqExtensions.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\User\Desktop\Zenject-master\Zenject-master\UnityProject\Assets\Plugins\Zenject\OptionalExtras\SampleGame2 (Advanced)\Scripts\Enemy\EnemyCommonSettings.cs">
+      <Link>OptionalExtras\SampleGame2 (Advanced)\Scripts\Enemy\EnemyCommonSettings.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\User\Desktop\Zenject-master\Zenject-master\UnityProject\Assets\Plugins\Zenject\OptionalExtras\Signals\Main\SignalBusInstaller.cs">
+      <Link>OptionalExtras\Signals\Main\SignalBusInstaller.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\User\Desktop\Zenject-master\Zenject-master\UnityProject\Assets\Plugins\Zenject\OptionalExtras\Signals\Internal\Binders\BindSignal\BindSignalToBinder.cs">
+      <Link>OptionalExtras\Signals\Internal\Binders\BindSignal\BindSignalToBinder.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\User\Desktop\Zenject-master\Zenject-master\UnityProject\Assets\Plugins\Zenject\OptionalExtras\SampleGame2 (Advanced)\Scripts\Player\PlayerModel.cs">
+      <Link>OptionalExtras\SampleGame2 (Advanced)\Scripts\Player\PlayerModel.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\User\Desktop\Zenject-master\Zenject-master\UnityProject\Assets\Plugins\Zenject\Source\Binding\Binders\CopyNonLazyBinder.cs">
+      <Link>Source\Binding\Binders\CopyNonLazyBinder.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\User\Desktop\Zenject-master\Zenject-master\UnityProject\Assets\Plugins\Zenject\Source\Binding\Binders\Factory\FactoryToChoiceBinder\FactoryToChoiceBinder5.cs">
+      <Link>Source\Binding\Binders\Factory\FactoryToChoiceBinder\FactoryToChoiceBinder5.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\User\Desktop\Zenject-master\Zenject-master\UnityProject\Assets\Plugins\Zenject\Source\Install\Contexts\Context.cs">
+      <Link>Source\Install\Contexts\Context.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\User\Desktop\Zenject-master\Zenject-master\UnityProject\Assets\Plugins\Zenject\Source\Runtime\Kernels\MonoKernel.cs">
+      <Link>Source\Runtime\Kernels\MonoKernel.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\User\Desktop\Zenject-master\Zenject-master\UnityProject\Assets\Plugins\Zenject\Source\Factories\FactoryProviderWrapper.cs">
+      <Link>Source\Factories\FactoryProviderWrapper.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\User\Desktop\Zenject-master\Zenject-master\UnityProject\Assets\Plugins\Zenject\OptionalExtras\Signals\Internal\Binders\SignalTickPriorityCopyBinder.cs">
+      <Link>OptionalExtras\Signals\Internal\Binders\SignalTickPriorityCopyBinder.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\User\Desktop\Zenject-master\Zenject-master\UnityProject\Assets\Plugins\Zenject\OptionalExtras\Signals\Internal\SignalSubscriptionId.cs">
+      <Link>OptionalExtras\Signals\Internal\SignalSubscriptionId.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\User\Desktop\Zenject-master\Zenject-master\UnityProject\Assets\Plugins\Zenject\Source\Install\Contexts\SceneDecoratorContext.cs">
+      <Link>Source\Install\Contexts\SceneDecoratorContext.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\User\Desktop\Zenject-master\Zenject-master\UnityProject\Assets\Plugins\Zenject\Source\Binding\Binders\Factory\FactoryArgumentsToChoiceBinder\FactoryArgumentsToChoiceBinder2.cs">
+      <Link>Source\Binding\Binders\Factory\FactoryArgumentsToChoiceBinder\FactoryArgumentsToChoiceBinder2.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\User\Desktop\Zenject-master\Zenject-master\UnityProject\Assets\Plugins\Zenject\Source\Binding\Binders\Factory\FactoryFromBinder\SubContainerBinder\FactorySubContainerBinderWithParams.cs">
+      <Link>Source\Binding\Binders\Factory\FactoryFromBinder\SubContainerBinder\FactorySubContainerBinderWithParams.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\User\Desktop\Zenject-master\Zenject-master\UnityProject\Assets\Plugins\Zenject\Source\Binding\Binders\Factory\Pooling\MemoryPoolBindingFinalizer.cs">
+      <Link>Source\Binding\Binders\Factory\Pooling\MemoryPoolBindingFinalizer.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\User\Desktop\Zenject-master\Zenject-master\UnityProject\Assets\Plugins\Zenject\Source\Providers\ComponentProviders\AddToGameObjectComponentProviders\AddToNewGameObjectComponentProvider.cs">
+      <Link>Source\Providers\ComponentProviders\AddToGameObjectComponentProviders\AddToNewGameObjectComponentProvider.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\User\Desktop\Zenject-master\Zenject-master\UnityProject\Assets\Plugins\Zenject\Source\Runtime\PoolableManager.cs">
+      <Link>Source\Runtime\PoolableManager.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\User\Desktop\Zenject-master\Zenject-master\UnityProject\Assets\Plugins\Zenject\Source\Binding\Binders\Factory\FactoryFromBinder\FactoryFromBinder2.cs">
+      <Link>Source\Binding\Binders\Factory\FactoryFromBinder\FactoryFromBinder2.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\User\Desktop\Zenject-master\Zenject-master\UnityProject\Assets\Plugins\Zenject\Source\Util\ReflectionTypeInfo.cs">
+      <Link>Source\Util\ReflectionTypeInfo.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\User\Desktop\Zenject-master\Zenject-master\UnityProject\Assets\Plugins\Zenject\OptionalExtras\SampleGame1 (Beginner)\Scripts\Ship\States\ShipState.cs">
+      <Link>OptionalExtras\SampleGame1 (Beginner)\Scripts\Ship\States\ShipState.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\User\Desktop\Zenject-master\Zenject-master\UnityProject\Assets\Plugins\Zenject\Source\Runtime\Kernels\Kernel.cs">
+      <Link>Source\Runtime\Kernels\Kernel.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\User\Desktop\Zenject-master\Zenject-master\UnityProject\Assets\Plugins\Zenject\Source\Providers\IProvider.cs">
+      <Link>Source\Providers\IProvider.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\User\Desktop\Zenject-master\Zenject-master\UnityProject\Assets\Plugins\Zenject\Source\Providers\SubContainerCreators\SubContainerCreatorByNewPrefabDynamicContext.cs">
+      <Link>Source\Providers\SubContainerCreators\SubContainerCreatorByNewPrefabDynamicContext.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\User\Desktop\Zenject-master\Zenject-master\UnityProject\Assets\Plugins\Zenject\Source\Providers\SubContainerCreators\SubContainerCreatorByNewGameObjectDynamicContext.cs">
+      <Link>Source\Providers\SubContainerCreators\SubContainerCreatorByNewGameObjectDynamicContext.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\User\Desktop\Zenject-master\Zenject-master\UnityProject\Assets\Plugins\Zenject\OptionalExtras\SampleGame2 (Advanced)\Scripts\Enemy\EnemyStateManager.cs">
+      <Link>OptionalExtras\SampleGame2 (Advanced)\Scripts\Enemy\EnemyStateManager.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\User\Desktop\Zenject-master\Zenject-master\UnityProject\Assets\Plugins\Zenject\Source\Providers\ScriptableObjectInstanceProvider.cs">
+      <Link>Source\Providers\ScriptableObjectInstanceProvider.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\User\Desktop\Zenject-master\Zenject-master\UnityProject\Assets\Plugins\Zenject\Source\Main\LookupId.cs">
+      <Link>Source\Main\LookupId.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\User\Desktop\Zenject-master\Zenject-master\UnityProject\Assets\Plugins\Zenject\Source\Util\ZenAutoInjecter.cs">
+      <Link>Source\Util\ZenAutoInjecter.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\User\Desktop\Zenject-master\Zenject-master\UnityProject\Assets\Plugins\Zenject\Source\Util\ActionInstaller.cs">
+      <Link>Source\Util\ActionInstaller.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\User\Desktop\Zenject-master\Zenject-master\UnityProject\Assets\Plugins\Zenject\Source\Util\ZenjectException.cs">
+      <Link>Source\Util\ZenjectException.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\User\Desktop\Zenject-master\Zenject-master\UnityProject\Assets\Plugins\Zenject\Source\Binding\Finalizers\SubContainerBindingFinalizer.cs">
+      <Link>Source\Binding\Finalizers\SubContainerBindingFinalizer.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\User\Desktop\Zenject-master\Zenject-master\UnityProject\Assets\Plugins\Zenject\OptionalExtras\SampleGame1 (Beginner)\Scripts\Asteroid\AsteroidManager.cs">
+      <Link>OptionalExtras\SampleGame1 (Beginner)\Scripts\Asteroid\AsteroidManager.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\User\Desktop\Zenject-master\Zenject-master\UnityProject\Assets\Plugins\Zenject\Source\Util\ConstructorChoiceStrategy.cs">
+      <Link>Source\Util\ConstructorChoiceStrategy.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\User\Desktop\Zenject-master\Zenject-master\UnityProject\Assets\Plugins\Zenject\Source\Binding\Finalizers\ScopableBindingFinalizer.cs">
+      <Link>Source\Binding\Finalizers\ScopableBindingFinalizer.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\User\Desktop\Zenject-master\Zenject-master\UnityProject\Assets\Plugins\Zenject\OptionalExtras\SampleGame1 (Beginner)\Scripts\Util\UnityExtensionMethods.cs">
+      <Link>OptionalExtras\SampleGame1 (Beginner)\Scripts\Util\UnityExtensionMethods.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\User\Desktop\Zenject-master\Zenject-master\UnityProject\Assets\Plugins\Zenject\Source\Factories\Pooling\MemoryPool.cs">
+      <Link>Source\Factories\Pooling\MemoryPool.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\User\Desktop\Zenject-master\Zenject-master\UnityProject\Assets\Plugins\Zenject\Source\Binding\Binders\Factory\FactoryFromBinder\SubContainerBinder\FactorySubContainerBinder5.cs">
+      <Link>Source\Binding\Binders\Factory\FactoryFromBinder\SubContainerBinder\FactorySubContainerBinder5.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\User\Desktop\Zenject-master\Zenject-master\UnityProject\Assets\Plugins\Zenject\OptionalExtras\SampleGame1 (Beginner)\Scripts\Installers\GameInstaller.cs">
+      <Link>OptionalExtras\SampleGame1 (Beginner)\Scripts\Installers\GameInstaller.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\User\Desktop\Zenject-master\Zenject-master\UnityProject\Assets\Plugins\Zenject\OptionalExtras\Signals\Internal\Binders\BindSignal\SignalCallbackWithLookupWrapper.cs">
+      <Link>OptionalExtras\Signals\Internal\Binders\BindSignal\SignalCallbackWithLookupWrapper.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\User\Desktop\Zenject-master\Zenject-master\UnityProject\Assets\Plugins\Zenject\Source\Install\Contexts\SceneContext.cs">
+      <Link>Source\Install\Contexts\SceneContext.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\User\Desktop\Zenject-master\Zenject-master\UnityProject\Assets\Plugins\Zenject\Source\Binding\Binders\GameObject\NameTransformScopeConcreteIdArgConditionCopyNonLazyBinder.cs">
+      <Link>Source\Binding\Binders\GameObject\NameTransformScopeConcreteIdArgConditionCopyNonLazyBinder.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\User\Desktop\Zenject-master\Zenject-master\UnityProject\Assets\Plugins\Zenject\Source\Providers\MethodProviderUntyped.cs">
+      <Link>Source\Providers\MethodProviderUntyped.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\User\Desktop\Zenject-master\Zenject-master\UnityProject\Assets\Plugins\Zenject\Source\Binding\Finalizers\SingleProviderBindingFinalizer.cs">
+      <Link>Source\Binding\Finalizers\SingleProviderBindingFinalizer.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\User\Desktop\Zenject-master\Zenject-master\UnityProject\Assets\Plugins\Zenject\Source\Util\TypeAnalyzer.cs">
+      <Link>Source\Util\TypeAnalyzer.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\User\Desktop\Zenject-master\Zenject-master\UnityProject\Assets\Plugins\Zenject\Source\Binding\Binders\Factory\FactoryFromBinder\SubContainerBinder\FactorySubContainerBinder4.cs">
+      <Link>Source\Binding\Binders\Factory\FactoryFromBinder\SubContainerBinder\FactorySubContainerBinder4.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\User\Desktop\Zenject-master\Zenject-master\UnityProject\Assets\Plugins\Zenject\Source\Providers\PrefabProviders\PrefabProvider.cs">
+      <Link>Source\Providers\PrefabProviders\PrefabProvider.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\User\Desktop\Zenject-master\Zenject-master\UnityProject\Assets\Plugins\Zenject\OptionalExtras\Signals\Internal\Binders\DeclareSignal\DeclareSignalRequireHandlerAsyncTickPriorityCopyBinder.cs">
+      <Link>OptionalExtras\Signals\Internal\Binders\DeclareSignal\DeclareSignalRequireHandlerAsyncTickPriorityCopyBinder.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\User\Desktop\Zenject-master\Zenject-master\UnityProject\Assets\Plugins\Zenject\OptionalExtras\SampleGame2 (Advanced)\Scripts\Misc\GameRestartHandler.cs">
+      <Link>OptionalExtras\SampleGame2 (Advanced)\Scripts\Misc\GameRestartHandler.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\User\Desktop\Zenject-master\Zenject-master\UnityProject\Assets\Plugins\Zenject\OptionalExtras\SampleGame2 (Advanced)\Scripts\Player\PlayerInputState.cs">
+      <Link>OptionalExtras\SampleGame2 (Advanced)\Scripts\Player\PlayerInputState.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\User\Desktop\Zenject-master\Zenject-master\UnityProject\Assets\Plugins\Zenject\Source\Runtime\Kernels\DefaultGameObjectKernel.cs">
+      <Link>Source\Runtime\Kernels\DefaultGameObjectKernel.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\User\Desktop\Zenject-master\Zenject-master\UnityProject\Assets\Plugins\Zenject\OptionalExtras\SampleGame2 (Advanced)\Scripts\Enemy\States\EnemyStateIdle.cs">
+      <Link>OptionalExtras\SampleGame2 (Advanced)\Scripts\Enemy\States\EnemyStateIdle.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\User\Desktop\Zenject-master\Zenject-master\UnityProject\Assets\Plugins\Zenject\Source\Binding\Binders\ConcreteBinders\ConcreteIdBinderGeneric.cs">
+      <Link>Source\Binding\Binders\ConcreteBinders\ConcreteIdBinderGeneric.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\User\Desktop\Zenject-master\Zenject-master\UnityProject\Assets\Plugins\Zenject\Source\Providers\SubContainerCreators\SubContainerCreatorCached.cs">
+      <Link>Source\Providers\SubContainerCreators\SubContainerCreatorCached.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\User\Desktop\Zenject-master\Zenject-master\UnityProject\Assets\Plugins\Zenject\Source\Providers\SubContainerDependencyProvider.cs">
+      <Link>Source\Providers\SubContainerDependencyProvider.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\User\Desktop\Zenject-master\Zenject-master\UnityProject\Assets\Plugins\Zenject\Source\Runtime\TaskUpdater.cs">
+      <Link>Source\Runtime\TaskUpdater.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\User\Desktop\Zenject-master\Zenject-master\UnityProject\Assets\Plugins\Zenject\Source\Factories\Pooling\MonoMemoryPool.cs">
+      <Link>Source\Factories\Pooling\MonoMemoryPool.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\User\Desktop\Zenject-master\Zenject-master\UnityProject\Assets\Plugins\Zenject\Source\Providers\InstanceProvider.cs">
+      <Link>Source\Providers\InstanceProvider.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\User\Desktop\Zenject-master\Zenject-master\UnityProject\Assets\Plugins\Zenject\OptionalExtras\SampleGame1 (Beginner)\Scripts\Ship\States\BrokenShipFactory.cs">
+      <Link>OptionalExtras\SampleGame1 (Beginner)\Scripts\Ship\States\BrokenShipFactory.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\User\Desktop\Zenject-master\Zenject-master\UnityProject\Assets\Plugins\Zenject\Source\Util\ProfileTimers.cs">
+      <Link>Source\Util\ProfileTimers.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\User\Desktop\Zenject-master\Zenject-master\UnityProject\Assets\Plugins\Zenject\Source\Binding\Binders\Factory\FactoryFromBinder\SubContainerBinder\FactorySubContainerBinderBase.cs">
+      <Link>Source\Binding\Binders\Factory\FactoryFromBinder\SubContainerBinder\FactorySubContainerBinderBase.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\User\Desktop\Zenject-master\Zenject-master\UnityProject\Assets\Plugins\Zenject\Source\Factories\Pooling\Util\ArrayPool.cs">
+      <Link>Source\Factories\Pooling\Util\ArrayPool.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\User\Desktop\Zenject-master\Zenject-master\UnityProject\Assets\Plugins\Zenject\Source\Factories\Pooling\Util\DictionaryPool.cs">
+      <Link>Source\Factories\Pooling\Util\DictionaryPool.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\User\Desktop\Zenject-master\Zenject-master\UnityProject\Assets\Plugins\Zenject\Source\Main\BindingId.cs">
+      <Link>Source\Main\BindingId.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\User\Desktop\Zenject-master\Zenject-master\UnityProject\Assets\Plugins\Zenject\Source\Providers\MethodProviderWithContainer.cs">
+      <Link>Source\Providers\MethodProviderWithContainer.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\User\Desktop\Zenject-master\Zenject-master\UnityProject\Assets\Plugins\Zenject\Source\Providers\PrefabCreators\IPrefabInstantiator.cs">
+      <Link>Source\Providers\PrefabCreators\IPrefabInstantiator.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\User\Desktop\Zenject-master\Zenject-master\UnityProject\Assets\Plugins\Zenject\Source\Providers\MethodProviderSimple.cs">
+      <Link>Source\Providers\MethodProviderSimple.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\User\Desktop\Zenject-master\Zenject-master\UnityProject\Assets\Plugins\Zenject\Source\Install\MonoInstallerBase.cs">
+      <Link>Source\Install\MonoInstallerBase.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\User\Desktop\Zenject-master\Zenject-master\UnityProject\Assets\Plugins\Zenject\Source\Binding\Finalizers\SubContainerPrefabBindingFinalizer.cs">
+      <Link>Source\Binding\Finalizers\SubContainerPrefabBindingFinalizer.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\User\Desktop\Zenject-master\Zenject-master\UnityProject\Assets\Plugins\Zenject\Source\Internal\Func.cs">
+      <Link>Source\Internal\Func.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\User\Desktop\Zenject-master\Zenject-master\UnityProject\Assets\Plugins\Zenject\Source\Install\CompositeScriptableObjectInstaller.cs">
+      <Link>Source\Install\CompositeScriptableObjectInstaller.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\User\Desktop\Zenject-master\Zenject-master\UnityProject\Assets\Plugins\Zenject\Source\Util\UnityUtil.cs">
+      <Link>Source\Util\UnityUtil.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\User\Desktop\Zenject-master\Zenject-master\UnityProject\Assets\Plugins\Zenject\OptionalExtras\Signals\Main\SignalDeclarationAsyncInitializer.cs">
+      <Link>OptionalExtras\Signals\Main\SignalDeclarationAsyncInitializer.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\User\Desktop\Zenject-master\Zenject-master\UnityProject\Assets\Plugins\Zenject\Source\Binding\Binders\Conventions\ConventionFilterTypesBinder.cs">
+      <Link>Source\Binding\Binders\Conventions\ConventionFilterTypesBinder.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\User\Desktop\Zenject-master\Zenject-master\UnityProject\Assets\Plugins\Zenject\OptionalExtras\SampleGame2 (Advanced)\Scripts\Player\PlayerDirectionHandler.cs">
+      <Link>OptionalExtras\SampleGame2 (Advanced)\Scripts\Player\PlayerDirectionHandler.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\User\Desktop\Zenject-master\Zenject-master\UnityProject\Assets\Plugins\Zenject\OptionalExtras\Signals\Internal\SignalSubscription.cs">
+      <Link>OptionalExtras\Signals\Internal\SignalSubscription.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\User\Desktop\Zenject-master\Zenject-master\UnityProject\Assets\Plugins\Zenject\Source\Factories\Pooling\IMemoryPool.cs">
+      <Link>Source\Factories\Pooling\IMemoryPool.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\User\Desktop\Zenject-master\Zenject-master\UnityProject\Assets\Plugins\Zenject\OptionalExtras\SampleGame1 (Beginner)\Scripts\Ship\States\ShipStateDead.cs">
+      <Link>OptionalExtras\SampleGame1 (Beginner)\Scripts\Ship\States\ShipStateDead.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\User\Desktop\Zenject-master\Zenject-master\UnityProject\Assets\Plugins\Zenject\OptionalExtras\SampleGame2 (Advanced)\Scripts\Player\PlayerShootHandler.cs">
+      <Link>OptionalExtras\SampleGame2 (Advanced)\Scripts\Player\PlayerShootHandler.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\User\Desktop\Zenject-master\Zenject-master\UnityProject\Assets\Plugins\Zenject\Source\Validation\ValidationMarker.cs">
+      <Link>Source\Validation\ValidationMarker.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\User\Desktop\Zenject-master\Zenject-master\UnityProject\Assets\Plugins\Zenject\Source\Binding\Binders\Factory\FactoryToChoiceBinder\FactoryToChoiceBinder0.cs">
+      <Link>Source\Binding\Binders\Factory\FactoryToChoiceBinder\FactoryToChoiceBinder0.cs</Link>
+    </Compile>
+    <Compile Include="C:\Users\User\Desktop\Zenject-master\Zenject-master\UnityProject\Assets\Plugins\Zenject\OptionalExtras\Signals\Internal\Binders\SignalExtensions.cs">
+      <Link>OptionalExtras\Signals\Internal\Binders\SignalExtensions.cs</Link>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="C:\Users\User\Desktop\Zenject-master\Zenject-master\UnityProject\Assets\Plugins\Zenject\OptionalExtras\SampleGame1 (Beginner)\Media\Imported\Shaders\Particle Alpha Blend_IgnoreFog.shader">
+      <Link>OptionalExtras\SampleGame1 (Beginner)\Media\Imported\Shaders\Particle Alpha Blend_IgnoreFog.shader</Link>
+    </None>
+    <None Include="C:\Users\User\Desktop\Zenject-master\Zenject-master\UnityProject\Assets\Plugins\Zenject\Source\Usage\Zenject-usage.dll">
+      <Link>Source\Usage\Zenject-usage.dll</Link>
+    </None>
+    <None Include="C:\Users\User\Desktop\Zenject-master\Zenject-master\UnityProject\Assets\Plugins\Zenject\OptionalExtras\SampleGame1 (Beginner)\Media\Imported\Shaders\AddSmooth_Layer.shader">
+      <Link>OptionalExtras\SampleGame1 (Beginner)\Media\Imported\Shaders\AddSmooth_Layer.shader</Link>
+    </None>
+    <None Include="C:\Users\User\Desktop\Zenject-master\Zenject-master\UnityProject\Assets\Plugins\Zenject\OptionalExtras\SampleGame1 (Beginner)\Media\Fonts\Space.txt">
+      <Link>OptionalExtras\SampleGame1 (Beginner)\Media\Fonts\Space.txt</Link>
+    </None>
+    <None Include="C:\Users\User\Desktop\Zenject-master\Zenject-master\UnityProject\Assets\Plugins\Zenject\LICENSE.txt">
+      <Link>LICENSE.txt</Link>
+    </None>
+    <None Include="C:\Users\User\Desktop\Zenject-master\Zenject-master\UnityProject\Assets\Plugins\Zenject\OptionalExtras\SampleGame1 (Beginner)\Media\Imported\Shaders\Add_Layer.shader">
+      <Link>OptionalExtras\SampleGame1 (Beginner)\Media\Imported\Shaders\Add_Layer.shader</Link>
+    </None>
+    <None Include="C:\Users\User\Desktop\Zenject-master\Zenject-master\UnityProject\Assets\Plugins\Zenject\Source\Usage\link.xml">
+      <Link>Source\Usage\link.xml</Link>
+    </None>
+    <None Include="C:\Users\User\Desktop\Zenject-master\Zenject-master\UnityProject\Assets\Plugins\Zenject\Version.txt">
+      <Link>Version.txt</Link>
+    </None>
+    <None Include="C:\Users\User\Desktop\Zenject-master\Zenject-master\UnityProject\Assets\Plugins\Zenject\zenject.asmdef">
+      <Link>zenject.asmdef</Link>
+    </None>
+    <None Include="C:\Users\User\Desktop\Zenject-master\Zenject-master\UnityProject\Assets\Plugins\Zenject\OptionalExtras\UnitTests\ReadMe.txt">
+      <Link>OptionalExtras\UnitTests\ReadMe.txt</Link>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="UnityEngine">
+      <HintPath>D:\2022.3.36f1\Editor\Data\Managed\UnityEngine\UnityEngine.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.AIModule">
+      <HintPath>D:\2022.3.36f1\Editor\Data\Managed\UnityEngine\UnityEngine.AIModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.ARModule">
+      <HintPath>D:\2022.3.36f1\Editor\Data\Managed\UnityEngine\UnityEngine.ARModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.AccessibilityModule">
+      <HintPath>D:\2022.3.36f1\Editor\Data\Managed\UnityEngine\UnityEngine.AccessibilityModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.AndroidJNIModule">
+      <HintPath>D:\2022.3.36f1\Editor\Data\Managed\UnityEngine\UnityEngine.AndroidJNIModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.AnimationModule">
+      <HintPath>D:\2022.3.36f1\Editor\Data\Managed\UnityEngine\UnityEngine.AnimationModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.AssetBundleModule">
+      <HintPath>D:\2022.3.36f1\Editor\Data\Managed\UnityEngine\UnityEngine.AssetBundleModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.AudioModule">
+      <HintPath>D:\2022.3.36f1\Editor\Data\Managed\UnityEngine\UnityEngine.AudioModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.ClothModule">
+      <HintPath>D:\2022.3.36f1\Editor\Data\Managed\UnityEngine\UnityEngine.ClothModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.ClusterInputModule">
+      <HintPath>D:\2022.3.36f1\Editor\Data\Managed\UnityEngine\UnityEngine.ClusterInputModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.ClusterRendererModule">
+      <HintPath>D:\2022.3.36f1\Editor\Data\Managed\UnityEngine\UnityEngine.ClusterRendererModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.ContentLoadModule">
+      <HintPath>D:\2022.3.36f1\Editor\Data\Managed\UnityEngine\UnityEngine.ContentLoadModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.CoreModule">
+      <HintPath>D:\2022.3.36f1\Editor\Data\Managed\UnityEngine\UnityEngine.CoreModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.CrashReportingModule">
+      <HintPath>D:\2022.3.36f1\Editor\Data\Managed\UnityEngine\UnityEngine.CrashReportingModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.DSPGraphModule">
+      <HintPath>D:\2022.3.36f1\Editor\Data\Managed\UnityEngine\UnityEngine.DSPGraphModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.DirectorModule">
+      <HintPath>D:\2022.3.36f1\Editor\Data\Managed\UnityEngine\UnityEngine.DirectorModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.GIModule">
+      <HintPath>D:\2022.3.36f1\Editor\Data\Managed\UnityEngine\UnityEngine.GIModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.GameCenterModule">
+      <HintPath>D:\2022.3.36f1\Editor\Data\Managed\UnityEngine\UnityEngine.GameCenterModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.GridModule">
+      <HintPath>D:\2022.3.36f1\Editor\Data\Managed\UnityEngine\UnityEngine.GridModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.HotReloadModule">
+      <HintPath>D:\2022.3.36f1\Editor\Data\Managed\UnityEngine\UnityEngine.HotReloadModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.IMGUIModule">
+      <HintPath>D:\2022.3.36f1\Editor\Data\Managed\UnityEngine\UnityEngine.IMGUIModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.ImageConversionModule">
+      <HintPath>D:\2022.3.36f1\Editor\Data\Managed\UnityEngine\UnityEngine.ImageConversionModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.InputModule">
+      <HintPath>D:\2022.3.36f1\Editor\Data\Managed\UnityEngine\UnityEngine.InputModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.InputLegacyModule">
+      <HintPath>D:\2022.3.36f1\Editor\Data\Managed\UnityEngine\UnityEngine.InputLegacyModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.JSONSerializeModule">
+      <HintPath>D:\2022.3.36f1\Editor\Data\Managed\UnityEngine\UnityEngine.JSONSerializeModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.LocalizationModule">
+      <HintPath>D:\2022.3.36f1\Editor\Data\Managed\UnityEngine\UnityEngine.LocalizationModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.ParticleSystemModule">
+      <HintPath>D:\2022.3.36f1\Editor\Data\Managed\UnityEngine\UnityEngine.ParticleSystemModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.PerformanceReportingModule">
+      <HintPath>D:\2022.3.36f1\Editor\Data\Managed\UnityEngine\UnityEngine.PerformanceReportingModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.PhysicsModule">
+      <HintPath>D:\2022.3.36f1\Editor\Data\Managed\UnityEngine\UnityEngine.PhysicsModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.Physics2DModule">
+      <HintPath>D:\2022.3.36f1\Editor\Data\Managed\UnityEngine\UnityEngine.Physics2DModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.ProfilerModule">
+      <HintPath>D:\2022.3.36f1\Editor\Data\Managed\UnityEngine\UnityEngine.ProfilerModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.PropertiesModule">
+      <HintPath>D:\2022.3.36f1\Editor\Data\Managed\UnityEngine\UnityEngine.PropertiesModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.RuntimeInitializeOnLoadManagerInitializerModule">
+      <HintPath>D:\2022.3.36f1\Editor\Data\Managed\UnityEngine\UnityEngine.RuntimeInitializeOnLoadManagerInitializerModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.ScreenCaptureModule">
+      <HintPath>D:\2022.3.36f1\Editor\Data\Managed\UnityEngine\UnityEngine.ScreenCaptureModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.SharedInternalsModule">
+      <HintPath>D:\2022.3.36f1\Editor\Data\Managed\UnityEngine\UnityEngine.SharedInternalsModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.SpriteMaskModule">
+      <HintPath>D:\2022.3.36f1\Editor\Data\Managed\UnityEngine\UnityEngine.SpriteMaskModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.SpriteShapeModule">
+      <HintPath>D:\2022.3.36f1\Editor\Data\Managed\UnityEngine\UnityEngine.SpriteShapeModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.StreamingModule">
+      <HintPath>D:\2022.3.36f1\Editor\Data\Managed\UnityEngine\UnityEngine.StreamingModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.SubstanceModule">
+      <HintPath>D:\2022.3.36f1\Editor\Data\Managed\UnityEngine\UnityEngine.SubstanceModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.SubsystemsModule">
+      <HintPath>D:\2022.3.36f1\Editor\Data\Managed\UnityEngine\UnityEngine.SubsystemsModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.TLSModule">
+      <HintPath>D:\2022.3.36f1\Editor\Data\Managed\UnityEngine\UnityEngine.TLSModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.TerrainModule">
+      <HintPath>D:\2022.3.36f1\Editor\Data\Managed\UnityEngine\UnityEngine.TerrainModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.TerrainPhysicsModule">
+      <HintPath>D:\2022.3.36f1\Editor\Data\Managed\UnityEngine\UnityEngine.TerrainPhysicsModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.TextCoreFontEngineModule">
+      <HintPath>D:\2022.3.36f1\Editor\Data\Managed\UnityEngine\UnityEngine.TextCoreFontEngineModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.TextCoreTextEngineModule">
+      <HintPath>D:\2022.3.36f1\Editor\Data\Managed\UnityEngine\UnityEngine.TextCoreTextEngineModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.TextRenderingModule">
+      <HintPath>D:\2022.3.36f1\Editor\Data\Managed\UnityEngine\UnityEngine.TextRenderingModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.TilemapModule">
+      <HintPath>D:\2022.3.36f1\Editor\Data\Managed\UnityEngine\UnityEngine.TilemapModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.UIModule">
+      <HintPath>D:\2022.3.36f1\Editor\Data\Managed\UnityEngine\UnityEngine.UIModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.UIElementsModule">
+      <HintPath>D:\2022.3.36f1\Editor\Data\Managed\UnityEngine\UnityEngine.UIElementsModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.UmbraModule">
+      <HintPath>D:\2022.3.36f1\Editor\Data\Managed\UnityEngine\UnityEngine.UmbraModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.UnityAnalyticsModule">
+      <HintPath>D:\2022.3.36f1\Editor\Data\Managed\UnityEngine\UnityEngine.UnityAnalyticsModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.UnityAnalyticsCommonModule">
+      <HintPath>D:\2022.3.36f1\Editor\Data\Managed\UnityEngine\UnityEngine.UnityAnalyticsCommonModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.UnityConnectModule">
+      <HintPath>D:\2022.3.36f1\Editor\Data\Managed\UnityEngine\UnityEngine.UnityConnectModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.UnityCurlModule">
+      <HintPath>D:\2022.3.36f1\Editor\Data\Managed\UnityEngine\UnityEngine.UnityCurlModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.UnityTestProtocolModule">
+      <HintPath>D:\2022.3.36f1\Editor\Data\Managed\UnityEngine\UnityEngine.UnityTestProtocolModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.UnityWebRequestModule">
+      <HintPath>D:\2022.3.36f1\Editor\Data\Managed\UnityEngine\UnityEngine.UnityWebRequestModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.UnityWebRequestAssetBundleModule">
+      <HintPath>D:\2022.3.36f1\Editor\Data\Managed\UnityEngine\UnityEngine.UnityWebRequestAssetBundleModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.UnityWebRequestAudioModule">
+      <HintPath>D:\2022.3.36f1\Editor\Data\Managed\UnityEngine\UnityEngine.UnityWebRequestAudioModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.UnityWebRequestTextureModule">
+      <HintPath>D:\2022.3.36f1\Editor\Data\Managed\UnityEngine\UnityEngine.UnityWebRequestTextureModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.UnityWebRequestWWWModule">
+      <HintPath>D:\2022.3.36f1\Editor\Data\Managed\UnityEngine\UnityEngine.UnityWebRequestWWWModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.VFXModule">
+      <HintPath>D:\2022.3.36f1\Editor\Data\Managed\UnityEngine\UnityEngine.VFXModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.VRModule">
+      <HintPath>D:\2022.3.36f1\Editor\Data\Managed\UnityEngine\UnityEngine.VRModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.VehiclesModule">
+      <HintPath>D:\2022.3.36f1\Editor\Data\Managed\UnityEngine\UnityEngine.VehiclesModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.VideoModule">
+      <HintPath>D:\2022.3.36f1\Editor\Data\Managed\UnityEngine\UnityEngine.VideoModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.VirtualTexturingModule">
+      <HintPath>D:\2022.3.36f1\Editor\Data\Managed\UnityEngine\UnityEngine.VirtualTexturingModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.WindModule">
+      <HintPath>D:\2022.3.36f1\Editor\Data\Managed\UnityEngine\UnityEngine.WindModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.XRModule">
+      <HintPath>D:\2022.3.36f1\Editor\Data\Managed\UnityEngine\UnityEngine.XRModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEditor">
+      <HintPath>D:\2022.3.36f1\Editor\Data\Managed\UnityEngine\UnityEditor.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEditor.CoreModule">
+      <HintPath>D:\2022.3.36f1\Editor\Data\Managed\UnityEngine\UnityEditor.CoreModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEditor.DeviceSimulatorModule">
+      <HintPath>D:\2022.3.36f1\Editor\Data\Managed\UnityEngine\UnityEditor.DeviceSimulatorModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEditor.DiagnosticsModule">
+      <HintPath>D:\2022.3.36f1\Editor\Data\Managed\UnityEngine\UnityEditor.DiagnosticsModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEditor.EditorToolbarModule">
+      <HintPath>D:\2022.3.36f1\Editor\Data\Managed\UnityEngine\UnityEditor.EditorToolbarModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEditor.GraphViewModule">
+      <HintPath>D:\2022.3.36f1\Editor\Data\Managed\UnityEngine\UnityEditor.GraphViewModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEditor.PresetsUIModule">
+      <HintPath>D:\2022.3.36f1\Editor\Data\Managed\UnityEngine\UnityEditor.PresetsUIModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEditor.QuickSearchModule">
+      <HintPath>D:\2022.3.36f1\Editor\Data\Managed\UnityEngine\UnityEditor.QuickSearchModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEditor.SceneTemplateModule">
+      <HintPath>D:\2022.3.36f1\Editor\Data\Managed\UnityEngine\UnityEditor.SceneTemplateModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEditor.SceneViewModule">
+      <HintPath>D:\2022.3.36f1\Editor\Data\Managed\UnityEngine\UnityEditor.SceneViewModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEditor.TextCoreFontEngineModule">
+      <HintPath>D:\2022.3.36f1\Editor\Data\Managed\UnityEngine\UnityEditor.TextCoreFontEngineModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEditor.TextCoreTextEngineModule">
+      <HintPath>D:\2022.3.36f1\Editor\Data\Managed\UnityEngine\UnityEditor.TextCoreTextEngineModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEditor.UIBuilderModule">
+      <HintPath>D:\2022.3.36f1\Editor\Data\Managed\UnityEngine\UnityEditor.UIBuilderModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEditor.UIElementsModule">
+      <HintPath>D:\2022.3.36f1\Editor\Data\Managed\UnityEngine\UnityEditor.UIElementsModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEditor.UIElementsSamplesModule">
+      <HintPath>D:\2022.3.36f1\Editor\Data\Managed\UnityEngine\UnityEditor.UIElementsSamplesModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEditor.UnityConnectModule">
+      <HintPath>D:\2022.3.36f1\Editor\Data\Managed\UnityEngine\UnityEditor.UnityConnectModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEditor.Graphs">
+      <HintPath>D:\2022.3.36f1\Editor\Data\Managed\UnityEditor.Graphs.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEditor.Android.Extensions">
+      <HintPath>D:\2022.3.36f1\Editor\Data\PlaybackEngines\AndroidPlayer\UnityEditor.Android.Extensions.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEditor.WindowsStandalone.Extensions">
+      <HintPath>D:\2022.3.36f1\Editor\Data\PlaybackEngines\WindowsStandaloneSupport\UnityEditor.WindowsStandalone.Extensions.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Unity.VisualScripting.YamlDotNet">
+      <HintPath>Library\PackageCache\com.unity.visualscripting@1.9.4\Editor\VisualScripting.Core\Dependencies\YamlDotNet\Unity.VisualScripting.YamlDotNet.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Unity.Collections.LowLevel.ILSupport">
+      <HintPath>Library\PackageCache\com.unity.collections@1.2.4\Unity.Collections.LowLevel.ILSupport\Unity.Collections.LowLevel.ILSupport.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="unityplastic">
+      <HintPath>Library\PackageCache\com.unity.collab-proxy@2.4.4\Lib\Editor\PlasticSCM\unityplastic.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Unity.Plastic.Antlr3.Runtime">
+      <HintPath>Library\PackageCache\com.unity.collab-proxy@2.4.4\Lib\Editor\PlasticSCM\Unity.Plastic.Antlr3.Runtime.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="DOTweenEditor">
+      <HintPath>Assets\GameResource\DOTween\Plugins\Demigiant\DOTween\Editor\DOTweenEditor.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Unity.Plastic.Newtonsoft.Json">
+      <HintPath>Library\PackageCache\com.unity.collab-proxy@2.4.4\Lib\Editor\PlasticSCM\Unity.Plastic.Newtonsoft.Json.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="log4netPlastic">
+      <HintPath>Library\PackageCache\com.unity.collab-proxy@2.4.4\Lib\Editor\PlasticSCM\log4netPlastic.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Unity.VisualScripting.IonicZip">
+      <HintPath>Library\PackageCache\com.unity.visualscripting@1.9.4\Editor\VisualScripting.Core\Dependencies\DotNetZip\Unity.VisualScripting.IonicZip.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="DOTween">
+      <HintPath>Assets\GameResource\DOTween\Plugins\Demigiant\DOTween\DOTween.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Unity.VisualScripting.Antlr3.Runtime">
+      <HintPath>Library\PackageCache\com.unity.visualscripting@1.9.4\Runtime\VisualScripting.Flow\Dependencies\NCalc\Unity.VisualScripting.Antlr3.Runtime.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Unity.VisualScripting.TextureAssets">
+      <HintPath>Library\PackageCache\com.unity.visualscripting@1.9.4\Editor\VisualScripting.Core\EditorAssetResources\Unity.VisualScripting.TextureAssets.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Zenject.ReflectionBaking.Mono.Cecil.Rocks">
+      <HintPath>C:\Users\User\Desktop\Zenject-master\Zenject-master\UnityProject\Assets\Plugins\Zenject\OptionalExtras\ReflectionBaking\Lib\Zenject.ReflectionBaking.Mono.Cecil.Rocks.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Zenject.ReflectionBaking.Mono.Cecil.Pdb">
+      <HintPath>C:\Users\User\Desktop\Zenject-master\Zenject-master\UnityProject\Assets\Plugins\Zenject\OptionalExtras\ReflectionBaking\Lib\Zenject.ReflectionBaking.Mono.Cecil.Pdb.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Zenject-usage">
+      <HintPath>C:\Users\User\Desktop\Zenject-master\Zenject-master\UnityProject\Assets\Plugins\Zenject\Source\Usage\Zenject-usage.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Zenject.ReflectionBaking.Mono.Cecil">
+      <HintPath>C:\Users\User\Desktop\Zenject-master\Zenject-master\UnityProject\Assets\Plugins\Zenject\OptionalExtras\ReflectionBaking\Lib\Zenject.ReflectionBaking.Mono.Cecil.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Zenject.ReflectionBaking.Mono.Cecil.Mdb">
+      <HintPath>C:\Users\User\Desktop\Zenject-master\Zenject-master\UnityProject\Assets\Plugins\Zenject\OptionalExtras\ReflectionBaking\Lib\Zenject.ReflectionBaking.Mono.Cecil.Mdb.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Unity.Android.Types">
+      <HintPath>D:\2022.3.36f1\Editor\Data\PlaybackEngines\AndroidPlayer\Unity.Android.Types.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Unity.Android.Gradle">
+      <HintPath>D:\2022.3.36f1\Editor\Data\PlaybackEngines\AndroidPlayer\Unity.Android.Gradle.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Unity.Android.GradleProject">
+      <HintPath>D:\2022.3.36f1\Editor\Data\PlaybackEngines\AndroidPlayer\Unity.Android.GradleProject.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="netstandard">
+      <HintPath>D:\2022.3.36f1\Editor\Data\NetStandard\ref\2.1.0\netstandard.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Microsoft.Win32.Primitives">
+      <HintPath>D:\2022.3.36f1\Editor\Data\NetStandard\compat\2.1.0\shims\netstandard\Microsoft.Win32.Primitives.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System.AppContext">
+      <HintPath>D:\2022.3.36f1\Editor\Data\NetStandard\compat\2.1.0\shims\netstandard\System.AppContext.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System.Buffers">
+      <HintPath>D:\2022.3.36f1\Editor\Data\NetStandard\compat\2.1.0\shims\netstandard\System.Buffers.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System.Collections.Concurrent">
+      <HintPath>D:\2022.3.36f1\Editor\Data\NetStandard\compat\2.1.0\shims\netstandard\System.Collections.Concurrent.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System.Collections">
+      <HintPath>D:\2022.3.36f1\Editor\Data\NetStandard\compat\2.1.0\shims\netstandard\System.Collections.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System.Collections.NonGeneric">
+      <HintPath>D:\2022.3.36f1\Editor\Data\NetStandard\compat\2.1.0\shims\netstandard\System.Collections.NonGeneric.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System.Collections.Specialized">
+      <HintPath>D:\2022.3.36f1\Editor\Data\NetStandard\compat\2.1.0\shims\netstandard\System.Collections.Specialized.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System.ComponentModel">
+      <HintPath>D:\2022.3.36f1\Editor\Data\NetStandard\compat\2.1.0\shims\netstandard\System.ComponentModel.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System.ComponentModel.EventBasedAsync">
+      <HintPath>D:\2022.3.36f1\Editor\Data\NetStandard\compat\2.1.0\shims\netstandard\System.ComponentModel.EventBasedAsync.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System.ComponentModel.Primitives">
+      <HintPath>D:\2022.3.36f1\Editor\Data\NetStandard\compat\2.1.0\shims\netstandard\System.ComponentModel.Primitives.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System.ComponentModel.TypeConverter">
+      <HintPath>D:\2022.3.36f1\Editor\Data\NetStandard\compat\2.1.0\shims\netstandard\System.ComponentModel.TypeConverter.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System.Console">
+      <HintPath>D:\2022.3.36f1\Editor\Data\NetStandard\compat\2.1.0\shims\netstandard\System.Console.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System.Data.Common">
+      <HintPath>D:\2022.3.36f1\Editor\Data\NetStandard\compat\2.1.0\shims\netstandard\System.Data.Common.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System.Diagnostics.Contracts">
+      <HintPath>D:\2022.3.36f1\Editor\Data\NetStandard\compat\2.1.0\shims\netstandard\System.Diagnostics.Contracts.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System.Diagnostics.Debug">
+      <HintPath>D:\2022.3.36f1\Editor\Data\NetStandard\compat\2.1.0\shims\netstandard\System.Diagnostics.Debug.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System.Diagnostics.FileVersionInfo">
+      <HintPath>D:\2022.3.36f1\Editor\Data\NetStandard\compat\2.1.0\shims\netstandard\System.Diagnostics.FileVersionInfo.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System.Diagnostics.Process">
+      <HintPath>D:\2022.3.36f1\Editor\Data\NetStandard\compat\2.1.0\shims\netstandard\System.Diagnostics.Process.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System.Diagnostics.StackTrace">
+      <HintPath>D:\2022.3.36f1\Editor\Data\NetStandard\compat\2.1.0\shims\netstandard\System.Diagnostics.StackTrace.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System.Diagnostics.TextWriterTraceListener">
+      <HintPath>D:\2022.3.36f1\Editor\Data\NetStandard\compat\2.1.0\shims\netstandard\System.Diagnostics.TextWriterTraceListener.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System.Diagnostics.Tools">
+      <HintPath>D:\2022.3.36f1\Editor\Data\NetStandard\compat\2.1.0\shims\netstandard\System.Diagnostics.Tools.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System.Diagnostics.TraceSource">
+      <HintPath>D:\2022.3.36f1\Editor\Data\NetStandard\compat\2.1.0\shims\netstandard\System.Diagnostics.TraceSource.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System.Diagnostics.Tracing">
+      <HintPath>D:\2022.3.36f1\Editor\Data\NetStandard\compat\2.1.0\shims\netstandard\System.Diagnostics.Tracing.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System.Drawing.Primitives">
+      <HintPath>D:\2022.3.36f1\Editor\Data\NetStandard\compat\2.1.0\shims\netstandard\System.Drawing.Primitives.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System.Dynamic.Runtime">
+      <HintPath>D:\2022.3.36f1\Editor\Data\NetStandard\compat\2.1.0\shims\netstandard\System.Dynamic.Runtime.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System.Globalization.Calendars">
+      <HintPath>D:\2022.3.36f1\Editor\Data\NetStandard\compat\2.1.0\shims\netstandard\System.Globalization.Calendars.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System.Globalization">
+      <HintPath>D:\2022.3.36f1\Editor\Data\NetStandard\compat\2.1.0\shims\netstandard\System.Globalization.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System.Globalization.Extensions">
+      <HintPath>D:\2022.3.36f1\Editor\Data\NetStandard\compat\2.1.0\shims\netstandard\System.Globalization.Extensions.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System.IO.Compression">
+      <HintPath>D:\2022.3.36f1\Editor\Data\NetStandard\compat\2.1.0\shims\netstandard\System.IO.Compression.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System.IO.Compression.ZipFile">
+      <HintPath>D:\2022.3.36f1\Editor\Data\NetStandard\compat\2.1.0\shims\netstandard\System.IO.Compression.ZipFile.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System.IO">
+      <HintPath>D:\2022.3.36f1\Editor\Data\NetStandard\compat\2.1.0\shims\netstandard\System.IO.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System.IO.FileSystem">
+      <HintPath>D:\2022.3.36f1\Editor\Data\NetStandard\compat\2.1.0\shims\netstandard\System.IO.FileSystem.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System.IO.FileSystem.DriveInfo">
+      <HintPath>D:\2022.3.36f1\Editor\Data\NetStandard\compat\2.1.0\shims\netstandard\System.IO.FileSystem.DriveInfo.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System.IO.FileSystem.Primitives">
+      <HintPath>D:\2022.3.36f1\Editor\Data\NetStandard\compat\2.1.0\shims\netstandard\System.IO.FileSystem.Primitives.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System.IO.FileSystem.Watcher">
+      <HintPath>D:\2022.3.36f1\Editor\Data\NetStandard\compat\2.1.0\shims\netstandard\System.IO.FileSystem.Watcher.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System.IO.IsolatedStorage">
+      <HintPath>D:\2022.3.36f1\Editor\Data\NetStandard\compat\2.1.0\shims\netstandard\System.IO.IsolatedStorage.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System.IO.MemoryMappedFiles">
+      <HintPath>D:\2022.3.36f1\Editor\Data\NetStandard\compat\2.1.0\shims\netstandard\System.IO.MemoryMappedFiles.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System.IO.Pipes">
+      <HintPath>D:\2022.3.36f1\Editor\Data\NetStandard\compat\2.1.0\shims\netstandard\System.IO.Pipes.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System.IO.UnmanagedMemoryStream">
+      <HintPath>D:\2022.3.36f1\Editor\Data\NetStandard\compat\2.1.0\shims\netstandard\System.IO.UnmanagedMemoryStream.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System.Linq">
+      <HintPath>D:\2022.3.36f1\Editor\Data\NetStandard\compat\2.1.0\shims\netstandard\System.Linq.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System.Linq.Expressions">
+      <HintPath>D:\2022.3.36f1\Editor\Data\NetStandard\compat\2.1.0\shims\netstandard\System.Linq.Expressions.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System.Linq.Parallel">
+      <HintPath>D:\2022.3.36f1\Editor\Data\NetStandard\compat\2.1.0\shims\netstandard\System.Linq.Parallel.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System.Linq.Queryable">
+      <HintPath>D:\2022.3.36f1\Editor\Data\NetStandard\compat\2.1.0\shims\netstandard\System.Linq.Queryable.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System.Memory">
+      <HintPath>D:\2022.3.36f1\Editor\Data\NetStandard\compat\2.1.0\shims\netstandard\System.Memory.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System.Net.Http">
+      <HintPath>D:\2022.3.36f1\Editor\Data\NetStandard\compat\2.1.0\shims\netstandard\System.Net.Http.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System.Net.NameResolution">
+      <HintPath>D:\2022.3.36f1\Editor\Data\NetStandard\compat\2.1.0\shims\netstandard\System.Net.NameResolution.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System.Net.NetworkInformation">
+      <HintPath>D:\2022.3.36f1\Editor\Data\NetStandard\compat\2.1.0\shims\netstandard\System.Net.NetworkInformation.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System.Net.Ping">
+      <HintPath>D:\2022.3.36f1\Editor\Data\NetStandard\compat\2.1.0\shims\netstandard\System.Net.Ping.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System.Net.Primitives">
+      <HintPath>D:\2022.3.36f1\Editor\Data\NetStandard\compat\2.1.0\shims\netstandard\System.Net.Primitives.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System.Net.Requests">
+      <HintPath>D:\2022.3.36f1\Editor\Data\NetStandard\compat\2.1.0\shims\netstandard\System.Net.Requests.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System.Net.Security">
+      <HintPath>D:\2022.3.36f1\Editor\Data\NetStandard\compat\2.1.0\shims\netstandard\System.Net.Security.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System.Net.Sockets">
+      <HintPath>D:\2022.3.36f1\Editor\Data\NetStandard\compat\2.1.0\shims\netstandard\System.Net.Sockets.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System.Net.WebHeaderCollection">
+      <HintPath>D:\2022.3.36f1\Editor\Data\NetStandard\compat\2.1.0\shims\netstandard\System.Net.WebHeaderCollection.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System.Net.WebSockets.Client">
+      <HintPath>D:\2022.3.36f1\Editor\Data\NetStandard\compat\2.1.0\shims\netstandard\System.Net.WebSockets.Client.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System.Net.WebSockets">
+      <HintPath>D:\2022.3.36f1\Editor\Data\NetStandard\compat\2.1.0\shims\netstandard\System.Net.WebSockets.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System.Numerics.Vectors">
+      <HintPath>D:\2022.3.36f1\Editor\Data\NetStandard\compat\2.1.0\shims\netstandard\System.Numerics.Vectors.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System.ObjectModel">
+      <HintPath>D:\2022.3.36f1\Editor\Data\NetStandard\compat\2.1.0\shims\netstandard\System.ObjectModel.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System.Reflection.DispatchProxy">
+      <HintPath>D:\2022.3.36f1\Editor\Data\NetStandard\compat\2.1.0\shims\netstandard\System.Reflection.DispatchProxy.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System.Reflection">
+      <HintPath>D:\2022.3.36f1\Editor\Data\NetStandard\compat\2.1.0\shims\netstandard\System.Reflection.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System.Reflection.Emit">
+      <HintPath>D:\2022.3.36f1\Editor\Data\NetStandard\compat\2.1.0\shims\netstandard\System.Reflection.Emit.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System.Reflection.Emit.ILGeneration">
+      <HintPath>D:\2022.3.36f1\Editor\Data\NetStandard\compat\2.1.0\shims\netstandard\System.Reflection.Emit.ILGeneration.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System.Reflection.Emit.Lightweight">
+      <HintPath>D:\2022.3.36f1\Editor\Data\NetStandard\compat\2.1.0\shims\netstandard\System.Reflection.Emit.Lightweight.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System.Reflection.Extensions">
+      <HintPath>D:\2022.3.36f1\Editor\Data\NetStandard\compat\2.1.0\shims\netstandard\System.Reflection.Extensions.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System.Reflection.Primitives">
+      <HintPath>D:\2022.3.36f1\Editor\Data\NetStandard\compat\2.1.0\shims\netstandard\System.Reflection.Primitives.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System.Resources.Reader">
+      <HintPath>D:\2022.3.36f1\Editor\Data\NetStandard\compat\2.1.0\shims\netstandard\System.Resources.Reader.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System.Resources.ResourceManager">
+      <HintPath>D:\2022.3.36f1\Editor\Data\NetStandard\compat\2.1.0\shims\netstandard\System.Resources.ResourceManager.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System.Resources.Writer">
+      <HintPath>D:\2022.3.36f1\Editor\Data\NetStandard\compat\2.1.0\shims\netstandard\System.Resources.Writer.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System.Runtime.CompilerServices.VisualC">
+      <HintPath>D:\2022.3.36f1\Editor\Data\NetStandard\compat\2.1.0\shims\netstandard\System.Runtime.CompilerServices.VisualC.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System.Runtime">
+      <HintPath>D:\2022.3.36f1\Editor\Data\NetStandard\compat\2.1.0\shims\netstandard\System.Runtime.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System.Runtime.Extensions">
+      <HintPath>D:\2022.3.36f1\Editor\Data\NetStandard\compat\2.1.0\shims\netstandard\System.Runtime.Extensions.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System.Runtime.Handles">
+      <HintPath>D:\2022.3.36f1\Editor\Data\NetStandard\compat\2.1.0\shims\netstandard\System.Runtime.Handles.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System.Runtime.InteropServices">
+      <HintPath>D:\2022.3.36f1\Editor\Data\NetStandard\compat\2.1.0\shims\netstandard\System.Runtime.InteropServices.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System.Runtime.InteropServices.RuntimeInformation">
+      <HintPath>D:\2022.3.36f1\Editor\Data\NetStandard\compat\2.1.0\shims\netstandard\System.Runtime.InteropServices.RuntimeInformation.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System.Runtime.Numerics">
+      <HintPath>D:\2022.3.36f1\Editor\Data\NetStandard\compat\2.1.0\shims\netstandard\System.Runtime.Numerics.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System.Runtime.Serialization.Formatters">
+      <HintPath>D:\2022.3.36f1\Editor\Data\NetStandard\compat\2.1.0\shims\netstandard\System.Runtime.Serialization.Formatters.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System.Runtime.Serialization.Json">
+      <HintPath>D:\2022.3.36f1\Editor\Data\NetStandard\compat\2.1.0\shims\netstandard\System.Runtime.Serialization.Json.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System.Runtime.Serialization.Primitives">
+      <HintPath>D:\2022.3.36f1\Editor\Data\NetStandard\compat\2.1.0\shims\netstandard\System.Runtime.Serialization.Primitives.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System.Runtime.Serialization.Xml">
+      <HintPath>D:\2022.3.36f1\Editor\Data\NetStandard\compat\2.1.0\shims\netstandard\System.Runtime.Serialization.Xml.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System.Security.Claims">
+      <HintPath>D:\2022.3.36f1\Editor\Data\NetStandard\compat\2.1.0\shims\netstandard\System.Security.Claims.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System.Security.Cryptography.Algorithms">
+      <HintPath>D:\2022.3.36f1\Editor\Data\NetStandard\compat\2.1.0\shims\netstandard\System.Security.Cryptography.Algorithms.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System.Security.Cryptography.Csp">
+      <HintPath>D:\2022.3.36f1\Editor\Data\NetStandard\compat\2.1.0\shims\netstandard\System.Security.Cryptography.Csp.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System.Security.Cryptography.Encoding">
+      <HintPath>D:\2022.3.36f1\Editor\Data\NetStandard\compat\2.1.0\shims\netstandard\System.Security.Cryptography.Encoding.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System.Security.Cryptography.Primitives">
+      <HintPath>D:\2022.3.36f1\Editor\Data\NetStandard\compat\2.1.0\shims\netstandard\System.Security.Cryptography.Primitives.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System.Security.Cryptography.X509Certificates">
+      <HintPath>D:\2022.3.36f1\Editor\Data\NetStandard\compat\2.1.0\shims\netstandard\System.Security.Cryptography.X509Certificates.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System.Security.Principal">
+      <HintPath>D:\2022.3.36f1\Editor\Data\NetStandard\compat\2.1.0\shims\netstandard\System.Security.Principal.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System.Security.SecureString">
+      <HintPath>D:\2022.3.36f1\Editor\Data\NetStandard\compat\2.1.0\shims\netstandard\System.Security.SecureString.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System.Text.Encoding">
+      <HintPath>D:\2022.3.36f1\Editor\Data\NetStandard\compat\2.1.0\shims\netstandard\System.Text.Encoding.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System.Text.Encoding.Extensions">
+      <HintPath>D:\2022.3.36f1\Editor\Data\NetStandard\compat\2.1.0\shims\netstandard\System.Text.Encoding.Extensions.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System.Text.RegularExpressions">
+      <HintPath>D:\2022.3.36f1\Editor\Data\NetStandard\compat\2.1.0\shims\netstandard\System.Text.RegularExpressions.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System.Threading">
+      <HintPath>D:\2022.3.36f1\Editor\Data\NetStandard\compat\2.1.0\shims\netstandard\System.Threading.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System.Threading.Overlapped">
+      <HintPath>D:\2022.3.36f1\Editor\Data\NetStandard\compat\2.1.0\shims\netstandard\System.Threading.Overlapped.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System.Threading.Tasks">
+      <HintPath>D:\2022.3.36f1\Editor\Data\NetStandard\compat\2.1.0\shims\netstandard\System.Threading.Tasks.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System.Threading.Tasks.Extensions">
+      <HintPath>D:\2022.3.36f1\Editor\Data\NetStandard\compat\2.1.0\shims\netstandard\System.Threading.Tasks.Extensions.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System.Threading.Tasks.Parallel">
+      <HintPath>D:\2022.3.36f1\Editor\Data\NetStandard\compat\2.1.0\shims\netstandard\System.Threading.Tasks.Parallel.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System.Threading.Thread">
+      <HintPath>D:\2022.3.36f1\Editor\Data\NetStandard\compat\2.1.0\shims\netstandard\System.Threading.Thread.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System.Threading.ThreadPool">
+      <HintPath>D:\2022.3.36f1\Editor\Data\NetStandard\compat\2.1.0\shims\netstandard\System.Threading.ThreadPool.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System.Threading.Timer">
+      <HintPath>D:\2022.3.36f1\Editor\Data\NetStandard\compat\2.1.0\shims\netstandard\System.Threading.Timer.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System.ValueTuple">
+      <HintPath>D:\2022.3.36f1\Editor\Data\NetStandard\compat\2.1.0\shims\netstandard\System.ValueTuple.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System.Xml.ReaderWriter">
+      <HintPath>D:\2022.3.36f1\Editor\Data\NetStandard\compat\2.1.0\shims\netstandard\System.Xml.ReaderWriter.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System.Xml.XDocument">
+      <HintPath>D:\2022.3.36f1\Editor\Data\NetStandard\compat\2.1.0\shims\netstandard\System.Xml.XDocument.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System.Xml.XmlDocument">
+      <HintPath>D:\2022.3.36f1\Editor\Data\NetStandard\compat\2.1.0\shims\netstandard\System.Xml.XmlDocument.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System.Xml.XmlSerializer">
+      <HintPath>D:\2022.3.36f1\Editor\Data\NetStandard\compat\2.1.0\shims\netstandard\System.Xml.XmlSerializer.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System.Xml.XPath">
+      <HintPath>D:\2022.3.36f1\Editor\Data\NetStandard\compat\2.1.0\shims\netstandard\System.Xml.XPath.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System.Xml.XPath.XDocument">
+      <HintPath>D:\2022.3.36f1\Editor\Data\NetStandard\compat\2.1.0\shims\netstandard\System.Xml.XPath.XDocument.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System.Runtime.InteropServices.WindowsRuntime">
+      <HintPath>D:\2022.3.36f1\Editor\Data\NetStandard\Extensions\2.0.0\System.Runtime.InteropServices.WindowsRuntime.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="mscorlib">
+      <HintPath>D:\2022.3.36f1\Editor\Data\NetStandard\compat\2.1.0\shims\netfx\mscorlib.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System.ComponentModel.Composition">
+      <HintPath>D:\2022.3.36f1\Editor\Data\NetStandard\compat\2.1.0\shims\netfx\System.ComponentModel.Composition.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System.Core">
+      <HintPath>D:\2022.3.36f1\Editor\Data\NetStandard\compat\2.1.0\shims\netfx\System.Core.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System.Data">
+      <HintPath>D:\2022.3.36f1\Editor\Data\NetStandard\compat\2.1.0\shims\netfx\System.Data.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System">
+      <HintPath>D:\2022.3.36f1\Editor\Data\NetStandard\compat\2.1.0\shims\netfx\System.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System.Drawing">
+      <HintPath>D:\2022.3.36f1\Editor\Data\NetStandard\compat\2.1.0\shims\netfx\System.Drawing.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System.IO.Compression.FileSystem">
+      <HintPath>D:\2022.3.36f1\Editor\Data\NetStandard\compat\2.1.0\shims\netfx\System.IO.Compression.FileSystem.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System.Net">
+      <HintPath>D:\2022.3.36f1\Editor\Data\NetStandard\compat\2.1.0\shims\netfx\System.Net.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System.Numerics">
+      <HintPath>D:\2022.3.36f1\Editor\Data\NetStandard\compat\2.1.0\shims\netfx\System.Numerics.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System.Runtime.Serialization">
+      <HintPath>D:\2022.3.36f1\Editor\Data\NetStandard\compat\2.1.0\shims\netfx\System.Runtime.Serialization.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System.ServiceModel.Web">
+      <HintPath>D:\2022.3.36f1\Editor\Data\NetStandard\compat\2.1.0\shims\netfx\System.ServiceModel.Web.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System.Transactions">
+      <HintPath>D:\2022.3.36f1\Editor\Data\NetStandard\compat\2.1.0\shims\netfx\System.Transactions.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System.Web">
+      <HintPath>D:\2022.3.36f1\Editor\Data\NetStandard\compat\2.1.0\shims\netfx\System.Web.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System.Windows">
+      <HintPath>D:\2022.3.36f1\Editor\Data\NetStandard\compat\2.1.0\shims\netfx\System.Windows.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System.Xml">
+      <HintPath>D:\2022.3.36f1\Editor\Data\NetStandard\compat\2.1.0\shims\netfx\System.Xml.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System.Xml.Linq">
+      <HintPath>D:\2022.3.36f1\Editor\Data\NetStandard\compat\2.1.0\shims\netfx\System.Xml.Linq.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System.Xml.Serialization">
+      <HintPath>D:\2022.3.36f1\Editor\Data\NetStandard\compat\2.1.0\shims\netfx\System.Xml.Serialization.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEditor.UI">
+      <HintPath>Library\ScriptAssemblies\UnityEditor.UI.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.UI">
+      <HintPath>Library\ScriptAssemblies\UnityEngine.UI.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Target Name="GenerateTargetFrameworkMonikerAttribute" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
