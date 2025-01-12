@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Data;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.Processors;
 using Zenject;
 
 public class PlayerController : MonoBehaviour
@@ -15,40 +16,30 @@ public class PlayerController : MonoBehaviour
     public Vector2 inputDirection;
     private Rigidbody2D rb;
     private PhysicsCheck physicsCheck;
+    private PlayerAnimation playerAnimation;
 
-    [Header("玩家基礎數值")]
+    [Header("玩家物理數值")]
     public float Speed = 10f;
     public float jampforce = 16.5f;
+    public float Hurtforce;//玩家受到傷害擊退力
 
-    public  int attackState = 0;//攻擊狀態
-    public int PlayerHp { get; private set; }
-    public int PlayerPower { get; private set; }
+    [Header("玩家狀態")]
+    public bool ishurt;//是否受傷
+    public bool isDead;//是否死亡
+    public bool isAttack;//是否攻擊
 
-    /*--------玩家操作事件宣告區------------*/
-    public delegate void PlayerGetHit(int damage);
-    public event PlayerGetHit OnPlayerHit;
-
-    public delegate void PlayerAttack();
-    public event PlayerAttack OnPlayerAttack;
-
-    public delegate void PlayerUseSkill1(int powercoust);
-    public event PlayerUseSkill1 OnPlayerUseSkill1;
-
-    public delegate void PlayerUseSkill2(int powercoust);
-    public event PlayerUseSkill2 OnPlayerUseSkill2;
-
-    public delegate void PlayerUseSkill3(int powercoust);
-    public event PlayerUseSkill3 OnPlayerUseSkill3;
-
-    public delegate void PlayerDie();
-    public event PlayerDie OnPlayerDie;
-   
     private void Awake()
     {
-        playerInput = new PlayerInput();
-        playerInput.GamePlay.Jump.started += Player_Jump;
         rb = GetComponent<Rigidbody2D>();
         physicsCheck = GetComponent<PhysicsCheck>();
+        playerAnimation = GetComponent<PlayerAnimation>();
+
+        playerInput = new PlayerInput();
+        //跳躍事件
+        playerInput.GamePlay.Jump.started += Player_Jump;
+        //攻擊事件
+        playerInput.GamePlay.Attack.started += Player_Attack;
+       
     }
 
     private void OnEnable()
@@ -86,7 +77,8 @@ public class PlayerController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        Player_Move();     
+        if(!ishurt && !isAttack)
+            Player_Move();     
 
         if (rb.velocity.sqrMagnitude == 0)
         {
@@ -118,25 +110,26 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    public void Player_Attack(InputAction.CallbackContext context)
+    public void Player_Attack(InputAction.CallbackContext obj)
     {
-        if (context.performed)
-        {
-           attackState++;
-            if (attackState > 2)
-                attackState = 0;
-        }
+       playerAnimation.OnPlayerAttack();
+        isAttack = true;              
     }
 
-    public void Player_Hit(int damage)
+    #region  以下為在UnityEvent中執行部分
+    public void Player_GetHurt(Transform _attacker)//受傷擊飛
     {
-             
-            Player_Die();
+        ishurt = true;
+        rb.velocity=Vector2.zero;
+        Vector2 die=new Vector2((transform.position.x - _attacker.position.x), 0).normalized;
+
+        rb.AddForce(die * Hurtforce, ForceMode2D.Impulse);
     }
 
-    private void Player_Die()
+    public void Player_Dead()
     {
-        Debug.Log("Player Died");
+        isDead = true;
+        playerInput.GamePlay.Disable();
     }
-
+    #endregion
 }

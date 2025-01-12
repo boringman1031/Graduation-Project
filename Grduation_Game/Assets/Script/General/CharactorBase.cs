@@ -21,12 +21,15 @@ public class CharactorBase : MonoBehaviour
     private float SuperArmourTimeCounter;//霸體時間計數器
     public bool SuperArmour;//是否在霸體狀態
 
+    public UnityEvent<CharactorBase> OnHealthChange;//血量改變事件(用於更新UI廣播)
     public UnityEvent<Transform> OnTakeDamage;
+    public UnityEvent OnDead;
 
     private void Start()
     {
         MaxHealth = Health+Defence;
         CurrentHealth = MaxHealth;
+        OnHealthChange?.Invoke(this);
     }
 
     private void Update()
@@ -57,9 +60,10 @@ public class CharactorBase : MonoBehaviour
         else
         {
             CurrentHealth = 0;
+            OnDead?.Invoke();
             //死亡
         }
-      
+      OnHealthChange?.Invoke(this);//觸發血量改變事件
     }
 
     private void TriggerSuperArmour()//觸發霸體
