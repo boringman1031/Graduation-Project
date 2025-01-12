@@ -2,11 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using static PlayerBase;
+using static PlayerController;
 /*------------------by 017-----------------------*/
 public class GammingCanvaController : MonoBehaviour
 {
-    private PlayerBase player;
+    private PlayerController player;
 
     [SerializeField]
     private Text money_Count;
@@ -34,7 +34,7 @@ public class GammingCanvaController : MonoBehaviour
 
     private void Awake()
     {
-        player = FindObjectOfType<PlayerBase>();
+        player = FindObjectOfType<PlayerController>();
         if (player == null)
         {
             Debug.LogWarning("Player not found in the scene.");

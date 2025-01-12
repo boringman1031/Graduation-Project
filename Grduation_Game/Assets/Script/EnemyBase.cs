@@ -13,7 +13,7 @@ public class EnemyBase : MonoBehaviour
     [SerializeField]
     private float MoveThreshold = 5.0f; // »Pª±®aªº¶ZÂ÷ìH­È
 
-    private PlayerBase player;
+    private PlayerController player;
     private Transform playerTransform;
 
     public delegate void EnemyGetHit(int damage);
@@ -27,7 +27,7 @@ public class EnemyBase : MonoBehaviour
         GameObject playerObject = GameObject.FindGameObjectWithTag("Player");
         if (playerObject != null)
         {
-            player = playerObject.GetComponent<PlayerBase>();
+            player = playerObject.GetComponent<PlayerController>();
             playerTransform = playerObject.transform;
         }
         else
