@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 7466652073738086489}
   - component: {fileID: 1434880608051723680}
   - component: {fileID: 2219397177892328276}
+  - component: {fileID: 4972871734232562314}
   m_Layer: 0
   m_Name: Attack2
   m_TagString: Untagged
@@ -99,6 +100,21 @@ MonoBehaviour:
   attackRange: 0
   attackRate: 0
   Knockback: 0
+--- !u!114 &4972871734232562314
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2534058384274524521}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 382469160c5fb1044b544fb3b962a440, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playAudioEvent: {fileID: 11400000, guid: 65ebe43ce1b57af42838ea556ca8530e, type: 2}
+  audioClip: {fileID: 8300000, guid: 7bef0064f8567430cac22499c6b93d4f, type: 3}
+  playOnEnable: 1
 --- !u!1 &4129049325006263578
 GameObject:
   m_ObjectHideFlags: 0
@@ -113,6 +129,7 @@ GameObject:
   - component: {fileID: 6030796985520617632}
   - component: {fileID: 4910103218695575477}
   - component: {fileID: 618363585568518696}
+  - component: {fileID: 5572362887882122547}
   - component: {fileID: 8459951442408520611}
   - component: {fileID: 876225542684795322}
   - component: {fileID: 471687282833143302}
@@ -342,6 +359,21 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &5572362887882122547
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4129049325006263578}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 382469160c5fb1044b544fb3b962a440, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playAudioEvent: {fileID: 11400000, guid: 65ebe43ce1b57af42838ea556ca8530e, type: 2}
+  audioClip: {fileID: 8300000, guid: 2c5292ba5cf254919a6b9e2b18e04f49, type: 3}
+  playOnEnable: 0
 --- !u!114 &8459951442408520611
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -419,6 +451,10 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: 533668d9-c439-431a-a92c-2505c6b799bc
     m_ActionName: GamePlay/Attack[/Mouse/rightButton]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: cafe279a-fa5b-4dbe-8bcf-79751a88d888
+    m_ActionName: GamePlay/Confirm[/Mouse/rightButton]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: GamePlay
@@ -465,6 +501,7 @@ GameObject:
   - component: {fileID: 1707385770351401628}
   - component: {fileID: 773245069019012078}
   - component: {fileID: 2133323169925862976}
+  - component: {fileID: 8629277172947777723}
   m_Layer: 0
   m_Name: Attack1
   m_TagString: Untagged
@@ -553,6 +590,21 @@ MonoBehaviour:
   attackRange: 0
   attackRate: 0
   Knockback: 0
+--- !u!114 &8629277172947777723
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5116492749504277044}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 382469160c5fb1044b544fb3b962a440, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playAudioEvent: {fileID: 11400000, guid: 65ebe43ce1b57af42838ea556ca8530e, type: 2}
+  audioClip: {fileID: 8300000, guid: 7e26c9daf4c32483b9c2790e662d3f1b, type: 3}
+  playOnEnable: 1
 --- !u!1 &8101745627022554047
 GameObject:
   m_ObjectHideFlags: 0
@@ -598,6 +650,7 @@ GameObject:
   - component: {fileID: 8194392841914401008}
   - component: {fileID: 121987123682158773}
   - component: {fileID: 2947363492335194697}
+  - component: {fileID: 5616422961880106568}
   m_Layer: 0
   m_Name: Attack3
   m_TagString: Untagged
@@ -686,6 +739,21 @@ MonoBehaviour:
   attackRange: 0
   attackRate: 0
   Knockback: 0
+--- !u!114 &5616422961880106568
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8676637752627115166}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 382469160c5fb1044b544fb3b962a440, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playAudioEvent: {fileID: 11400000, guid: 65ebe43ce1b57af42838ea556ca8530e, type: 2}
+  audioClip: {fileID: 8300000, guid: 7bef0064f8567430cac22499c6b93d4f, type: 3}
+  playOnEnable: 1
 --- !u!1001 &4723033096671670067
 PrefabInstance:
   m_ObjectHideFlags: 0
