@@ -9,9 +9,6 @@ using Zenject;
 
 public class PlayerController : MonoBehaviour
 {
-    [SerializeField] private GameObject Player_front;
-    [SerializeField] private GameObject Player_side;
-
     public  PlayerInput playerInput;
     public Vector2 inputDirection;
     private Rigidbody2D rb;
@@ -78,19 +75,11 @@ public class PlayerController : MonoBehaviour
     private void FixedUpdate()
     {
         if(!ishurt && !isAttack)
-            Player_Move();     
-
-        if (rb.velocity.sqrMagnitude == 0)
-        {
-            Player_front.SetActive(true);
-            Player_side.SetActive(false);
-        }       
+            Player_Move();             
     }
 
     public void Player_Move( )
-    {
-        Player_front.SetActive(false);
-        Player_side.SetActive(true);
+    {       
         rb.velocity = new Vector2(inputDirection.x * Speed*Time.deltaTime, rb.velocity.y);
 
         //¤Hª«Â½Âà
