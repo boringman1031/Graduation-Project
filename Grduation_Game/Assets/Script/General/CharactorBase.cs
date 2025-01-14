@@ -7,12 +7,16 @@ using UnityEngine.Events;
 
 public class CharactorBase : MonoBehaviour
 {
+    [Header("事件監聽")]
+    public VoidEventSO newGameEvent;
+
     [Header("基礎數值")]
     public float Health;
     public float Defence;
 
     [Header("當前數值")]
     public float MaxHealth;
+    public float MaxPower;
     public float CurrentHealth;
     public float CurrentPower;
 
@@ -25,13 +29,15 @@ public class CharactorBase : MonoBehaviour
     public UnityEvent<Transform> OnTakeDamage;
     public UnityEvent OnDead;
 
-    private void Start()
+    private void OnEnable()
     {
-        MaxHealth = Health+Defence;
-        CurrentHealth = MaxHealth;
-        OnHealthChange?.Invoke(this);
+        newGameEvent.OnEventRaised += NewGame;
     }
 
+    private void OnDisable()
+    {
+        newGameEvent.OnEventRaised -= NewGame;
+    }
     private void Update()
     {
         if (SuperArmour)
@@ -42,6 +48,13 @@ public class CharactorBase : MonoBehaviour
                 SuperArmour = false;
             }
         }
+    }
+    private void NewGame()
+    {
+        MaxHealth = Health + Defence;
+        CurrentHealth = MaxHealth;
+        CurrentPower = MaxPower;
+        OnHealthChange?.Invoke(this);
     }
     public void TakeDamage(Attack _attacker)//受到傷害判定
     {

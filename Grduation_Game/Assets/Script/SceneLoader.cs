@@ -12,10 +12,16 @@ public class SceneLoader : MonoBehaviour
 {
     [Header("廣播")]
     public VoidEventSO afterSceneLoadedEvent;
+    public SceneLoadEventSO unLoadSceneEvent;
     public TransitionEventSO transitionEvent;
+
     [Header("事件監聽")]
     public SceneLoadEventSO loadEventSO;
+    public VoidEventSO newGameEvent;
+
+    [Header("場景參數")]
     public GameSceneSO firstLoadScene;//第一個加載的場景
+    public GameSceneSO MuneScene;//主場景
 
     [Header("調整參數")]
     public Transform playerTrans;//玩家位置
@@ -30,16 +36,18 @@ public class SceneLoader : MonoBehaviour
 
     private void Start()
     {
-        NewGame();
+        loadEventSO.RaiseLoadRequestEvent(MuneScene, firstPosition, true);      
     } 
     private void OnEnable()
     {
         loadEventSO.LoadRequestEvent += OnLoadRequestEvent;
+        newGameEvent.OnEventRaised += NewGame;
     }
 
     private void OnDisable()
     {
         loadEventSO.LoadRequestEvent -= OnLoadRequestEvent;
+        newGameEvent.OnEventRaised -= NewGame;
     }
 
     private void NewGame()
@@ -81,12 +89,13 @@ public class SceneLoader : MonoBehaviour
             //轉場
             transitionEvent.TransitionIn();
         }
-        yield return new WaitForSeconds(fadeTime);
-        yield return currentLoadScene.sceneReference.UnLoadScene();
 
-        //關閉玩家人物
-        playerTrans.gameObject.SetActive(false);
-        LoadNewScene();
+        yield return new WaitForSeconds(fadeTime);
+        unLoadSceneEvent.RaiseLoadRequestEvent(sceneToLoad,positionToGo,true);//廣播:調整血條顯示
+        yield return currentLoadScene.sceneReference.UnLoadScene();
+        
+        playerTrans.gameObject.SetActive(false); //關閉玩家人物
+        LoadNewScene();//加載新場景
     }
 
     private void LoadNewScene()

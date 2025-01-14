@@ -252,6 +252,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24b4162e755f6ab4c9bbecbe6eead474, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  loadEvent: {fileID: 0}
+  afterSceneLoadEvent: {fileID: 0}
   inputDirection: {x: 0, y: 0}
   Speed: 200
   jampforce: 16.5
@@ -271,9 +273,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 738fbd9061b683045ba0c98447e8918e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  newGameEvent: {fileID: 11400000, guid: d9bb2d4100ded3d4f81459a40234d7c7, type: 2}
   Health: 100
   Defence: 100
   MaxHealth: 0
+  MaxPower: 0
   CurrentHealth: 0
   CurrentPower: 0
   SuperArmourTime: 2
