@@ -1,4 +1,5 @@
 /*------------------by 017-----------------------*/
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Data;
@@ -9,6 +10,10 @@ using Zenject;
 
 public class PlayerController : MonoBehaviour
 {
+    [Header("事件監聽")]
+    public SceneLoadEventSO loadEvent;//場景加載事件
+    public VoidEventSO afterSceneLoadEvent;
+
     public  PlayerInput playerInput;
     public Vector2 inputDirection;
     private Rigidbody2D rb;
@@ -41,13 +46,18 @@ public class PlayerController : MonoBehaviour
 
     private void OnEnable()
     {
-        playerInput.Enable();   
+        playerInput.Enable();
+        loadEvent.LoadRequestEvent += OnLoadEvent; ;
+        afterSceneLoadEvent.OnEventRaised += OnAfterSceneLoadEvent;
     }
 
     private void OnDisable()
     {
         playerInput.Disable();
+        loadEvent.LoadRequestEvent -= OnLoadEvent;
+        afterSceneLoadEvent.OnEventRaised -= OnAfterSceneLoadEvent;
     }
+
 
     private void Update()
     {
@@ -77,7 +87,15 @@ public class PlayerController : MonoBehaviour
         if(!ishurt && !isAttack)
             Player_Move();             
     }
+    private void OnLoadEvent(GameSceneSO sO, Vector3 vector, bool arg3)//場景加載停止玩家控制
+    {
+        playerInput.GamePlay.Disable();
+    }
 
+    private void OnAfterSceneLoadEvent()//場景加載完成開起玩家控制
+    {
+        playerInput.GamePlay.Enable();
+    }
     public void Player_Move( )
     {       
         rb.velocity = new Vector2(inputDirection.x * Speed*Time.deltaTime, rb.velocity.y);
@@ -106,6 +124,7 @@ public class PlayerController : MonoBehaviour
         isAttack = true;              
     }
 
+   
     #region  以下為在UnityEvent中執行部分
     public void Player_GetHurt(Transform _attacker)//受傷擊飛
     {

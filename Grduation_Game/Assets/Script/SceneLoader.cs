@@ -45,7 +45,7 @@ public class SceneLoader : MonoBehaviour
     private void NewGame()
     {
         sceneToLoad = firstLoadScene;
-        OnLoadRequestEvent(sceneToLoad, firstPosition, true);
+        loadEventSO.RaiseLoadRequestEvent(sceneToLoad, firstPosition, true);
     }
 
     /// <summary>
@@ -75,10 +75,10 @@ public class SceneLoader : MonoBehaviour
     }
 
     private IEnumerator UnLoadPreviousScene()
-    {
-       if(fadeScreen)
+    {      
+        if (fadeScreen)
         {
-            //淡出
+            //轉場
             transitionEvent.TransitionIn();
         }
         yield return new WaitForSeconds(fadeTime);
@@ -105,10 +105,11 @@ public class SceneLoader : MonoBehaviour
         playerTrans.gameObject.SetActive(true);
         if (fadeScreen)
         {
-            //淡入
+            //轉場
             transitionEvent.TransitionOut();
         }
         isLoading = false;
-        afterSceneLoadedEvent.RaiseEvent();//廣播:已加載完成事件
+        if(currentLoadScene.sceneType== SceneType.Location)           
+            afterSceneLoadedEvent.RaiseEvent();//廣播:已加載完成事件
     }
 }
