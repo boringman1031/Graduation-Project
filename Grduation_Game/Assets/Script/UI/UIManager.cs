@@ -9,18 +9,23 @@ public class UIManager : MonoBehaviour
 
     [Header("事件監聽")]
     public CharacterEventSO healthEvenr;
-    public SceneLoadEventSO loadEvent;
+    public SceneLoadEventSO unloadedSceneEvent;
+    public VoidEventSO loadDataEvent;
+
+    [Header("組件")]
+    public GameObject GameOverPanel;
+    public GameObject restartButton;
 
     public void OnEnable()
     {
         healthEvenr.OnEventRaised += OnHealthEvent;
-        loadEvent.LoadRequestEvent += OnLoadEvent;
+        unloadedSceneEvent.LoadRequestEvent += OnLoadSceneEvent;
     }
 
     public void OnDisable()
     {
         healthEvenr.OnEventRaised -= OnHealthEvent;
-        loadEvent.LoadRequestEvent -= OnLoadEvent;
+        unloadedSceneEvent.LoadRequestEvent -= OnLoadSceneEvent;
     }
 
     public void OnHealthEvent(CharactorBase _charactor)
@@ -29,7 +34,7 @@ public class UIManager : MonoBehaviour
         playerStatBar.OnHealthChange(persentage);
     }
 
-    private void OnLoadEvent(GameSceneSO _sceneToLoad, Vector3 arg1, bool arg2)
+    private void OnLoadSceneEvent(GameSceneSO _sceneToLoad, Vector3 arg1, bool arg2)
     {
         var isMenu=_sceneToLoad.sceneType == SceneType.Menu;
         playerStatBar.gameObject.SetActive(!isMenu);

@@ -107,6 +107,7 @@ public class SceneLoader : MonoBehaviour,ISaveable
        var loadingOption= sceneToLoad.sceneReference.LoadSceneAsync(LoadSceneMode.Additive,true);
        loadingOption.Completed += OnLoadComplete;
     }
+
     ///<summary>
     /// 加載完成後執行
     ///</summary>
@@ -131,15 +132,23 @@ public class SceneLoader : MonoBehaviour,ISaveable
        return GetComponent<DataDefination>();
     }
 
+    /// <summary>
+    /// 保存當前場景數據。
+    /// </summary>
+    /// <param name="_data">保存數據的對象。</param>
     public void GetSaveData(Data _data)
     {
         _data.SaveGameScene(currentLoadScene);
     }
 
+    /// <summary>
+    /// 加載保存的場景數據。
+    /// </summary>
+    /// <param name="_data">保存數據的對象。</param>
     public void LoadData(Data _data)
     {
-        var playerID=playerTrans.GetComponent<DataDefination>().ID;
-        if(_data.characterPosition.ContainsKey(playerID))
+        var playerID = playerTrans.GetComponent<DataDefination>().ID;
+        if (_data.characterPosition.ContainsKey(playerID))
         {
             positionToGo = _data.characterPosition[playerID];
             sceneToLoad = _data.GetSaveScene();
