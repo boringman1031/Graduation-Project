@@ -8,7 +8,7 @@ using UnityEngine.ResourceManagement.AsyncOperations;
 using UnityEngine.ResourceManagement.ResourceProviders;
 using UnityEngine.SceneManagement;
 
-public class SceneLoader : MonoBehaviour
+public class SceneLoader : MonoBehaviour,ISaveable
 {
     [Header("廣播")]
     public VoidEventSO afterSceneLoadedEvent;
@@ -22,14 +22,14 @@ public class SceneLoader : MonoBehaviour
     [Header("場景參數")]
     public GameSceneSO firstLoadScene;//第一個加載的場景
     public GameSceneSO MuneScene;//主場景
+    private GameSceneSO currentLoadScene;//當前加載的場景
+    private GameSceneSO sceneToLoad;//要加載的場景
 
     [Header("調整參數")]
     public Transform playerTrans;//玩家位置
     public Vector3 firstPosition;//第一個場景的位置
     public float fadeTime;//淡入淡出時間
 
-    private GameSceneSO currentLoadScene;//當前加載的場景
-    private GameSceneSO sceneToLoad;//要加載的場景
     private Vector3 positionToGo;//要傳送的位置
     private bool fadeScreen;//是否淡出屏幕
     private  bool isLoading;//是否正在加載
@@ -42,12 +42,16 @@ public class SceneLoader : MonoBehaviour
     {
         loadEventSO.LoadRequestEvent += OnLoadRequestEvent;
         newGameEvent.OnEventRaised += NewGame;
+        ISaveable saveable = this;
+        saveable.RegisterSaveData();
     }
 
     private void OnDisable()
     {
         loadEventSO.LoadRequestEvent -= OnLoadRequestEvent;
         newGameEvent.OnEventRaised -= NewGame;
+        ISaveable saveable = this;
+        saveable.UnRegisterSaveData();
     }
 
     private void NewGame()
@@ -120,5 +124,26 @@ public class SceneLoader : MonoBehaviour
         isLoading = false;
         if(currentLoadScene.sceneType== SceneType.Location)           
             afterSceneLoadedEvent.RaiseEvent();//廣播:已加載完成事件
+    }
+
+    public DataDefination GetDataID()
+    {
+       return GetComponent<DataDefination>();
+    }
+
+    public void GetSaveData(Data _data)
+    {
+        _data.SaveGameScene(currentLoadScene);
+    }
+
+    public void LoadData(Data _data)
+    {
+        var playerID=playerTrans.GetComponent<DataDefination>().ID;
+        if(_data.characterPosition.ContainsKey(playerID))
+        {
+            positionToGo = _data.characterPosition[playerID];
+            sceneToLoad = _data.GetSaveScene();
+            OnLoadRequestEvent(sceneToLoad, positionToGo, true);
+        }
     }
 }

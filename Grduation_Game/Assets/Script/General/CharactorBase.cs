@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class CharactorBase : MonoBehaviour
+public class CharactorBase : MonoBehaviour,ISaveable
 {
     [Header("事件監聽")]
     public VoidEventSO newGameEvent;
@@ -32,11 +32,15 @@ public class CharactorBase : MonoBehaviour
     private void OnEnable()
     {
         newGameEvent.OnEventRaised += NewGame;
+        ISaveable saveable = this;
+        saveable.RegisterSaveData();
     }
 
     private void OnDisable()
     {
         newGameEvent.OnEventRaised -= NewGame;
+        ISaveable saveable = this;
+        saveable.UnRegisterSaveData();
     }
     private void Update()
     {
@@ -85,6 +89,40 @@ public class CharactorBase : MonoBehaviour
         {
             SuperArmour = true;
             SuperArmourTimeCounter = SuperArmourTime;
+        }
+    }
+
+    public DataDefination GetDataID()
+    {
+        return  GetComponent<DataDefination>(); 
+    }
+
+    public void GetSaveData(Data _data)
+    {
+        if(_data.characterPosition.ContainsKey(GetDataID().ID))//如果有這個ID的位置數據       
+        {
+           _data.characterPosition[GetDataID().ID] = transform.position;//更改玩家位置數據
+            _data.flaotSaveData[GetDataID().ID + "health"] = this.CurrentHealth;//更改玩家血量數據
+            _data.flaotSaveData[GetDataID().ID + "power"] = this.CurrentPower;//更改玩家能量數據
+        }
+        else
+        {
+            _data.characterPosition.Add(GetDataID().ID, transform.position);//新增玩家位置數據
+            _data.flaotSaveData.Add(GetDataID().ID+"health",this.CurrentHealth);//新增玩家血量數據
+            _data.flaotSaveData.Add(GetDataID().ID + "power", this.CurrentPower);//新增玩家能量數據
+        }
+
+    }
+
+    public void LoadData(Data _data)
+    {
+        if(_data.characterPosition.ContainsKey(GetDataID().ID))//如果有這個ID的玩家位置數據
+        {
+            transform.position = _data.characterPosition[GetDataID().ID];//讀取玩家位置數據
+            this.CurrentHealth = _data.flaotSaveData[GetDataID().ID + "health"];//讀取玩家血量數據
+            this.CurrentPower = _data.flaotSaveData[GetDataID().ID + "power"];//讀取玩家能量數據
+
+            OnHealthChange?.Invoke(this);//觸發血量改變事件
         }
     }
 }

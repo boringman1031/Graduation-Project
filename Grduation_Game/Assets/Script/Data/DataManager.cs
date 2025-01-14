@@ -2,12 +2,18 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class DataManager : MonoBehaviour
 {
+    [Header("®∆•Û∫ ≈•")]
+    public VoidEventSO saveDataEvent;
+
     public static DataManager instance;
 
     private List<ISaveable> saveableList = new List<ISaveable>();
+
+    private Data saveData;
     private void Awake()
     {
         if (instance == null)
@@ -18,6 +24,25 @@ public class DataManager : MonoBehaviour
         {
             Destroy(this.gameObject);
         }
+        saveData = new Data();
+    }
+
+    private void OnEnable()
+    {
+        saveDataEvent.OnEventRaised += Save;
+    }
+    private void OnDisable()
+    {
+        saveDataEvent.OnEventRaised -= Save;
+    }
+
+    private void Upadate()
+    {
+        if(Keyboard.current.lKey.wasPressedThisFrame)
+        {
+            Load();
+        }
+
     }
     public void RegisterSaveData(ISaveable saveable)
     {
@@ -29,5 +54,24 @@ public class DataManager : MonoBehaviour
     public void UnRegisterSaveData(ISaveable saveable)
     {
         saveableList.Remove(saveable);
+    }
+
+    public void Save()
+    {
+        foreach(var saveable in saveableList)
+        {
+            saveable.GetSaveData(saveData);
+        }
+        foreach (var item in saveData.characterPosition)
+        {
+            Debug.Log(item.Key + " " + item.Value);
+        }
+    }
+    public void Load()
+    {
+        foreach (var saveable in saveableList)
+        {
+            saveable.LoadData(saveData);
+        }
     }
 }
