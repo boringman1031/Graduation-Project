@@ -20,7 +20,7 @@ public class UIManager : MonoBehaviour
   
     [Header("廣播事件")]
     public VoidEventSO pasueEvent;
-    public SceneLoadEventSO loadRandomSceneEvent; //隨機場景加載事件
+    public VoidEventSO loadRandomSceneEvent; //隨機場景加載事件
 
     [Header("面板組件")]
     public PlayerStatBar playerStatBar;//玩家狀態條(血條、能量條)
@@ -49,7 +49,9 @@ public class UIManager : MonoBehaviour
         GameInfoButton.onClick.AddListener(ToggleGameInfoPanel);
         GameStatButton.onClick.AddListener(ToggleGameStatPanel);
         GameSettingButton.onClick.AddListener(ToggleGameSettingPanel);
-        RandomChallengeButton1.onClick.AddListener(() => loadRandomSceneEvent.RaiseLoadRequestEvent(null, Vector3.zero, true));
+        RandomChallengeButton1.onClick.AddListener(ToggleRandomChallengeButton);
+        RandomChallengeButton2.onClick.AddListener(ToggleRandomChallengeButton);
+        RandomChallengeButton3.onClick.AddListener(ToggleRandomChallengeButton);
     }
 
     public void OnEnable()
@@ -75,7 +77,11 @@ public class UIManager : MonoBehaviour
         syncBGMVolumeEvent.OnEventRaised -= OnSyncBGMVolumeEvent;
         syncFXVolumeEvent.OnEventRaised -= OnSyncFXVolumeEvent;
     }
-  
+    private void ToggleRandomChallengeButton()
+    {
+        loadRandomSceneEvent.OnEventRaised();
+    }
+
     private void ToggleGameInfoPanel()//開啟遊戲資訊面板
     {
         if(GameInfoPanel.activeInHierarchy)

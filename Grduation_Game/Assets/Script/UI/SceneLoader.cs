@@ -16,8 +16,8 @@ public class SceneLoader : MonoBehaviour,ISaveable
     public TransitionEventSO transitionEvent;
 
     [Header("事件監聽")]
-    public SceneLoadEventSO loadEventSO;
-    public SceneLoadEventSO loadRandomSceneEvent;//隨機場景加載事件
+    public SceneLoadEventSO loadEventSO;//場景加載事件
+    public VoidEventSO loadRandomSceneEvent;//隨機場景加載事件
     public VoidEventSO newGameEvent;
     public VoidEventSO backToMenuEvent;   
 
@@ -48,7 +48,7 @@ public class SceneLoader : MonoBehaviour,ISaveable
         loadEventSO.LoadRequestEvent += OnLoadRequestEvent;
         newGameEvent.OnEventRaised += OnNewGameStartEvent;
         backToMenuEvent.OnEventRaised += OnBackToMenuEvent;
-        loadRandomSceneEvent.LoadRequestEvent += OnLoadRandomScene;
+        loadRandomSceneEvent.OnEventRaised += OnLoadRandomScene;
         ISaveable saveable = this;
         saveable.RegisterSaveData();
     }
@@ -58,11 +58,10 @@ public class SceneLoader : MonoBehaviour,ISaveable
         loadEventSO.LoadRequestEvent -= OnLoadRequestEvent;
         newGameEvent.OnEventRaised -= OnNewGameStartEvent;
         backToMenuEvent.OnEventRaised -= OnBackToMenuEvent;
-        loadRandomSceneEvent.LoadRequestEvent -= OnLoadRandomScene;
+        loadRandomSceneEvent.OnEventRaised -= OnLoadRandomScene;
         ISaveable saveable = this;
         saveable.UnRegisterSaveData();
     }
-
 
     private void OnNewGameStartEvent()//新遊戲事件時執行
     {
@@ -74,7 +73,36 @@ public class SceneLoader : MonoBehaviour,ISaveable
         sceneToLoad = MuneScene;
         loadEventSO.RaiseLoadRequestEvent(sceneToLoad, firstPosition, true);
     }
-    
+
+    /// <summary>
+    /// 隨機挑戰邏輯(隨機選擇一個場景。)
+    /// </summary>
+    /// <returns>返回隨機選擇的場景。如果列表為空，返回 null。</returns>
+    private GameSceneSO GetRandomScene()
+    {
+        if (randomScenes == null || randomScenes.Count == 0)
+        {
+            Debug.LogError("Random scenes list is empty. Please add scenes to the list.");
+            return null;
+        }
+
+        int randomIndex = UnityEngine.Random.Range(0, randomScenes.Count);
+        return randomScenes[randomIndex];
+    }
+    private void OnLoadRandomScene()//隨機挑戰場景加載事件
+    {
+        GameSceneSO randomScene = GetRandomScene();
+        if (randomScene != null)
+        {
+            loadEventSO.RaiseLoadRequestEvent(randomScene, firstPosition, true);
+           // OnLoadRequestEvent(randomScene, positionToGo, true);
+        }
+        else
+        {
+            Debug.LogError("沒有新場景");
+        }
+    }
+
     /// <summary>
     /// 處理場景加載請求事件。
     /// </summary>
@@ -116,22 +144,7 @@ public class SceneLoader : MonoBehaviour,ISaveable
         playerTrans.gameObject.SetActive(false); //關閉玩家人物
         LoadNewScene();//加載新場景
     }
-
-    /// <summary>
-    /// 隨機挑戰邏輯(隨機選擇一個場景。)
-    /// </summary>
-    /// <returns>返回隨機選擇的場景。如果列表為空，返回 null。</returns>
-    private GameSceneSO GetRandomScene()
-    {
-        if (randomScenes == null || randomScenes.Count == 0)
-        {
-            Debug.LogError("Random scenes list is empty. Please add scenes to the list.");
-            return null;
-        }
-
-        int randomIndex = UnityEngine.Random.Range(0, randomScenes.Count);
-        return randomScenes[randomIndex];
-    }
+  
 
     /// <summary>
     /// 隨機加載場景的事件處理程序。
@@ -139,19 +152,7 @@ public class SceneLoader : MonoBehaviour,ISaveable
     /// <param name="_sceneToGo">要加載的場景。</param>
     /// <param name="_positionToGo">玩家要傳送到的位置。</param>
     /// <param name="fadeScreen">是否淡出屏幕。</param>
-    private void OnLoadRandomScene(GameSceneSO _sceneToGo, Vector3 _positionToGo, bool fadeScreen)
-    {
-        GameSceneSO randomScene = GetRandomScene();
-        if (randomScene != null)
-        {
-            _sceneToGo = randomScene;
-            OnLoadRequestEvent(_sceneToGo, _positionToGo, true);
-        }
-        else
-        {
-            Debug.LogError("沒有新場景");
-        }
-    }
+   
     private void LoadNewScene()//加載新場景
     {
        var loadingOption= sceneToLoad.sceneReference.LoadSceneAsync(LoadSceneMode.Additive,true);
