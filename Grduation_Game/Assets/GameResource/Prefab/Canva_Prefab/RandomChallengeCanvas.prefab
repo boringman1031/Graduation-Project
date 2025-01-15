@@ -328,7 +328,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &2439001843566625533
 RectTransform:
   m_ObjectHideFlags: 0
@@ -425,7 +425,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f48115283b83c63439c7010de9a33421, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sceneLoadEventSO: {fileID: 11400000, guid: 59208caf5cb1e354086b5943ea6e480d, type: 2}
+  loadEventSO: {fileID: 0}
   sceneToGo: {fileID: 0}
 --- !u!1 &4346283970358422704
 GameObject:

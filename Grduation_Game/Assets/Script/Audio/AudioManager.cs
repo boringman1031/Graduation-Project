@@ -46,14 +46,13 @@ public class AudioManager : MonoBehaviour
         pauseEvent.OnEventRaised -= OnPauseEvent;
     }
 
-
-    private void OnPauseEvent()//遊戲暫停時傳遞音量數據
+    private void OnPauseEvent()//遊戲暫停時傳遞主音量數據
     {
         float amount;
-        audioMixer.GetFloat("MasterVolume", out amount);
+        audioMixer.GetFloat("MasterVolume", out amount);      
         syncVolumeEvent.RaiseEvent(amount);
     }
-
+    //TODO:暫停時傳遞BGM音量、FX音量數據
     private void OnSetMasterVolume(float _amount)//設定主音量
     {
         audioMixer.SetFloat("MasterVolume", _amount * 100 - 80);

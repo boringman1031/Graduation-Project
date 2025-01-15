@@ -8,9 +8,8 @@ public class RandomChooseCanvaController : MonoBehaviour
 {
     public SceneLoadEventSO loadEventSO;
     public GameSceneSO sceneToGo;
-    private  Vector3 positionToGo;
+    private  Vector3 positionToGo;//¶Ç°e¦ì¸m
 
-    
     private void ChangeButtomImage()
     {
         

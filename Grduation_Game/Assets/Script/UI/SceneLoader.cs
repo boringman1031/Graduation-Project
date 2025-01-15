@@ -17,14 +17,18 @@ public class SceneLoader : MonoBehaviour,ISaveable
 
     [Header("事件監聽")]
     public SceneLoadEventSO loadEventSO;
+    public SceneLoadEventSO loadRandomSceneEvent;//隨機場景加載事件
     public VoidEventSO newGameEvent;
-    public VoidEventSO backToMenuEvent;
+    public VoidEventSO backToMenuEvent;   
 
     [Header("場景參數")]
-    public GameSceneSO firstLoadScene;//第一個加載的場景
+    public GameSceneSO firstLoadScene;//第一個加載的場景(遊戲大聽)
+    private GameSceneSO sceneToLoad;//要新遊戲開始要加載的場景
     public GameSceneSO MuneScene;//主場景
     private GameSceneSO currentLoadScene;//當前加載的場景
-    private GameSceneSO sceneToLoad;//要加載的場景
+  
+    [Header("隨機場景")]
+    [SerializeField] private List<GameSceneSO> randomScenes; // 可隨機選擇的場景列表
 
     [Header("調整參數")]
     public Transform playerTrans;//玩家位置
@@ -44,6 +48,7 @@ public class SceneLoader : MonoBehaviour,ISaveable
         loadEventSO.LoadRequestEvent += OnLoadRequestEvent;
         newGameEvent.OnEventRaised += OnNewGameStartEvent;
         backToMenuEvent.OnEventRaised += OnBackToMenuEvent;
+        loadRandomSceneEvent.LoadRequestEvent += OnLoadRandomScene;
         ISaveable saveable = this;
         saveable.RegisterSaveData();
     }
@@ -53,22 +58,23 @@ public class SceneLoader : MonoBehaviour,ISaveable
         loadEventSO.LoadRequestEvent -= OnLoadRequestEvent;
         newGameEvent.OnEventRaised -= OnNewGameStartEvent;
         backToMenuEvent.OnEventRaised -= OnBackToMenuEvent;
+        loadRandomSceneEvent.LoadRequestEvent -= OnLoadRandomScene;
         ISaveable saveable = this;
         saveable.UnRegisterSaveData();
     }
 
-   
 
-    private void OnNewGameStartEvent()//新遊戲事件
+    private void OnNewGameStartEvent()//新遊戲事件時執行
     {
         sceneToLoad = firstLoadScene;
         loadEventSO.RaiseLoadRequestEvent(sceneToLoad, firstPosition, true);
     }
-    private void OnBackToMenuEvent()//返回主菜單事件
+    private void OnBackToMenuEvent()//返回主菜單事件時執行
     {
         sceneToLoad = MuneScene;
         loadEventSO.RaiseLoadRequestEvent(sceneToLoad, firstPosition, true);
     }
+    
     /// <summary>
     /// 處理場景加載請求事件。
     /// </summary>
@@ -111,6 +117,41 @@ public class SceneLoader : MonoBehaviour,ISaveable
         LoadNewScene();//加載新場景
     }
 
+    /// <summary>
+    /// 隨機挑戰邏輯(隨機選擇一個場景。)
+    /// </summary>
+    /// <returns>返回隨機選擇的場景。如果列表為空，返回 null。</returns>
+    private GameSceneSO GetRandomScene()
+    {
+        if (randomScenes == null || randomScenes.Count == 0)
+        {
+            Debug.LogError("Random scenes list is empty. Please add scenes to the list.");
+            return null;
+        }
+
+        int randomIndex = UnityEngine.Random.Range(0, randomScenes.Count);
+        return randomScenes[randomIndex];
+    }
+
+    /// <summary>
+    /// 隨機加載場景的事件處理程序。
+    /// </summary>
+    /// <param name="_sceneToGo">要加載的場景。</param>
+    /// <param name="_positionToGo">玩家要傳送到的位置。</param>
+    /// <param name="fadeScreen">是否淡出屏幕。</param>
+    private void OnLoadRandomScene(GameSceneSO _sceneToGo, Vector3 _positionToGo, bool fadeScreen)
+    {
+        GameSceneSO randomScene = GetRandomScene();
+        if (randomScene != null)
+        {
+            _sceneToGo = randomScene;
+            OnLoadRequestEvent(_sceneToGo, _positionToGo, true);
+        }
+        else
+        {
+            Debug.LogError("沒有新場景");
+        }
+    }
     private void LoadNewScene()//加載新場景
     {
        var loadingOption= sceneToLoad.sceneReference.LoadSceneAsync(LoadSceneMode.Additive,true);
