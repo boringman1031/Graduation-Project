@@ -18,6 +18,7 @@ public class SceneLoader : MonoBehaviour,ISaveable
     [Header("事件監聽")]
     public SceneLoadEventSO loadEventSO;
     public VoidEventSO newGameEvent;
+    public VoidEventSO backToMenuEvent;
 
     [Header("場景參數")]
     public GameSceneSO firstLoadScene;//第一個加載的場景
@@ -41,7 +42,8 @@ public class SceneLoader : MonoBehaviour,ISaveable
     private void OnEnable()
     {
         loadEventSO.LoadRequestEvent += OnLoadRequestEvent;
-        newGameEvent.OnEventRaised += NewGame;
+        newGameEvent.OnEventRaised += OnNewGameStartEvent;
+        backToMenuEvent.OnEventRaised += OnBackToMenuEvent;
         ISaveable saveable = this;
         saveable.RegisterSaveData();
     }
@@ -49,17 +51,24 @@ public class SceneLoader : MonoBehaviour,ISaveable
     private void OnDisable()
     {
         loadEventSO.LoadRequestEvent -= OnLoadRequestEvent;
-        newGameEvent.OnEventRaised -= NewGame;
+        newGameEvent.OnEventRaised -= OnNewGameStartEvent;
+        backToMenuEvent.OnEventRaised -= OnBackToMenuEvent;
         ISaveable saveable = this;
         saveable.UnRegisterSaveData();
     }
 
-    private void NewGame()
+   
+
+    private void OnNewGameStartEvent()//新遊戲事件
     {
         sceneToLoad = firstLoadScene;
         loadEventSO.RaiseLoadRequestEvent(sceneToLoad, firstPosition, true);
     }
-
+    private void OnBackToMenuEvent()//返回主菜單事件
+    {
+        sceneToLoad = MuneScene;
+        loadEventSO.RaiseLoadRequestEvent(sceneToLoad, firstPosition, true);
+    }
     /// <summary>
     /// 處理場景加載請求事件。
     /// </summary>
@@ -102,7 +111,7 @@ public class SceneLoader : MonoBehaviour,ISaveable
         LoadNewScene();//加載新場景
     }
 
-    private void LoadNewScene()
+    private void LoadNewScene()//加載新場景
     {
        var loadingOption= sceneToLoad.sceneReference.LoadSceneAsync(LoadSceneMode.Additive,true);
        loadingOption.Completed += OnLoadComplete;

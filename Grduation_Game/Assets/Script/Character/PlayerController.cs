@@ -11,8 +11,10 @@ using Zenject;
 public class PlayerController : MonoBehaviour
 {
     [Header("事件監聽")]
-    public SceneLoadEventSO loadEvent;//場景加載事件
+    public SceneLoadEventSO SceneloadEvent;//場景加載事件
     public VoidEventSO afterSceneLoadEvent;
+    public VoidEventSO loadDataEvent;
+    public VoidEventSO backToMenuEvent;
 
     public  PlayerInput playerInput;
     public Vector2 inputDirection;
@@ -41,45 +43,30 @@ public class PlayerController : MonoBehaviour
         playerInput.GamePlay.Jump.started += Player_Jump;
         //攻擊事件
         playerInput.GamePlay.Attack.started += Player_Attack;
-       
+        playerInput.Enable();
+
     }
 
     private void OnEnable()
-    {
-        playerInput.Enable();
-        loadEvent.LoadRequestEvent += OnLoadEvent; ;
-        afterSceneLoadEvent.OnEventRaised += OnAfterSceneLoadEvent;
+    {   
+        SceneloadEvent.LoadRequestEvent += OnLoadEvent;//場景加載時停止玩家控制
+        afterSceneLoadEvent.OnEventRaised += OnAfterSceneLoadEvent;//場景加載完成開起玩家控制
+        loadDataEvent.OnEventRaised += OnLoadDataEvent;//讀取遊戲進度事件
+        backToMenuEvent.OnEventRaised += OnLoadDataEvent;//返回主選單事件
     }
 
     private void OnDisable()
     {
         playerInput.Disable();
-        loadEvent.LoadRequestEvent -= OnLoadEvent;
+        SceneloadEvent.LoadRequestEvent -= OnLoadEvent;
         afterSceneLoadEvent.OnEventRaised -= OnAfterSceneLoadEvent;
+        loadDataEvent.OnEventRaised -= OnLoadDataEvent;
+        backToMenuEvent.OnEventRaised -= OnLoadDataEvent;
     }
-
 
     private void Update()
     {
-        inputDirection = playerInput.GamePlay.Move.ReadValue<Vector2>();
-        /* if (rb == null || statsManager == null) return;
-
-         rb.velocity = new Vector2(statsManager.Speed.CurrentValue * inputX, rb.velocity.y);
-         animator.SetFloat("yVelocity", rb.velocity.y);
-
-         if (rb.velocity.sqrMagnitude == 0)
-         {
-             animator.SetBool("isRun", false);
-             Player_front.SetActive(true);
-             Player_side.SetActive(false);
-         }
-
-         float velocityX = rb.velocity.x;
-         if ((velocityX < 0 && !isFlip) || (velocityX > 0 && isFlip))
-         {
-             isFlip = !isFlip;
-             transform.Rotate(0, 180, 0);
-         }*/
+        inputDirection = playerInput.GamePlay.Move.ReadValue<Vector2>();  
     }
 
     private void FixedUpdate()
@@ -87,9 +74,13 @@ public class PlayerController : MonoBehaviour
         if(!ishurt && !isAttack)
             Player_Move();             
     }
-    private void OnLoadEvent(GameSceneSO sO, Vector3 vector, bool arg3)//場景加載停止玩家控制
+    private void OnLoadEvent(GameSceneSO sO, Vector3 vector, bool arg3)//場景加載時停止玩家控制
     {
         playerInput.GamePlay.Disable();
+    }
+    private void OnLoadDataEvent()//讀取遊戲進度事件
+    {
+        isDead = false;
     }
 
     private void OnAfterSceneLoadEvent()//場景加載完成開起玩家控制
@@ -108,6 +99,8 @@ public class PlayerController : MonoBehaviour
             faceDir = 1;      
         transform.localScale = new Vector3(faceDir,1,1);
     }
+
+    
 
     public void Player_Jump( InputAction.CallbackContext obj)
     {

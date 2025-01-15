@@ -2,6 +2,8 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour
 {
@@ -11,32 +13,118 @@ public class UIManager : MonoBehaviour
     public CharacterEventSO healthEvenr;
     public SceneLoadEventSO unloadedSceneEvent;
     public VoidEventSO loadDataEvent;
+    public VoidEventSO gameOverEvent;
+    public VoidEventSO backToMenuEvent;
+    public FloatEventSO syncMasterVolumeEvent;//同步主音量事件
+    public FloatEventSO syncBGMVolumeEvent;
+    public FloatEventSO syncFXVolumeEvent;
 
+    [Header("廣播事件")]
+    public VoidEventSO pasueEvent;
+  
     [Header("組件")]
     public GameObject GameOverPanel;
     public GameObject restartButton;
+    public GameObject GameInfoPanel;//遊戲資訊面板
+    public GameObject GameStatPanel;//遊戲進度面板
+    public GameObject GameSettingPanel;//遊戲設定面板
+    public Button GameInfoButton;
+    public Button GameStatButton;//遊戲進度按鈕
+    public Button GameSettingButton;//遊戲設定按鈕
+    public Slider MasterSlider;//主音量
+    public Slider BGMSlider;//背景音樂音量
+    public Slider FXSlider;//音效音量
+
+    public void Awake()
+    {
+        GameInfoButton.onClick.AddListener(ToggleGameInfoPanel);
+        GameStatButton.onClick.AddListener(ToggleGameStatPanel);
+        GameSettingButton.onClick.AddListener(ToggleGameSettingPanel);
+    }
 
     public void OnEnable()
     {
         healthEvenr.OnEventRaised += OnHealthEvent;
         unloadedSceneEvent.LoadRequestEvent += OnLoadSceneEvent;
+        loadDataEvent.OnEventRaised += OnLoadDataEvent;//讀取遊戲進度事件
+        gameOverEvent.OnEventRaised += OnGameOverEvent;//遊戲結束事件
+        backToMenuEvent.OnEventRaised +=OnLoadDataEvent;//返回主選單事件
+        syncMasterVolumeEvent.OnEventRaised += OnSyncMasterVolumeEvent;
+        syncBGMVolumeEvent.OnEventRaised += OnSyncBGMVolumeEvent;
+        syncFXVolumeEvent.OnEventRaised += OnSyncFXVolumeEvent;
     }
 
     public void OnDisable()
     {
         healthEvenr.OnEventRaised -= OnHealthEvent;
         unloadedSceneEvent.LoadRequestEvent -= OnLoadSceneEvent;
+        loadDataEvent.OnEventRaised -= OnLoadDataEvent;
+        gameOverEvent.OnEventRaised -= OnGameOverEvent;
+        backToMenuEvent.OnEventRaised -= OnLoadDataEvent;
+        syncMasterVolumeEvent.OnEventRaised -= OnSyncMasterVolumeEvent;
+        syncBGMVolumeEvent.OnEventRaised -= OnSyncBGMVolumeEvent;
+        syncFXVolumeEvent.OnEventRaised -= OnSyncFXVolumeEvent;
     }
 
-    public void OnHealthEvent(CharactorBase _charactor)
+    private void ToggleGameInfoPanel()//開啟遊戲資訊面板
+    {
+        if(GameInfoPanel.activeInHierarchy)
+        {
+            GameInfoPanel.SetActive(false);
+            Time.timeScale = 1;
+        }
+        else
+        {
+            pasueEvent.RaiseEvent();
+            GameInfoPanel.SetActive(true);
+            Time.timeScale = 0;
+        }
+    }
+
+    private void ToggleGameStatPanel()//開啟遊戲進度面板    
+    {
+       GameStatPanel.SetActive(true);
+    }
+    private void ToggleGameSettingPanel()//開啟遊戲設定面板
+    {         
+            GameSettingPanel.SetActive(true);      
+    }
+
+    private void OnSyncMasterVolumeEvent(float _amount)//同步主音量
+    {
+        MasterSlider.value = (_amount + 80) / 100;
+    }
+    private void OnSyncBGMVolumeEvent(float _amount)//同步背景音樂音量
+    {
+        BGMSlider.value = (_amount + 80) / 100;
+    }
+    private void OnSyncFXVolumeEvent(float _amount)//同步音效音量
+    {
+    FXSlider.value = (_amount + 80) / 100;
+    }
+
+   
+    public void OnHealthEvent(CharactorBase _charactor)//血量變化事件
     {
         var persentage=_charactor.CurrentHealth/_charactor.MaxHealth;
         playerStatBar.OnHealthChange(persentage);
     }
 
-    private void OnLoadSceneEvent(GameSceneSO _sceneToLoad, Vector3 arg1, bool arg2)
+    private void OnLoadSceneEvent(GameSceneSO _sceneToLoad, Vector3 arg1, bool arg2)//讀取場景事件
     {
         var isMenu=_sceneToLoad.sceneType == SceneType.Menu;
         playerStatBar.gameObject.SetActive(!isMenu);
     }
+
+    private void OnLoadDataEvent()//讀取遊戲進度事件
+    {
+       GameOverPanel.SetActive(false);
+    }
+
+    private void OnGameOverEvent()//遊戲結束事件
+    {
+        GameOverPanel.SetActive(true);
+       EventSystem.current.SetSelectedGameObject(restartButton);
+    }
+
 }

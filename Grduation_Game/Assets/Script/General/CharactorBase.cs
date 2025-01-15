@@ -74,15 +74,37 @@ public class CharactorBase : MonoBehaviour,ISaveable
             OnTakeDamage?.Invoke(_attacker.transform);//觸發受傷事件
 
         }
-        else
+        else //死亡
         {
             CurrentHealth = 0;
-            OnDead?.Invoke();
-            //死亡
+            OnDead?.Invoke();          
         }
       OnHealthChange?.Invoke(this);//觸發血量改變事件
     }
-
+    
+    public void AddHealth(float _health)//增加血量
+    {
+        if (CurrentHealth + _health <= MaxHealth)
+        {
+            CurrentHealth += _health;
+        }
+        else
+        {
+            CurrentHealth = MaxHealth;
+        }
+        OnHealthChange?.Invoke(this);//觸發血量改變事件
+    }
+    public void AddPower(float _power)//增加能量
+    {
+        if (CurrentPower + _power <= MaxPower)
+        {
+            CurrentPower += _power;
+        }
+        else
+        {
+            CurrentPower = MaxPower;
+        }
+    }
     private void TriggerSuperArmour()//觸發霸體
     {
         if(!SuperArmour) 
