@@ -668,6 +668,9 @@ MonoBehaviour:
   GameInfoButton: {fileID: 1467685005}
   GameStatButton: {fileID: 1467685013}
   GameSettingButton: {fileID: 1467685012}
+  RandomChallengeButton1: {fileID: 1352940150}
+  RandomChallengeButton2: {fileID: 1352940149}
+  RandomChallengeButton3: {fileID: 1352940148}
   MasterSlider: {fileID: 1467685010}
   BGMSlider: {fileID: 1467685009}
   FXSlider: {fileID: 1467685008}
@@ -911,7 +914,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 3539.3606, y: -40.27112}
+  m_AnchoredPosition: {x: 31, y: -40.27112}
   m_SizeDelta: {x: 2998.276, y: 2998.8247}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &869160214
@@ -1289,7 +1292,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 2517, y: -40.27112}
+  m_AnchoredPosition: {x: 16, y: -40.27112}
   m_SizeDelta: {x: 2998.276, y: 2998.8247}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1346028640
@@ -1330,6 +1333,39 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1346028638}
   m_CullTransparentMesh: 1
+--- !u!114 &1352940148 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2134015330060446094, guid: 59c98135068b13f4d91b2607e031ad8e, type: 3}
+  m_PrefabInstance: {fileID: 1467685002}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1352940149 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3085699778187983399, guid: 59c98135068b13f4d91b2607e031ad8e, type: 3}
+  m_PrefabInstance: {fileID: 1467685002}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1352940150 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1715833507914129159, guid: 59c98135068b13f4d91b2607e031ad8e, type: 3}
+  m_PrefabInstance: {fileID: 1467685002}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1385990641
 GameObject:
   m_ObjectHideFlags: 0
@@ -1915,7 +1951,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1e7798ef7a60bf14982576562039cfeb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  saveDataEvent: {fileID: 0}
+  saveDataEvent: {fileID: 11400000, guid: 1159ed35e87032b4590e0e12175e408e, type: 2}
 --- !u!1 &1606294826
 GameObject:
   m_ObjectHideFlags: 0
@@ -1950,7 +1986,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 2971.3606, y: -40.27112}
+  m_AnchoredPosition: {x: -2, y: -40.27112}
   m_SizeDelta: {x: 2998.276, y: 2998.8247}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1606294828
@@ -2184,15 +2220,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   afterSceneLoadedEvent: {fileID: 11400000, guid: a157eafef39c6b246b3a3c865f8d87ac, type: 2}
-  unLoadSceneEvent: {fileID: 0}
+  unLoadSceneEvent: {fileID: 11400000, guid: 335f2ec0442e34942bca483dbd1b6f44, type: 2}
   transitionEvent: {fileID: 11400000, guid: 5968fd9e78d8dd347bf03100f1e91743, type: 2}
   loadEventSO: {fileID: 11400000, guid: 59208caf5cb1e354086b5943ea6e480d, type: 2}
-  loadRandomSceneEvent: {fileID: 0}
-  newGameEvent: {fileID: 0}
-  backToMenuEvent: {fileID: 0}
-  firstLoadScene: {fileID: 11400000, guid: a89b00abb5bdc9543851dc1aca09facb, type: 2}
-  MuneScene: {fileID: 0}
-  randomScenes: []
+  loadRandomSceneEvent: {fileID: 11400000, guid: 381f9febe87016148a8902e5ff57fe6f, type: 2}
+  newGameEvent: {fileID: 11400000, guid: d9bb2d4100ded3d4f81459a40234d7c7, type: 2}
+  backToMenuEvent: {fileID: 11400000, guid: dfc5d7ce380926145ad3d668fe18650a, type: 2}
+  firstLoadScene: {fileID: 11400000, guid: a64cf6f0a48c64c4da0bdea97a5d7f7d, type: 2}
+  MuneScene: {fileID: 11400000, guid: a89b00abb5bdc9543851dc1aca09facb, type: 2}
+  randomScenes:
+  - {fileID: 11400000, guid: d3e63cb94eff76e48a63a2dbf47cdbcd, type: 2}
+  - {fileID: 11400000, guid: f6aa9d8a712c3614bab092554179a97d, type: 2}
   playerTrans: {fileID: 1385990642}
   firstPosition: {x: -14.280029, y: -35.210022, z: 0.09900128}
   fadeTime: 50
