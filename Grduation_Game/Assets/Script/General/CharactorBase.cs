@@ -33,7 +33,7 @@ public class CharactorBase : MonoBehaviour,ISaveable
     {
         newGameEvent.OnEventRaised += NewGame;
         ISaveable saveable = this;
-        saveable.RegisterSaveData();
+        saveable.RegisterSaveData();       
     }
 
     private void OnDisable()
@@ -114,35 +114,35 @@ public class CharactorBase : MonoBehaviour,ISaveable
         }
     }
 
-    public DataDefination GetDataID()
+    public DataDefination GetDataID()//獲取ID
     {
         return  GetComponent<DataDefination>(); 
     }
 
     public void GetSaveData(Data _data)
     {
-        if(_data.characterPosition.ContainsKey(GetDataID().ID))//如果有這個ID的位置數據       
+        if(_data.characterPosDict.ContainsKey(GetDataID().ID))//如果有這個ID的位置數據       
         {
-           _data.characterPosition[GetDataID().ID] = transform.position;//更改玩家位置數據
-            _data.flaotSaveData[GetDataID().ID + "health"] = this.CurrentHealth;//更改玩家血量數據
-            _data.flaotSaveData[GetDataID().ID + "power"] = this.CurrentPower;//更改玩家能量數據
+           _data.characterPosDict[GetDataID().ID] = transform.position;//更改玩家位置數據
+            _data.flaotSaveDataDict[GetDataID().ID + "health"] = this.CurrentHealth;//更改玩家血量數據
+            _data.flaotSaveDataDict[GetDataID().ID + "power"] = this.CurrentPower;//更改玩家能量數據
         }
         else
         {
-            _data.characterPosition.Add(GetDataID().ID, transform.position);//新增玩家位置數據
-            _data.flaotSaveData.Add(GetDataID().ID+"health",this.CurrentHealth);//新增玩家血量數據
-            _data.flaotSaveData.Add(GetDataID().ID + "power", this.CurrentPower);//新增玩家能量數據
+            _data.characterPosDict.Add(GetDataID().ID, transform.position);//新增玩家位置數據
+            _data.flaotSaveDataDict.Add(GetDataID().ID+"health",this.CurrentHealth);//新增玩家血量數據
+            _data.flaotSaveDataDict.Add(GetDataID().ID + "power", this.CurrentPower);//新增玩家能量數據
         }
 
     }
 
     public void LoadData(Data _data)
     {
-        if(_data.characterPosition.ContainsKey(GetDataID().ID))//如果有這個ID的玩家位置數據
+        if(_data.characterPosDict.ContainsKey(GetDataID().ID))//如果有這個ID的玩家位置數據
         {
-            transform.position = _data.characterPosition[GetDataID().ID];//讀取玩家位置數據
-            this.CurrentHealth = _data.flaotSaveData[GetDataID().ID + "health"];//讀取玩家血量數據
-            this.CurrentPower = _data.flaotSaveData[GetDataID().ID + "power"];//讀取玩家能量數據
+            transform.position = _data.characterPosDict[GetDataID().ID];//讀取玩家位置數據
+            this.CurrentHealth = _data.flaotSaveDataDict[GetDataID().ID + "health"];//讀取玩家血量數據
+            this.CurrentPower = _data.flaotSaveDataDict[GetDataID().ID + "power"];//讀取玩家能量數據
 
             OnHealthChange?.Invoke(this);//觸發血量改變事件
         }

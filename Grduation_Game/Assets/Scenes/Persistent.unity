@@ -1500,6 +1500,10 @@ PrefabInstance:
       value: SetActive
       objectReference: {fileID: 0}
     - target: {fileID: 618363585568518696, guid: 8fe606f421d465a43860c97bb139a223, type: 3}
+      propertyPath: OnTakeDamage.m_PersistentCalls.m_Calls.Array.data[2].m_MethodName
+      value: RaiseEvent
+      objectReference: {fileID: 0}
+    - target: {fileID: 618363585568518696, guid: 8fe606f421d465a43860c97bb139a223, type: 3}
       propertyPath: OnDead.m_PersistentCalls.m_Calls.Array.data[2].m_TargetAssemblyTypeName
       value: UnityEngine.GameObject, UnityEngine
       objectReference: {fileID: 0}
@@ -1554,6 +1558,14 @@ PrefabInstance:
     - target: {fileID: 1434880608051723680, guid: 8fe606f421d465a43860c97bb139a223, type: 3}
       propertyPath: m_LayerOverridePriority
       value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 3039637077007601560, guid: 8fe606f421d465a43860c97bb139a223, type: 3}
+      propertyPath: ID
+      value: cbf4041d-1f6e-4fab-974c-501db12f7887
+      objectReference: {fileID: 0}
+    - target: {fileID: 3039637077007601560, guid: 8fe606f421d465a43860c97bb139a223, type: 3}
+      propertyPath: persistentType
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4129049325006263578, guid: 8fe606f421d465a43860c97bb139a223, type: 3}
       propertyPath: m_Name
@@ -1619,7 +1631,7 @@ PrefabInstance:
     - target: {fileID: 1715833507914129159, guid: 59c98135068b13f4d91b2607e031ad8e, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 11400000, guid: 381f9febe87016148a8902e5ff57fe6f, type: 2}
+      objectReference: {fileID: 0}
     - target: {fileID: 1715833507914129159, guid: 59c98135068b13f4d91b2607e031ad8e, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
       value: 2
@@ -1647,7 +1659,7 @@ PrefabInstance:
     - target: {fileID: 2134015330060446094, guid: 59c98135068b13f4d91b2607e031ad8e, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 11400000, guid: 381f9febe87016148a8902e5ff57fe6f, type: 2}
+      objectReference: {fileID: 0}
     - target: {fileID: 2134015330060446094, guid: 59c98135068b13f4d91b2607e031ad8e, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
       value: 2
@@ -1675,7 +1687,7 @@ PrefabInstance:
     - target: {fileID: 3085699778187983399, guid: 59c98135068b13f4d91b2607e031ad8e, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 11400000, guid: 381f9febe87016148a8902e5ff57fe6f, type: 2}
+      objectReference: {fileID: 0}
     - target: {fileID: 3085699778187983399, guid: 59c98135068b13f4d91b2607e031ad8e, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
       value: 2
@@ -2219,6 +2231,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8ebeefd8e304e35479d8739fdaec0973, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  saveDataEvent: {fileID: 11400000, guid: 1159ed35e87032b4590e0e12175e408e, type: 2}
   afterSceneLoadedEvent: {fileID: 11400000, guid: a157eafef39c6b246b3a3c865f8d87ac, type: 2}
   unLoadSceneEvent: {fileID: 11400000, guid: 335f2ec0442e34942bca483dbd1b6f44, type: 2}
   transitionEvent: {fileID: 11400000, guid: 5968fd9e78d8dd347bf03100f1e91743, type: 2}
@@ -2233,7 +2246,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: f6aa9d8a712c3614bab092554179a97d, type: 2}
   playerTrans: {fileID: 1385990642}
   firstPosition: {x: -14.280029, y: -35.210022, z: 0.09900128}
-  fadeTime: 50
+  fadeTime: 200
 --- !u!114 &1815163383
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -11,20 +11,21 @@ public class DataManager : MonoBehaviour
 
     public static DataManager instance;
 
-    private List<ISaveable> saveableList = new List<ISaveable>();
+    private List<ISaveable> saveableList = new List<ISaveable>();//此列表存儲所有需要保存的數據
 
     private Data saveData;
     private void Awake()
     {
         if (instance == null)
         {
-            instance = this;       
+            instance = this;      
+            Debug.Log("DataManager 出現了");
         }
         else
         {
             Destroy(this.gameObject);
         }
-        saveData = new Data();
+       saveData = new Data();
     }
 
     private void OnEnable()
@@ -62,7 +63,7 @@ public class DataManager : MonoBehaviour
         {
             saveable.GetSaveData(saveData);
         }
-        foreach (var item in saveData.characterPosition)
+        foreach (var item in saveData.characterPosDict)
         {
             Debug.Log(item.Key + " " + item.Value);
         }

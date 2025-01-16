@@ -7,9 +7,9 @@ public class Data
 {
     public string sceneTosave;   
 
-    public Dictionary<string, Vector3> characterPosition = new Dictionary<string, Vector3>();//角色位置資料
+    public Dictionary<string, Vector3> characterPosDict = new Dictionary<string, Vector3>();//角色位置資料
 
-    public Dictionary<string, float> flaotSaveData = new Dictionary<string, float>();//玩家基礎數值資料
+    public Dictionary<string, float> flaotSaveDataDict = new Dictionary<string, float>();//玩家基礎數值資料
 
     /// <summary>
     /// 保存遊戲場景並將場景專換成Json

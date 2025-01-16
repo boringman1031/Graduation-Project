@@ -11,6 +11,7 @@ using UnityEngine.SceneManagement;
 public class SceneLoader : MonoBehaviour,ISaveable
 {
     [Header("廣播")]
+    public VoidEventSO saveDataEvent;//儲存加載遊戲事件
     public VoidEventSO afterSceneLoadedEvent;
     public SceneLoadEventSO unLoadSceneEvent;
     public TransitionEventSO transitionEvent;
@@ -27,7 +28,7 @@ public class SceneLoader : MonoBehaviour,ISaveable
     public GameSceneSO MuneScene;//主場景
     private GameSceneSO currentLoadScene;//當前加載的場景
   
-    [Header("隨機場景")]
+    [Header("隨機場景列表")]
     [SerializeField] private List<GameSceneSO> randomScenes; // 可隨機選擇的場景列表
 
     [Header("調整參數")]
@@ -41,7 +42,7 @@ public class SceneLoader : MonoBehaviour,ISaveable
 
     private void Start()
     {
-        loadEventSO.RaiseLoadRequestEvent(MuneScene, firstPosition, true);      
+        loadEventSO.RaiseLoadRequestEvent(MuneScene, firstPosition, false);      
     } 
     private void OnEnable()
     {
@@ -66,7 +67,9 @@ public class SceneLoader : MonoBehaviour,ISaveable
     private void OnNewGameStartEvent()//新遊戲事件時執行
     {
         sceneToLoad = firstLoadScene;
+        Debug.Log($"新遊戲開始, 加載場景: {sceneToLoad.name}");
         loadEventSO.RaiseLoadRequestEvent(sceneToLoad, firstPosition, true);
+        Debug.Log($"sceneToLoad{firstLoadScene.name}");
     }
     private void OnBackToMenuEvent()//返回主菜單事件時執行
     {
@@ -117,11 +120,10 @@ public class SceneLoader : MonoBehaviour,ISaveable
         sceneToLoad = _locationToLaod;
         positionToGo = _PosToGo;
         this.fadeScreen = fadeScreen;
-        Debug.Log($"傳送到{sceneToLoad.name}");
-
+        Debug.Log($"當前場景: {currentLoadScene?.name ?? "無"}，即將加載新場景: {sceneToLoad.name}");
         if (currentLoadScene != null)
         {
-            StartCoroutine(UnLoadPreviousScene());
+            StartCoroutine(UnLoadPreviousScene());          
         }
         else
         {
@@ -130,17 +132,17 @@ public class SceneLoader : MonoBehaviour,ISaveable
     }
 
     private IEnumerator UnLoadPreviousScene()
-    {      
+    {
+        Debug.Log($"開始卸載場景: {currentLoadScene.name}");
         if (fadeScreen)
         {
             //轉場
             transitionEvent.TransitionIn();
         }
-
+        Debug.Log($"正在卸載場景: {currentLoadScene.name}");
         yield return new WaitForSeconds(fadeTime);
         unLoadSceneEvent.RaiseLoadRequestEvent(sceneToLoad,positionToGo,true);//廣播:調整血條顯示
-        yield return currentLoadScene.sceneReference.UnLoadScene();
-        
+        yield return currentLoadScene.sceneReference.UnLoadScene();//卸載當前場景      
         playerTrans.gameObject.SetActive(false); //關閉玩家人物
         LoadNewScene();//加載新場景
     }
@@ -166,6 +168,7 @@ public class SceneLoader : MonoBehaviour,ISaveable
     private void OnLoadComplete(AsyncOperationHandle<SceneInstance> _handle)
     {
         currentLoadScene = sceneToLoad;
+        Debug.Log($"當前加載的場景更新為: {currentLoadScene.name}");
         playerTrans.position = positionToGo;
         playerTrans.gameObject.SetActive(true);
         if (fadeScreen)
@@ -174,8 +177,11 @@ public class SceneLoader : MonoBehaviour,ISaveable
             transitionEvent.TransitionOut();
         }
         isLoading = false;
-        if(currentLoadScene.sceneType== SceneType.Location)           
+        if (currentLoadScene.sceneType == SceneType.Location)
+        { 
+            saveDataEvent.RaiseEvent();//廣播:儲存加載遊戲事件
             afterSceneLoadedEvent.RaiseEvent();//廣播:已加載完成事件
+        }
     }
 
     public DataDefination GetDataID()
@@ -199,9 +205,9 @@ public class SceneLoader : MonoBehaviour,ISaveable
     public void LoadData(Data _data)
     {
         var playerID = playerTrans.GetComponent<DataDefination>().ID;
-        if (_data.characterPosition.ContainsKey(playerID))
+        if (_data.characterPosDict.ContainsKey(playerID))
         {
-            positionToGo = _data.characterPosition[playerID];
+            positionToGo = _data.characterPosDict[playerID];
             sceneToLoad = _data.GetSaveScene();
             OnLoadRequestEvent(sceneToLoad, positionToGo, true);
         }
