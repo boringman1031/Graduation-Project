@@ -9,7 +9,7 @@ public class TransitionCanvas : MonoBehaviour
     [Header("事件監聽")]
     public TransitionEventSO transitionEvent;
 
-    public Animator transitionAnimator;
+    public Animator transitionAnimator;   
 
     private void OnEnable()
     {
@@ -22,15 +22,15 @@ public class TransitionCanvas : MonoBehaviour
     }
 
     private void OnTransitionEvent(bool transitionIn)
-    {
+    {      
         //轉場效果觸發時，執行的動作
         if (transitionIn)
-        {
-            transitionAnimator.SetTrigger("Start");
+        {         
+            transitionAnimator.SetTrigger("Start");           
         }
         else
         {
-            transitionAnimator.SetTrigger("End");
+            transitionAnimator.SetTrigger("End");           
         }
 
     }

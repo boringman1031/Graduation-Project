@@ -17,7 +17,7 @@ public class TransitionEventSO : ScriptableObject
     }
 
     public void RaiseEvent( bool transitionIn)
-    {
+    { 
         OnEventRaised?.Invoke(transitionIn);
     }
 }
