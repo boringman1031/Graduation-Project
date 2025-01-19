@@ -78,11 +78,10 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: -1.2999983, y: 1.6298943}
-      - {x: -2.2912614, y: 1.6358182}
-      - {x: -2.2764432, y: -0.35334766}
-      - {x: -0.2967497, y: -0.3399427}
-      - {x: -0.28193164, y: 1.6358223}
+    - - {x: 1.5145721, y: 1.7373848}
+      - {x: -1.8862898, y: 1.6358182}
+      - {x: -1.8714728, y: -4.0993385}
+      - {x: 1.4896336, y: -4.0983124}
   m_UseDelaunayMesh: 0
 --- !u!114 &2219397177892328276
 MonoBehaviour:
@@ -238,8 +237,8 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 1.1957365, y: 0.5386839}
-  m_Size: {x: 1.0323408, y: 4.4472256}
+  m_Offset: {x: 0.24535763, y: -0.33011436}
+  m_Size: {x: 2.234647, y: 6.8773613}
   m_Direction: 0
 --- !u!114 &4910103218695575477
 MonoBehaviour:
@@ -472,7 +471,7 @@ MonoBehaviour:
     m_ActionName: GamePlay/Attack[/Mouse/rightButton]
   - m_PersistentCalls:
       m_Calls: []
-    m_ActionId: cafe279a-fa5b-4dbe-8bcf-79751a88d888
+    m_ActionId: c3eb17ef-cca8-493d-9141-e40f08851c77
     m_ActionName: GamePlay/Confirm[/Mouse/rightButton]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
@@ -491,11 +490,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 206f9b03209ee7f4fa13282e66eecafa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bottomOffeset: {x: 1.22, y: -1.68}
+  bottomOffeset: {x: 0.24, y: -3.97}
   groundLayer:
     serializedVersion: 2
     m_Bits: 64
-  checkRaduis: 0.4
+  checkRaduis: 0.6
   isGround: 0
 --- !u!114 &471687282833143302
 MonoBehaviour:
@@ -601,11 +600,10 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: -1.2329884, y: 1.6298943}
-      - {x: -2.291261, y: 1.635822}
-      - {x: -2.2764425, y: -0.3667487}
-      - {x: -0.2967497, y: -0.3801496}
-      - {x: -0.28193164, y: 1.6492195}
+    - - {x: 1.4, y: 1.64}
+      - {x: -1.5, y: 1.64}
+      - {x: -1.5253108, y: -3.9700515}
+      - {x: 1.4253103, y: -3.9700553}
   m_UseDelaunayMesh: 0
 --- !u!114 &2133323169925862976
 MonoBehaviour:
@@ -663,7 +661,7 @@ Transform:
   m_GameObject: {fileID: 8101745627022554047}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -2.89, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -750,11 +748,10 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: -0.2948451, y: 1.6433029}
-      - {x: -2.318065, y: 1.6626203}
-      - {x: -2.276443, y: -0.38015354}
-      - {x: -0.2833475, y: -0.36674857}
-      - {x: -0.3087356, y: 0.6440696}
+    - - {x: 2.269555, y: 1.5707626}
+      - {x: -0.9586334, y: 1.616741}
+      - {x: -0.9002458, y: -3.7490463}
+      - {x: 2.4199347, y: -3.7939413}
   m_UseDelaunayMesh: 0
 --- !u!114 &2947363492335194697
 MonoBehaviour:
@@ -816,16 +813,24 @@ PrefabInstance:
       value: 0.2966062
       objectReference: {fileID: 0}
     - target: {fileID: -7552582706839291426, guid: e68288c70c62b4c45994c23dbe6caa05, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1.5747333
+      objectReference: {fileID: 0}
+    - target: {fileID: -7552582706839291426, guid: e68288c70c62b4c45994c23dbe6caa05, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1.5598755
+      objectReference: {fileID: 0}
+    - target: {fileID: -7552582706839291426, guid: e68288c70c62b4c45994c23dbe6caa05, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1.27
+      value: -0.09
       objectReference: {fileID: 0}
     - target: {fileID: -7552582706839291426, guid: e68288c70c62b4c45994c23dbe6caa05, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1.9746552
+      value: 0.44
       objectReference: {fileID: 0}
     - target: {fileID: -7552582706839291426, guid: e68288c70c62b4c45994c23dbe6caa05, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.24347681
+      value: -0.2434768
       objectReference: {fileID: 0}
     - target: {fileID: -7552582706839291426, guid: e68288c70c62b4c45994c23dbe6caa05, type: 3}
       propertyPath: m_LocalRotation.w

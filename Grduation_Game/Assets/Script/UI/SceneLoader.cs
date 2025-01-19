@@ -7,6 +7,7 @@ using UnityEngine.AddressableAssets;
 using UnityEngine.ResourceManagement.AsyncOperations;
 using UnityEngine.ResourceManagement.ResourceProviders;
 using UnityEngine.SceneManagement;
+using Zenject.SpaceFighter;
 
 public class SceneLoader : MonoBehaviour,ISaveable
 {
@@ -34,6 +35,7 @@ public class SceneLoader : MonoBehaviour,ISaveable
     [Header("調整參數")]
     public Transform playerTrans;//玩家位置
     public Vector3 firstPosition;//第一個場景的位置
+    public Vector3 menuPosition;//主菜單位置
     public float fadeTime;//淡入淡出時間
 
     private Vector3 positionToGo;//要傳送的位置
@@ -41,9 +43,9 @@ public class SceneLoader : MonoBehaviour,ISaveable
     private  bool isLoading;//是否正在加載
 
     private void Start()
-    {
+    {      
         playerTrans.gameObject.SetActive(false); //關閉玩家人物
-        loadEventSO.RaiseLoadRequestEvent(MuneScene, firstPosition, false);      
+        loadEventSO.RaiseLoadRequestEvent(MuneScene, menuPosition, false);      
     } 
     private void OnEnable()
     {
@@ -66,7 +68,7 @@ public class SceneLoader : MonoBehaviour,ISaveable
     }
 
     private void OnNewGameStartEvent()//新遊戲事件時執行
-    {
+    {       
         playerTrans.gameObject.SetActive(true); //關閉玩家人物
         sceneToLoad = firstLoadScene;    
         loadEventSO.RaiseLoadRequestEvent(sceneToLoad, firstPosition, true);      
@@ -119,6 +121,7 @@ public class SceneLoader : MonoBehaviour,ISaveable
         isLoading = true;
         sceneToLoad = _locationToLaod;
         positionToGo = _PosToGo;
+        Debug.Log($"加載場景: {sceneToLoad.name}座標:{positionToGo}");
         this.fadeScreen = fadeScreen;    
         if (currentLoadScene != null)
         {
@@ -139,7 +142,7 @@ public class SceneLoader : MonoBehaviour,ISaveable
         }    
         yield return new WaitForSeconds(fadeTime);
         unLoadSceneEvent.RaiseLoadRequestEvent(sceneToLoad,positionToGo,true);//廣播:調整血條顯示
-        yield return currentLoadScene.sceneReference.UnLoadScene();//卸載當前場景      
+        yield return currentLoadScene.sceneReference.UnLoadScene();//卸載當前場景                                                               
         playerTrans.gameObject.SetActive(false); //關閉玩家人物
         LoadNewScene();//加載新場景
     }
