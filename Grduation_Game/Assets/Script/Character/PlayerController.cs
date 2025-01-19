@@ -6,7 +6,6 @@ using System.Data;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.Processors;
-using Zenject;
 
 public class PlayerController : MonoBehaviour
 {
