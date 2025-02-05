@@ -42,8 +42,7 @@ public class SceneLoader : MonoBehaviour,ISaveable
     private  bool isLoading;//是否正在加載
 
     private void Start()
-    {      
-        playerTrans.gameObject.SetActive(false); //關閉玩家人物
+    {    
         loadEventSO.RaiseLoadRequestEvent(MuneScene, menuPosition, false);      
     } 
     private void OnEnable()
@@ -67,8 +66,8 @@ public class SceneLoader : MonoBehaviour,ISaveable
     }
 
     private void OnNewGameStartEvent()//新遊戲事件時執行
-    {       
-        playerTrans.gameObject.SetActive(true); //關閉玩家人物
+    {
+        
         sceneToLoad = firstLoadScene;    
         loadEventSO.RaiseLoadRequestEvent(sceneToLoad, firstPosition, true);      
     }
@@ -119,9 +118,9 @@ public class SceneLoader : MonoBehaviour,ISaveable
             return;
         isLoading = true;
         sceneToLoad = _locationToLaod;
-        positionToGo = _PosToGo;
-        Debug.Log($"加載場景: {sceneToLoad.name}座標:{positionToGo}");
+        positionToGo = _PosToGo;     
         this.fadeScreen = fadeScreen;    
+
         if (currentLoadScene != null)
         {
             StartCoroutine(UnLoadPreviousScene());          
