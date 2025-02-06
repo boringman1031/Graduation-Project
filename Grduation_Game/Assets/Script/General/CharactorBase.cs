@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class CharactorBase : MonoBehaviour,ISaveable
+public class CharactorBase : MonoBehaviour ,ISaveable
 {
     [Header("事件監聽")]
     public VoidEventSO newGameEvent;//新遊戲事件
