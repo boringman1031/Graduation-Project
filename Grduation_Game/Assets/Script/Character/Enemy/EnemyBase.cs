@@ -5,13 +5,13 @@ using UnityEngine;
 public class EnemyBase : MonoBehaviour
 {
     protected Rigidbody2D rb;
-    protected Animator anim;
-    PhysicsCheck physicsCheck;
+    [HideInInspector]public Animator anim;
+    [HideInInspector]public PhysicsCheck physicsCheck;
 
     [Header("基礎數值")]
     public float normalSpeed;
     public float chaseSpeed;
-    public float currentSpeed;
+    [HideInInspector]public float currentSpeed;
     public Vector3 faceDir;//面向方向
     public Transform attacker;//攻擊者
     public float HitForce;//受傷擊退力度
@@ -20,27 +20,38 @@ public class EnemyBase : MonoBehaviour
     public bool isHit;
     public bool isDead;
 
-    private void Awake()
+    private BaseState currentState;//當前狀態
+    protected BaseState patrolState;//巡邏狀態
+    protected BaseState chaseState;//追擊狀態
+
+    protected virtual void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
         physicsCheck = GetComponent<PhysicsCheck>();
         currentSpeed = normalSpeed;
     }
-   
+
+    private void OnEnable()
+    {
+        currentState = patrolState;
+        currentState.OnEnter(this);
+    }
     public void Update()
     {
-        faceDir =new Vector3(- transform.position.x, 0, 0);
-        if(physicsCheck.touchLeftWall || physicsCheck.touchRightWall)
-        {
-         transform.localScale = new Vector3(faceDir.x,1,1);
-        }
+        faceDir =new Vector3(- transform.position.x, 0, 0); 
+        currentState.LogicUpdate();
     }
-
     private void FixedUpdate()
     {
         if (!isHit & !isDead) 
             Move();
+        currentState.PhysicsUpdate();
+    }
+
+    private void OnDisable()
+    {
+        currentState.OnExit();
     }
     public virtual void Move()
     {

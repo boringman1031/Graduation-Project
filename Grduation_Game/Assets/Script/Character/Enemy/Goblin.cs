@@ -4,10 +4,14 @@ using UnityEngine;
 
 public class Goblin :EnemyBase
 {
-    override public void Move()
+    protected override void Awake()
+    {
+        base.Awake();
+        patrolState = new PatrolState();
+        //TODO:chaseState = new ChaseState();
+    }
+    public override void Move()
     {
         base.Move();
-        anim.SetBool("Run", true);
     }
-
 }
