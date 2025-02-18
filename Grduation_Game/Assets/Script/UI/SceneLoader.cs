@@ -20,7 +20,7 @@ public class SceneLoader : MonoBehaviour,ISaveable
     public SceneLoadEventSO loadEventSO;//場景加載事件
     public VoidEventSO loadRandomSceneEvent;//隨機場景加載事件
     public VoidEventSO newGameEvent;
-    public VoidEventSO backToMenuEvent;   
+    public VoidEventSO backToMenuEvent; 
 
     [Header("場景參數")]
     public GameSceneSO firstLoadScene;//第一個加載的場景(遊戲大聽)
@@ -60,7 +60,7 @@ public class SceneLoader : MonoBehaviour,ISaveable
         loadEventSO.LoadRequestEvent -= OnLoadRequestEvent;
         newGameEvent.OnEventRaised -= OnNewGameStartEvent;
         backToMenuEvent.OnEventRaised -= OnBackToMenuEvent;
-        loadRandomSceneEvent.OnEventRaised -= OnLoadRandomScene;
+        loadRandomSceneEvent.OnEventRaised -= OnLoadRandomScene;      
         ISaveable saveable = this;
         saveable.UnRegisterSaveData();
     }

@@ -1,3 +1,5 @@
+/*---------------BY017-----------------*/
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,6 +9,9 @@ public class EnemyBase : MonoBehaviour
     protected Rigidbody2D rb;
     [HideInInspector]public Animator anim;
     [HideInInspector]public PhysicsCheck physicsCheck;
+
+    [Header("事件廣播")]
+    public EnemyEventSO OnEnemyDied;
 
     [Header("基礎數值")]
     public float normalSpeed;
@@ -23,7 +28,7 @@ public class EnemyBase : MonoBehaviour
     private BaseState currentState;//當前狀態
     protected BaseState patrolState;//巡邏狀態
     protected BaseState chaseState;//追擊狀態
-
+   
     protected virtual void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -81,10 +86,11 @@ public class EnemyBase : MonoBehaviour
     }
 
     public void OnDead()
-    {
+    {     
         gameObject.layer = 2;
         anim.SetBool("Dead", true);
         isDead = true;
+        OnEnemyDied.Raise(this);
     }
 
     public void DestroyAfterAnimation()
