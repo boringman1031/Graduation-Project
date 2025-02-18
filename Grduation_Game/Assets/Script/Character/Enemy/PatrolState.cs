@@ -24,7 +24,7 @@ public class PatrolState : BaseState
     }
     public override void PhysicsUpdate()//ª«²z§PÂ_
     {
-        throw new System.NotImplementedException();
+        
     }
     public override void OnExit()
     {

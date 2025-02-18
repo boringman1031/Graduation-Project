@@ -35,13 +35,35 @@ public class CharactorBase : MonoBehaviour,ISaveable
         ISaveable saveable = this;
         saveable.RegisterSaveData();       
     }
-
     private void OnDisable()
     {
+        if (newGameEvent != null)
+        {
+            newGameEvent.OnEventRaised -= NewGame;
+        }
+        else
+        {
+            Debug.LogWarning("newGameEvent is null in OnDisable()");
+        }
+
+        ISaveable saveable = this;
+        if (DataManager.instance != null)
+        {
+            saveable.UnRegisterSaveData();
+        }
+        else
+        {
+            Debug.LogWarning("DataManager instance is null in OnDisable()");
+        }
+    }
+
+    /*private void OnDisable()
+    {
+
         newGameEvent.OnEventRaised -= NewGame;
         ISaveable saveable = this;
         saveable.UnRegisterSaveData();
-    }
+    }*/
     private void Update()
     {
         if (SuperArmour)
