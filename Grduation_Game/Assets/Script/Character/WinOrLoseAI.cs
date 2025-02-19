@@ -11,13 +11,28 @@ public class WinOrLoseAI : MonoBehaviour
     public float attackCooldown = 1f;
     private float lastAttackTime;
 
+    private SpriteRenderer spriteRenderer;
+
     private Transform target;
     private Animator animator;
 
+    private void Awake()
+    {
+        animator = GetComponent<Animator>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
+    }
     void Start()
     {
         target = FindClosestEnemy();
         Destroy(gameObject, lifetime); // 過期消失
+        if (target != null)
+        {
+            // 判斷目標在左邊還是右邊
+            if (target.position.x > transform.position.x)
+            {
+                transform.localScale = new Vector3(-1, 1, 1); // 翻轉 X 軸
+            }
+        }
     }
 
     void Update()
@@ -42,7 +57,7 @@ public class WinOrLoseAI : MonoBehaviour
     }
     void Attack()
     {
-        //animator.SetTrigger("Attack");
+        animator.SetBool("attack", true);
         //target.GetComponent<Enemy>().TakeDamage(damage);
         print("attack");
     }
