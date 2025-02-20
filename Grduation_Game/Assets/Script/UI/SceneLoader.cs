@@ -13,11 +13,13 @@ public class SceneLoader : MonoBehaviour,ISaveable
     [Header("廣播")]
     public VoidEventSO saveDataEvent;//儲存加載遊戲事件
     public VoidEventSO afterSceneLoadedEvent;
+    public VoidEventSO openRandomCanvaEvent;//打開隨機挑戰面板
     public SceneLoadEventSO unLoadSceneEvent;
     public TransitionEventSO transitionEvent;
 
     [Header("事件監聽")]
     public SceneLoadEventSO loadEventSO;//場景加載事件
+    public VoidEventSO onAllEnemiesDefeated;//當場景中所有敵人被擊敗時的事件
     public VoidEventSO loadRandomSceneEvent;//隨機場景加載事件
     public VoidEventSO newGameEvent;
     public VoidEventSO backToMenuEvent; 
@@ -50,16 +52,18 @@ public class SceneLoader : MonoBehaviour,ISaveable
         loadEventSO.LoadRequestEvent += OnLoadRequestEvent;
         newGameEvent.OnEventRaised += OnNewGameStartEvent;
         backToMenuEvent.OnEventRaised += OnBackToMenuEvent;
+        onAllEnemiesDefeated.OnEventRaised += OnOpenRandomCanvasEvent;//當場景中所有敵人被擊敗時通知UIManager
         loadRandomSceneEvent.OnEventRaised += OnLoadRandomScene;
         ISaveable saveable = this;
         saveable.RegisterSaveData();
-    }
+    }  
 
     private void OnDisable()
     {
         loadEventSO.LoadRequestEvent -= OnLoadRequestEvent;
         newGameEvent.OnEventRaised -= OnNewGameStartEvent;
         backToMenuEvent.OnEventRaised -= OnBackToMenuEvent;
+        onAllEnemiesDefeated.OnEventRaised -= OnOpenRandomCanvasEvent;
         loadRandomSceneEvent.OnEventRaised -= OnLoadRandomScene;      
         ISaveable saveable = this;
         saveable.UnRegisterSaveData();
@@ -155,8 +159,16 @@ public class SceneLoader : MonoBehaviour,ISaveable
     {       
          var loadingOption = sceneToLoad.sceneReference.LoadSceneAsync(LoadSceneMode.Additive, true);      
          loadingOption.Completed += OnLoadComplete;        
+    }
+
+    private void OnOpenRandomCanvasEvent()//當場景中所有敵人被擊敗時通知UIManager
+    {
+        if(currentLoadScene.sceneType == SceneType.Location)
+        {
+            openRandomCanvaEvent.RaiseEvent();
         }
-         
+    }
+
     ///<summary>
     /// 加載完成後執行
     ///</summary>
@@ -170,8 +182,7 @@ public class SceneLoader : MonoBehaviour,ISaveable
         if (currentLoadScene.sceneType == SceneType.Location)
         {
             saveDataEvent.RaiseEvent();//廣播:儲存加載遊戲事件
-            afterSceneLoadedEvent.RaiseEvent();//廣播:已加載完成事件
-            Debug.Log($"加載完成: {sceneToLoad.name}");
+            afterSceneLoadedEvent.RaiseEvent();//廣播:已加載完成事件         
         }
     } 
     public DataDefination GetDataID()

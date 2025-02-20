@@ -15,7 +15,7 @@ public class UIManager : MonoBehaviour
     public VoidEventSO loadDataEvent;
     public VoidEventSO gameOverEvent;
     public VoidEventSO backToMenuEvent;
-    public VoidEventSO onAllEnemiesDefeatedEvent;//顯示隨機挑戰面板事件
+    public VoidEventSO openRandomCanvaEvent;//顯示隨機挑戰面板事件
     public FloatEventSO syncMasterVolumeEvent;//同步主音量事件
     public FloatEventSO syncBGMVolumeEvent;
     public FloatEventSO syncFXVolumeEvent;
@@ -63,7 +63,7 @@ public class UIManager : MonoBehaviour
         loadDataEvent.OnEventRaised += OnLoadDataEvent;//讀取遊戲進度事件
         gameOverEvent.OnEventRaised += OnGameOverEvent;//遊戲結束事件
         backToMenuEvent.OnEventRaised +=OnLoadDataEvent;//返回主選單事件
-        onAllEnemiesDefeatedEvent.OnEventRaised+=OnShowRandomCanvasEvents;//顯示隨機挑戰面板事件
+        openRandomCanvaEvent.OnEventRaised+=OnShowRandomCanvasEvents;//顯示隨機挑戰面板事件
         syncMasterVolumeEvent.OnEventRaised += OnSyncMasterVolumeEvent;
         syncBGMVolumeEvent.OnEventRaised += OnSyncBGMVolumeEvent;
         syncFXVolumeEvent.OnEventRaised += OnSyncFXVolumeEvent;
@@ -76,7 +76,7 @@ public class UIManager : MonoBehaviour
         loadDataEvent.OnEventRaised -= OnLoadDataEvent;
         gameOverEvent.OnEventRaised -= OnGameOverEvent;
         backToMenuEvent.OnEventRaised -= OnLoadDataEvent;
-        onAllEnemiesDefeatedEvent.OnEventRaised -= OnShowRandomCanvasEvents;
+        openRandomCanvaEvent.OnEventRaised -= OnShowRandomCanvasEvents;
         syncMasterVolumeEvent.OnEventRaised -= OnSyncMasterVolumeEvent;
         syncBGMVolumeEvent.OnEventRaised -= OnSyncBGMVolumeEvent;
         syncFXVolumeEvent.OnEventRaised -= OnSyncFXVolumeEvent;

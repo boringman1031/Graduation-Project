@@ -36,7 +36,7 @@ public class EnemyManager : MonoBehaviour
         enemies.Remove(enemy);
 
         // 如果敵人數量為0且場景不是主頁面，廣播事件
-        if (enemies.Count == 0 && UnityEngine.SceneManagement.SceneManager.GetActiveScene().name != "Lobby")
+        if (enemies.Count == 0)
         {
             Debug.Log("所有敵人已被擊敗，廣播事件通知 UIManager");
             onAllEnemiesDefeated.RaiseEvent();
