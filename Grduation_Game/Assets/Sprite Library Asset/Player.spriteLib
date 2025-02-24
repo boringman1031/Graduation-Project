@@ -1,0 +1,450 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &1
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a5e6fedc2472449cead18ef23b5cb30d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Library:
+  - m_Name: head
+    m_Hash: 670299804
+    m_CategoryList: []
+    m_OverrideEntries:
+    - m_Name: normal
+      m_Hash: 562391268
+      m_Sprite: {fileID: -8836894100988400448, guid: 0668a28a4a50fda4e8394ec11d2aa579, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: -8836894100988400448, guid: 0668a28a4a50fda4e8394ec11d2aa579, type: 3}
+    - m_Name: 8+9
+      m_Hash: 1011619931
+      m_Sprite: {fileID: 122089009419624682, guid: e68288c70c62b4c45994c23dbe6caa05, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: 122089009419624682, guid: e68288c70c62b4c45994c23dbe6caa05, type: 3}
+    - m_Name: Dancer
+      m_Hash: 917556639
+      m_Sprite: {fileID: 0}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: 0}
+    - m_Name: Rapper
+      m_Hash: 228135324
+      m_Sprite: {fileID: 0}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: 0}
+    - m_Name: Sportman
+      m_Hash: 451775558
+      m_Sprite: {fileID: 0}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: 0}
+    - m_Name: Musicman
+      m_Hash: 252611501
+      m_Sprite: {fileID: 0}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: 0}
+    m_FromMain: 0
+    m_EntryOverrideCount: 6
+  - m_Name: Body
+    m_Hash: 999990412
+    m_CategoryList: []
+    m_OverrideEntries:
+    - m_Name: normal
+      m_Hash: 562391268
+      m_Sprite: {fileID: 0}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: 0}
+    - m_Name: 8+9
+      m_Hash: 1011619931
+      m_Sprite: {fileID: -5585689735840377087, guid: e68288c70c62b4c45994c23dbe6caa05, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: -5585689735840377087, guid: e68288c70c62b4c45994c23dbe6caa05, type: 3}
+    - m_Name: Dancer
+      m_Hash: 917556639
+      m_Sprite: {fileID: 0}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: 0}
+    - m_Name: Rapper
+      m_Hash: 228135324
+      m_Sprite: {fileID: 0}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: 0}
+    - m_Name: Musicman
+      m_Hash: 252611501
+      m_Sprite: {fileID: 0}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: 0}
+    - m_Name: Sportman
+      m_Hash: 451775558
+      m_Sprite: {fileID: 0}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: 0}
+    m_FromMain: 0
+    m_EntryOverrideCount: 6
+  - m_Name: Right sleeve
+    m_Hash: 604409980
+    m_CategoryList: []
+    m_OverrideEntries:
+    - m_Name: normal
+      m_Hash: 562391268
+      m_Sprite: {fileID: 0}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: 0}
+    - m_Name: 8+9
+      m_Hash: 1011619931
+      m_Sprite: {fileID: 8989354437955518918, guid: e68288c70c62b4c45994c23dbe6caa05, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: 8989354437955518918, guid: e68288c70c62b4c45994c23dbe6caa05, type: 3}
+    - m_Name: Dancer
+      m_Hash: 917556639
+      m_Sprite: {fileID: 0}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: 0}
+    - m_Name: Rapper
+      m_Hash: 228135324
+      m_Sprite: {fileID: 0}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: 0}
+    - m_Name: Musicman
+      m_Hash: 252611501
+      m_Sprite: {fileID: 0}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: 0}
+    - m_Name: Sportman
+      m_Hash: 451775558
+      m_Sprite: {fileID: 0}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: 0}
+    m_FromMain: 0
+    m_EntryOverrideCount: 6
+  - m_Name: Right Down
+    m_Hash: 2564630
+    m_CategoryList: []
+    m_OverrideEntries:
+    - m_Name: normal
+      m_Hash: 562391268
+      m_Sprite: {fileID: 0}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: 0}
+    - m_Name: 8+9
+      m_Hash: 1011619931
+      m_Sprite: {fileID: 4204849796202142202, guid: e68288c70c62b4c45994c23dbe6caa05, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: 4204849796202142202, guid: e68288c70c62b4c45994c23dbe6caa05, type: 3}
+    - m_Name: Dancer
+      m_Hash: 917556639
+      m_Sprite: {fileID: 0}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: 0}
+    - m_Name: Rapper
+      m_Hash: 228135324
+      m_Sprite: {fileID: 0}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: 0}
+    - m_Name: Musicman
+      m_Hash: 252611501
+      m_Sprite: {fileID: 0}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: 0}
+    - m_Name: Sportman
+      m_Hash: 451775558
+      m_Sprite: {fileID: 0}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: 0}
+    m_FromMain: 0
+    m_EntryOverrideCount: 6
+  - m_Name: Right Up
+    m_Hash: 459638924
+    m_CategoryList: []
+    m_OverrideEntries:
+    - m_Name: normal
+      m_Hash: 562391268
+      m_Sprite: {fileID: 0}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: 0}
+    - m_Name: 8+9
+      m_Hash: 1011619931
+      m_Sprite: {fileID: -4754986885072408308, guid: e68288c70c62b4c45994c23dbe6caa05, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: -4754986885072408308, guid: e68288c70c62b4c45994c23dbe6caa05, type: 3}
+    - m_Name: Dancer
+      m_Hash: 917556639
+      m_Sprite: {fileID: 0}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: 0}
+    - m_Name: Rapper
+      m_Hash: 228135324
+      m_Sprite: {fileID: 0}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: 0}
+    - m_Name: Musicman
+      m_Hash: 252611501
+      m_Sprite: {fileID: 0}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: 0}
+    - m_Name: Sportman
+      m_Hash: 451775558
+      m_Sprite: {fileID: 0}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: 0}
+    m_FromMain: 0
+    m_EntryOverrideCount: 6
+  - m_Name: Left sleeve
+    m_Hash: 535300950
+    m_CategoryList: []
+    m_OverrideEntries:
+    - m_Name: normal
+      m_Hash: 562391268
+      m_Sprite: {fileID: 0}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: 0}
+    - m_Name: 8+9
+      m_Hash: 1011619931
+      m_Sprite: {fileID: -4785613990153017143, guid: e68288c70c62b4c45994c23dbe6caa05, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: -4785613990153017143, guid: e68288c70c62b4c45994c23dbe6caa05, type: 3}
+    - m_Name: Dancer
+      m_Hash: 917556639
+      m_Sprite: {fileID: 0}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: 0}
+    - m_Name: Rapper
+      m_Hash: 228135324
+      m_Sprite: {fileID: 0}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: 0}
+    - m_Name: Musicman
+      m_Hash: 252611501
+      m_Sprite: {fileID: 0}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: 0}
+    - m_Name: Sportman
+      m_Hash: 451775558
+      m_Sprite: {fileID: 0}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: 0}
+    m_FromMain: 0
+    m_EntryOverrideCount: 6
+  - m_Name: Left Down
+    m_Hash: 574206839
+    m_CategoryList: []
+    m_OverrideEntries:
+    - m_Name: normal
+      m_Hash: 562391268
+      m_Sprite: {fileID: 0}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: 0}
+    - m_Name: 8+9
+      m_Hash: 1011619931
+      m_Sprite: {fileID: 4462109613370261242, guid: e68288c70c62b4c45994c23dbe6caa05, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: 4462109613370261242, guid: e68288c70c62b4c45994c23dbe6caa05, type: 3}
+    - m_Name: Dancer
+      m_Hash: 917556639
+      m_Sprite: {fileID: 0}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: 0}
+    - m_Name: Rapper
+      m_Hash: 228135324
+      m_Sprite: {fileID: 0}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: 0}
+    - m_Name: Musicman
+      m_Hash: 252611501
+      m_Sprite: {fileID: 0}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: 0}
+    - m_Name: Sportman
+      m_Hash: 451775558
+      m_Sprite: {fileID: 0}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: 0}
+    m_FromMain: 0
+    m_EntryOverrideCount: 6
+  - m_Name: Left Up
+    m_Hash: 458585457
+    m_CategoryList: []
+    m_OverrideEntries:
+    - m_Name: normal
+      m_Hash: 562391268
+      m_Sprite: {fileID: 0}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: 0}
+    - m_Name: 8+9
+      m_Hash: 1011619931
+      m_Sprite: {fileID: -350049117578067011, guid: e68288c70c62b4c45994c23dbe6caa05, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: -350049117578067011, guid: e68288c70c62b4c45994c23dbe6caa05, type: 3}
+    - m_Name: Dancer
+      m_Hash: 917556639
+      m_Sprite: {fileID: 0}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: 0}
+    - m_Name: Rapper
+      m_Hash: 228135324
+      m_Sprite: {fileID: 0}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: 0}
+    - m_Name: Musicman
+      m_Hash: 252611501
+      m_Sprite: {fileID: 0}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: 0}
+    - m_Name: Sportman
+      m_Hash: 451775558
+      m_Sprite: {fileID: 0}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: 0}
+    m_FromMain: 0
+    m_EntryOverrideCount: 6
+  - m_Name: Right Pants Down
+    m_Hash: 898238516
+    m_CategoryList: []
+    m_OverrideEntries:
+    - m_Name: normal
+      m_Hash: 562391268
+      m_Sprite: {fileID: 0}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: 0}
+    - m_Name: 8+9
+      m_Hash: 1011619931
+      m_Sprite: {fileID: -8096388051553742716, guid: e68288c70c62b4c45994c23dbe6caa05, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: -8096388051553742716, guid: e68288c70c62b4c45994c23dbe6caa05, type: 3}
+    - m_Name: Dancer
+      m_Hash: 917556639
+      m_Sprite: {fileID: 0}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: 0}
+    - m_Name: Rapper
+      m_Hash: 228135324
+      m_Sprite: {fileID: 0}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: 0}
+    - m_Name: Musicman
+      m_Hash: 252611501
+      m_Sprite: {fileID: 0}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: 0}
+    - m_Name: Sportman
+      m_Hash: 451775558
+      m_Sprite: {fileID: 0}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: 0}
+    m_FromMain: 0
+    m_EntryOverrideCount: 6
+  - m_Name: Right Pants Up
+    m_Hash: 91487991
+    m_CategoryList: []
+    m_OverrideEntries:
+    - m_Name: normal
+      m_Hash: 562391268
+      m_Sprite: {fileID: 0}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: 0}
+    - m_Name: 8+9
+      m_Hash: 1011619931
+      m_Sprite: {fileID: -4080423533763203399, guid: e68288c70c62b4c45994c23dbe6caa05, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: -4080423533763203399, guid: e68288c70c62b4c45994c23dbe6caa05, type: 3}
+    - m_Name: Dancer
+      m_Hash: 917556639
+      m_Sprite: {fileID: 0}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: 0}
+    - m_Name: Rapper
+      m_Hash: 228135324
+      m_Sprite: {fileID: 0}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: 0}
+    - m_Name: Musicman
+      m_Hash: 252611501
+      m_Sprite: {fileID: 0}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: 0}
+    - m_Name: Sportman
+      m_Hash: 451775558
+      m_Sprite: {fileID: 0}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: 0}
+    m_FromMain: 0
+    m_EntryOverrideCount: 6
+  - m_Name: Left Pants Down
+    m_Hash: 567403913
+    m_CategoryList: []
+    m_OverrideEntries:
+    - m_Name: normal
+      m_Hash: 562391268
+      m_Sprite: {fileID: 0}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: 0}
+    - m_Name: 8+9
+      m_Hash: 1011619931
+      m_Sprite: {fileID: 2640142551517149130, guid: e68288c70c62b4c45994c23dbe6caa05, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: 2640142551517149130, guid: e68288c70c62b4c45994c23dbe6caa05, type: 3}
+    - m_Name: Dancer
+      m_Hash: 917556639
+      m_Sprite: {fileID: 0}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: 0}
+    - m_Name: Rapper
+      m_Hash: 228135324
+      m_Sprite: {fileID: 0}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: 0}
+    - m_Name: Musicman
+      m_Hash: 252611501
+      m_Sprite: {fileID: 0}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: 0}
+    - m_Name: Sportman
+      m_Hash: 451775558
+      m_Sprite: {fileID: 0}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: 0}
+    m_FromMain: 0
+    m_EntryOverrideCount: 6
+  - m_Name: Left Paints Up
+    m_Hash: 930991328
+    m_CategoryList: []
+    m_OverrideEntries:
+    - m_Name: norman
+      m_Hash: 260770248
+      m_Sprite: {fileID: 0}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: 0}
+    - m_Name: 8+9
+      m_Hash: 1011619931
+      m_Sprite: {fileID: -4969160559589288893, guid: e68288c70c62b4c45994c23dbe6caa05, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: -4969160559589288893, guid: e68288c70c62b4c45994c23dbe6caa05, type: 3}
+    - m_Name: Dancer
+      m_Hash: 917556639
+      m_Sprite: {fileID: 0}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: 0}
+    - m_Name: Rapper
+      m_Hash: 228135324
+      m_Sprite: {fileID: 0}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: 0}
+    - m_Name: Musicman
+      m_Hash: 252611501
+      m_Sprite: {fileID: 0}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: 0}
+    - m_Name: Sportman
+      m_Hash: 451775558
+      m_Sprite: {fileID: 0}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: 0}
+    m_FromMain: 0
+    m_EntryOverrideCount: 6
+  m_PrimaryLibraryGUID: ab29d593002d84c46a3abaee8adbe9d1
+  m_ModificationHash: 638760498769416296
+  m_Version: 1
