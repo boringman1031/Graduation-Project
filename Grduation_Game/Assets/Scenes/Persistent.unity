@@ -653,7 +653,7 @@ MonoBehaviour:
   loadDataEvent: {fileID: 11400000, guid: 92952e4b3b57ffd489827f0577299772, type: 2}
   gameOverEvent: {fileID: 11400000, guid: 73440dadba2c5594d9c22b35aaf48498, type: 2}
   backToMenuEvent: {fileID: 11400000, guid: dfc5d7ce380926145ad3d668fe18650a, type: 2}
-  onAllEnemiesDefeatedEvent: {fileID: 11400000, guid: aeb5c483798026f42b4a8190bb79651d, type: 2}
+  openRandomCanvaEvent: {fileID: 11400000, guid: 301a99b60303eb540a180cb570f08ce8, type: 2}
   syncMasterVolumeEvent: {fileID: 11400000, guid: 4853cc7a9c0b8f74ab8cc8a9ced66a1f, type: 2}
   syncBGMVolumeEvent: {fileID: 11400000, guid: 5fb9ffa0ecf868e47ac44c3a48cc48ab, type: 2}
   syncFXVolumeEvent: {fileID: 11400000, guid: 6294ada8db2914448a42737d6c898cfa, type: 2}
@@ -1615,6 +1615,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   onAllEnemiesDefeated: {fileID: 11400000, guid: aeb5c483798026f42b4a8190bb79651d, type: 2}
+  OnEnemyDied: {fileID: 11400000, guid: a3b57538ec29a424aaf1f95d5b36a418, type: 2}
 --- !u!1001 &1467685002
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2484,13 +2485,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   saveDataEvent: {fileID: 11400000, guid: 1159ed35e87032b4590e0e12175e408e, type: 2}
   afterSceneLoadedEvent: {fileID: 11400000, guid: a157eafef39c6b246b3a3c865f8d87ac, type: 2}
+  openRandomCanvaEvent: {fileID: 11400000, guid: 301a99b60303eb540a180cb570f08ce8, type: 2}
   unLoadSceneEvent: {fileID: 11400000, guid: 335f2ec0442e34942bca483dbd1b6f44, type: 2}
   transitionEvent: {fileID: 11400000, guid: 5968fd9e78d8dd347bf03100f1e91743, type: 2}
   loadEventSO: {fileID: 11400000, guid: 59208caf5cb1e354086b5943ea6e480d, type: 2}
+  onAllEnemiesDefeated: {fileID: 11400000, guid: aeb5c483798026f42b4a8190bb79651d, type: 2}
   loadRandomSceneEvent: {fileID: 11400000, guid: 381f9febe87016148a8902e5ff57fe6f, type: 2}
   newGameEvent: {fileID: 11400000, guid: d9bb2d4100ded3d4f81459a40234d7c7, type: 2}
   backToMenuEvent: {fileID: 11400000, guid: dfc5d7ce380926145ad3d668fe18650a, type: 2}
-  KillAllEnemyEvent: {fileID: 0}
   firstLoadScene: {fileID: 11400000, guid: a64cf6f0a48c64c4da0bdea97a5d7f7d, type: 2}
   MuneScene: {fileID: 11400000, guid: a89b00abb5bdc9543851dc1aca09facb, type: 2}
   randomScenes:

@@ -34578,14 +34578,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   anim: {fileID: 1509866487}
   physicsCheck: {fileID: 1509866489}
+  OnEnemyDied: {fileID: 11400000, guid: a3b57538ec29a424aaf1f95d5b36a418, type: 2}
   normalSpeed: 10
   chaseSpeed: 50
   currentSpeed: 0
   faceDir: {x: 0, y: 0, z: 0}
   attacker: {fileID: 0}
   HitForce: 5
+  centerOffset: {x: 0.24, y: 0}
+  checkSize: {x: 1, y: 1}
+  checkDistance: 5
+  targetLayer:
+    serializedVersion: 2
+    m_Bits: 128
   isHit: 0
   isDead: 0
+  lostTime: 3
+  lostTimeCounter: 0
 --- !u!114 &1509866483
 MonoBehaviour:
   m_ObjectHideFlags: 0
