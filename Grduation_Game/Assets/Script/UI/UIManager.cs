@@ -1,3 +1,4 @@
+/*-------------------BY017-----------------*/
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -14,10 +15,11 @@ public class UIManager : MonoBehaviour
     public VoidEventSO loadDataEvent;
     public VoidEventSO gameOverEvent;
     public VoidEventSO backToMenuEvent;
+    public VoidEventSO openRandomCanvaEvent;//顯示隨機挑戰面板事件
     public FloatEventSO syncMasterVolumeEvent;//同步主音量事件
     public FloatEventSO syncBGMVolumeEvent;
     public FloatEventSO syncFXVolumeEvent;
-  
+    
     [Header("廣播事件")]
     public VoidEventSO pasueEvent;
     public VoidEventSO loadRandomSceneEvent; //隨機場景加載事件
@@ -61,6 +63,7 @@ public class UIManager : MonoBehaviour
         loadDataEvent.OnEventRaised += OnLoadDataEvent;//讀取遊戲進度事件
         gameOverEvent.OnEventRaised += OnGameOverEvent;//遊戲結束事件
         backToMenuEvent.OnEventRaised +=OnLoadDataEvent;//返回主選單事件
+        openRandomCanvaEvent.OnEventRaised+=OnShowRandomCanvasEvents;//顯示隨機挑戰面板事件
         syncMasterVolumeEvent.OnEventRaised += OnSyncMasterVolumeEvent;
         syncBGMVolumeEvent.OnEventRaised += OnSyncBGMVolumeEvent;
         syncFXVolumeEvent.OnEventRaised += OnSyncFXVolumeEvent;
@@ -73,13 +76,16 @@ public class UIManager : MonoBehaviour
         loadDataEvent.OnEventRaised -= OnLoadDataEvent;
         gameOverEvent.OnEventRaised -= OnGameOverEvent;
         backToMenuEvent.OnEventRaised -= OnLoadDataEvent;
+        openRandomCanvaEvent.OnEventRaised -= OnShowRandomCanvasEvents;
         syncMasterVolumeEvent.OnEventRaised -= OnSyncMasterVolumeEvent;
         syncBGMVolumeEvent.OnEventRaised -= OnSyncBGMVolumeEvent;
         syncFXVolumeEvent.OnEventRaised -= OnSyncFXVolumeEvent;
-    }
-    private void ToggleRandomChallengeButton()
+    }  
+
+    private void ToggleRandomChallengeButton()//按下隨機挑戰按鈕觸發
     {
         loadRandomSceneEvent.OnEventRaised();
+        RandomChallengePanel.SetActive(false);
     }
 
     private void ToggleGameInfoPanel()//開啟遊戲資訊面板
@@ -141,6 +147,11 @@ public class UIManager : MonoBehaviour
     {
         GameOverPanel.SetActive(true);
        EventSystem.current.SetSelectedGameObject(restartButton);
+    }
+
+    private void OnShowRandomCanvasEvents()//顯示隨機挑戰面板事件
+    {
+        RandomChallengePanel.SetActive(true);
     }
 
 }

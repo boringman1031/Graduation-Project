@@ -15,7 +15,7 @@ public class PlayerController : MonoBehaviour
     public VoidEventSO loadDataEvent;
     public VoidEventSO backToMenuEvent;
 
-    public  PlayerInput playerInput;
+    public PlayerInput playerInput;
     public Vector2 inputDirection;
     private Rigidbody2D rb;
     private PhysicsCheck physicsCheck;
@@ -47,7 +47,7 @@ public class PlayerController : MonoBehaviour
     }
 
     private void OnEnable()
-    {   
+    {
         SceneloadEvent.LoadRequestEvent += OnLoadEvent;//場景加載時停止玩家控制
         afterSceneLoadEvent.OnEventRaised += OnAfterSceneLoadEvent;//場景加載完成開起玩家控制
         loadDataEvent.OnEventRaised += OnLoadDataEvent;//讀取遊戲進度事件
@@ -65,13 +65,13 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
-        inputDirection = playerInput.GamePlay.Move.ReadValue<Vector2>();  
+        inputDirection = playerInput.GamePlay.Move.ReadValue<Vector2>();
     }
 
     private void FixedUpdate()
     {
-        if(!ishurt && !isAttack)
-            Player_Move();             
+        if (!ishurt && !isAttack)
+            Player_Move();
     }
     private void OnLoadEvent(GameSceneSO sO, Vector3 vector, bool arg3)//場景加載時停止玩家控制
     {
@@ -86,22 +86,22 @@ public class PlayerController : MonoBehaviour
     {
         playerInput.GamePlay.Enable();
     }
-    public void Player_Move( )
-    {       
-        rb.velocity = new Vector2(inputDirection.x * Speed*Time.deltaTime, rb.velocity.y);
+    public void Player_Move()
+    {
+        rb.velocity = new Vector2(inputDirection.x * Speed * Time.deltaTime, rb.velocity.y);
 
         //人物翻轉
         int faceDir = (int)transform.localScale.x;
         if (inputDirection.x > 0)
             faceDir = -1;
-        else if (inputDirection.x < 0)     
-            faceDir = 1;      
-        transform.localScale = new Vector3(faceDir,1,1);
+        else if (inputDirection.x < 0)
+            faceDir = 1;
+        transform.localScale = new Vector3(faceDir, 1, 1);
     }
 
-    
 
-    public void Player_Jump( InputAction.CallbackContext obj)
+
+    public void Player_Jump(InputAction.CallbackContext obj)
     {
         if (physicsCheck.isGround)
         {
@@ -112,17 +112,19 @@ public class PlayerController : MonoBehaviour
 
     public void Player_Attack(InputAction.CallbackContext obj)
     {
-       playerAnimation.OnPlayerAttack();
-        isAttack = true;              
+        if (!physicsCheck.isGround)
+            return;
+        playerAnimation.OnPlayerAttack();
+        isAttack = true;
     }
 
-   
+
     #region  以下為在UnityEvent中執行部分
     public void Player_GetHurt(Transform _attacker)//受傷擊飛
     {
         ishurt = true;
-        rb.velocity=Vector2.zero;
-        Vector2 die=new Vector2((transform.position.x - _attacker.position.x), 0).normalized;
+        rb.velocity = Vector2.zero;
+        Vector2 die = new Vector2((transform.position.x - _attacker.position.x), 0).normalized;
 
         rb.AddForce(die * Hurtforce, ForceMode2D.Impulse);
     }

@@ -30,9 +30,8 @@ public class TransitionCanvas : MonoBehaviour
         }
         else
         {
-            transitionAnimator.SetTrigger("End");           
+            transitionAnimator.SetTrigger("End");
         }
-
     }
 
 }
