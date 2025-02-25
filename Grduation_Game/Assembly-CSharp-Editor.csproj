@@ -56,18 +56,18 @@
   </PropertyGroup>
   <ItemGroup>
     <Analyzer Include="C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\Extensions\Microsoft\Visual Studio Tools for Unity\Analyzers\Microsoft.Unity.Analyzers.dll" />
-    <Analyzer Include="C:\遊戲製作\Project\Graduation-Project\Grduation_Game\Assets\Setting\PhysicsMaterials\DOTween\DOTween.dll" />
-    <Analyzer Include="C:\遊戲製作\Project\Graduation-Project\Grduation_Game\Assets\Setting\PhysicsMaterials\DOTween\Editor\DOTweenEditor.dll" />
+    <Analyzer Include="C:\遊戲製作\Project\Graduation-Project\Grduation_Game\Assets\GameResource\PhysicsMaterials\DOTween\DOTween.dll" />
+    <Analyzer Include="C:\遊戲製作\Project\Graduation-Project\Grduation_Game\Assets\GameResource\PhysicsMaterials\DOTween\Editor\DOTweenEditor.dll" />
     <Analyzer Include="C:\遊戲製作\2022.3.36f1\Editor\Data\Tools\Unity.SourceGenerators\Unity.SourceGenerators.dll" />
     <Analyzer Include="C:\遊戲製作\2022.3.36f1\Editor\Data\Tools\Unity.SourceGenerators\Unity.Properties.SourceGenerator.dll" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Setting\Colourful Hierarchy Category GameObject\Editor\ColorPalette.cs" />
-    <Compile Include="Assets\Setting\Colourful Hierarchy Category GameObject\Editor\StyleHierarchy.cs" />
+    <Compile Include="Assets\Tool\Colourful Hierarchy Category GameObject\Editor\StyleHierarchy.cs" />
+    <Compile Include="Assets\Tool\Colourful Hierarchy Category GameObject\Editor\ColorPalette.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Assets\Setting\PhysicsMaterials\DOTween\Editor\DOTweenEditor.dll" />
-    <None Include="Assets\Setting\PhysicsMaterials\DOTween\Editor\DOTweenEditor.XML" />
+    <None Include="Assets\GameResource\PhysicsMaterials\DOTween\Editor\DOTweenEditor.dll" />
+    <None Include="Assets\GameResource\PhysicsMaterials\DOTween\Editor\DOTweenEditor.XML" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">
@@ -431,7 +431,7 @@
       <Private>False</Private>
     </Reference>
     <Reference Include="DOTweenEditor">
-      <HintPath>Assets\Setting\PhysicsMaterials\DOTween\Editor\DOTweenEditor.dll</HintPath>
+      <HintPath>Assets\GameResource\PhysicsMaterials\DOTween\Editor\DOTweenEditor.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="Unity.Plastic.Newtonsoft.Json">
@@ -447,7 +447,7 @@
       <Private>False</Private>
     </Reference>
     <Reference Include="DOTween">
-      <HintPath>Assets\Setting\PhysicsMaterials\DOTween\DOTween.dll</HintPath>
+      <HintPath>Assets\GameResource\PhysicsMaterials\DOTween\DOTween.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="Unity.VisualScripting.Antlr3.Runtime">
