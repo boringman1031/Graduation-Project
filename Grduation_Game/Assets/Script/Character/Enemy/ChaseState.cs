@@ -8,8 +8,7 @@ public class ChaseState : BaseState
     public override void OnEnter(EnemyBase enemy)
     {
         currentEnemy = enemy;
-        currentEnemy.currentSpeed = currentEnemy.chaseSpeed;//切換為追擊速度
-        Debug.Log("Chase");
+        currentEnemy.currentSpeed = currentEnemy.chaseSpeed;//切換為追擊速度     
     }
     public override void LogicUpdate()//邏輯判斷
     {
