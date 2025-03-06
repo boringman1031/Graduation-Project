@@ -27,8 +27,9 @@ public class SceneLoader : MonoBehaviour, ISaveable
     [Header("場景參數")]
     public GameSceneSO firstLoadScene;//第一個加載的場景(遊戲大聽)
     private GameSceneSO sceneToLoad;//要新遊戲開始要加載的場景
-    public GameSceneSO MuneScene;//主場景
     private GameSceneSO currentLoadScene;//當前加載的場景
+    public GameSceneSO MuneScene;//主場景
+    public GameSceneSO NecessaryScene; //必要關卡 
 
     [Header("隨機場景列表")]
     [SerializeField] private List<GameSceneSO> randomScenes; // 可隨機選擇的場景列表
@@ -40,6 +41,8 @@ public class SceneLoader : MonoBehaviour, ISaveable
     public float fadeTime;//淡入淡出時間
 
     private Vector3 positionToGo;//要傳送的位置
+    private int challengeCount = 0;
+    private int maxChallenges = 3; // 需要完成的隨機挑戰次數
     private bool fadeScreen;//是否淡出屏幕
     private bool isLoading;//是否正在加載
 
@@ -97,15 +100,26 @@ public class SceneLoader : MonoBehaviour, ISaveable
     }
     private void OnLoadRandomScene()//隨機挑戰場景加載事件
     {
-        GameSceneSO randomScene = GetRandomScene();
-        if (randomScene != null)
+        if (challengeCount < maxChallenges)
         {
-            sceneToLoad = randomScene;
-            loadEventSO.RaiseLoadRequestEvent(sceneToLoad, firstPosition,true);
+            GameSceneSO randomScene = GetRandomScene();
+            if (randomScene != null)
+            {
+                sceneToLoad = randomScene;
+                challengeCount++; // 增加挑戰次數
+                loadEventSO.RaiseLoadRequestEvent(sceneToLoad, firstPosition, true);
+            }
+            else
+            {
+                Debug.LogError("沒有新場景");
+            }
         }
         else
-        {
-            Debug.LogError("沒有新場景");
+        {        
+            sceneToLoad = NecessaryScene;// 當挑戰次數達到 3，進入 Boss 前的特定關卡
+            challengeCount = 0; // 重置挑戰次數
+            Debug.Log("進入必要 關卡");
+            loadEventSO.RaiseLoadRequestEvent(sceneToLoad, firstPosition, true);
         }
     }
 
