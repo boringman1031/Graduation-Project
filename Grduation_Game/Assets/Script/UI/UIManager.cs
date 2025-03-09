@@ -19,7 +19,8 @@ public class UIManager : MonoBehaviour
     public FloatEventSO syncMasterVolumeEvent;//同步主音量事件
     public FloatEventSO syncBGMVolumeEvent;
     public FloatEventSO syncFXVolumeEvent;
-    
+    public VoidEventSO showDialogEvent; // 顯示對話框事件
+
     [Header("廣播事件")]
     public VoidEventSO pasueEvent;
     public VoidEventSO loadRandomSceneEvent; //隨機場景加載事件
@@ -31,6 +32,7 @@ public class UIManager : MonoBehaviour
     public GameObject GameInfoPanel;//遊戲資訊面板
     public GameObject GameStatPanel;//遊戲進度面板
     public GameObject GameSettingPanel;//遊戲設定面板
+    public GameObject DialogPanel;//對話框
 
     [Header("按鈕組件")]
     public GameObject restartButton;
@@ -67,6 +69,7 @@ public class UIManager : MonoBehaviour
         syncMasterVolumeEvent.OnEventRaised += OnSyncMasterVolumeEvent;
         syncBGMVolumeEvent.OnEventRaised += OnSyncBGMVolumeEvent;
         syncFXVolumeEvent.OnEventRaised += OnSyncFXVolumeEvent;
+        showDialogEvent.OnEventRaised += ShowDialog; // 顯示對話框
     }
 
     public void OnDisable()
@@ -80,6 +83,7 @@ public class UIManager : MonoBehaviour
         syncMasterVolumeEvent.OnEventRaised -= OnSyncMasterVolumeEvent;
         syncBGMVolumeEvent.OnEventRaised -= OnSyncBGMVolumeEvent;
         syncFXVolumeEvent.OnEventRaised -= OnSyncFXVolumeEvent;
+        showDialogEvent.OnEventRaised -= ShowDialog;
     }  
 
     private void ToggleRandomChallengeButton()//按下隨機挑戰按鈕觸發
@@ -153,5 +157,8 @@ public class UIManager : MonoBehaviour
     {
         RandomChallengePanel.SetActive(true);
     }
-
+    private void ShowDialog()
+    {
+        DialogPanel.SetActive(true);
+    }
 }

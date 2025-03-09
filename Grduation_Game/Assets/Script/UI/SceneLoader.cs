@@ -16,6 +16,7 @@ public class SceneLoader : MonoBehaviour, ISaveable
     public VoidEventSO openRandomCanvaEvent;//打開隨機挑戰面板
     public SceneLoadEventSO unLoadSceneEvent;//卸載場景事件
     public TransitionEventSO transitionEvent;
+    public VoidEventSO showDialogEvent;
 
     [Header("事件監聽")]
     public SceneLoadEventSO loadEventSO;//場景加載事件
@@ -176,6 +177,10 @@ public class SceneLoader : MonoBehaviour, ISaveable
         {
             saveDataEvent.RaiseEvent();//廣播:儲存加載遊戲事件
             afterSceneLoadedEvent.RaiseEvent();//廣播:已加載完成事件         
+        }
+        if (currentLoadScene == firstLoadScene)
+        {
+            showDialogEvent.RaiseEvent();
         }
     }
     public DataDefination GetDataID()
