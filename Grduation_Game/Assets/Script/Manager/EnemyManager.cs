@@ -34,6 +34,7 @@ public class EnemyManager : MonoBehaviour
     {
         // 從列表中移除死亡的敵人
         enemies.Remove(enemy);
+        Debug.Log("敵人死亡，目前敵人數量：" + enemies.Count);
 
         // 如果敵人數量為0且場景不是主頁面，廣播事件
         if (enemies.Count == 0)
