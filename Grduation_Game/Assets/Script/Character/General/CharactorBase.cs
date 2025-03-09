@@ -83,13 +83,13 @@ public class CharactorBase : MonoBehaviour,ISaveable
         OnHealthChange?.Invoke(this);
     }
     public void TakeDamage(Attack _attacker)//受到傷害判定
-    {
+    {           
         if (SuperArmour)
         {
             return;
         }
         if(CurrentHealth-_attacker.Damage > 0)
-        {
+        {           
             CurrentHealth -= _attacker.Damage;
             TriggerSuperArmour();
             //受傷時要幹嘛寫在這
