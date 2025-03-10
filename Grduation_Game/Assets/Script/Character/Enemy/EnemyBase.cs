@@ -54,7 +54,11 @@ public class EnemyBase : MonoBehaviour
     }
     public void Update()
     {
-        faceDir = new Vector3(-transform.position.x, 0, 0);
+        faceDir = new Vector3(-transform.localScale.x, 0, 0);
+        if(physicsCheck.touchLeftWall||physicsCheck.touchRightWall)//¸I¨ìÀð¾ÀÂà¦V      
+        {
+            transform.localScale = new Vector3(faceDir.x, 10, 10);
+        }
         currentState.LogicUpdate();
     }
     private void FixedUpdate()
@@ -69,7 +73,7 @@ public class EnemyBase : MonoBehaviour
     }
     public virtual void Move()
     {
-        rb.velocity = new Vector2(currentSpeed * faceDir.x, rb.velocity.y);
+        rb.velocity = new Vector2(currentSpeed * faceDir.x*Time.deltaTime, rb.velocity.y);
     }
     public void TimeCounter()
     {
