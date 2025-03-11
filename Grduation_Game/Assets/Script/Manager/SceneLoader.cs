@@ -185,11 +185,14 @@ public class SceneLoader : MonoBehaviour, ISaveable
         currentLoadScene = sceneToLoad;
         playerTrans.position = positionToGo;
         playerTrans.gameObject.SetActive(true);
-        isLoading = false;  
-        if (currentLoadScene.sceneType == SceneType.Location)
+        isLoading = false;
+        if (currentLoadScene.sceneType == SceneType.Location ||
+                 currentLoadScene.sceneType == SceneType.Necessary ||
+                 currentLoadScene.sceneType == SceneType.Special ||
+                 currentLoadScene.sceneType == SceneType.Boss)
         {
-            saveDataEvent.RaiseEvent();//廣播:儲存加載遊戲事件
-            afterSceneLoadedEvent.RaiseEvent();//廣播:已加載完成事件         
+            saveDataEvent.RaiseEvent(); // 廣播:儲存加載遊戲事件
+            afterSceneLoadedEvent.RaiseEvent(); // 廣播:已加載完成事件
         }
     }
     public DataDefination GetDataID()

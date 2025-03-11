@@ -32,8 +32,11 @@ public class EnemyBase : MonoBehaviour
     public bool isDead;
 
     [Header("計時器")]
+    public float waitTime;//巡邏等待時間
+    [HideInInspector] public float waitTimeCounter;
+    [HideInInspector] public bool isWait; 
     public float lostTime;
-    public float lostTimeCounter;
+    [HideInInspector] public float lostTimeCounter;
 
     private BaseState currentState;//當前狀態
     protected BaseState patrolState;//巡邏狀態
@@ -55,10 +58,12 @@ public class EnemyBase : MonoBehaviour
     public void Update()
     {
         faceDir = new Vector3(-transform.localScale.x, 0, 0);
-        if(physicsCheck.touchLeftWall||physicsCheck.touchRightWall)//碰到牆壁轉向      
+        if((physicsCheck.touchLeftWall&&faceDir.x<0)||(physicsCheck.touchRightWall&&faceDir.x>0))//碰到牆壁轉向      
         {
-            transform.localScale = new Vector3(faceDir.x, 10, 10);
+            isWait = true;
+            anim.SetBool("Run", false);
         }
+        TimeCounter();
         currentState.LogicUpdate();
     }
     private void FixedUpdate()
@@ -77,6 +82,16 @@ public class EnemyBase : MonoBehaviour
     }
     public void TimeCounter()
     {
+        if(isWait)
+        {
+            waitTimeCounter -= Time.deltaTime;
+            if(waitTimeCounter <= 0)
+            {
+                isWait = false;
+                waitTimeCounter = waitTime;
+                transform.localScale = new Vector3(faceDir.x, 10, 10);
+            }
+        }
         if (!FindPlayer() && lostTimeCounter > 0)
         {
             lostTimeCounter -= Time.deltaTime;

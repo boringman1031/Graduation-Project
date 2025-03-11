@@ -8,8 +8,7 @@ public class Attack : MonoBehaviour
 {
     public float Damage;
     public float attackRange;//§ğÀ»½d³ò
-    public float attackRate;//§ğÀ»³t«×
-    public float Knockback;//À»°h¶ZÂ÷
+    public float attackRate;//§ğÀ»³t«×  
 
     private void OnTriggerStay2D(Collider2D other)//§ğÀ»§P©w
     {
