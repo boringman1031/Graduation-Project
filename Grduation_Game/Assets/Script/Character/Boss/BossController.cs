@@ -2,11 +2,46 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BossController : EnemyBase
+public class BossController :MonoBehaviour
 {
-   public void OnUseSkill1()
+    [Header("基礎數值")]
+    public float maxHealth = 1000f;
+    private float currentHealth;
+    [HideInInspector] public Animator anim;
+    
+    private void Awake()
+    {
+        anim = GetComponent<Animator>();
+        currentHealth = maxHealth;
+    }
+
+    public void TakeDamage()
+    {
+        currentHealth -= 10;      
+
+        if (currentHealth <= maxHealth / 2)
+        {
+            EnterPhaseTwo(); // 切換至第二階段
+        }
+
+        if (currentHealth <= 0)
+        {
+            Die();
+        }
+    }
+    public void OnUseSkill1()
     {
         //TODO: 生成一堆爆炸
         Debug.Log("Use Skill 1");
+    }
+
+    public void EnterPhaseTwo()//進入第二階段
+    {
+
+    }
+
+    public void Die()
+    {
+        
     }
 }
