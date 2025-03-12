@@ -61,6 +61,12 @@ public class BossBase :MonoBehaviour
         Debug.Log("Use Skill 2");
     }
 
+    public void OnSummon()//召喚小怪
+    {
+        //TODO: 生成一堆小怪
+        Debug.Log("Summon");
+    }
+
     public void EnterPhaseTwo()//進入第二階段
     {
 
