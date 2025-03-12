@@ -23,6 +23,7 @@ public class SceneLoader : MonoBehaviour, ISaveable
     public VoidEventSO loadRandomSceneEvent;//隨機場景加載事件
     public VoidEventSO newGameEvent;
     public VoidEventSO backToMenuEvent;
+    public VoidEventSO gotoBossEvent;//(測試demo用)進入 Boss 事件
 
     [Header("場景參數")]
     public GameSceneSO firstLoadScene;//第一個加載的場景(遊戲大聽)
@@ -30,6 +31,7 @@ public class SceneLoader : MonoBehaviour, ISaveable
     private GameSceneSO currentLoadScene;//當前加載的場景
     public GameSceneSO MuneScene;//主場景
     public GameSceneSO NecessaryScene; //必要關卡 
+    public GameSceneSO BossScene;//Boss場景
 
     [Header("隨機場景列表")]
     [SerializeField] private List<GameSceneSO> randomScenes; // 可隨機選擇的場景列表
@@ -57,6 +59,7 @@ public class SceneLoader : MonoBehaviour, ISaveable
         backToMenuEvent.OnEventRaised += OnBackToMenuEvent;
         onAllEnemiesDefeated.OnEventRaised += OnOpenRandomCanvasEvent;//當場景中所有敵人被擊敗時通知UIManager
         loadRandomSceneEvent.OnEventRaised += OnLoadRandomScene;//隨機挑戰場景加載事件
+        gotoBossEvent.OnEventRaised += OnGotoBossScene;//(測試demo用)進入 Boss 事件
         ISaveable saveable = this;
         saveable.RegisterSaveData();
     }
@@ -68,8 +71,15 @@ public class SceneLoader : MonoBehaviour, ISaveable
         backToMenuEvent.OnEventRaised -= OnBackToMenuEvent;
         onAllEnemiesDefeated.OnEventRaised -= OnOpenRandomCanvasEvent;
         loadRandomSceneEvent.OnEventRaised -= OnLoadRandomScene;
+        gotoBossEvent.OnEventRaised -= OnGotoBossScene;//(測試demo用)進入 Boss 事件
         ISaveable saveable = this;
         saveable.UnRegisterSaveData();
+    }
+
+    private void OnGotoBossScene()//(測試demo用)進入 Boss 事件
+    {
+        sceneToLoad = BossScene;
+        loadEventSO.RaiseLoadRequestEvent(sceneToLoad, firstPosition, true);
     }
 
     private void OnNewGameStartEvent()//新遊戲事件時執行

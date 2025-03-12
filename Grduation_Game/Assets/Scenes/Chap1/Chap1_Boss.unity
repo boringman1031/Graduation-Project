@@ -189,28 +189,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5784bebce0fa5854c91c490b0e07c097, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  maxHealth: 1000
   anim: {fileID: 0}
-  physicsCheck: {fileID: 0}
-  OnEnemyDied: {fileID: 0}
-  normalSpeed: 0
-  chaseSpeed: 0
-  currentSpeed: 0
-  faceDir: {x: 0, y: 0, z: 0}
-  attacker: {fileID: 0}
-  HitForce: 0
-  centerOffset: {x: 0, y: 0}
-  checkSize: {x: 0, y: 0}
-  checkDistance: 0
-  targetLayer:
-    serializedVersion: 2
-    m_Bits: 0
-  isHit: 0
-  isDead: 0
-  waitTime: 0
-  waitTimeCounter: 0
-  isWait: 0
-  lostTime: 0
-  lostTimeCounter: 0
 --- !u!1 &272249523
 GameObject:
   m_ObjectHideFlags: 0
@@ -35239,8 +35219,8 @@ TilemapRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 65629913
-  m_SortingLayer: 4
+  m_SortingLayerID: -2003198267
+  m_SortingLayer: 3
   m_SortingOrder: 0
   m_ChunkSize: {x: 32, y: 32, z: 32}
   m_ChunkCullingBounds: {x: 0.0000044703484, y: 0, z: 0}
@@ -42185,7 +42165,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playAudioEvent: {fileID: 11400000, guid: 6aff32dae6df38b4fba8844a79657b49, type: 2}
   audioClip: {fileID: 8300000, guid: 20b4f68f2c4395e448bb9c5ef3d5d16d, type: 3}
-  playOnEnable: 0
+  playOnEnable: 1
 --- !u!4 &940726337
 Transform:
   m_ObjectHideFlags: 0

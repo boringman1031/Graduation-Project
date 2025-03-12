@@ -2998,6 +2998,30 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 7
       objectReference: {fileID: 0}
+    - target: {fileID: 7446401436631918690, guid: 8fe606f421d465a43860c97bb139a223, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7446401436631918690, guid: 8fe606f421d465a43860c97bb139a223, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7446401436631918690, guid: 8fe606f421d465a43860c97bb139a223, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.6403139
+      objectReference: {fileID: 0}
+    - target: {fileID: 7446401436631918690, guid: 8fe606f421d465a43860c97bb139a223, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.00000014982696
+      objectReference: {fileID: 0}
+    - target: {fileID: 7446401436631918690, guid: 8fe606f421d465a43860c97bb139a223, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.98495585
+      objectReference: {fileID: 0}
+    - target: {fileID: 7446401436631918690, guid: 8fe606f421d465a43860c97bb139a223, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0.17280665
+      objectReference: {fileID: 0}
     - target: {fileID: 7510871325458422213, guid: 8fe606f421d465a43860c97bb139a223, type: 3}
       propertyPath: m_Layer
       value: 7
@@ -3044,7 +3068,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7980458035584402169, guid: 8fe606f421d465a43860c97bb139a223, type: 3}
       propertyPath: m_CategoryHash
-      value: 2.9179e-17
+      value: 0.00000051912593
       objectReference: {fileID: 0}
     - target: {fileID: 8009450761141737119, guid: 8fe606f421d465a43860c97bb139a223, type: 3}
       propertyPath: m_AutoRebind
@@ -3108,7 +3132,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8256903620507027549, guid: 8fe606f421d465a43860c97bb139a223, type: 3}
       propertyPath: m_CategoryHash
-      value: 9.8274576e-20
+      value: 4.41058e-23
       objectReference: {fileID: 0}
     - target: {fileID: 8284515716754870102, guid: 8fe606f421d465a43860c97bb139a223, type: 3}
       propertyPath: m_labelHash
@@ -3360,9 +3384,11 @@ MonoBehaviour:
   loadRandomSceneEvent: {fileID: 11400000, guid: 381f9febe87016148a8902e5ff57fe6f, type: 2}
   newGameEvent: {fileID: 11400000, guid: d9bb2d4100ded3d4f81459a40234d7c7, type: 2}
   backToMenuEvent: {fileID: 11400000, guid: dfc5d7ce380926145ad3d668fe18650a, type: 2}
+  gotoBossEvent: {fileID: 11400000, guid: c280ad70ab8ffcc44b60327091e93a2f, type: 2}
   firstLoadScene: {fileID: 11400000, guid: a64cf6f0a48c64c4da0bdea97a5d7f7d, type: 2}
   MuneScene: {fileID: 11400000, guid: a89b00abb5bdc9543851dc1aca09facb, type: 2}
   NecessaryScene: {fileID: 11400000, guid: 7dce1fbd846b00f43b4f49d8894f44cb, type: 2}
+  BossScene: {fileID: 11400000, guid: a58abba614720a042aa612a9d8f49df0, type: 2}
   randomScenes:
   - {fileID: 11400000, guid: d3e63cb94eff76e48a63a2dbf47cdbcd, type: 2}
   - {fileID: 11400000, guid: f6aa9d8a712c3614bab092554179a97d, type: 2}
