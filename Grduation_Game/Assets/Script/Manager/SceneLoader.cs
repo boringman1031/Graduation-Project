@@ -194,7 +194,7 @@ public class SceneLoader : MonoBehaviour, ISaveable
         }
         if (currentLoadScene == firstLoadScene)
         {
-            showDialogEvent.RaiseEvent();
+            FindObjectOfType<DialogManager>().StartDialog("FirstScene");
         }
     }
     public DataDefination GetDataID()

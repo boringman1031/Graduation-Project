@@ -2,17 +2,20 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+
+// DialogSystem 只用來顯示對話
+
 public class DialogSystem : MonoBehaviour
 {
     [Header("UI組件")]
     public Text textLabel; // UI對話框文字組件
     public Image faceImage; // UI對話框頭像圖片
+    public Image Panel;
 
-    [Header("文本文件")]
-    public TextAsset textFile; // 對話文字文件
+    private Queue<string> dialogQueue;
+
     public int index;
     public float textSpeed;
-    private Dictionary<string, TextAsset> dialogDict = new Dictionary<string, TextAsset>();
 
     [Header("頭像")]
     public Sprite face01;
@@ -21,75 +24,65 @@ public class DialogSystem : MonoBehaviour
     bool textFinished; // 是否完成打字
     bool cancelTyping; // 取消打字
 
-    List<string> textList = new List<string>();
     void Awake()
     {
-        GetTextFromFile(textFile);
+        dialogQueue = new Queue<string>();
     }
     private void OnEnable()
     {
         textFinished = true;
-        StartCoroutine(SetTextUI());
     }
+    // 設置並顯示對話
+    public void SetDialog(List<string> dialogLines)
+    {
+        StopAllCoroutines(); // 停止可能正在運行的逐字顯示
+        textLabel.text = ""; // 清空文字
+        dialogQueue.Clear();
+
+        foreach (string line in dialogLines)
+        {
+            dialogQueue.Enqueue(line);
+        }
+
+        Panel.gameObject.SetActive(true);
+        StartCoroutine(DisplayText());
+    }
+    // 逐字顯示對話
+    IEnumerator DisplayText()
+    {
+        while (dialogQueue.Count > 0)
+        {
+            textFinished = false;
+            textLabel.text = ""; // 清空舊對話
+
+            string currentLine = dialogQueue.Dequeue();
+            foreach (char letter in currentLine.ToCharArray())
+            {
+                if (cancelTyping) // 按下跳過鍵時，直接顯示完整句子
+                {
+                    textLabel.text = currentLine;
+                    break;
+                }
+                textLabel.text += letter;
+                yield return new WaitForSeconds(textSpeed);
+            }
+
+            textFinished = true;
+            cancelTyping = false; // 重置標記
+            yield return new WaitUntil(() => Input.GetKeyDown(KeyCode.R)); // 按R繼續
+        }
+
+        Panel.gameObject.SetActive(false); // 關閉對話框
+    }
+    // 按下 R 時，跳過逐字輸出，直接顯示完整句子
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.R) && index == textList.Count)
+        if (Input.GetKeyDown(KeyCode.R))
         {
-            gameObject.SetActive(false);
-            index = 0;
-            return;
-        }
-        if(Input.GetKeyDown(KeyCode.R))
-        {
-            if (textFinished && !cancelTyping)
+            if (!textFinished)
             {
-                StartCoroutine(SetTextUI());
-            }
-            else if (!textFinished && !cancelTyping)
-            {
-                cancelTyping = true;
+                cancelTyping = true; // 跳過打字動畫
             }
         }
-    }
-    // 讀取文本文件的字
-    void GetTextFromFile(TextAsset file)
-    {
-        textList.Clear();
-        index = 0;
-
-        var lineData = file.text.Split('\n');
-        foreach (var line in lineData)
-        {
-            textList.Add(line);
-        }
-    }
-    IEnumerator SetTextUI()
-    {
-        textFinished = false;
-        textLabel.text = "";
-
-        switch(textList[index].Trim().ToString())
-        {
-            case "A":
-                faceImage.sprite = face01;
-                index++;
-                break;
-            case "B":
-                faceImage.sprite = face02;
-                index++;
-                break;
-        }
-
-        int letter = 0;
-        while (!cancelTyping && letter < textList[index].Length -1)
-        {
-            textLabel.text += textList[index][letter];
-            letter++;
-            yield return new WaitForSeconds(textSpeed);
-        }
-        textLabel.text = textList[index];
-        cancelTyping = false;
-        textFinished = true;
-        index++;
     }
 }
