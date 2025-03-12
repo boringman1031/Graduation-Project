@@ -17,8 +17,11 @@ public class CharactorBase : MonoBehaviour,ISaveable
     [Header("當前數值")]
     public float MaxHealth;
     public float MaxPower;
-    public float CurrentHealth;
-    public float CurrentPower;
+    [HideInInspector]public float CurrentHealth;
+    [HideInInspector] public float CurrentPower;
+    public float healthRegenAmount; // 每次回復的生命值
+    public float healthRegenInterval; // 回血的時間間隔（秒）
+    private Coroutine regenCoroutine; // 用來存儲 Coroutine，確保不會多次啟動
 
     [Header("狀態")]
     public float SuperArmourTime;//霸體時間
@@ -33,7 +36,8 @@ public class CharactorBase : MonoBehaviour,ISaveable
     {
         newGameEvent.OnEventRaised += NewGame;
         ISaveable saveable = this;
-        saveable.RegisterSaveData();       
+        saveable.RegisterSaveData();
+        regenCoroutine = StartCoroutine(AutoRegenHealth());//自動回血
     }
     private void OnDisable()
     {
@@ -55,15 +59,13 @@ public class CharactorBase : MonoBehaviour,ISaveable
         {
             Debug.LogWarning("DataManager instance is null in OnDisable()");
         }
+      
+        if (regenCoroutine != null)  // 關閉自動回血
+        {
+            StopCoroutine(regenCoroutine);
+        }
     }
 
-    /*private void OnDisable()
-    {
-
-        newGameEvent.OnEventRaised -= NewGame;
-        ISaveable saveable = this;
-        saveable.UnRegisterSaveData();
-    }*/
     private void Update()
     {
         if (SuperArmour)
@@ -136,6 +138,20 @@ public class CharactorBase : MonoBehaviour,ISaveable
         }
     }
 
+    private IEnumerator AutoRegenHealth()//自動回血
+    {
+        while (true)
+        {
+            yield return new WaitForSeconds(healthRegenInterval); // 等待時間間隔
+            if (CurrentHealth < MaxHealth) // 如果血量未滿才回血
+            {
+                AddHealth(healthRegenAmount);
+                OnHealthChange?.Invoke(this);
+                Debug.Log($"玩家自動回血：+{healthRegenAmount}，當前血量：{CurrentHealth}/{MaxHealth}");
+            }
+        }
+    }
+
     public DataDefination GetDataID()//獲取ID
     {
         return  GetComponent<DataDefination>(); 
@@ -169,4 +185,5 @@ public class CharactorBase : MonoBehaviour,ISaveable
             OnHealthChange?.Invoke(this);//觸發血量改變事件
         }
     }
+
 }

@@ -139,7 +139,7 @@ public class EnemyBase : MonoBehaviour
         isHit = false;
     }
 
-    public void OnDead()
+    public virtual void OnDead()
     {
         gameObject.layer = 2;
         anim.SetBool("Dead", true);
