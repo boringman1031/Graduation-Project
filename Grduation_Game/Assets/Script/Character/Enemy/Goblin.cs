@@ -13,5 +13,6 @@ public class Goblin : EnemyBase
     public override void Move()
     {
         base.Move();
+        anim.SetBool("Run", true);
     }
 }
