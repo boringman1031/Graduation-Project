@@ -16,7 +16,6 @@ public class SceneLoader : MonoBehaviour, ISaveable
     public VoidEventSO openRandomCanvaEvent;//打開隨機挑戰面板
     public SceneLoadEventSO unLoadSceneEvent;//卸載場景事件
     public TransitionEventSO transitionEvent;
-    public VoidEventSO showDialogEvent;
 
     [Header("事件監聽")]
     public SceneLoadEventSO loadEventSO;//場景加載事件
