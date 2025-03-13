@@ -196,10 +196,7 @@ public class SceneLoader : MonoBehaviour, ISaveable
         playerTrans.position = positionToGo;
         playerTrans.gameObject.SetActive(true);
         isLoading = false;
-        if (currentLoadScene.sceneType == SceneType.Location ||
-                 currentLoadScene.sceneType == SceneType.Necessary ||
-                 currentLoadScene.sceneType == SceneType.Special ||
-                 currentLoadScene.sceneType == SceneType.Boss)
+        if (currentLoadScene.sceneType != SceneType.Menu)
         {
             saveDataEvent.RaiseEvent(); // 廣播:儲存加載遊戲事件
             afterSceneLoadedEvent.RaiseEvent(); // 廣播:已加載完成事件

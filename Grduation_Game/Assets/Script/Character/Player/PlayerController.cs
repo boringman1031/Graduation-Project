@@ -75,7 +75,7 @@ public class PlayerController : MonoBehaviour
     }
     private void OnLoadEvent(GameSceneSO sO, Vector3 vector, bool arg3)//場景加載時停止玩家控制
     {
-        playerInput.GamePlay.Disable();
+        playerInput.GamePlay.Disable();       
     }
     private void OnLoadDataEvent()//讀取遊戲進度事件
     {
@@ -87,7 +87,7 @@ public class PlayerController : MonoBehaviour
         playerInput.GamePlay.Enable();
     }
     public void Player_Move()
-    {
+    {       
         rb.velocity = new Vector2(inputDirection.x * Speed * Time.deltaTime, rb.velocity.y);
 
         //人物翻轉
