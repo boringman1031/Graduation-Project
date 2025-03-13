@@ -19,7 +19,6 @@ public class UIManager : MonoBehaviour
     public FloatEventSO syncMasterVolumeEvent;//同步主音量事件
     public FloatEventSO syncBGMVolumeEvent;
     public FloatEventSO syncFXVolumeEvent;
-    public VoidEventSO showDialogEvent; // 顯示對話框事件
 
     [Header("廣播事件")]
     public VoidEventSO pasueEvent;
@@ -69,7 +68,6 @@ public class UIManager : MonoBehaviour
         syncMasterVolumeEvent.OnEventRaised += OnSyncMasterVolumeEvent;
         syncBGMVolumeEvent.OnEventRaised += OnSyncBGMVolumeEvent;
         syncFXVolumeEvent.OnEventRaised += OnSyncFXVolumeEvent;
-        showDialogEvent.OnEventRaised += ShowDialog; // 顯示對話框
     }
 
     public void OnDisable()
@@ -83,7 +81,6 @@ public class UIManager : MonoBehaviour
         syncMasterVolumeEvent.OnEventRaised -= OnSyncMasterVolumeEvent;
         syncBGMVolumeEvent.OnEventRaised -= OnSyncBGMVolumeEvent;
         syncFXVolumeEvent.OnEventRaised -= OnSyncFXVolumeEvent;
-        showDialogEvent.OnEventRaised -= ShowDialog;
     }  
 
     private void ToggleRandomChallengeButton()//按下隨機挑戰按鈕觸發
@@ -156,9 +153,5 @@ public class UIManager : MonoBehaviour
     private void OnShowRandomCanvasEvents()//顯示隨機挑戰面板事件
     {
         RandomChallengePanel.SetActive(true);
-    }
-    private void ShowDialog()
-    {
-        DialogPanel.SetActive(true);
     }
 }

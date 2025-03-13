@@ -7,6 +7,9 @@ using UnityEngine.UI;
 
 public class DialogSystem : MonoBehaviour
 {
+    [Header("廣播")]
+    public VoidEventSO dialogEndEvent;
+
     [Header("UI組件")]
     public Text textLabel; // UI對話框文字組件
     public Image faceImage; // UI對話框頭像圖片
@@ -73,6 +76,7 @@ public class DialogSystem : MonoBehaviour
         }
 
         Panel.gameObject.SetActive(false); // 關閉對話框
+        dialogEndEvent.RaiseEvent();
     }
     // 按下 R 時，跳過逐字輸出，直接顯示完整句子
     void Update()
