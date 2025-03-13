@@ -82,7 +82,7 @@ public class CharactorBase : MonoBehaviour,ISaveable
         MaxHealth = Health + Defence;
         CurrentHealth = MaxHealth;
         CurrentPower = MaxPower;
-        OnHealthChange?.Invoke(this);
+        OnHealthChange?.Invoke(this);      
     }
     public void TakeDamage(Attack _attacker)//¨ü¨ì¶Ë®`§P©w
     {           

@@ -18,8 +18,7 @@ public class DataManager : MonoBehaviour
     {
         if (instance == null)
         {
-            instance = this;      
-            Debug.Log("DataManager ¥X²{¤F");
+            instance = this;                 
         }
         else
         {

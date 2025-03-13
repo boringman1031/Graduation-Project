@@ -196,15 +196,16 @@ public class SceneLoader : MonoBehaviour, ISaveable
         playerTrans.position = positionToGo;
         playerTrans.gameObject.SetActive(true);
         isLoading = false;
-        if (currentLoadScene.sceneType != SceneType.Menu)
+        if(currentLoadScene.sceneType != SceneType.Menu)
         {
-            saveDataEvent.RaiseEvent(); // 廣播:儲存加載遊戲事件
             afterSceneLoadedEvent.RaiseEvent(); // 廣播:已加載完成事件
+            //saveDataEvent.RaiseEvent(); // 廣播:儲存加載遊戲事件                    
         }
+        
         if (currentLoadScene == firstLoadScene)
         {
             FindObjectOfType<DialogManager>().StartDialog("FirstScene");
-        }
+        }   
     }
     public DataDefination GetDataID()
     {

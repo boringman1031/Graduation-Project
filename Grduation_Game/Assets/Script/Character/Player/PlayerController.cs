@@ -42,12 +42,12 @@ public class PlayerController : MonoBehaviour
         playerInput.GamePlay.Jump.started += Player_Jump;
         //攻擊事件
         playerInput.GamePlay.Attack.started += Player_Attack;
-        playerInput.Enable();
+       
 
     }
 
     private void OnEnable()
-    {
+    {      
         SceneloadEvent.LoadRequestEvent += OnLoadEvent;//場景加載時停止玩家控制
         afterSceneLoadEvent.OnEventRaised += OnAfterSceneLoadEvent;//場景加載完成開起玩家控制
         loadDataEvent.OnEventRaised += OnLoadDataEvent;//讀取遊戲進度事件
@@ -66,7 +66,7 @@ public class PlayerController : MonoBehaviour
     private void Update()
     {
         inputDirection = playerInput.GamePlay.Move.ReadValue<Vector2>();
-    }
+    } 
 
     private void FixedUpdate()
     {
@@ -75,7 +75,7 @@ public class PlayerController : MonoBehaviour
     }
     private void OnLoadEvent(GameSceneSO sO, Vector3 vector, bool arg3)//場景加載時停止玩家控制
     {
-        playerInput.GamePlay.Disable();       
+        playerInput.GamePlay.Disable();          
     }
     private void OnLoadDataEvent()//讀取遊戲進度事件
     {
@@ -84,7 +84,7 @@ public class PlayerController : MonoBehaviour
 
     private void OnAfterSceneLoadEvent()//場景加載完成開起玩家控制
     {
-        playerInput.GamePlay.Enable();
+        playerInput.GamePlay.Enable();     
     }
     public void Player_Move()
     {       
