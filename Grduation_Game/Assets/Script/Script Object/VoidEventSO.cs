@@ -10,5 +10,3 @@ public class VoidEventSO : ScriptableObject
         OnEventRaised?.Invoke();
     }
 }
-
-

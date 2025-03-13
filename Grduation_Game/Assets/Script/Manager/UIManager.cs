@@ -19,7 +19,7 @@ public class UIManager : MonoBehaviour
     public FloatEventSO syncMasterVolumeEvent;//同步主音量事件
     public FloatEventSO syncBGMVolumeEvent;
     public FloatEventSO syncFXVolumeEvent;
-    
+
     [Header("廣播事件")]
     public VoidEventSO pasueEvent;
     public VoidEventSO loadRandomSceneEvent; //隨機場景加載事件
@@ -31,6 +31,7 @@ public class UIManager : MonoBehaviour
     public GameObject GameInfoPanel;//遊戲資訊面板
     public GameObject GameStatPanel;//遊戲進度面板
     public GameObject GameSettingPanel;//遊戲設定面板
+    public GameObject DialogPanel;//對話框
 
     [Header("按鈕組件")]
     public GameObject restartButton;
@@ -153,5 +154,4 @@ public class UIManager : MonoBehaviour
     {
         RandomChallengePanel.SetActive(true);
     }
-
 }

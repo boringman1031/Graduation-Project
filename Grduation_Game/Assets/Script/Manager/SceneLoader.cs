@@ -204,6 +204,10 @@ public class SceneLoader : MonoBehaviour, ISaveable
             saveDataEvent.RaiseEvent(); // 廣播:儲存加載遊戲事件
             afterSceneLoadedEvent.RaiseEvent(); // 廣播:已加載完成事件
         }
+        if (currentLoadScene == firstLoadScene)
+        {
+            FindObjectOfType<DialogManager>().StartDialog("FirstScene");
+        }
     }
     public DataDefination GetDataID()
     {
