@@ -35,9 +35,9 @@ public class EnemyBase : MonoBehaviour
 
     [Header("計時器")]
     public float waitTime;//巡邏等待時間
+    public float lostTime;//追擊失敗等待時間
     [HideInInspector] public float waitTimeCounter;
-    [HideInInspector] public bool isWait; 
-    public float lostTime;
+    [HideInInspector] public bool isWait;  
     [HideInInspector] public float lostTimeCounter;
 
     private BaseState currentState;//當前狀態

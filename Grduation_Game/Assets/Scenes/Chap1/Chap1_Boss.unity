@@ -186,14 +186,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 15619002}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5784bebce0fa5854c91c490b0e07c097, type: 3}
+  m_Script: {fileID: 11500000, guid: 3efb9fbbd6265ed478df46fdceb14dbe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 1000
   anim: {fileID: 0}
   CameraShakeEvent: {fileID: 11400000, guid: 0cb12d4afdce4374d8143e7fa5c479d2, type: 2}
-  BossDeadEvent: {fileID: 11400000, guid: 8eff88c6c7ca8124b82fa0fd4b8dd951, type: 2}
+  BossDeadEvent: {fileID: 0}
   AttackBossEvent: {fileID: 11400000, guid: bade013f8edcf5741a75e76f9be0ee0d, type: 2}
+  maxHealth: 1000
 --- !u!1 &272249523
 GameObject:
   m_ObjectHideFlags: 0
@@ -42876,6 +42876,8 @@ MonoBehaviour:
   faceDir: {x: 0, y: 0, z: 0}
   attacker: {fileID: 0}
   HitForce: 0
+  attackRange: 0
+  attackCooldown: 0
   centerOffset: {x: 0, y: 0}
   checkSize: {x: 0, y: 0}
   checkDistance: 0
@@ -42885,9 +42887,9 @@ MonoBehaviour:
   isHit: 0
   isDead: 0
   waitTime: 0
+  lostTime: 0
   waitTimeCounter: 0
   isWait: 0
-  lostTime: 0
   lostTimeCounter: 0
   AttackBossEvent: {fileID: 11400000, guid: bade013f8edcf5741a75e76f9be0ee0d, type: 2}
 --- !u!1 &2082935268

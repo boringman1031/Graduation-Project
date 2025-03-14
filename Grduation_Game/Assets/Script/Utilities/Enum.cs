@@ -3,7 +3,10 @@ public enum NPCState
 {
     Patrol, Chase,Attack
 }
-
+public enum BossState
+{
+    Idle,Attack
+}
 public enum SceneType
 {
     //場景類型:地點,特殊,必要關卡,BOSS,主頁面
