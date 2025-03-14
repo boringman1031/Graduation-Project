@@ -5,7 +5,7 @@ public enum NPCState
 }
 public enum BossState
 {
-    Idle,Attack
+    Attack,Summon, Heart
 }
 public enum SceneType
 {

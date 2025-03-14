@@ -2,7 +2,7 @@
  ------------Bossª¬ºA¾÷--------*/
 public abstract class BossBaseState
 {
-    protected EnemyBase currentEnemy;
+    protected BossBase currentBoss;
     public abstract void OnEnter(BossBase boss);
     public abstract void LogicUpdate();
     public abstract void PhysicsUpdate();

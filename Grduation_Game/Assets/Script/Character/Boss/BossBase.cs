@@ -15,12 +15,13 @@ public class BossBase :MonoBehaviour
 
     [Header("°òÂ¦¼Æ­È")]
     public float maxHealth;
-    private float currentHealth;
+    [HideInInspector] public float currentHealth;
 
     private BossBaseState currentState;
-    private BossBaseState patrolState;
-    private BossBaseState chaseState;
-    private void Awake()
+    protected BossBaseState attackState;//§ðÀ»ª¬ºA
+    protected BossBaseState summonState;//¥l³êª¬ºA
+    protected BossBaseState HeartState;//¥l³ê¥i§ðÀ»·R¤ßª¬ºA
+    protected virtual void Awake()
     {
         anim = GetComponent<Animator>();
         currentHealth = maxHealth;
@@ -60,7 +61,10 @@ public class BossBase :MonoBehaviour
             Die();
         }
     }
-    
+    public virtual void OnAttack()//Boss§ðÀ»
+    {
+        anim.SetTrigger("Attack");
+    }
     public void Die()//Boss¦º¤`
     {
         BossDeadEvent.RaiseEvent();
@@ -70,7 +74,9 @@ public class BossBase :MonoBehaviour
     {
         var newState = _state switch//®Ú¾Ú²{¦³ª¬ºA¤Á´«¼Ä¤Hª¬ºA(switchªº»yªk¿}¼gªk)
         {
-           BossState.Idle => patrolState,      
+            BossState.Attack => attackState,
+            BossState.Summon => summonState,
+            BossState.Heart => HeartState,
             _ => null,
         };
         currentState.OnExit();
