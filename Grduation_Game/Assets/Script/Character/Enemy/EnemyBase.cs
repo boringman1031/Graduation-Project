@@ -20,6 +20,8 @@ public class EnemyBase : MonoBehaviour
     public Vector3 faceDir;//面向方向
     public Transform attacker;//攻擊者
     public float HitForce;//受傷擊退力度
+    public float attackRange;//攻擊範圍
+    public float attackCooldown; // 攻擊冷卻時間
 
     [Header("檢測")]
     public Vector2 centerOffset;//檢測中心點偏移
@@ -41,6 +43,7 @@ public class EnemyBase : MonoBehaviour
     private BaseState currentState;//當前狀態
     protected BaseState patrolState;//巡邏狀態
     protected BaseState chaseState;//追擊狀態
+    protected BaseState attackerState;//攻擊狀態
 
     protected virtual void Awake()
     {
@@ -54,6 +57,10 @@ public class EnemyBase : MonoBehaviour
     {
         currentState = patrolState;
         currentState.OnEnter(this);
+    }
+    private void OnDisable()
+    {
+        currentState.OnExit();
     }
     public void Update()
     {
@@ -69,53 +76,19 @@ public class EnemyBase : MonoBehaviour
     private void FixedUpdate()
     {
         if (!isHit & !isDead)
-            Move();
-        currentState.PhysicsUpdate();
+            OnMove();
+        //currentState.PhysicsUpdate();
     }
-    private void OnDisable()
-    {
-        currentState.OnExit();
-    }
-    public virtual void Move()
+   
+    public virtual void OnMove()
     {
         rb.velocity = new Vector2(currentSpeed * faceDir.x*Time.deltaTime, rb.velocity.y);
     }
-    public void TimeCounter()
-    {
-        if(isWait)
-        {
-            waitTimeCounter -= Time.deltaTime;
-            if(waitTimeCounter <= 0)
-            {
-                isWait = false;
-                waitTimeCounter = waitTime;
-                transform.localScale = new Vector3(faceDir.x, 10, 10);
-            }
-        }
-        if (!FindPlayer() && lostTimeCounter > 0)
-        {
-            lostTimeCounter -= Time.deltaTime;
-        }  
 
-    }
-    public bool FindPlayer()
+    public void OnAttack()
     {
-        return Physics2D.BoxCast(transform.position + (Vector3)centerOffset, checkSize, 0, faceDir, checkDistance, targetLayer);
+       
     }
-
-    public void SwitchState(NPCState _state)
-    {
-        var newState = _state switch//根據現有狀態切換敵人狀態(switch的語法糖寫法)
-        {
-            NPCState.Patrol => patrolState,
-            NPCState.Chase => chaseState,
-            _ => null,
-        };
-        currentState.OnExit();
-        currentState = newState;
-        currentState.OnEnter(this);
-    }
-    #region 事件執行方法
     public void OnTakeDamage(Transform attackTran)
     {
         attacker = attackTran;
@@ -146,12 +119,55 @@ public class EnemyBase : MonoBehaviour
         isDead = true;
         OnEnemyDied.Raise(this);
     }
-
-    public void DestroyAfterAnimation()
+    public void TimeCounter()
     {
-        Destroy(this.gameObject);
+        if(isWait)
+        {
+            waitTimeCounter -= Time.deltaTime;
+            if(waitTimeCounter <= 0)
+            {
+                isWait = false;
+                waitTimeCounter = waitTime;
+                transform.localScale = new Vector3(faceDir.x, 10, 10);
+            }
+        }
+        if (!FindPlayer() && lostTimeCounter > 0)
+        {
+            lostTimeCounter -= Time.deltaTime;
+        }  
+
     }
-    #endregion
+    public bool FindPlayer()
+    {
+        return Physics2D.BoxCast(transform.position + (Vector3)centerOffset, checkSize, 0, faceDir, checkDistance, targetLayer);
+    }
+
+    public bool PlayerInAttackRange()
+    {
+        // **獲取玩家位置**
+        Transform player = GameObject.FindGameObjectWithTag("Player")?.transform;
+        if (player == null) return false;
+
+        // **計算與玩家的距離**
+        float distance = Vector2.Distance(transform.position, player.position);
+
+        // **如果距離小於攻擊範圍，返回 `true`**
+        return distance <= attackRange;
+    }
+
+    public void SwitchState(NPCState _state)//切換狀態
+    {
+        var newState = _state switch//根據現有狀態切換敵人狀態(switch的語法糖寫法)
+        {
+            NPCState.Patrol => patrolState,
+            NPCState.Chase => chaseState,
+            NPCState.Attack => attackerState,
+            _ => null,
+        };
+        currentState.OnExit();
+        currentState = newState;
+        currentState.OnEnter(this);
+    }
 
     private void OnDrawGizmosSelected()
     {

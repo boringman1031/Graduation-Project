@@ -1,7 +1,7 @@
 /*-----by017--------*/
 public enum NPCState
 {
-    Patrol, Chase, Skill
+    Patrol, Chase,Attack
 }
 
 public enum SceneType
