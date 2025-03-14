@@ -10,9 +10,7 @@ public class AttackState : BaseState
     public override void OnEnter(EnemyBase enemy)
     {
         currentEnemy = enemy;
-        currentEnemy.currentSpeed = 0; // ¶i¤J§ðÀ»ª¬ºA®É°±¤î²¾°Ê       
-        Debug.Log("¶i¤J§ðÀ»ª¬ºA¡I");
-        currentEnemy.anim.SetTrigger("Attack");
+        currentEnemy.currentSpeed = 0; // ¶i¤J§ðÀ»ª¬ºA®É°±¤î²¾°Ê          
     }
 
     public override void LogicUpdate()
@@ -27,7 +25,6 @@ public class AttackState : BaseState
             float distance = Vector2.Distance(currentEnemy.transform.position, player.position);
             if (distance > currentEnemy.attackRange)
             {
-                Debug.Log(" ª±®aÂ÷¶}§ðÀ»½d³ò¡A¦^¨ì°lÀ»ª¬ºA");
                 currentEnemy.SwitchState(NPCState.Patrol);//¤Á´«¬°¨µÅÞª¬ºA
                 return;
             }
@@ -47,6 +44,6 @@ public class AttackState : BaseState
 
     public override void OnExit()
     {
-        Debug.Log(" Â÷¶}§ðÀ»ª¬ºA");
+
     }
 }

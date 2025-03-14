@@ -9,6 +9,7 @@ public class Goblin : EnemyBase
         base.Awake();
         patrolState = new PatrolState();
         chaseState = new ChaseState();
+        attackerState = new AttackState();
     }
     public override void OnMove()
     {

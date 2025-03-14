@@ -13,8 +13,7 @@ public class PatrolState : BaseState
     {
         //發現player進入追擊狀態
         if(currentEnemy.FindPlayer())
-        {
-            Debug.Log("發現player進入追擊狀態");
+        {         
             currentEnemy.SwitchState(NPCState.Chase);//切換為追擊狀態
         }
         if (!currentEnemy.physicsCheck.isGround || (currentEnemy.physicsCheck.touchLeftWall && currentEnemy.faceDir.x < 0) || (currentEnemy.physicsCheck.touchRightWall && currentEnemy.faceDir.x > 0))

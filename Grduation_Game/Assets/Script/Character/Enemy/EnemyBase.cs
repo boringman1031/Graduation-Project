@@ -77,7 +77,7 @@ public class EnemyBase : MonoBehaviour
     {
         if (!isHit & !isDead)
             OnMove();
-        //currentState.PhysicsUpdate();
+        currentState.PhysicsUpdate();
     }
    
     public virtual void OnMove()
