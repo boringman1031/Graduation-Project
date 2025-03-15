@@ -6,34 +6,41 @@ public class BossAttackState : BossBaseState
 {
     private float attackCooldown = 2.5f; // 攻擊冷卻時間
     private float lastAttackTime;
+    private bool hasSummoned = false; // 是否已經召喚過小怪
 
     public override void OnEnter(BossBase boss)
     {
         currentBoss = boss;
+        lastAttackTime = -attackCooldown;
         Debug.Log("Boss 進入攻擊狀態！");
-        lastAttackTime = -attackCooldown; // 讓 Boss 進入時立即攻擊
+
+        if (!currentBoss.CheckMinionsExist() && !hasSummoned)
+        {
+            Debug.Log("場景內沒有小怪，切換到召喚狀態！");
+            hasSummoned = true;
+            currentBoss.SwitchState(BossState.Summon);
+            return;
+        }
+
         currentBoss.OnAttack();
     }
 
     public override void LogicUpdate()
     {
-        if (Time.time >= lastAttackTime + attackCooldown)
-        {
-            lastAttackTime = Time.time;
-            currentBoss.OnAttack();
-        }
+        if (currentBoss.CheckMinionsExist()) return; // 如果場景內還有小怪，繼續攻擊
 
-        // **當 Boss 血量 ? 50%，切換到召喚狀態**
-        if (currentBoss.currentHealth <= currentBoss.maxHealth / 2)
+        // 如果小怪已經全部被擊敗，則生成愛心小怪
+        if (!hasSummoned)
         {
-            Debug.Log(" Boss 切換到召喚狀態！");
-            currentBoss.SwitchState(BossState.Summon);
+            hasSummoned = true;
+            Debug.Log("所有小怪已被擊敗，Boss 生成愛心小怪！");
+            currentBoss.SpawnHeartMinion();
         }
     }
 
     public override void PhysicsUpdate()
     {
-        // Boss 在攻擊狀態通常不會移動
+        
     }
 
     public override void OnExit()

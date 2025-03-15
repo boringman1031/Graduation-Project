@@ -19,8 +19,7 @@ public class BossBase :MonoBehaviour
 
     private BossBaseState currentState;
     protected BossBaseState attackState;//攻擊狀態
-    protected BossBaseState summonState;//召喚狀態
-    protected BossBaseState HeartState;//召喚可攻擊愛心狀態
+    protected BossBaseState summonState;//召喚狀態  
     protected virtual void Awake()
     {
         anim = GetComponent<Animator>();
@@ -64,6 +63,19 @@ public class BossBase :MonoBehaviour
     public virtual void OnAttack()//Boss攻擊
     {
         anim.SetTrigger("Attack");
+        Debug.Log("Boss 攻擊！");
+    }
+
+    public virtual void OnSummon()//Boss召喚
+    {
+        anim.SetTrigger("Summon");
+        Debug.Log("Boss 召喚！");
+    }
+
+    public virtual void SpawnHeartMinion()//生成愛心小怪
+    {
+        anim.SetTrigger("Heart");
+        Debug.Log("Boss 生成愛心小怪！");
     }
     public void Die()//Boss死亡
     {
@@ -75,12 +87,18 @@ public class BossBase :MonoBehaviour
         var newState = _state switch//根據現有狀態切換敵人狀態(switch的語法糖寫法)
         {
             BossState.Attack => attackState,
-            BossState.Summon => summonState,
-            BossState.Heart => HeartState,
+            BossState.Summon => summonState,      
             _ => null,
         };
         currentState.OnExit();
         currentState = newState;
         currentState.OnEnter(this);
+    }
+
+    public bool CheckMinionsExist()
+    {
+        //檢查場景內是否還有小怪
+        GameObject[] minions = GameObject.FindGameObjectsWithTag("Minion");
+        return minions.Length > 0; // 如果有小怪則返回 `true`，否則返回 `false`
     }
 }

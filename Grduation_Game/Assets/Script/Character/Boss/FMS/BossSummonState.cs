@@ -12,16 +12,17 @@ public class BossSummonState : BossBaseState
         currentBoss = boss;
         Debug.Log(" Boss 進入召喚狀態！");
         lastSummonTime = -summonCooldown; // 立即召喚
-        Summon();
+        currentBoss.OnSummon();
     }
 
     public override void LogicUpdate()
-    {
-        if (Time.time >= lastSummonTime + summonCooldown)
-        {
-            lastSummonTime = Time.time;
-            Summon();
-        }
+    {       
+        // **當小怪召喚後，切回攻擊狀態**
+        if (currentBoss.CheckMinionsExist()) return; // 如果場景內還有小怪，繼續召喚
+        
+        Debug.Log("小怪已召喚，切回攻擊狀態！");
+        currentBoss.SwitchState(BossState.Attack);
+
     }
 
     public override void PhysicsUpdate()
@@ -33,10 +34,5 @@ public class BossSummonState : BossBaseState
     {
        
     }
-
-    private void Summon()
-    {
-        Debug.Log(" Boss 召喚小怪！");
-        // **TODO：在這裡生成召喚物件**
-    }
+  
 }
