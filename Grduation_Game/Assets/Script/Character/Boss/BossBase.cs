@@ -68,13 +68,12 @@ public class BossBase :MonoBehaviour
 
     public virtual void OnSummon()//Boss召喚
     {
-        anim.SetTrigger("Summon");
-        Debug.Log("Boss 召喚！");
+        anim.SetTrigger("Summon");   
     }
 
     public virtual void SpawnHeartMinion()//生成愛心小怪
     {
-        anim.SetTrigger("Heart");
+        anim.SetTrigger("Hit");
         Debug.Log("Boss 生成愛心小怪！");
     }
     public void Die()//Boss死亡

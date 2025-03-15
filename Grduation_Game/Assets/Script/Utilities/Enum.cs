@@ -1,11 +1,11 @@
 /*-----by017--------*/
-public enum NPCState
+public enum EenemyState
 {
     Patrol, Chase,Attack
 }
 public enum BossState
 {
-    Attack,Summon, Heart
+    Attack,Summon
 }
 public enum SceneType
 {

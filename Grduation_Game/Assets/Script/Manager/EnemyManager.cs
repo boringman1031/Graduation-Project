@@ -10,12 +10,12 @@ public class EnemyManager : MonoBehaviour
     [Header("事件監聽")]
     public EnemyEventSO OnEnemyDied; // 當敵人死亡時的事件
 
-    private List<EnemyBase> enemies = new List<EnemyBase>(); // 儲存所有敵人
+    private List<GameObject> enemies = new List<GameObject>(); // 儲存所有敵人
 
     private void Start()
     {
         // 獲取所有場景中的敵人並加入列表
-        enemies.AddRange(FindObjectsOfType<EnemyBase>());    
+        enemies.AddRange(GameObject.FindGameObjectsWithTag("Enemy"));    
     }
 
     private void OnEnable()
@@ -33,7 +33,7 @@ public class EnemyManager : MonoBehaviour
     private void HandleEnemyDeath(EnemyBase enemy)
     {
         // 從列表中移除死亡的敵人
-        enemies.Remove(enemy);
+        enemies.Remove(enemy.gameObject);
         Debug.Log("敵人死亡，目前敵人數量：" + enemies.Count);
 
         // 如果敵人數量為0且場景不是主頁面，廣播事件

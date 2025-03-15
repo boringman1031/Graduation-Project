@@ -17,9 +17,10 @@ GameObject:
   - component: {fileID: 1528383856804366492}
   - component: {fileID: 2235936350942265241}
   - component: {fileID: 8650389129907776609}
+  - component: {fileID: 6748971523801933740}
   m_Layer: 8
   m_Name: Goblin
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -232,7 +233,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 738fbd9061b683045ba0c98447e8918e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  newGameEvent: {fileID: 0}
+  newGameEvent: {fileID: 11400000, guid: d9bb2d4100ded3d4f81459a40234d7c7, type: 2}
   Health: 100
   Defence: 100
   MaxHealth: 0
@@ -299,7 +300,6 @@ MonoBehaviour:
   HitForce: 5
   attackRange: 5
   attackCooldown: 1
-  lastAttackTime: 0
   centerOffset: {x: 1.1, y: 0}
   checkSize: {x: 1, y: 1}
   checkDistance: 5
@@ -309,9 +309,9 @@ MonoBehaviour:
   isHit: 0
   isDead: 0
   waitTime: 2
+  lostTime: 3
   waitTimeCounter: 0
   isWait: 0
-  lostTime: 3
   lostTimeCounter: 0
 --- !u!114 &8650389129907776609
 MonoBehaviour:
@@ -327,15 +327,27 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   manual: 1
   bottomOffeset: {x: -0.09, y: -1.81}
-  leftOffset: {x: -1.65, y: 0.03}
-  rightOffset: {x: 1.29, y: 0.03}
+  leftOffset: {x: -2.59, y: 0.03}
+  rightOffset: {x: 2.02, y: 0.03}
   groundLayer:
     serializedVersion: 2
     m_Bits: 64
-  checkRaduis: 0.5
+  checkRaduis: 0.3
   isGround: 0
   touchLeftWall: 0
   touchRightWall: 0
+--- !u!114 &6748971523801933740
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2643683139966739684}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f5e34014aba4dee49a9fc96aeeea836f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &6596131607397048672
 GameObject:
   m_ObjectHideFlags: 0

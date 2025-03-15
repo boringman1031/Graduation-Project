@@ -25,7 +25,7 @@ public class AttackState : BaseState
             float distance = Vector2.Distance(currentEnemy.transform.position, player.position);
             if (distance > currentEnemy.attackRange)
             {
-                currentEnemy.SwitchState(NPCState.Patrol);//¤Á´«¬°¨µÅÞª¬ºA
+                currentEnemy.SwitchState(EenemyState.Patrol);//¤Á´«¬°¨µÅÞª¬ºA
                 return;
             }
 

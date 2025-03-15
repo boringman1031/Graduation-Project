@@ -84,11 +84,6 @@ public class EnemyBase : MonoBehaviour
     {
         rb.velocity = new Vector2(currentSpeed * faceDir.x*Time.deltaTime, rb.velocity.y);
     }
-
-    public void OnAttack()
-    {
-       
-    }
     public void OnTakeDamage(Transform attackTran)
     {
         attacker = attackTran;
@@ -155,13 +150,13 @@ public class EnemyBase : MonoBehaviour
         return distance <= attackRange;
     }
 
-    public void SwitchState(NPCState _state)//¤Á´«ª¬ºA
+    public void SwitchState(EenemyState _state)//¤Á´«ª¬ºA
     {
         var newState = _state switch//®Ú¾Ú²{¦³ª¬ºA¤Á´«¼Ä¤Hª¬ºA(switchªº»yªk¿}¼gªk)
         {
-            NPCState.Patrol => patrolState,
-            NPCState.Chase => chaseState,
-            NPCState.Attack => attackerState,
+            EenemyState.Patrol => patrolState,
+            EenemyState.Chase => chaseState,
+            EenemyState.Attack => attackerState,
             _ => null,
         };
         currentState.OnExit();

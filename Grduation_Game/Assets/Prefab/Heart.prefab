@@ -194,7 +194,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 738fbd9061b683045ba0c98447e8918e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  newGameEvent: {fileID: 0}
+  newGameEvent: {fileID: 11400000, guid: d9bb2d4100ded3d4f81459a40234d7c7, type: 2}
   Health: 10
   Defence: 0
   MaxHealth: 0
@@ -210,10 +210,34 @@ MonoBehaviour:
       m_Calls: []
   OnTakeDamage:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 7494677470509398043}
+        m_TargetAssemblyTypeName: EnemyBase, Assembly-CSharp
+        m_MethodName: OnTakeDamage
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   OnDead:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 7494677470509398043}
+        m_TargetAssemblyTypeName: Heart, Assembly-CSharp
+        m_MethodName: OnDead
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &7494677470509398043
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -228,7 +252,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   anim: {fileID: 0}
   physicsCheck: {fileID: 0}
-  OnEnemyDied: {fileID: 0}
+  OnEnemyDied: {fileID: 11400000, guid: a3b57538ec29a424aaf1f95d5b36a418, type: 2}
   normalSpeed: 0
   chaseSpeed: 0
   currentSpeed: 0
@@ -242,7 +266,7 @@ MonoBehaviour:
   checkDistance: 0
   targetLayer:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 128
   isHit: 0
   isDead: 0
   waitTime: 0

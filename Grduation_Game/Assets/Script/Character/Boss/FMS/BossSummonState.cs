@@ -16,11 +16,9 @@ public class BossSummonState : BossBaseState
     }
 
     public override void LogicUpdate()
-    {       
-        // **當小怪召喚後，切回攻擊狀態**
+    {
         if (currentBoss.CheckMinionsExist()) return; // 如果場景內還有小怪，繼續召喚
-        
-        Debug.Log("小怪已召喚，切回攻擊狀態！");
+
         currentBoss.SwitchState(BossState.Attack);
 
     }
@@ -32,7 +30,7 @@ public class BossSummonState : BossBaseState
 
     public override void OnExit()
     {
-       
+
     }
-  
+
 }

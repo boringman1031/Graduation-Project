@@ -14,7 +14,7 @@ public class ChaseState : BaseState
     public override void LogicUpdate()//ÅÞ¿è§PÂ_
     {
         if (currentEnemy.lostTime > 0)
-            currentEnemy.SwitchState(NPCState.Patrol);//¤Á´«¬°¨µÅÞª¬ºA
+            currentEnemy.SwitchState(EenemyState.Patrol);//¤Á´«¬°¨µÅÞª¬ºA
         if (!currentEnemy.physicsCheck.isGround || (currentEnemy.physicsCheck.touchLeftWall && currentEnemy.faceDir.x < 0) || (currentEnemy.physicsCheck.touchRightWall && currentEnemy.faceDir.x > 0))
         {
             currentEnemy.transform.localScale =new Vector3(currentEnemy.faceDir.x, 1, 1);
@@ -23,7 +23,7 @@ public class ChaseState : BaseState
         if (currentEnemy.PlayerInAttackRange())//ª±®a¶i¤J§ðÀ»½d³ò
         {
             Debug.Log("ª±®a¶i¤J§ðÀ»½d³ò¡A¤Á´«¨ì `AttackState`¡I");
-            currentEnemy.SwitchState(NPCState.Attack);
+            currentEnemy.SwitchState(EenemyState.Attack);
             return;
         }
     }
