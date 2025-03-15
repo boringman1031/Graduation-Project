@@ -995,7 +995,7 @@ Camera:
   field of view: 60
   orthographic: 1
   orthographic size: 7
-  m_Depth: -1
+  m_Depth: -10
   m_CullingMask:
     serializedVersion: 2
     m_Bits: 4294967295
@@ -3231,6 +3231,10 @@ PrefabInstance:
       propertyPath: attackEffectPos
       value: 
       objectReference: {fileID: 1381779480}
+    - target: {fileID: 4910103218695575477, guid: 8fe606f421d465a43860c97bb139a223, type: 3}
+      propertyPath: DeadEffectPrefab
+      value: 
+      objectReference: {fileID: 6855314210357232287, guid: 7c2a9b83b809a0848915fabd9596b68b, type: 3}
     - target: {fileID: 4910103218695575477, guid: 8fe606f421d465a43860c97bb139a223, type: 3}
       propertyPath: attackEffectPrefab
       value: 

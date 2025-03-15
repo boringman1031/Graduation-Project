@@ -60,6 +60,7 @@
     <Analyzer Include="C:\遊戲製作\2022.3.36f1\Editor\Data\Tools\Unity.SourceGenerators\Unity.Properties.SourceGenerator.dll" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\GameResource\Editor\CFXEasyEditor.cs" />
     <Compile Include="Assets\Tool\Colourful Hierarchy Category GameObject\Editor\StyleHierarchy.cs" />
     <Compile Include="Assets\Tool\Colourful Hierarchy Category GameObject\Editor\ColorPalette.cs" />
     <Compile Include="Assets\Tool\LightRays2D\Editor\LightRays2DEditor.cs" />
@@ -1231,29 +1232,13 @@
       <Project>{BE71484C-3088-D8C4-BA05-CD443334A4CB}</Project>
       <Name>Assembly-CSharp</Name>
     </ProjectReference>
-    <ProjectReference Include="ToonyColorsPro.Demo.Editor.csproj">
-      <Project>{C5A4D2A3-E497-56F2-74BB-4004BAC70A19}</Project>
-      <Name>ToonyColorsPro.Demo.Editor</Name>
-    </ProjectReference>
-    <ProjectReference Include="KinoBloom.Runtime.csproj">
-      <Project>{7195A681-012C-FEBC-1743-CFFC1C51D6BE}</Project>
-      <Name>KinoBloom.Runtime</Name>
-    </ProjectReference>
     <ProjectReference Include="CFXRRuntime.csproj">
       <Project>{5AC90EF7-3FC1-BE81-0D0A-C9439C68D257}</Project>
       <Name>CFXRRuntime</Name>
     </ProjectReference>
-    <ProjectReference Include="CFXRDemo.csproj">
-      <Project>{248CFDA8-24C2-C4E9-5A51-15F979E7057C}</Project>
-      <Name>CFXRDemo</Name>
-    </ProjectReference>
     <ProjectReference Include="CFXREditor.csproj">
       <Project>{F39E46A4-5E92-4E68-357A-50E0837D66FC}</Project>
       <Name>CFXREditor</Name>
-    </ProjectReference>
-    <ProjectReference Include="CFXR.WelcomeScreen.csproj">
-      <Project>{48B55CBE-15C6-DD0D-FD5F-F5FC5B76AE44}</Project>
-      <Name>CFXR.WelcomeScreen</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

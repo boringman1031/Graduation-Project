@@ -6,8 +6,12 @@ using UnityEngine.ResourceManagement.AsyncOperations;
 
 public class Chap1_Boss : BossBase
 {
+    [Header("小怪預製體")]
     public string minionPrefabAddress = "Goblin"; //暫時使用Goblin代替小怪
-    public string HeartPrefabAddress = "Heart"; 
+    public string HeartPrefabAddress = "Heart";
+
+    [Header("特效")]
+    public GameObject attackEffectPrefab;//攻擊特效
     protected override void Awake()
     {
         base.Awake();
@@ -19,7 +23,7 @@ public class Chap1_Boss : BossBase
         base.OnAttack();
         if (currentHealth > maxHealth / 2)
         {
-            //TODO:生成攻擊1特效
+            Instantiate(attackEffectPrefab, transform.position, Quaternion.identity);
         }
         else
         {

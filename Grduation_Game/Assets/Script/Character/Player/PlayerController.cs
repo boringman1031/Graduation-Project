@@ -26,8 +26,9 @@ public class PlayerController : MonoBehaviour
     public float jampforce = 16.5f;
     public float Hurtforce;//玩家受到傷害擊退力
 
-    [Header("攻擊特效")]
+    [Header("特效")]
     public GameObject attackEffectPrefab;//攻擊特效
+    public GameObject DeadEffectPrefab;//死亡特效
     public Transform attackEffectPos;//攻擊特效生成位置
 
     [Header("玩家狀態")]
@@ -127,6 +128,10 @@ public class PlayerController : MonoBehaviour
         Instantiate(attackEffectPrefab, attackEffectPos.position, Quaternion.identity);
     }
 
+    public void Player_DeadEffect()//死亡特效生成
+    {
+        Instantiate(DeadEffectPrefab, transform.position, Quaternion.identity);
+    }
     #region  以下為在UnityEvent中執行部分
     public void Player_GetHurt(Transform _attacker)//受傷擊飛
     {
