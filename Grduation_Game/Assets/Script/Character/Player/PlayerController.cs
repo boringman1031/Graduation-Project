@@ -26,6 +26,10 @@ public class PlayerController : MonoBehaviour
     public float jampforce = 16.5f;
     public float Hurtforce;//玩家受到傷害擊退力
 
+    [Header("攻擊特效")]
+    public GameObject attackEffectPrefab;//攻擊特效
+    public Transform attackEffectPos;//攻擊特效生成位置
+
     [Header("玩家狀態")]
     public bool ishurt;//是否受傷
     public bool isDead;//是否死亡
@@ -114,10 +118,14 @@ public class PlayerController : MonoBehaviour
     {
         if (!physicsCheck.isGround)
             return;
-        playerAnimation.OnPlayerAttack();
+        playerAnimation.OnPlayerAttack();    
         isAttack = true;
     }
 
+    public void Player_AttackEffect()//攻擊特效生成
+    {
+        Instantiate(attackEffectPrefab, attackEffectPos.position, Quaternion.identity);
+    }
 
     #region  以下為在UnityEvent中執行部分
     public void Player_GetHurt(Transform _attacker)//受傷擊飛

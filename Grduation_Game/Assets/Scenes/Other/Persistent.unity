@@ -1019,7 +1019,7 @@ Transform:
   m_GameObject: {fileID: 519420028}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -8.85, y: -61.39, z: -9.756523}
+  m_LocalPosition: {x: -8.85, y: -61.39, z: -10}
   m_LocalScale: {x: 1.5747333, y: 1.5598755, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1076,7 +1076,7 @@ MonoBehaviour:
   m_RequiresOpaqueTextureOption: 2
   m_CameraType: 0
   m_Cameras: []
-  m_RendererIndex: -1
+  m_RendererIndex: 0
   m_VolumeLayerMask:
     serializedVersion: 2
     m_Bits: 1
@@ -2003,6 +2003,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1368654270}
   m_CullTransparentMesh: 1
+--- !u!4 &1381779480 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3330766820233445855, guid: 8fe606f421d465a43860c97bb139a223, type: 3}
+  m_PrefabInstance: {fileID: 1767499847}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1433767371
 GameObject:
   m_ObjectHideFlags: 0
@@ -2693,7 +2698,7 @@ Transform:
   m_GameObject: {fileID: 1742691487}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -8.85, y: -61.39, z: -9.756523}
+  m_LocalPosition: {x: -8.85, y: -61.39, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -2819,6 +2824,10 @@ PrefabInstance:
       value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 618363585568518696, guid: 8fe606f421d465a43860c97bb139a223, type: 3}
+      propertyPath: healthRegenInterval
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 618363585568518696, guid: 8fe606f421d465a43860c97bb139a223, type: 3}
       propertyPath: OnTakeDamage.m_PersistentCalls.m_Calls.Array.size
       value: 3
       objectReference: {fileID: 0}
@@ -2940,7 +2949,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1344896546113029617, guid: 8fe606f421d465a43860c97bb139a223, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.24347681
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1344896546113029617, guid: 8fe606f421d465a43860c97bb139a223, type: 3}
       propertyPath: m_LocalRotation.w
@@ -3218,6 +3227,14 @@ PrefabInstance:
       propertyPath: jampforce
       value: 16.5
       objectReference: {fileID: 0}
+    - target: {fileID: 4910103218695575477, guid: 8fe606f421d465a43860c97bb139a223, type: 3}
+      propertyPath: attackEffectPos
+      value: 
+      objectReference: {fileID: 1381779480}
+    - target: {fileID: 4910103218695575477, guid: 8fe606f421d465a43860c97bb139a223, type: 3}
+      propertyPath: attackEffectPrefab
+      value: 
+      objectReference: {fileID: 5880797563127281583, guid: 265d3a5ba69981a4698ceabcedf368b0, type: 3}
     - target: {fileID: 4960079392592588373, guid: 8fe606f421d465a43860c97bb139a223, type: 3}
       propertyPath: m_Layer
       value: 7
