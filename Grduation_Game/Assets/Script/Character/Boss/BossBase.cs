@@ -15,15 +15,23 @@ public class BossBase :MonoBehaviour
 
     [Header("基礎數值")]
     public float maxHealth;
-    [HideInInspector] public float currentHealth;
+    public float currentHealth;
+
+    [Header("狀態")]
+    public bool isSummonMinion;   
+    public float SuperArmourTime;//霸體時間
+    private float SuperArmourTimeCounter;//霸體時間計數器
+    public bool SuperArmour;//是否在霸體狀態
 
     private BossBaseState currentState;
     protected BossBaseState attackState;//攻擊狀態
     protected BossBaseState summonState;//召喚狀態  
+    protected BossBaseState summonHeartState;
     protected virtual void Awake()
     {
         anim = GetComponent<Animator>();
         currentHealth = maxHealth;
+        isSummonMinion = false;
     }
 
     private void OnEnable()
@@ -42,6 +50,14 @@ public class BossBase :MonoBehaviour
     private void Update()
     {
         currentState.LogicUpdate();
+        if (SuperArmour)
+        {
+            SuperArmourTimeCounter -= Time.deltaTime;
+            if (SuperArmourTimeCounter <= 0)
+            {
+                SuperArmour = false;
+            }
+        }
     }
 
     private void FixedUpdate()
@@ -54,28 +70,43 @@ public class BossBase :MonoBehaviour
     }
     public void OnTakeDamage()//Boss受到傷害
     {
-        anim.SetTrigger("Hit");
-        currentHealth -= 100;           
-        if (currentHealth <= 0)
+        if(SuperArmour)
+        {
+            return;
+        }  
+        if(currentHealth > 0)
+        {
+            anim.SetTrigger("Hit");
+            currentHealth -= 10;
+            TriggerSuperArmour();
+            Debug.Log("Boss受到傷害，當前血量：" + currentHealth);
+        }     
+        else
         {
             Die();
         }
     }
+    private void TriggerSuperArmour()//觸發霸體
+    {
+        if (!SuperArmour)
+        {
+            SuperArmour = true;
+            SuperArmourTimeCounter = SuperArmourTime;
+        }
+    }
     public virtual void OnAttack()//Boss攻擊
     {
-        anim.SetTrigger("Attack");
-        Debug.Log("Boss 攻擊！");
+        anim.SetTrigger("Attack");      
     }
 
     public virtual void OnSummon()//Boss召喚
     {
-        anim.SetTrigger("Summon");   
+        anim.SetTrigger("Summon");     
     }
 
     public virtual void SpawnHeartMinion()//生成愛心小怪
     {
-        anim.SetTrigger("Hit");
-        Debug.Log("Boss 生成愛心小怪！");
+        anim.SetTrigger("Hit");          
     }
     public void Die()//Boss死亡
     {
@@ -87,7 +118,8 @@ public class BossBase :MonoBehaviour
         var newState = _state switch//根據現有狀態切換敵人狀態(switch的語法糖寫法)
         {
             BossState.Attack => attackState,
-            BossState.Summon => summonState,      
+            BossState.Summon => summonState,
+            BossState.SummonHeart => summonHeartState,
             _ => null,
         };
         currentState.OnExit();
@@ -97,8 +129,17 @@ public class BossBase :MonoBehaviour
 
     public bool CheckMinionsExist()
     {
-        //檢查場景內是否還有小怪
+        // 檢查場景內是否還有小怪
         GameObject[] minions = GameObject.FindGameObjectsWithTag("Enemy");
-        return minions.Length > 0; // 如果有小怪則返回 `true`，否則返回 `false`
+        bool hasMinions = minions.Length > 0;     
+        return hasMinions; // 如果有小怪則返回 `true`，否則返回 `false`
+    }
+
+    public bool CheckHeartMinionsExist()
+    {
+        // 檢查場景內是否還有愛心小怪
+        GameObject[] heartMinions = GameObject.FindGameObjectsWithTag("Heart");
+        bool hasHeartMinions = heartMinions.Length > 0;    
+        return hasHeartMinions; // 如果有愛心小怪則返回 `true`，否則返回 `false`
     }
 }

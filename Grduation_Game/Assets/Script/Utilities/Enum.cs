@@ -5,7 +5,7 @@ public enum EenemyState
 }
 public enum BossState
 {
-    Attack,Summon
+    Attack,Summon, SummonHeart
 }
 public enum SceneType
 {

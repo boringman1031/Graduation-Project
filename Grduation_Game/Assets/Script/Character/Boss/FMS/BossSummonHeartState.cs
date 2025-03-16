@@ -2,15 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BossSummonState : BossBaseState
+public class BossSummonHeartState : BossBaseState
 {
-    private float summonCooldown = 3f; // 召喚冷卻時間
+    private float summonCooldown = 3f;
     private float summonStartTime;
     private bool hasSummoned;
 
     public override void OnEnter(BossBase boss)
     {
-        currentBoss = boss;        
+        currentBoss = boss;      
         summonStartTime = Time.time;
         hasSummoned = false;
     }
@@ -23,13 +23,12 @@ public class BossSummonState : BossBaseState
         }
 
         if (!hasSummoned)
-        {          
-            currentBoss.OnSummon();
+        {         
+            currentBoss.SpawnHeartMinion();
             hasSummoned = true;
-            currentBoss.isSummonMinion = true; // **設定為已召喚**
         }
 
-        if (currentBoss.CheckMinionsExist())
+        if (currentBoss.CheckHeartMinionsExist())
         {          
             currentBoss.SwitchState(BossState.Attack);
         }
@@ -40,7 +39,7 @@ public class BossSummonState : BossBaseState
     }
 
     public override void OnExit()
-    {
-      
+    {       
+        currentBoss.isSummonMinion = false; // **重置 `isSummonMinion`，確保可以再召喚普通小怪**
     }
 }

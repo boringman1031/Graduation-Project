@@ -33,13 +33,11 @@ public class EnemyManager : MonoBehaviour
     private void HandleEnemyDeath(EnemyBase enemy)
     {
         // 從列表中移除死亡的敵人
-        enemies.Remove(enemy.gameObject);
-        Debug.Log("敵人死亡，目前敵人數量：" + enemies.Count);
+        enemies.Remove(enemy.gameObject);   
 
         // 如果敵人數量為0且場景不是主頁面，廣播事件
         if (enemies.Count == 0)
-        {
-            Debug.Log("所有敵人已被擊敗，廣播事件通知 UIManager");
+        {         
             onAllEnemiesDefeated.RaiseEvent();
         }
     }

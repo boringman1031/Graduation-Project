@@ -185,7 +185,9 @@ public class SceneLoader : MonoBehaviour, ISaveable
 
     private void OnOpenRandomCanvasEvent()//當場景中所有敵人被擊敗時通知UIManager
     {
-        if (currentLoadScene.sceneType != SceneType.Menu)
+        if (currentLoadScene.sceneType != SceneType.Menu&& 
+            currentLoadScene.sceneType != SceneType.Chap1_Boss&&
+            currentLoadScene.sceneType != SceneType.Chap1_Necessary)
         {
             openRandomCanvaEvent.RaiseEvent();
         }
@@ -198,15 +200,15 @@ public class SceneLoader : MonoBehaviour, ISaveable
         isLoading = false;
         if(currentLoadScene.sceneType != SceneType.Menu)
         {
+            //根據場景類型播放對應的對話
+            if (currentLoadScene.sceneType == SceneType.Chap1_School)
+            {
+                FindObjectOfType<DialogManager>().StartDialog("FirstScene");
+            }
             afterSceneLoadedEvent.RaiseEvent(); // 廣播:已加載完成事件
             //saveDataEvent.RaiseEvent(); // 廣播:儲存加載遊戲事件                    
         }
-
-        //根據場景類型播放對應的對話
-        if (currentLoadScene.sceneType != SceneType.Chap1_School)
-        {
-            FindObjectOfType<DialogManager>().StartDialog("FirstScene");
-        }   
+       
     }
     public DataDefination GetDataID()
     {
