@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class BossAttackState : BossBaseState
 {
-    private float attackCooldown = 3.5f; // 攻擊冷卻時間
+    private float attackCooldown = 20f; // 攻擊冷卻時間
     private float lastAttackTime;
     private bool hasSummoned = false; // 是否已經召喚過小怪
 

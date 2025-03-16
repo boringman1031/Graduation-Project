@@ -11,6 +11,8 @@ public class Chap1_Boss : BossBase
     public string HeartPrefabAddress = "Heart";
 
     [Header("特效")]
+    public Transform attackEffectSpawnPoint;//攻擊特效生成位置
+    public GameObject AttackWarningEffect;//攻擊預警特效
     public GameObject attackEffectPrefab;//攻擊特效
     protected override void Awake()
     {
@@ -18,19 +20,34 @@ public class Chap1_Boss : BossBase
         attackState = new BossAttackState();
         summonState = new BossSummonState();
     }
-    public override void OnAttack()
+   
+    public void OnAttackEffect()//在動畫某階段生成攻擊特效
     {
-        base.OnAttack();
+        int effectCount = 5; // 控制特效的數量
+        float spacing = 20f; // 控制特效之間的間距
+
         if (currentHealth > maxHealth / 2)
         {
-            Instantiate(attackEffectPrefab, transform.position, Quaternion.identity);
+            for (int i = -effectCount / 2; i <= effectCount / 2; i++)
+            {
+                Vector3 spawnPosition = attackEffectSpawnPoint.position + new Vector3(i * spacing, 0, 0);
+                Instantiate(AttackWarningEffect, spawnPosition, Quaternion.identity);
+                // 延遲後生成攻擊特效
+                StartCoroutine(SpawnAttackEffectWithDelay(spawnPosition, 1.0f));
+            }
+            Debug.Log("生成攻擊2特效");
         }
         else
         {
             //TODO:生成攻擊2特效
+            Debug.Log("生成攻擊2特效");
         }
     }
-
+    private IEnumerator SpawnAttackEffectWithDelay(Vector3 position, float delay)
+    {
+        yield return new WaitForSeconds(delay); // 等待 delay 秒
+        Instantiate(attackEffectPrefab, position, Quaternion.identity);     
+    }
     public override void OnSummon()
     {
         base.OnSummon();
@@ -43,7 +60,7 @@ public class Chap1_Boss : BossBase
     {
         if (obj.Status == AsyncOperationStatus.Succeeded)
         {
-            obj.Result.tag = "Minion";
+            obj.Result.tag = "Enemy";
             Debug.Log("召喚魚塘的魚成功！");
         }
         else
@@ -64,7 +81,7 @@ public class Chap1_Boss : BossBase
     {
         if (obj.Status == AsyncOperationStatus.Succeeded)
         {
-            obj.Result.tag = "HeartMinion";
+            obj.Result.tag = "Heart";
             Debug.Log("愛心生成成功！");
         }
         else

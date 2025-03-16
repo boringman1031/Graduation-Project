@@ -28,6 +28,7 @@ public class BossBase :MonoBehaviour
 
     private void OnEnable()
     {
+        currentState = attackState;
         currentState.OnEnter(this);
         AttackBossEvent.OnEventRaised += OnTakeDamage;
     }
@@ -47,9 +48,9 @@ public class BossBase :MonoBehaviour
     {
         currentState.PhysicsUpdate();
     }
-    public void OnShow()//Boss出場
+    public void OnShakeCamera()//相機震動
     {
-        CameraShakeEvent.RaiseEvent();//相機震動
+        CameraShakeEvent.RaiseEvent();
     }
     public void OnTakeDamage()//Boss受到傷害
     {
@@ -97,7 +98,7 @@ public class BossBase :MonoBehaviour
     public bool CheckMinionsExist()
     {
         //檢查場景內是否還有小怪
-        GameObject[] minions = GameObject.FindGameObjectsWithTag("Minion");
+        GameObject[] minions = GameObject.FindGameObjectsWithTag("Enemy");
         return minions.Length > 0; // 如果有小怪則返回 `true`，否則返回 `false`
     }
 }
