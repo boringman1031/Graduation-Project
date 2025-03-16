@@ -77,7 +77,7 @@ public class BossBase :MonoBehaviour
         if(currentHealth > 0)
         {
             anim.SetTrigger("Hit");
-            currentHealth -= 10;
+            currentHealth -= 100;
             TriggerSuperArmour();
             Debug.Log("Boss受到傷害，當前血量：" + currentHealth);
         }     
