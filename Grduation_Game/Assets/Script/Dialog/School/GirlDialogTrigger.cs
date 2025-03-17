@@ -4,11 +4,13 @@ using UnityEngine;
 
 public class GirlDialogTrigger : MonoBehaviour
 {
+    bool isTalk = false;
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("Player"))
+        if (collision.CompareTag("Player") && isTalk)
         {
             DialogManager.Instance.StartDialog("FirstScene_meetGirl");
+            isTalk = false;
         }    
 
     }
