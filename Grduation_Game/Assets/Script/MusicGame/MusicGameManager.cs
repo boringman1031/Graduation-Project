@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class MusicGameManager : MonoBehaviour
 {  
+    public AudioSource theMusic;    
     public bool startPlaying;
 
     public BeatScroller theBS;
@@ -21,7 +22,7 @@ public class MusicGameManager : MonoBehaviour
             {
                 startPlaying = true;
                 theBS.hasStarted = true;
-                GetComponent<AudioDefination>().PlayAudioClip();
+                theMusic.Play();
             }
         }
     }
