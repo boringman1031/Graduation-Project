@@ -117,6 +117,7 @@ public class SceneLoader : MonoBehaviour, ISaveable
             {
                 sceneToLoad = randomScene;
                 challengeCount++; // 增加挑戰次數
+                Debug.Log($"進入{sceneToLoad.GetType()}，還剩{challengeCount}次挑戰");
                 loadEventSO.RaiseLoadRequestEvent(sceneToLoad, firstPosition, true);
             }
             else
