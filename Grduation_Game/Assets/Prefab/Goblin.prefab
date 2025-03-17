@@ -17,9 +17,10 @@ GameObject:
   - component: {fileID: 1528383856804366492}
   - component: {fileID: 2235936350942265241}
   - component: {fileID: 8650389129907776609}
-  m_Layer: 8
+  - component: {fileID: 6748971523801933740}
+  m_Layer: 11
   m_Name: Goblin
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -32,14 +33,14 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2643683139966739684}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: -1, z: 0, w: 0}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 65.3, y: -11.4, z: -3.639625}
   m_LocalScale: {x: 10, y: 10, z: 10}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 6696455016889472771}
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: -180, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &4378603455709032668
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -155,7 +156,7 @@ BoxCollider2D:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 384
+    m_Bits: 3200
   m_LayerOverridePriority: 0
   m_ForceSendLayers:
     serializedVersion: 2
@@ -200,7 +201,7 @@ CapsuleCollider2D:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 256
+    m_Bits: 0
   m_LayerOverridePriority: 10
   m_ForceSendLayers:
     serializedVersion: 2
@@ -232,14 +233,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 738fbd9061b683045ba0c98447e8918e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  newGameEvent: {fileID: 0}
+  newGameEvent: {fileID: 11400000, guid: d9bb2d4100ded3d4f81459a40234d7c7, type: 2}
   Health: 100
   Defence: 100
   MaxHealth: 0
   MaxPower: 0
   CurrentHealth: 0
   CurrentPower: 0
-  SuperArmourTime: 0
+  healthRegenAmount: 0
+  healthRegenInterval: 0
+  SuperArmourTime: 5
   SuperArmour: 0
   OnHealthChange:
     m_PersistentCalls:
@@ -295,18 +298,20 @@ MonoBehaviour:
   faceDir: {x: 0, y: 0, z: 0}
   attacker: {fileID: 0}
   HitForce: 5
+  attackRange: 5
+  attackCooldown: 1
   centerOffset: {x: 1.1, y: 0}
   checkSize: {x: 1, y: 1}
   checkDistance: 5
   targetLayer:
     serializedVersion: 2
-    m_Bits: 128
+    m_Bits: 1024
   isHit: 0
   isDead: 0
   waitTime: 2
+  lostTime: 3
   waitTimeCounter: 0
   isWait: 0
-  lostTime: 3
   lostTimeCounter: 0
 --- !u!114 &8650389129907776609
 MonoBehaviour:
@@ -322,15 +327,27 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   manual: 1
   bottomOffeset: {x: -0.09, y: -1.81}
-  leftOffset: {x: -1.65, y: 0.03}
-  rightOffset: {x: 1.29, y: 0.03}
+  leftOffset: {x: -2.59, y: 0.03}
+  rightOffset: {x: 2.02, y: 0.03}
   groundLayer:
     serializedVersion: 2
     m_Bits: 64
-  checkRaduis: 0.5
+  checkRaduis: 0.3
   isGround: 0
   touchLeftWall: 0
   touchRightWall: 0
+--- !u!114 &6748971523801933740
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2643683139966739684}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f5e34014aba4dee49a9fc96aeeea836f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &6596131607397048672
 GameObject:
   m_ObjectHideFlags: 0
@@ -342,7 +359,7 @@ GameObject:
   - component: {fileID: 6696455016889472771}
   - component: {fileID: 4810200008171803125}
   - component: {fileID: 3016641908641080738}
-  m_Layer: 8
+  m_Layer: 11
   m_Name: Goblin AttackArea
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -394,7 +411,7 @@ PolygonCollider2D:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 2048
   m_LayerOverridePriority: 0
   m_ForceSendLayers:
     serializedVersion: 2
@@ -404,7 +421,7 @@ PolygonCollider2D:
     m_Bits: 4294967295
   m_ContactCaptureLayers:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 1024
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295

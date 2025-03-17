@@ -39,8 +39,6 @@ public class UIManager : MonoBehaviour
     public Button GameStatButton;//遊戲進度按鈕
     public Button GameSettingButton;//遊戲設定按鈕
     public Button RandomChallengeButton1;//隨機挑戰1按鈕
-    public Button RandomChallengeButton2;//隨機挑戰2按鈕
-    public Button RandomChallengeButton3;//隨機挑戰3按鈕
 
     [Header("音量控制組件")]
     public Slider MasterSlider;//主音量
@@ -52,9 +50,7 @@ public class UIManager : MonoBehaviour
         GameInfoButton.onClick.AddListener(ToggleGameInfoPanel);
         GameStatButton.onClick.AddListener(ToggleGameStatPanel);
         GameSettingButton.onClick.AddListener(ToggleGameSettingPanel);
-        RandomChallengeButton1.onClick.AddListener(ToggleRandomChallengeButton);
-        RandomChallengeButton2.onClick.AddListener(ToggleRandomChallengeButton);
-        RandomChallengeButton3.onClick.AddListener(ToggleRandomChallengeButton);
+        RandomChallengeButton1.onClick.AddListener(ToggleRandomChallengeButton);    
     }
 
     public void OnEnable()

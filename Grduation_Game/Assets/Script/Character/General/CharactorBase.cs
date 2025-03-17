@@ -82,7 +82,7 @@ public class CharactorBase : MonoBehaviour,ISaveable
         MaxHealth = Health + Defence;
         CurrentHealth = MaxHealth;
         CurrentPower = MaxPower;
-        OnHealthChange?.Invoke(this);
+        OnHealthChange?.Invoke(this);      
     }
     public void TakeDamage(Attack _attacker)//受到傷害判定
     {           
@@ -139,15 +139,14 @@ public class CharactorBase : MonoBehaviour,ISaveable
     }
 
     private IEnumerator AutoRegenHealth()//自動回血
-    {
+    {    
         while (true)
         {
             yield return new WaitForSeconds(healthRegenInterval); // 等待時間間隔
             if (CurrentHealth < MaxHealth) // 如果血量未滿才回血
             {
                 AddHealth(healthRegenAmount);
-                OnHealthChange?.Invoke(this);
-                Debug.Log($"玩家自動回血：+{healthRegenAmount}，當前血量：{CurrentHealth}/{MaxHealth}");
+                OnHealthChange?.Invoke(this);              
             }
         }
     }

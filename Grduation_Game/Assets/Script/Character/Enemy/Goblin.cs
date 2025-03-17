@@ -9,10 +9,11 @@ public class Goblin : EnemyBase
         base.Awake();
         patrolState = new PatrolState();
         chaseState = new ChaseState();
+        attackerState = new AttackState();
     }
-    public override void Move()
+    public override void OnMove()
     {
-        base.Move();
+        base.OnMove();
         anim.SetBool("Run", true);
     }
 }
