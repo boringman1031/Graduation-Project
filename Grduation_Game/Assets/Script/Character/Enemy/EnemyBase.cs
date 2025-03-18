@@ -10,9 +10,6 @@ public class EnemyBase : MonoBehaviour
     [HideInInspector] public Animator anim;
     [HideInInspector] public PhysicsCheck physicsCheck;
 
-    [Header("事件廣播")]
-    public EnemyEventSO OnEnemyDied;
-
     [Header("基礎數值")]
     public float normalSpeed;
     public float chaseSpeed;
@@ -112,7 +109,8 @@ public class EnemyBase : MonoBehaviour
         gameObject.layer = 2;
         anim.SetBool("Dead", true);
         isDead = true;
-        OnEnemyDied.Raise(this);
+        // **在死亡時通知 EnemyManager，而不是所有敵人**
+        FindObjectOfType<EnemyManager>()?.HandleEnemyDeath(this.gameObject);
     }
     public void TimeCounter()
     {

@@ -7,37 +7,33 @@ public class EnemyManager : MonoBehaviour
 {
     [Header("事件廣播")]
     public VoidEventSO onAllEnemiesDefeated; // 當所有敵人被擊敗時的事件
-    [Header("事件監聽")]
-    public EnemyEventSO OnEnemyDied; // 當敵人死亡時的事件
 
     private List<GameObject> enemies = new List<GameObject>(); // 儲存所有敵人
 
-    private void Start()
-    {
-        // 獲取所有場景中的敵人並加入列表
-        enemies.AddRange(GameObject.FindGameObjectsWithTag("Enemy"));    
-    }
-
     private void OnEnable()
     {
-        // 訂閱敵人死亡事件
-        OnEnemyDied.OnEventRaised += HandleEnemyDeath;
+        enemies.AddRange(GameObject.FindGameObjectsWithTag("Enemy")); // 找到所有敵人
+        Debug.Log($"當前場景敵人數量: {enemies.Count}");
+    }
+    public void RegisterEnemy(GameObject enemy)
+    {
+        if (!enemies.Contains(enemy))
+        {
+            enemies.Add(enemy);
+        }
     }
 
-    private void OnDisable()
+    public void HandleEnemyDeath(GameObject enemy)
     {
-        // 取消訂閱敵人死亡事件
-        OnEnemyDied.OnEventRaised -= HandleEnemyDeath;
-    }
+        if (enemies.Contains(enemy))
+        {
+            enemies.Remove(enemy);
+            Debug.Log($"敵人死亡，剩餘敵人數量: {enemies.Count}");
+        }
 
-    private void HandleEnemyDeath(EnemyBase enemy)
-    {
-        // 從列表中移除死亡的敵人
-        enemies.Remove(enemy.gameObject);   
-
-        // 如果敵人數量為0且場景不是主頁面，廣播事件
         if (enemies.Count == 0)
-        {         
+        {
+            Debug.Log("所有敵人已被擊敗，廣播事件！");
             onAllEnemiesDefeated.RaiseEvent();
         }
     }

@@ -116,9 +116,9 @@ public class SceneLoader : MonoBehaviour, ISaveable
             if (randomScene != null)
             {
                 sceneToLoad = randomScene;
-                challengeCount++; // 增加挑戰次數
-                Debug.Log($"進入{sceneToLoad.GetType()}，還剩{challengeCount}次挑戰");
+                challengeCount++; // 增加挑戰次數            
                 loadEventSO.RaiseLoadRequestEvent(sceneToLoad, firstPosition, true);
+                Debug.Log($"進入{currentLoadScene.sceneName}，還剩{challengeCount}次挑戰");
             }
             else
             {
@@ -187,8 +187,8 @@ public class SceneLoader : MonoBehaviour, ISaveable
     private void OnOpenRandomCanvasEvent()//當場景中所有敵人被擊敗時通知UIManager
     {
         if (currentLoadScene.sceneType != SceneType.Menu&& 
-            currentLoadScene.sceneType != SceneType.Chap1_Boss&&
-            currentLoadScene.sceneType != SceneType.Chap1_Necessary)
+            currentLoadScene.sceneType != SceneType.Necessary&&
+            currentLoadScene.sceneType != SceneType.Boss)
         {
             openRandomCanvaEvent.RaiseEvent();
         }
@@ -199,10 +199,10 @@ public class SceneLoader : MonoBehaviour, ISaveable
         playerTrans.position = positionToGo;
         playerTrans.gameObject.SetActive(true);
         isLoading = false;
-        if(currentLoadScene.sceneType != SceneType.Menu)
+        if(currentLoadScene.sceneName != SceneName.Menu)
         {
             //根據場景類型播放對應的對話
-            if (currentLoadScene.sceneType == SceneType.Chap1_School)
+            if (currentLoadScene.sceneName == SceneName.Chap1_School)
             {
                 FindObjectOfType<DialogManager>().StartDialog("FirstScene");
             }
