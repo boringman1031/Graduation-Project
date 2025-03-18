@@ -15,6 +15,7 @@ public class UIManager : MonoBehaviour
     public VoidEventSO loadDataEvent;
     public VoidEventSO gameOverEvent;
     public VoidEventSO backToMenuEvent;
+    public VoidEventSO PortalEvent;//隨機場景加載事件
     public VoidEventSO openRandomCanvaEvent;//顯示隨機挑戰面板事件
     public FloatEventSO syncMasterVolumeEvent;//同步主音量事件
     public FloatEventSO syncBGMVolumeEvent;
@@ -28,6 +29,7 @@ public class UIManager : MonoBehaviour
     public PlayerStatBar playerStatBar;//玩家狀態條(血條、能量條)
     public GameObject GameOverPanel;//遊戲結束面板
     public GameObject RandomChallengePanel;//隨機挑戰面板
+    public GameObject GOToBossScenePanel;//進入Boss場景面板
     public GameObject GameInfoPanel;//遊戲資訊面板
     public GameObject GameStatPanel;//遊戲進度面板
     public GameObject GameSettingPanel;//遊戲設定面板
@@ -60,10 +62,12 @@ public class UIManager : MonoBehaviour
         loadDataEvent.OnEventRaised += OnLoadDataEvent;//讀取遊戲進度事件
         gameOverEvent.OnEventRaised += OnGameOverEvent;//遊戲結束事件
         backToMenuEvent.OnEventRaised +=OnLoadDataEvent;//返回主選單事件
-        openRandomCanvaEvent.OnEventRaised+=OnShowRandomCanvasEvents;//顯示隨機挑戰面板事件
+        openRandomCanvaEvent.OnEventRaised+=OnShowRandomPanelEvents;//顯示隨機挑戰面板事件
+        PortalEvent.OnEventRaised += OnShowGoToBossScenePanelEvent;//顯示進入Boss場景面板事件
         syncMasterVolumeEvent.OnEventRaised += OnSyncMasterVolumeEvent;
         syncBGMVolumeEvent.OnEventRaised += OnSyncBGMVolumeEvent;
         syncFXVolumeEvent.OnEventRaised += OnSyncFXVolumeEvent;
+       
     }
 
     public void OnDisable()
@@ -73,11 +77,12 @@ public class UIManager : MonoBehaviour
         loadDataEvent.OnEventRaised -= OnLoadDataEvent;
         gameOverEvent.OnEventRaised -= OnGameOverEvent;
         backToMenuEvent.OnEventRaised -= OnLoadDataEvent;
-        openRandomCanvaEvent.OnEventRaised -= OnShowRandomCanvasEvents;
+        openRandomCanvaEvent.OnEventRaised -= OnShowRandomPanelEvents;
+        PortalEvent.OnEventRaised -= OnShowGoToBossScenePanelEvent;
         syncMasterVolumeEvent.OnEventRaised -= OnSyncMasterVolumeEvent;
         syncBGMVolumeEvent.OnEventRaised -= OnSyncBGMVolumeEvent;
         syncFXVolumeEvent.OnEventRaised -= OnSyncFXVolumeEvent;
-    }  
+    }
 
     private void ToggleRandomChallengeButton()//按下隨機挑戰按鈕觸發
     {
@@ -146,8 +151,13 @@ public class UIManager : MonoBehaviour
        EventSystem.current.SetSelectedGameObject(restartButton);
     }
 
-    private void OnShowRandomCanvasEvents()//顯示隨機挑戰面板事件
+    private void OnShowRandomPanelEvents()//顯示隨機挑戰面板事件
     {
         RandomChallengePanel.SetActive(true);
+    }
+
+    private void OnShowGoToBossScenePanelEvent()
+    {
+        GOToBossScenePanel.SetActive(true);
     }
 }

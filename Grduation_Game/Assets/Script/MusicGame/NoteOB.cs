@@ -3,7 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class NoteOB : MonoBehaviour
-{ 
+{
+    [Header("¼s¼½¨Æ¥ó")]
+    public VoidEventSO onNoteHit;
+    public VoidEventSO onNoteMiss;
+
     public bool canBePressed;
 
     public KeyCode keyToPress;
@@ -16,7 +20,7 @@ public class NoteOB : MonoBehaviour
             if (canBePressed)
             {
                 gameObject.SetActive(false);
-                GetComponent<MusicGameManager>().NoteHit();
+                onNoteHit.OnEventRaised();
             }
         }
     }
@@ -35,7 +39,7 @@ public class NoteOB : MonoBehaviour
         if (other.tag == "Activator"&&gameObject.activeSelf)
         {
             canBePressed = false;
-            GetComponent<MusicGameManager>().NoteMiss();
+            onNoteMiss.OnEventRaised();
         }
     }
 }

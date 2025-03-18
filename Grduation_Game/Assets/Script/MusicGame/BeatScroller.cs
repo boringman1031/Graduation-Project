@@ -14,16 +14,10 @@ public class BeatScroller : MonoBehaviour
 
     private void Update()
     {
-        if (!hasStarted)
+        if (hasStarted)
         {
-           /*if(Input.anyKeyDown)
-            {
-                hasStarted = true;
-            }*/
+            transform.position -= new Vector3(beatTempo * Time.deltaTime, 0f, 0f);
         }
-        else
-        {
-            transform.position -= new Vector3(beatTempo * Time.deltaTime,0f, 0f);
-        }
+        
     }
 }
