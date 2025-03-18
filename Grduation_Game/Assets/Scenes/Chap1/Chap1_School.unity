@@ -132,7 +132,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 902276948186166809, guid: 04cd4c4d5270fad438d49208ff1f91e1, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 48
+      value: 40.1
       objectReference: {fileID: 0}
     - target: {fileID: 902276948186166809, guid: 04cd4c4d5270fad438d49208ff1f91e1, type: 3}
       propertyPath: m_LocalPosition.y
@@ -170,9 +170,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2235936350942265241, guid: 04cd4c4d5270fad438d49208ff1f91e1, type: 3}
+      propertyPath: OnEnemiesActivateEvent
+      value: 
+      objectReference: {fileID: 11400000, guid: 5313967e52908ba4d92cc66bac504bb1, type: 2}
     - target: {fileID: 2643683139966739684, guid: 04cd4c4d5270fad438d49208ff1f91e1, type: 3}
       propertyPath: m_Name
       value: Goblin (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 2643683139966739684, guid: 04cd4c4d5270fad438d49208ff1f91e1, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -56250,7 +56258,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 902276948186166809, guid: 04cd4c4d5270fad438d49208ff1f91e1, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 40.6
+      value: 45.2
       objectReference: {fileID: 0}
     - target: {fileID: 902276948186166809, guid: 04cd4c4d5270fad438d49208ff1f91e1, type: 3}
       propertyPath: m_LocalPosition.y
@@ -56292,6 +56300,10 @@ PrefabInstance:
       propertyPath: newGameEvent
       value: 
       objectReference: {fileID: 11400000, guid: d9bb2d4100ded3d4f81459a40234d7c7, type: 2}
+    - target: {fileID: 2235936350942265241, guid: 04cd4c4d5270fad438d49208ff1f91e1, type: 3}
+      propertyPath: OnEnemiesActivateEvent
+      value: 
+      objectReference: {fileID: 11400000, guid: 5313967e52908ba4d92cc66bac504bb1, type: 2}
     - target: {fileID: 2643683139966739684, guid: 04cd4c4d5270fad438d49208ff1f91e1, type: 3}
       propertyPath: m_Name
       value: Goblin
@@ -56528,7 +56540,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 675392669}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -56578,7 +56590,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 12, y: 12}
+  m_Size: {x: 24.62, y: 12}
   m_EdgeRadius: 0
 --- !u!114 &675392672
 MonoBehaviour:
@@ -56592,6 +56604,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2b171730f72d9984fbc82fe22650072b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Enemy: {fileID: 692192742}
+  dialogEndEvent: {fileID: 11400000, guid: 9b0030f4733054648b442de17490fdb0, type: 2}
+  OnEnemiesActivateEvent: {fileID: 11400000, guid: 5313967e52908ba4d92cc66bac504bb1, type: 2}
+  tutorialAttackEvent: {fileID: 11400000, guid: c0e7d0811cffe8741964ed73e6a23eb7, type: 2}
 --- !u!1 &692192742
 GameObject:
   m_ObjectHideFlags: 0
@@ -58365,7 +58381,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -7552582706839291426, guid: aea25918703e9024cb57b5e7557cab89, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 71
+      value: 47.3
       objectReference: {fileID: 0}
     - target: {fileID: -7552582706839291426, guid: aea25918703e9024cb57b5e7557cab89, type: 3}
       propertyPath: m_LocalPosition.y
@@ -58381,15 +58397,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -7552582706839291426, guid: aea25918703e9024cb57b5e7557cab89, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: -7552582706839291426, guid: aea25918703e9024cb57b5e7557cab89, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: -7552582706839291426, guid: aea25918703e9024cb57b5e7557cab89, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: -7552582706839291426, guid: aea25918703e9024cb57b5e7557cab89, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x

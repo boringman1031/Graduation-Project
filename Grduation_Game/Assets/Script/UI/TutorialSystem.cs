@@ -45,7 +45,7 @@ public class TutorialSystem : MonoBehaviour
         tutorialMoveEvent.OnEventRaised -= ShowMoveTutorial;
         tutorialJumpEvent.OnEventRaised -= ShowJumpTutorial;
         tutorialAttackEvent.OnEventRaised -= ShowAttackTutorial;
-        dialogEndEvent.OnEventRaised += OnDialogEnd;
+        dialogEndEvent.OnEventRaised -= OnDialogEnd;
     }
     void OnDialogEnd()
     {
