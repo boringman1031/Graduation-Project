@@ -15,7 +15,7 @@ public class MusicGameManager : MonoBehaviour
     public Transform effectPos;
 
     [Header("音樂控制")]
-    public bool startPlaying;
+    public bool startPlaying=false;
     public BeatScroller beatScroller;
     public AudioDefination audioDefination;
     public float songOffset = 0f; // 音樂開始時間
@@ -103,23 +103,26 @@ public class MusicGameManager : MonoBehaviour
 
     private IEnumerator SpawnNotes()
     {
-        // 等待音樂開始
+        // **等待音樂開始**
         while (!startPlaying)
         {
             yield return null;
         }
 
-        float startTime = Time.time; // **音樂開始時才記錄時間**
+        float songStartTime = Time.time; // **音樂開始的時間點**
+        float audioStartTime = songStartTime - songOffset; // **考慮偏移時間**
 
         foreach (var note in beatMap)
         {
-            float waitTime = note.time - (Time.time - startTime); // **計算音符何時生成**
+            float noteTime = note.time; // 音符的時間
+            float waitTime = noteTime - (Time.time - audioStartTime); // **計算正確的等待時間**
+
             if (waitTime > 0)
             {
                 yield return new WaitForSeconds(waitTime);
             }
 
-            SpawnNote(note);
+            SpawnNote(note); // 生成音符
         }
     }
 

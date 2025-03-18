@@ -5,15 +5,15 @@ using UnityEngine;
 
 public class AudioDefination : MonoBehaviour
 {
-   public PlayAudioEventSO playAudioEvent;
-
+    public PlayAudioEventSO playAudioEvent;
+  
     public AudioClip audioClip;
 
     public bool playOnEnable;
 
     public void OnEnable()
     {
-        if(playOnEnable)
+        if (playOnEnable)
         {
             PlayAudioClip();
         }
@@ -23,5 +23,5 @@ public class AudioDefination : MonoBehaviour
     {
         playAudioEvent.RaiseEvent(audioClip);
     }
-
+   
 }
