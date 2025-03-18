@@ -103,24 +103,23 @@ public class MusicGameManager : MonoBehaviour
 
     private IEnumerator SpawnNotes()
     {
-        yield return new WaitForSeconds(songOffset); // 等待音樂開始時間
-
-        if (audioDefination == null || audioDefination.audioClip == null)
+        // 等待音樂開始
+        while (!startPlaying)
         {
-            Debug.LogError("AudioDefination 或 audioClip 未設定！");
-            yield break;
+            yield return null;
         }
 
-        float startTime = Time.time; // 記錄開始時間
+        float startTime = Time.time; // **音樂開始時才記錄時間**
+
         foreach (var note in beatMap)
         {
-            float waitTime = note.time - (Time.time - startTime); // 計算應該等待的時間
+            float waitTime = note.time - (Time.time - startTime); // **計算音符何時生成**
             if (waitTime > 0)
             {
-                yield return new WaitForSeconds(waitTime); // 讓音符按照時間間隔生成
+                yield return new WaitForSeconds(waitTime);
             }
 
-            SpawnNote(note); // 生成音符
+            SpawnNote(note);
         }
     }
 
