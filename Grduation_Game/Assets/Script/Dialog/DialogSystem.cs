@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using Cinemachine;
-using UnityEditor.Search;
 
 // DialogSystem 只用來顯示對話
 

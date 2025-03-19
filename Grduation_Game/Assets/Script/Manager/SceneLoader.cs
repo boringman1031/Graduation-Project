@@ -199,17 +199,19 @@ public class SceneLoader : MonoBehaviour, ISaveable
         playerTrans.position = positionToGo;
         playerTrans.gameObject.SetActive(true);
         isLoading = false;
-        if(currentLoadScene.sceneName != SceneName.Menu)
+ 
+        //根據場景類型播放對應的對話
+        if (currentLoadScene.sceneName == SceneName.Chap1_School)
         {
-            //根據場景類型播放對應的對話
-            if (currentLoadScene.sceneName == SceneName.Chap1_School)
-            {
-                FindObjectOfType<DialogManager>().StartDialog("FirstScene");
-            }
-            afterSceneLoadedEvent.RaiseEvent(); // 廣播:已加載完成事件
-            //saveDataEvent.RaiseEvent(); // 廣播:儲存加載遊戲事件                    
+            FindObjectOfType<DialogManager>().StartDialog("FirstScene");
         }
-       
+        else if (currentLoadScene.sceneName == SceneName.Chap1_Cafe)
+        {
+            FindObjectOfType<DialogManager>().StartDialog("Cafe");
+        }    
+        
+        afterSceneLoadedEvent.RaiseEvent(); // 廣播:已加載完成事件
+        //saveDataEvent.RaiseEvent(); // 廣播:儲存加載遊戲事件                                                       
     }
     public DataDefination GetDataID()
     {
