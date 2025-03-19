@@ -10,6 +10,12 @@ public class EnemyBase : MonoBehaviour
     [HideInInspector] public Animator anim;
     [HideInInspector] public PhysicsCheck physicsCheck;
 
+    [Header("事件監聽")]
+    public VoidEventSO OnEnemiesActivateEvent;
+
+    [Header("事件廣播")]
+    public EnemyEventSO OnEnemyDied;
+
     [Header("基礎數值")]
     public float normalSpeed;
     public float chaseSpeed;
@@ -41,23 +47,40 @@ public class EnemyBase : MonoBehaviour
     protected BaseState patrolState;//巡邏狀態
     protected BaseState chaseState;//追擊狀態
     protected BaseState attackerState;//攻擊狀態
-
+    [HideInInspector] public BaseState idleState;//空閒狀態
     protected virtual void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
         physicsCheck = GetComponent<PhysicsCheck>();
         currentSpeed = normalSpeed;
+
+        // 初始化所有狀態
+        patrolState = new PatrolState();
+        chaseState = new ChaseState();
+        attackerState = new AttackState();
+        idleState = new IdleState(); // 新增空閒狀態
     }
 
     private void OnEnable()
     {
-        currentState = patrolState;
+        // 訂閱敵人激活事件
+        OnEnemiesActivateEvent.OnEventRaised += SwitchToPatrol;
+
+        // 初始狀態為 IdleState
+        currentState = idleState;
         currentState.OnEnter(this);
     }
     private void OnDisable()
     {
+        // 取消訂閱事件
+        OnEnemiesActivateEvent.OnEventRaised -= SwitchToPatrol;
+
         currentState.OnExit();
+    }
+    private void SwitchToPatrol()
+    {
+        SwitchState(EenemyState.Patrol); // 切換到巡邏狀態
     }
     public void Update()
     {
@@ -109,8 +132,7 @@ public class EnemyBase : MonoBehaviour
         gameObject.layer = 2;
         anim.SetBool("Dead", true);
         isDead = true;
-        // **在死亡時通知 EnemyManager，而不是所有敵人**
-        FindObjectOfType<EnemyManager>()?.HandleEnemyDeath(this.gameObject);
+        OnEnemyDied.Raise(this);
     }
     public void TimeCounter()
     {

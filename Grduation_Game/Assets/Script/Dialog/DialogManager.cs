@@ -7,6 +7,8 @@ using UnityEngine.SceneManagement;
 // 透過 StartDialog 來開始對話，不同腳本都能簡單呼叫。
 public class DialogManager : MonoBehaviour
 {
+    [SerializeField] private SceneLoadedEventSO sceneLoadedEvent;
+
     public static DialogManager Instance { get; private set; } // Singleton 實例
 
     public DialogData dialogData;  // 當前使用的 DialogData
@@ -39,17 +41,20 @@ public class DialogManager : MonoBehaviour
     // 場景加載後重新查找 DialogSystem
     private void OnEnable()
     {
-        SceneManager.sceneLoaded += OnSceneLoaded;
+        sceneLoadedEvent.OnSceneLoaded += OnSceneLoaded;
     }
 
     private void OnDisable()
     {
-        SceneManager.sceneLoaded -= OnSceneLoaded;
+        sceneLoadedEvent.OnSceneLoaded -= OnSceneLoaded;
     }
 
-    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    private void OnSceneLoaded(GameSceneSO scene)
     {
-        FindDialogSystem(); // 重新查找 DialogSystem
+        if (!string.IsNullOrEmpty(scene.dialogKey))
+        {
+            StartDialog(scene.dialogKey);
+        }
     }
     public void StartDialog(string key)
     {

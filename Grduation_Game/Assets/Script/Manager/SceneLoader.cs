@@ -16,6 +16,7 @@ public class SceneLoader : MonoBehaviour, ISaveable
     public VoidEventSO openRandomCanvaEvent;//打開隨機挑戰面板
     public SceneLoadEventSO unLoadSceneEvent;//卸載場景事件
     public TransitionEventSO transitionEvent;
+    public SceneLoadedEventSO sceneLoadedEvent;
 
     [Header("事件監聽")]
     public SceneLoadEventSO loadEventSO;//場景加載事件
@@ -116,9 +117,9 @@ public class SceneLoader : MonoBehaviour, ISaveable
             if (randomScene != null)
             {
                 sceneToLoad = randomScene;
-                challengeCount++; // 增加挑戰次數            
+                challengeCount++; // 增加挑戰次數
+                Debug.Log($"進入{sceneToLoad.GetType()}，還剩{challengeCount}次挑戰");
                 loadEventSO.RaiseLoadRequestEvent(sceneToLoad, firstPosition, true);
-                Debug.Log($"進入{currentLoadScene.sceneName}，還剩{challengeCount}次挑戰");
             }
             else
             {
@@ -187,8 +188,8 @@ public class SceneLoader : MonoBehaviour, ISaveable
     private void OnOpenRandomCanvasEvent()//當場景中所有敵人被擊敗時通知UIManager
     {
         if (currentLoadScene.sceneType != SceneType.Menu&& 
-            currentLoadScene.sceneType != SceneType.Necessary&&
-            currentLoadScene.sceneType != SceneType.Boss)
+            currentLoadScene.sceneType != SceneType.Chap1_Boss&&
+            currentLoadScene.sceneType != SceneType.Chap1_Necessary)
         {
             openRandomCanvaEvent.RaiseEvent();
         }
@@ -199,19 +200,13 @@ public class SceneLoader : MonoBehaviour, ISaveable
         playerTrans.position = positionToGo;
         playerTrans.gameObject.SetActive(true);
         isLoading = false;
- 
-        //根據場景類型播放對應的對話
-        if (currentLoadScene.sceneName == SceneName.Chap1_School)
+        if(currentLoadScene.sceneType != SceneType.Menu)
         {
-            FindObjectOfType<DialogManager>().StartDialog("FirstScene");
+            sceneLoadedEvent.RaiseEvent(currentLoadScene);// 觸發帶場景參數的新事件 對話系統使用
+            afterSceneLoadedEvent.RaiseEvent(); // 廣播:已加載完成事件
+            //saveDataEvent.RaiseEvent(); // 廣播:儲存加載遊戲事件
         }
-        else if (currentLoadScene.sceneName == SceneName.Chap1_Cafe)
-        {
-            FindObjectOfType<DialogManager>().StartDialog("Cafe");
-        }    
-        
-        afterSceneLoadedEvent.RaiseEvent(); // 廣播:已加載完成事件
-        //saveDataEvent.RaiseEvent(); // 廣播:儲存加載遊戲事件                                                       
+       
     }
     public DataDefination GetDataID()
     {

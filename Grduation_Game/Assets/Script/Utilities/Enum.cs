@@ -25,3 +25,11 @@ public enum PersistentType
 {
     ReadWrite, DontPersistence
 }
+public enum TutorialType
+{
+    None,           // 無教學
+    Move,           // 移動教學
+    Jump,           // 跳躍教學
+    Attack,         // 攻擊教學
+    MusicGame       // 音樂遊戲教學
+}
