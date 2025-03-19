@@ -3,6 +3,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static UnityEngine.EventSystems.EventTrigger;
 
 public class EnemyBase : MonoBehaviour
 {
@@ -132,7 +133,7 @@ public class EnemyBase : MonoBehaviour
         gameObject.layer = 2;
         anim.SetBool("Dead", true);
         isDead = true;
-        OnEnemyDied.Raise(this);
+        FindObjectOfType<EnemyManager>()?.HandleEnemyDeath(gameObject);
     }
     public void TimeCounter()
     {
