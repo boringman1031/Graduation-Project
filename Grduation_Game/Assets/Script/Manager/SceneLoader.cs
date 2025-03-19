@@ -16,6 +16,7 @@ public class SceneLoader : MonoBehaviour, ISaveable
     public VoidEventSO openRandomCanvaEvent;//打開隨機挑戰面板
     public SceneLoadEventSO unLoadSceneEvent;//卸載場景事件
     public TransitionEventSO transitionEvent;
+    public SceneLoadedEventSO sceneLoadedEvent;
 
     [Header("事件監聽")]
     public SceneLoadEventSO loadEventSO;//場景加載事件
@@ -201,13 +202,9 @@ public class SceneLoader : MonoBehaviour, ISaveable
         isLoading = false;
         if(currentLoadScene.sceneType != SceneType.Menu)
         {
-            //根據場景類型播放對應的對話
-            if (currentLoadScene.sceneType == SceneType.Chap1_School)
-            {
-                FindObjectOfType<DialogManager>().StartDialog("FirstScene");
-            }
+            sceneLoadedEvent.RaiseEvent(currentLoadScene);// 觸發帶場景參數的新事件 對話系統使用
             afterSceneLoadedEvent.RaiseEvent(); // 廣播:已加載完成事件
-            //saveDataEvent.RaiseEvent(); // 廣播:儲存加載遊戲事件                    
+            //saveDataEvent.RaiseEvent(); // 廣播:儲存加載遊戲事件
         }
        
     }
