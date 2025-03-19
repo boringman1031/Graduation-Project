@@ -188,8 +188,8 @@ public class SceneLoader : MonoBehaviour, ISaveable
     private void OnOpenRandomCanvasEvent()//當場景中所有敵人被擊敗時通知UIManager
     {
         if (currentLoadScene.sceneType != SceneType.Menu&& 
-            currentLoadScene.sceneType != SceneType.Chap1_Boss&&
-            currentLoadScene.sceneType != SceneType.Chap1_Necessary)
+            currentLoadScene.sceneType != SceneType.Boss&&
+            currentLoadScene.sceneType != SceneType.Necessary)
         {
             openRandomCanvaEvent.RaiseEvent();
         }
