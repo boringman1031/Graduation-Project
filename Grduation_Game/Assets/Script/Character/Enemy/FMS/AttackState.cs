@@ -10,7 +10,8 @@ public class AttackState : BaseState
     public override void OnEnter(EnemyBase enemy)
     {
         currentEnemy = enemy;
-        currentEnemy.currentSpeed = 0; // 進入攻擊狀態時停止移動          
+        currentEnemy.currentSpeed = 0; // 進入攻擊狀態時停止移動
+        Debug.Log("進入攻擊狀態");
     }
 
     public override void LogicUpdate()

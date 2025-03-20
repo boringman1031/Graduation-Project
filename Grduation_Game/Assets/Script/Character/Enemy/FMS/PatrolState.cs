@@ -8,6 +8,7 @@ public class PatrolState : BaseState
     {
         currentEnemy = _enemy;
         currentEnemy.currentSpeed = currentEnemy.normalSpeed;//¤Á´«¬°¨µÅÞ³t«×
+        Debug.Log("¶i¤J¨µÅÞª¬ºA");
     }
     public override void LogicUpdate()//ÅÞ¿è§PÂ_
     {
@@ -15,6 +16,7 @@ public class PatrolState : BaseState
         if(currentEnemy.FindPlayer())
         {         
             currentEnemy.SwitchState(EenemyState.Chase);//¤Á´«¬°°lÀ»ª¬ºA
+            Debug.Log("µo²{player¶i¤J°lÀ»ª¬ºA");
         }
         if (!currentEnemy.physicsCheck.isGround || (currentEnemy.physicsCheck.touchLeftWall && currentEnemy.faceDir.x < 0) || (currentEnemy.physicsCheck.touchRightWall && currentEnemy.faceDir.x > 0))
         {

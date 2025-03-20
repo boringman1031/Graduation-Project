@@ -15,6 +15,7 @@ public class DialogSystem : MonoBehaviour
     public Text textLabel; // UI對話框文字組件
     public Image faceImage; // UI對話框頭像圖片
     public Image Panel;
+    public Button SkipButton; // 繼續按鈕
 
     [Header("Cinemachine 鏡頭")]
     public CinemachineVirtualCamera defaultCamera; // 預設鏡頭
@@ -35,6 +36,7 @@ public class DialogSystem : MonoBehaviour
     private void OnEnable()
     {
         textFinished = true;
+        SkipButton.onClick.AddListener(onSkipButtonClick);
     }
     // 設置並顯示對話
     public void SetDialog(DialogData.DialogEntry dialogEntry)
@@ -117,14 +119,13 @@ public class DialogSystem : MonoBehaviour
         defaultCamera.Priority = 10; // 提高預設鏡頭的優先級
     }
     // 按下 R 時，跳過逐字輸出，直接顯示完整句子
-    void Update()
+    
+    public void onSkipButtonClick()
     {
-        if (Input.GetKeyDown(KeyCode.R))
+        if (!textFinished)
         {
-            if (!textFinished)
-            {
-                cancelTyping = true; // 跳過打字動畫
-            }
+            cancelTyping = true; // 跳過打字動畫
         }
     }
+   
 }

@@ -1,7 +1,7 @@
 /*-----by017--------*/
 public enum EenemyState
 {
-    Patrol, Chase,Attack
+    Idle, Patrol, Chase,Attack
 }
 public enum BossState
 {

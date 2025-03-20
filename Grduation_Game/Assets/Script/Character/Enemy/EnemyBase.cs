@@ -175,6 +175,7 @@ public class EnemyBase : MonoBehaviour
     {
         var newState = _state switch//根據現有狀態切換敵人狀態(switch的語法糖寫法)
         {
+            EenemyState.Idle => idleState,
             EenemyState.Patrol => patrolState,
             EenemyState.Chase => chaseState,
             EenemyState.Attack => attackerState,

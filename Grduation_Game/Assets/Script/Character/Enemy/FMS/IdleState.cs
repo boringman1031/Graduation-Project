@@ -9,6 +9,7 @@ public class IdleState : BaseState
         currentEnemy = enemy;
         currentEnemy.currentSpeed = 0;  // 停止移動
         currentEnemy.anim.SetBool("Run", false); // 停止跑步動畫
+        Debug.Log("進入空閒狀態");
     }
 
     public override void LogicUpdate()
