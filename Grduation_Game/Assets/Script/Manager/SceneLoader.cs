@@ -117,9 +117,9 @@ public class SceneLoader : MonoBehaviour, ISaveable
             if (randomScene != null)
             {
                 sceneToLoad = randomScene;
-                challengeCount++; // 增加挑戰次數
+                challengeCount++; // 增加挑戰次數          
+                OnLoadRequestEvent(sceneToLoad, firstPosition, true);
                 Debug.Log($"進入{sceneToLoad.GetType()}，還剩{challengeCount}次挑戰");
-                loadEventSO.RaiseLoadRequestEvent(sceneToLoad, firstPosition, true);
             }
             else
             {
@@ -131,7 +131,7 @@ public class SceneLoader : MonoBehaviour, ISaveable
             sceneToLoad = NecessaryScene;// 當挑戰次數達到 3，進入 Boss 前的特定關卡
             challengeCount = 0; // 重置挑戰次數
             Debug.Log("進入必要 關卡");
-            loadEventSO.RaiseLoadRequestEvent(sceneToLoad, firstPosition, true);
+            OnLoadRequestEvent(sceneToLoad, firstPosition, true);
         }
     }
 
@@ -200,13 +200,10 @@ public class SceneLoader : MonoBehaviour, ISaveable
         playerTrans.position = positionToGo;
         playerTrans.gameObject.SetActive(true);
         isLoading = false;
-        if(currentLoadScene.sceneType != SceneType.Menu)
-        {
-            sceneLoadedEvent.RaiseEvent(currentLoadScene);// 觸發帶場景參數的新事件 對話系統使用
-            afterSceneLoadedEvent.RaiseEvent(); // 廣播:已加載完成事件
-            //saveDataEvent.RaiseEvent(); // 廣播:儲存加載遊戲事件
-        }
-       
+        sceneLoadedEvent.RaiseEvent(currentLoadScene);// 觸發帶場景參數的新事件 對話系統使用
+        afterSceneLoadedEvent.RaiseEvent(); // 廣播:已加載完成事件
+        //saveDataEvent.RaiseEvent(); // 廣播:儲存加載遊戲事件
+
     }
     public DataDefination GetDataID()
     {

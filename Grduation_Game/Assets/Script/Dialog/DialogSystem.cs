@@ -39,29 +39,7 @@ public class DialogSystem : MonoBehaviour
     // 設置並顯示對話
     public void SetDialog(DialogData.DialogEntry dialogEntry)
     {
-        // debug用
-        /*
-        if (dialogEntry == null)
-        {
-            Debug.LogError("DialogEntry is null!");
-            return;
-        }
-
-        if (dialogEntry.sentences == null || dialogEntry.shouldFocusCamera == null ||
-            dialogEntry.focusCameraPositions == null)
-        {
-            Debug.LogError("DialogEntry has null data!");
-            return;
-        }
-
-        if (dialogEntry.sentences.Count != dialogEntry.shouldFocusCamera.Count ||
-            dialogEntry.sentences.Count != dialogEntry.focusCameraPositions.Count)
-        {
-            Debug.LogError("DialogEntry has mismatched data lengths!");
-            return;
-        }
-        */
-
+        
         StopAllCoroutines(); // 停止可能正在運行的逐字顯示
         textLabel.text = ""; // 清空文字
         dialogQueue.Clear();
