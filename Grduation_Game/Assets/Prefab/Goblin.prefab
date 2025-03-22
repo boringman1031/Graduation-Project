@@ -18,7 +18,7 @@ GameObject:
   - component: {fileID: 2235936350942265241}
   - component: {fileID: 8650389129907776609}
   - component: {fileID: 6748971523801933740}
-  m_Layer: 11
+  m_Layer: 8
   m_Name: Goblin
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -306,7 +306,7 @@ MonoBehaviour:
   checkDistance: 5
   targetLayer:
     serializedVersion: 2
-    m_Bits: 1024
+    m_Bits: 0
   isHit: 0
   isDead: 0
   waitTime: 2
@@ -360,7 +360,7 @@ GameObject:
   - component: {fileID: 6696455016889472771}
   - component: {fileID: 4810200008171803125}
   - component: {fileID: 3016641908641080738}
-  m_Layer: 11
+  m_Layer: 8
   m_Name: Goblin AttackArea
   m_TagString: Untagged
   m_Icon: {fileID: 0}
