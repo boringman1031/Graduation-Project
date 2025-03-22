@@ -2063,7 +2063,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3760b39e9576aa0459a57230c1d8a206, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  beatTempo: 270
+  beatTempo: 300
   hasStarted: 0
 --- !u!1 &547627908
 GameObject:
@@ -16435,53 +16435,6 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
---- !u!1 &707227505
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 707227507}
-  - component: {fileID: 707227506}
-  m_Layer: 0
-  m_Name: BGM
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &707227506
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 707227505}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 382469160c5fb1044b544fb3b962a440, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playAudioEvent: {fileID: 11400000, guid: 6aff32dae6df38b4fba8844a79657b49, type: 2}
-  audioClip: {fileID: 0}
-  playOnEnable: 1
---- !u!4 &707227507
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 707227505}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -14.019268, y: -65.8338, z: 0.10252129}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &852431228
 GameObject:
   m_ObjectHideFlags: 0
@@ -17280,7 +17233,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playAudioEvent: {fileID: 11400000, guid: 6aff32dae6df38b4fba8844a79657b49, type: 2}
-  audioClip: {fileID: 8300000, guid: d6ff7d398cc917043a1721c93356ffbb, type: 3}
+  audioClip: {fileID: 8300000, guid: 748085b970d1e414fbd2981f39e07c2a, type: 3}
   playOnEnable: 0
 --- !u!114 &1300511370
 MonoBehaviour:
@@ -17300,11 +17253,11 @@ MonoBehaviour:
   missEffect: {fileID: 8433079331162208932, guid: 3b7e489cc13dac144b93495cf5b38349, type: 3}
   effectPos: {fileID: 1175978305}
   beatmapFiles:
-  - beatmap_cafe.csv
+  - beatmap_musicman.csv
   startPlaying: 0
   beatScroller: {fileID: 466633714}
   audioDefination: {fileID: 1300511369}
-  songOffset: 4
+  songOffset: 10
   notePrefabQ: {fileID: 3830761287653415225, guid: cdee9c6682c0ba04b81cdc8382f9ba53, type: 3}
   notePrefabW: {fileID: 8638162076065787444, guid: 86dec30b7aeae884ca84c24258b6d797, type: 3}
   notePrefabE: {fileID: 5072429939129656201, guid: d99daa54b43b39747a73add1ecd7bcdf, type: 3}
@@ -17322,7 +17275,7 @@ MonoBehaviour:
   score_text: {fileID: 2047442778}
   Combo_text: {fileID: 1549178798}
   Curracy_text: {fileID: 1424382816}
-  Rank_text: {fileID: 0}
+  Rank_text: {fileID: 1606986244}
   beatMap: []
 --- !u!1 &1378170392
 GameObject:
@@ -18103,5 +18056,4 @@ SceneRoots:
   m_Roots:
   - {fileID: 2045534090}
   - {fileID: 852431229}
-  - {fileID: 707227507}
   - {fileID: 197459706}

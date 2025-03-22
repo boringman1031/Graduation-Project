@@ -243,7 +243,7 @@ public class MusicGameManager : MonoBehaviour
         score_text.text = $"羆だ计: {currentScore}";
         Combo_text.text = $"程蔼硈阑: {maxCombo}";
         Curracy_text.text = $"非絋瞯: {accuracy:F2}%";
-        Rank_text.text = $"蝶基: {rank}";
+        Rank_text.text = $"{rank}";
         //ShowResults(currentScore, maxCombo, accuracy, rank);
     }
 }
