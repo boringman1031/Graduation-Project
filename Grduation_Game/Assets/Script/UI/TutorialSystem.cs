@@ -89,8 +89,12 @@ public class TutorialSystem : MonoBehaviour
                     ShowAttackTutorial();
                     tutorialShownDict[type] = true;
                     break;
-                case TutorialType.MusicGame:
+                case TutorialType.MusicGame:                 
                     ShowMusicGameTutorial();
+                    tutorialShownDict[type] = true;
+                    break;
+                case  TutorialType.TriviaGame:
+                    ShowTriviaGameTutorial();
                     tutorialShownDict[type] = true;
                     break;
                 case TutorialType.None:
@@ -127,12 +131,18 @@ public class TutorialSystem : MonoBehaviour
     // 音樂遊戲教學
     private void ShowMusicGameTutorial()
     {
-        tutorialText.text = "按下 S 開始遊戲";
+        tutorialText.text = "按下 L 開始遊戲";    
         tutorialPanel.SetActive(true);
     }
     private void ShowMusicGameTutorial2()
     {
         tutorialText.text = "在愛心到左側位置時按下鍵盤QWE";
+        tutorialPanel.SetActive(true);
+    }
+
+    private void ShowTriviaGameTutorial()
+    {
+        tutorialText.text = "走過去跟她說說話吧";
         tutorialPanel.SetActive(true);
     }
 }

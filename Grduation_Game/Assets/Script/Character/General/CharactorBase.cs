@@ -9,6 +9,7 @@ public class CharactorBase : MonoBehaviour,ISaveable
 {
     [Header("事件監聽")]
     public VoidEventSO newGameEvent;//新遊戲事件
+    public VoidEventSO goHomeEvent;//回家事件
 
     [Header("基礎數值")]
     public float Health;
@@ -35,20 +36,15 @@ public class CharactorBase : MonoBehaviour,ISaveable
     private void OnEnable()
     {
         newGameEvent.OnEventRaised += NewGame;
+        goHomeEvent.OnEventRaised += NewGame;
         ISaveable saveable = this;
         saveable.RegisterSaveData();
         regenCoroutine = StartCoroutine(AutoRegenHealth());//自動回血
     }
     private void OnDisable()
     {
-        if (newGameEvent != null)
-        {
-            newGameEvent.OnEventRaised -= NewGame;
-        }
-        else
-        {
-            Debug.LogWarning("newGameEvent is null in OnDisable()");
-        }
+        goHomeEvent.OnEventRaised -= NewGame;
+        newGameEvent.OnEventRaised -= NewGame;
 
         ISaveable saveable = this;
         if (DataManager.instance != null)
