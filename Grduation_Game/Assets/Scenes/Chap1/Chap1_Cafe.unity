@@ -171,11 +171,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f109dcb3c161a9742bd48b1d75fb58d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  goHomeEvent: {fileID: 11400000, guid: 8e4300285ab8c3142a25901137ababd8, type: 2}
   dialogueList:
+  - {fileID: 11400000, guid: a5ddde45d19ac2b4cb3b5d8959df26d1, type: 2}
   - {fileID: 11400000, guid: ff3781c8a51d10344bfd4b07df01ea64, type: 2}
   - {fileID: 11400000, guid: 2dc81919820da374bab43fd46a569930, type: 2}
   - {fileID: 11400000, guid: 172e1c5e1e62a9345a95282a66a9fbf3, type: 2}
   - {fileID: 11400000, guid: c089e74577eb001459d4e346f7f00ce2, type: 2}
+  - {fileID: 11400000, guid: 22f7005345a75cd44864fc31751f8e6a, type: 2}
+  - {fileID: 11400000, guid: 1c514e1d49c9c424b92651033530d99a, type: 2}
   optionButtons:
   - {fileID: 970643843}
   - {fileID: 1386800969}
@@ -183,6 +187,7 @@ MonoBehaviour:
   dialogueText: {fileID: 1598993077}
   affectionText: {fileID: 886470359}
   nextButton: {fileID: 694534184}
+  Button: {fileID: 0}
 --- !u!1 &484159769
 GameObject:
   m_ObjectHideFlags: 0
@@ -480,7 +485,6 @@ MonoBehaviour:
   dialogEndEvent: {fileID: 11400000, guid: 9b0030f4733054648b442de17490fdb0, type: 2}
   QuestionGamePanel: {fileID: 2085546146}
   Key: Cafe_meetGirl
-  isTalk: 0
 --- !u!61 &635863817
 BoxCollider2D:
   m_ObjectHideFlags: 0
