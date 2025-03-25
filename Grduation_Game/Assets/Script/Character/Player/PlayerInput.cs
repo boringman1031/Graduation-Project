@@ -64,9 +64,36 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""Skill1"",
+                    ""name"": ""SkillQ"",
                     ""type"": ""Button"",
                     ""id"": ""3acd04aa-76f8-4600-8fae-dca1a044c9c6"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""SkillW"",
+                    ""type"": ""Button"",
+                    ""id"": ""170dea04-d496-4d40-907d-331149aacfe0"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""SkillE"",
+                    ""type"": ""Button"",
+                    ""id"": ""5aabfb81-5c5f-4208-95d9-7e5544524f27"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""SkillR"",
+                    ""type"": ""Button"",
+                    ""id"": ""5c97299f-44dd-42c2-b5c6-37252b261c08"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
@@ -275,11 +302,44 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""40cf2585-3972-40f3-892d-004837cee489"",
+                    ""path"": ""<Keyboard>/q"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""SkillQ"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""82562ac0-4b86-4c7b-b49c-c4bb74d60265"",
+                    ""path"": ""<Keyboard>/w"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""SkillW"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""096b95ca-133b-4956-9bce-9333d5808a8b"",
                     ""path"": ""<Keyboard>/e"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Skill1"",
+                    ""action"": ""SkillE"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""ef43670b-5f29-4b92-88b5-7d688ff48655"",
+                    ""path"": ""<Keyboard>/r"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""SkillR"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -871,7 +931,10 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         m_GamePlay_Jump = m_GamePlay.FindAction("Jump", throwIfNotFound: true);
         m_GamePlay_Attack = m_GamePlay.FindAction("Attack", throwIfNotFound: true);
         m_GamePlay_Confirm = m_GamePlay.FindAction("Confirm", throwIfNotFound: true);
-        m_GamePlay_Skill1 = m_GamePlay.FindAction("Skill1", throwIfNotFound: true);
+        m_GamePlay_SkillQ = m_GamePlay.FindAction("SkillQ", throwIfNotFound: true);
+        m_GamePlay_SkillW = m_GamePlay.FindAction("SkillW", throwIfNotFound: true);
+        m_GamePlay_SkillE = m_GamePlay.FindAction("SkillE", throwIfNotFound: true);
+        m_GamePlay_SkillR = m_GamePlay.FindAction("SkillR", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Navigate = m_UI.FindAction("Navigate", throwIfNotFound: true);
@@ -949,7 +1012,10 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
     private readonly InputAction m_GamePlay_Jump;
     private readonly InputAction m_GamePlay_Attack;
     private readonly InputAction m_GamePlay_Confirm;
-    private readonly InputAction m_GamePlay_Skill1;
+    private readonly InputAction m_GamePlay_SkillQ;
+    private readonly InputAction m_GamePlay_SkillW;
+    private readonly InputAction m_GamePlay_SkillE;
+    private readonly InputAction m_GamePlay_SkillR;
     public struct GamePlayActions
     {
         private @PlayerInput m_Wrapper;
@@ -958,7 +1024,10 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         public InputAction @Jump => m_Wrapper.m_GamePlay_Jump;
         public InputAction @Attack => m_Wrapper.m_GamePlay_Attack;
         public InputAction @Confirm => m_Wrapper.m_GamePlay_Confirm;
-        public InputAction @Skill1 => m_Wrapper.m_GamePlay_Skill1;
+        public InputAction @SkillQ => m_Wrapper.m_GamePlay_SkillQ;
+        public InputAction @SkillW => m_Wrapper.m_GamePlay_SkillW;
+        public InputAction @SkillE => m_Wrapper.m_GamePlay_SkillE;
+        public InputAction @SkillR => m_Wrapper.m_GamePlay_SkillR;
         public InputActionMap Get() { return m_Wrapper.m_GamePlay; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -980,9 +1049,18 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
             @Confirm.started += instance.OnConfirm;
             @Confirm.performed += instance.OnConfirm;
             @Confirm.canceled += instance.OnConfirm;
-            @Skill1.started += instance.OnSkill1;
-            @Skill1.performed += instance.OnSkill1;
-            @Skill1.canceled += instance.OnSkill1;
+            @SkillQ.started += instance.OnSkillQ;
+            @SkillQ.performed += instance.OnSkillQ;
+            @SkillQ.canceled += instance.OnSkillQ;
+            @SkillW.started += instance.OnSkillW;
+            @SkillW.performed += instance.OnSkillW;
+            @SkillW.canceled += instance.OnSkillW;
+            @SkillE.started += instance.OnSkillE;
+            @SkillE.performed += instance.OnSkillE;
+            @SkillE.canceled += instance.OnSkillE;
+            @SkillR.started += instance.OnSkillR;
+            @SkillR.performed += instance.OnSkillR;
+            @SkillR.canceled += instance.OnSkillR;
         }
 
         private void UnregisterCallbacks(IGamePlayActions instance)
@@ -999,9 +1077,18 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
             @Confirm.started -= instance.OnConfirm;
             @Confirm.performed -= instance.OnConfirm;
             @Confirm.canceled -= instance.OnConfirm;
-            @Skill1.started -= instance.OnSkill1;
-            @Skill1.performed -= instance.OnSkill1;
-            @Skill1.canceled -= instance.OnSkill1;
+            @SkillQ.started -= instance.OnSkillQ;
+            @SkillQ.performed -= instance.OnSkillQ;
+            @SkillQ.canceled -= instance.OnSkillQ;
+            @SkillW.started -= instance.OnSkillW;
+            @SkillW.performed -= instance.OnSkillW;
+            @SkillW.canceled -= instance.OnSkillW;
+            @SkillE.started -= instance.OnSkillE;
+            @SkillE.performed -= instance.OnSkillE;
+            @SkillE.canceled -= instance.OnSkillE;
+            @SkillR.started -= instance.OnSkillR;
+            @SkillR.performed -= instance.OnSkillR;
+            @SkillR.canceled -= instance.OnSkillR;
         }
 
         public void RemoveCallbacks(IGamePlayActions instance)
@@ -1188,7 +1275,10 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         void OnJump(InputAction.CallbackContext context);
         void OnAttack(InputAction.CallbackContext context);
         void OnConfirm(InputAction.CallbackContext context);
-        void OnSkill1(InputAction.CallbackContext context);
+        void OnSkillQ(InputAction.CallbackContext context);
+        void OnSkillW(InputAction.CallbackContext context);
+        void OnSkillE(InputAction.CallbackContext context);
+        void OnSkillR(InputAction.CallbackContext context);
     }
     public interface IUIActions
     {

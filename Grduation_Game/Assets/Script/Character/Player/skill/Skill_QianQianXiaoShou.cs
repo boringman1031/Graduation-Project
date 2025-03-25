@@ -12,17 +12,22 @@ public class Skill_QianQianXiaoShou : MonoBehaviour
     [Header("引用組件")]
     public Animator anim;
     public Transform attackPoint;
-    public GameObject skillEffectPrefab;
+    public GameObject skillEffectPrefab; // 改為 Prefab 引用
     public AudioClip skillSound;
+    private AudioSource audioSource;  // 新增音效播放組件
 
     private PlayerInput playerInput;
     private InputAction skillAction;
 
     private void Awake()
     {
-        // 綁定 Input System
         playerInput = new PlayerInput();
-        skillAction = playerInput.GamePlay.Skill1;
+        //skillAction = playerInput.GamePlay.Skill1;
+        anim = GetComponentInParent<Animator>();
+
+        // 初始化音效組件
+        audioSource = gameObject.AddComponent<AudioSource>();
+        audioSource.playOnAwake = false;
     }
 
     private void Update()
@@ -37,22 +42,36 @@ public class Skill_QianQianXiaoShou : MonoBehaviour
     void TriggerSkill()
     {
         // 觸發動畫
-        anim.SetTrigger("QianQianXiaoShou");
-
-        // 生成特效（可搭配 Animation Event 更精準控制時機）
-        Instantiate(skillEffectPrefab, attackPoint.position, attackPoint.rotation);
-
+        anim.SetTrigger("Skill1");
+    }
+    // 在 Animator 的動畫事件中調用
+    public void OnSkillEffectTrigger()
+    {
+        // 生成特效實例（不需要 Player 自身擁有 CFXR_Effect）
+        if (skillEffectPrefab != null && attackPoint != null)
+        {
+            // 生成特效並設置位置
+            GameObject effectInstance = Instantiate(
+                skillEffectPrefab,
+                attackPoint.position,
+                attackPoint.rotation
+            );
+        }
         // 播放音效
-        AudioSource.PlayClipAtPoint(skillSound, transform.position);
+        if (skillSound != null)
+            audioSource.PlayOneShot(skillSound);
 
-        // 傷害判定（使用 OverlapCircle 或 Raycast）
-        Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, LayerMask.GetMask("Enemy"));
+        // 傷害判定
+        Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(
+            attackPoint.position,
+            attackRange,
+            LayerMask.GetMask("Enemy")
+        );
         foreach (Collider2D enemy in hitEnemies)
         {
             enemy.GetComponent<CharactorBase>()?.TakeDamage(new Attack { Damage = damage });
         }
     }
-
     // 可視化攻擊範圍
     private void OnDrawGizmosSelected()
     {

@@ -8,7 +8,7 @@ public class Attack : MonoBehaviour
 {
     public float Damage;
     public float attackRange;//攻擊範圍
-    public float attackRate;//攻擊速度  
+    public float attackRate;//攻擊速度
 
     private void OnTriggerStay2D(Collider2D other)//攻擊判定
     {
