@@ -5,7 +5,7 @@ public enum EenemyState
 }
 public enum BossState
 {
-    Attack,Summon, SummonHeart
+    Idle,Attack, Summon, SummonHeart
 }
 public enum SceneName
 {
@@ -32,5 +32,7 @@ public enum TutorialType
     Jump,           // 跳躍教學
     Attack,         // 攻擊教學
     MusicGame,      // 音樂遊戲教學
-    TriviaGame      //問答遊戲教學
+    TriviaGame,     //問答遊戲教學
+    CleanEnemy,      //清除敵人教學
+    Boss
 }

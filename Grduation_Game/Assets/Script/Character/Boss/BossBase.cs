@@ -5,6 +5,8 @@ using UnityEngine;
 public class BossBase :MonoBehaviour
 {
     [HideInInspector] public Animator anim;
+    [Header("UI組件")]
+    public BossHealthUI bossHealthUI;
 
     [Header("廣播事件")]
     public VoidEventSO CameraShakeEvent;
@@ -12,6 +14,8 @@ public class BossBase :MonoBehaviour
 
     [Header("事件監聽")]
     public VoidEventSO AttackBossEvent;
+    public VoidEventSO dialogEndEvent; // 對話結束事件
+
 
     [Header("基礎數值")]
     public float maxHealth;
@@ -22,8 +26,10 @@ public class BossBase :MonoBehaviour
     public float SuperArmourTime;//霸體時間
     private float SuperArmourTimeCounter;//霸體時間計數器
     public bool SuperArmour;//是否在霸體狀態
+    public bool isTalk = false;
 
     private BossBaseState currentState;
+    protected BossBaseState idleState;//閒置狀態
     protected BossBaseState attackState;//攻擊狀態
     protected BossBaseState summonState;//召喚狀態  
     protected BossBaseState summonHeartState;
@@ -32,19 +38,24 @@ public class BossBase :MonoBehaviour
         anim = GetComponent<Animator>();
         currentHealth = maxHealth;
         isSummonMinion = false;
+        // 初始化血條
+        if (bossHealthUI != null)
+            bossHealthUI.UpdateHealth(currentHealth, maxHealth);
     }
 
     private void OnEnable()
     {
-        currentState = attackState;
+        currentState = idleState;
         currentState.OnEnter(this);
         AttackBossEvent.OnEventRaised += OnTakeDamage;
+        dialogEndEvent.OnEventRaised += OnDialogEnd;
     }
 
     private void OnDisable()
     {
         currentState.OnExit();
         AttackBossEvent.OnEventRaised -= OnTakeDamage;
+        dialogEndEvent.OnEventRaised -= OnDialogEnd;
     }
 
     private void Update()
@@ -59,14 +70,24 @@ public class BossBase :MonoBehaviour
             }
         }
     }
-
     private void FixedUpdate()
     {
         currentState.PhysicsUpdate();
     }
-    public void OnShakeCamera()//相機震動
-    {
+
+    //-----------Boss行為----------------
+    public virtual void OnBossShow()//相機震動
+    {          
         CameraShakeEvent.RaiseEvent();
+        bossHealthUI.gameObject.SetActive(true); // 血條顯示
+    }
+
+    public void OnDialogEnd()//對話結束
+    {
+        if (isTalk)
+        {
+            SwitchState(BossState.Attack);
+        }
     }
     public void OnTakeDamage()//Boss受到傷害
     {
@@ -79,6 +100,9 @@ public class BossBase :MonoBehaviour
             anim.SetTrigger("Hit");
             currentHealth -= 100;
             TriggerSuperArmour();
+            // 更新血條
+            if (bossHealthUI != null)
+                bossHealthUI.UpdateHealth(currentHealth, maxHealth);
             Debug.Log("Boss受到傷害，當前血量：" + currentHealth);
         }     
         else
@@ -108,6 +132,7 @@ public class BossBase :MonoBehaviour
     {
         anim.SetTrigger("Hit");          
     }
+  
     public void Die()//Boss死亡
     {
         BossDeadEvent.RaiseEvent();
@@ -117,6 +142,7 @@ public class BossBase :MonoBehaviour
     {
         var newState = _state switch//根據現有狀態切換敵人狀態(switch的語法糖寫法)
         {
+            BossState.Idle => idleState,
             BossState.Attack => attackState,
             BossState.Summon => summonState,
             BossState.SummonHeart => summonHeartState,

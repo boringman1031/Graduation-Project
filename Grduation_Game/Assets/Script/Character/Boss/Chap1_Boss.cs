@@ -6,6 +6,7 @@ using UnityEngine.ResourceManagement.AsyncOperations;
 
 public class Chap1_Boss : BossBase
 {
+
     [Header("小怪預製體")]
     public string MinionPrefab="Goblin"; //暫時使用Goblin代替小怪
     public string HeartMinionPrefab = "Heart"; //暫時使用Heart代替愛心小怪
@@ -16,14 +17,15 @@ public class Chap1_Boss : BossBase
     public GameObject AttackWarningEffect;//攻擊預警特效
     public GameObject attackEffectPrefab1;//攻擊特效
     public GameObject attackEffectPrefab2;//攻擊2特效
+
     protected override void Awake()
     {
         base.Awake();
+        idleState = new BossIdelState();
         attackState = new BossAttackState();
         summonState = new BossSummonState();
         summonHeartState = new BossSummonHeartState();
-    }
-   
+    }   
     public void OnAttackEffect()//在動畫某階段生成攻擊特效
     {
 
@@ -115,4 +117,12 @@ public class Chap1_Boss : BossBase
             Debug.LogError("無法加載愛心預製體！");
         }
     }
+
+    public override void OnBossShow()
+    {
+       base.OnBossShow();
+       DialogManager.Instance.StartDialog("Boss_Show");
+       isTalk = true;
+    }
+  
 }

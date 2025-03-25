@@ -97,6 +97,14 @@ public class TutorialSystem : MonoBehaviour
                     ShowTriviaGameTutorial();
                     tutorialShownDict[type] = true;
                     break;
+                case TutorialType.CleanEnemy:
+                    ShowCleanEnemyTutorial();
+                    tutorialShownDict[type] = true;
+                    break;
+                case TutorialType.Boss:
+                    ShowBossTutorial();
+                    tutorialShownDict[type] = true;
+                    break;
                 case TutorialType.None:
                 default:
                     break;
@@ -143,6 +151,18 @@ public class TutorialSystem : MonoBehaviour
     private void ShowTriviaGameTutorial()
     {
         tutorialText.text = "走過去跟她說說話吧";
+        tutorialPanel.SetActive(true);
+    }
+
+    private void ShowCleanEnemyTutorial()
+    {
+        tutorialText.text = "擊敗所有敵人吧";
+        tutorialPanel.SetActive(true);
+    }
+
+    private void ShowBossTutorial()
+    {
+        tutorialText.text = "找到Irene";
         tutorialPanel.SetActive(true);
     }
 }

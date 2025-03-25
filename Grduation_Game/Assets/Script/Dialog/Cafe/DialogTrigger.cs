@@ -7,7 +7,7 @@ public class DialogTrigger : MonoBehaviour
     public VoidEventSO dialogEndEvent; // 對話結束事件
     public GameObject QuestionGamePanel;
     public string Key;
-    public bool isTalk = false;
+    private bool isTalk = false;
     private void OnEnable()
     {
         dialogEndEvent.OnEventRaised += OnDialogEnd;

@@ -6,6 +6,9 @@ using UnityEngine.UI;
 
 public class QuestionManager : MonoBehaviour
 {
+    [Header("廣播事件")]
+    public VoidEventSO goHomeEvent;
+
     [Header("對話資料")]
     public List<QuestionDataSO> dialogueList;
     private List<QuestionDataSO> dialoguePool;
@@ -16,6 +19,7 @@ public class QuestionManager : MonoBehaviour
     public Text dialogueText; // 合併問題與回覆的文字框    
     public Text affectionText;//好感度文字框
     public GameObject nextButton;
+    public Button Button;
 
     private int affection = 0;
 
@@ -23,6 +27,10 @@ public class QuestionManager : MonoBehaviour
     {
         dialoguePool = new List<QuestionDataSO>(dialogueList);
         NextRandomQuestion();
+    }        
+    private void OnDisable()
+    {
+        Button.onClick.RemoveAllListeners();
     }
 
     void NextRandomQuestion()
@@ -104,7 +112,11 @@ public class QuestionManager : MonoBehaviour
         }
         else
         {
-            dialogueText.text = "...我還有點事，先走了...";
+            dialogueText.text = "...我還有點事，先走了...(你這個哥布林還是回山洞吧)";
+            Button.onClick.AddListener(() =>
+            {
+                goHomeEvent.OnEventRaised();
+            });
             nextButton.SetActive(true);
         }
         foreach (var btn in optionButtons)

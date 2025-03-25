@@ -10,8 +10,8 @@ public class BossAttackState : BossBaseState
     public override void OnEnter(BossBase boss)
     {
         currentBoss = boss;
-        lastAttackTime = Time.time; // 記錄當前時間      
-        currentBoss.OnAttack();
+        lastAttackTime = Time.time; // 記錄當前時間            
+        Debug.Log("進入攻擊狀態");
     }
 
     public override void LogicUpdate()
