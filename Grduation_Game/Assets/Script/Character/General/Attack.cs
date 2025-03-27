@@ -6,12 +6,11 @@ using UnityEngine;
 
 public class Attack : MonoBehaviour
 {
-    public float Damage;
-    public float attackRange;//§ðÀ»½d³ò
-    public float attackRate;//§ðÀ»³t«×  
+    public float Damage;   
 
     private void OnTriggerStay2D(Collider2D other)//§ðÀ»§P©w
     {
+        Debug.Log($"À»¤¤{other.name}");
         //other.GetComponent<CharactorBase>()?.TakeDamage(this);
         CharactorBase target = other.GetComponent<CharactorBase>();
 

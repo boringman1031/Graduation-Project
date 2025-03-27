@@ -18,6 +18,9 @@ public class Chap1_Boss : BossBase
     public GameObject attackEffectPrefab1;//攻擊特效
     public GameObject attackEffectPrefab2;//攻擊2特效
 
+    [Header("BGM")]
+    public AudioDefination audioDefination;//音樂定義
+
     protected override void Awake()
     {
         base.Awake();
@@ -71,6 +74,7 @@ public class Chap1_Boss : BossBase
         yield return new WaitForSeconds(delay); // 等待 delay 秒
         Instantiate(attackEffectPrefab2, position, Quaternion.identity);
     }
+
     public override void OnSummon()
     {
         base.OnSummon();
@@ -123,6 +127,7 @@ public class Chap1_Boss : BossBase
        base.OnBossShow();
        DialogManager.Instance.StartDialog("Boss_Show");
        isTalk = true;
+       audioDefination.PlayAudioClip();
     }
   
 }

@@ -133,6 +133,7 @@ GameObject:
   - component: {fileID: 15619004}
   - component: {fileID: 15619003}
   - component: {fileID: 15619005}
+  - component: {fileID: 15619006}
   m_Layer: 0
   m_Name: Boss
   m_TagString: Untagged
@@ -204,13 +205,29 @@ MonoBehaviour:
   SuperArmourTime: 2
   SuperArmour: 0
   isTalk: 0
-  MinionPrefab: Fishman
+  MinionPrefab: FishMan
   HeartMinionPrefab: Heart
   attackEffectSpawnPoint: {fileID: 693754897}
   HeartEffectSpawnPoint: {fileID: 621920666}
   AttackWarningEffect: {fileID: 5137123306192418792, guid: 5a8d99fb95262ea458a7b580f2a1611c, type: 3}
   attackEffectPrefab1: {fileID: 1584323129326712151, guid: 45fa7591d942f67469e30fe02309f84b, type: 3}
   attackEffectPrefab2: {fileID: 540577976283395429, guid: 05a72abd4c5704a48a32f1c3e256b491, type: 3}
+  audioDefination: {fileID: 15619006}
+--- !u!114 &15619006
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 15619002}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 382469160c5fb1044b544fb3b962a440, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playAudioEvent: {fileID: 11400000, guid: 6aff32dae6df38b4fba8844a79657b49, type: 2}
+  audioClip: {fileID: 8300000, guid: 20b4f68f2c4395e448bb9c5ef3d5d16d, type: 3}
+  playOnEnable: 0
 --- !u!1 &272249523
 GameObject:
   m_ObjectHideFlags: 0
@@ -29067,7 +29084,7 @@ GameObject:
   - component: {fileID: 536325209}
   - component: {fileID: 536325208}
   - component: {fileID: 536325207}
-  m_Layer: 6
+  m_Layer: 9
   m_Name: airWall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -30121,7 +30138,7 @@ GameObject:
   - component: {fileID: 901197430}
   - component: {fileID: 901197429}
   - component: {fileID: 901197428}
-  m_Layer: 6
+  m_Layer: 9
   m_Name: ground
   m_TagString: Ground
   m_Icon: {fileID: 0}
@@ -34726,8 +34743,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playAudioEvent: {fileID: 11400000, guid: 6aff32dae6df38b4fba8844a79657b49, type: 2}
-  audioClip: {fileID: 8300000, guid: 20b4f68f2c4395e448bb9c5ef3d5d16d, type: 3}
-  playOnEnable: 1
+  audioClip: {fileID: 0}
+  playOnEnable: 0
 --- !u!4 &940726337
 Transform:
   m_ObjectHideFlags: 0

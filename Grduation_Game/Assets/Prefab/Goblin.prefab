@@ -18,7 +18,7 @@ GameObject:
   - component: {fileID: 2235936350942265241}
   - component: {fileID: 8650389129907776609}
   - component: {fileID: 6748971523801933740}
-  m_Layer: 8
+  m_Layer: 7
   m_Name: Goblin
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -307,7 +307,7 @@ MonoBehaviour:
   checkDistance: 5
   targetLayer:
     serializedVersion: 2
-    m_Bits: 128
+    m_Bits: 256
   isHit: 0
   isDead: 0
   waitTime: 2
@@ -333,7 +333,7 @@ MonoBehaviour:
   rightOffset: {x: 2.02, y: 0.03}
   groundLayer:
     serializedVersion: 2
-    m_Bits: 64
+    m_Bits: 512
   checkRaduis: 0.3
   isGround: 0
   touchLeftWall: 0
@@ -361,7 +361,7 @@ GameObject:
   - component: {fileID: 6696455016889472771}
   - component: {fileID: 4810200008171803125}
   - component: {fileID: 3016641908641080738}
-  m_Layer: 8
+  m_Layer: 7
   m_Name: Goblin AttackArea
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -396,8 +396,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Damage: 10
-  attackRange: 0
-  attackRate: 0
 --- !u!60 &3016641908641080738
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -413,7 +411,7 @@ PolygonCollider2D:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 2048
+    m_Bits: 128
   m_LayerOverridePriority: 0
   m_ForceSendLayers:
     serializedVersion: 2
@@ -423,7 +421,7 @@ PolygonCollider2D:
     m_Bits: 4294967295
   m_ContactCaptureLayers:
     serializedVersion: 2
-    m_Bits: 1024
+    m_Bits: 4294967295
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
