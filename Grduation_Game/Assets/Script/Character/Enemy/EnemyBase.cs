@@ -7,12 +7,9 @@ using static UnityEngine.EventSystems.EventTrigger;
 
 public class EnemyBase : MonoBehaviour
 {
-    protected Rigidbody2D rb;
+    [HideInInspector] public Rigidbody2D rb;
     [HideInInspector] public Animator anim;
     [HideInInspector] public PhysicsCheck physicsCheck;
-
-    [Header("事件監聽")]
-    public VoidEventSO OnEnemiesActivateEvent;
 
     [Header("事件廣播")]
     public EnemyEventSO OnEnemyDied;
@@ -64,25 +61,16 @@ public class EnemyBase : MonoBehaviour
     }
 
     private void OnEnable()
-    {
-        // 訂閱敵人激活事件
-        OnEnemiesActivateEvent.OnEventRaised += SwitchToPatrol;
-
+    {       
         // 初始狀態為 IdleState
         currentState = idleState;
         currentState.OnEnter(this);
     }
     private void OnDisable()
-    {
-        // 取消訂閱事件
-        OnEnemiesActivateEvent.OnEventRaised -= SwitchToPatrol;
-
+    {      
         currentState.OnExit();
     }
-    private void SwitchToPatrol()
-    {
-        SwitchState(EenemyState.Patrol); // 切換到巡邏狀態
-    }
+   
     public void Update()
     {
         faceDir = new Vector3(-transform.localScale.x, 0, 0);
@@ -110,9 +98,9 @@ public class EnemyBase : MonoBehaviour
         attacker = attackTran;
         //受傷後面向攻擊者
         if (attackTran.position.x - transform.position.x > 0)
-            transform.localScale = new Vector3(-1, 1, 1);
+            transform.localScale = new Vector3(-1.6f, 1.6f, 1.6f);
         if (attackTran.position.x - transform.position.x < 0)
-            transform.localScale = new Vector3(1, 1, 1);
+            transform.localScale = new Vector3(1.6f, 1.6f, 1.6f);
         //受傷被擊退
         isHit = true;
         anim.SetTrigger("Hit");

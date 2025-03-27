@@ -4,47 +4,43 @@ using UnityEngine;
 
 public class AttackState : BaseState
 {
-    private Transform player;//玩家
-    private float lastAttackTime;//上次攻擊時間
+    private Transform player;
+    private float lastAttackTime;
 
     public override void OnEnter(EnemyBase enemy)
     {
         currentEnemy = enemy;
-        currentEnemy.currentSpeed = 0; // 進入攻擊狀態時停止移動
-        Debug.Log("進入攻擊狀態");
+        currentEnemy.currentSpeed = 0;
+        player = GameObject.FindGameObjectWithTag("Player")?.transform;
+        Debug.Log(currentEnemy.name + " 進入攻擊狀態");
     }
 
     public override void LogicUpdate()
     {
-        if (player == null)
+        if (player == null) return;
+
+        float distance = Vector2.Distance(currentEnemy.transform.position, player.position);
+
+        if (distance > currentEnemy.attackRange)
         {
-            player = GameObject.FindGameObjectWithTag("Player").transform;
+            currentEnemy.SwitchState(EenemyState.Chase);
+            return;
         }
 
-        if (player != null)
+        if (Time.time >= lastAttackTime + currentEnemy.attackCooldown)
         {
-            float distance = Vector2.Distance(currentEnemy.transform.position, player.position);
-            if (distance > currentEnemy.attackRange)
-            {
-                currentEnemy.SwitchState(EenemyState.Patrol);//切換為巡邏狀態
-                return;
-            }
-
-            if (Time.time >= lastAttackTime + currentEnemy.attackCooldown)
-            {
-                lastAttackTime = Time.time;
-                currentEnemy.anim.SetTrigger("Attack");
-            }
+            lastAttackTime = Time.time;
+            currentEnemy.anim.SetTrigger("Attack");
         }
+
+        // 面向玩家方向
+        if (player.position.x - currentEnemy.transform.position.x > 0)
+            currentEnemy.transform.localScale = new Vector3(-1.6f, 1.6f, 1.6f);
+        else
+            currentEnemy.transform.localScale = new Vector3(1.6f, 1.6f, 1.6f);
     }
 
-    public override void PhysicsUpdate()
-    {
-       
-    }
+    public override void PhysicsUpdate() { }
 
-    public override void OnExit()
-    {
-
-    }
+    public override void OnExit() { }
 }

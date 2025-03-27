@@ -5,36 +5,64 @@ using Unity.VisualScripting;
 using UnityEngine;
 
 public class ChaseState : BaseState
-{ 
+{
+    private Transform player;
+
     public override void OnEnter(EnemyBase enemy)
     {
         currentEnemy = enemy;
-        currentEnemy.currentSpeed = currentEnemy.chaseSpeed;//切換為追擊速度     
+        currentEnemy.currentSpeed = currentEnemy.chaseSpeed;
+        player = GameObject.FindGameObjectWithTag("Player")?.transform;
+        currentEnemy.anim.SetBool("Run", true);
+        Debug.Log(currentEnemy.name + " 進入追擊狀態");
     }
-    public override void LogicUpdate()//邏輯判斷
-    {
-        if (currentEnemy.lostTime > 0)
-            currentEnemy.SwitchState(EenemyState.Patrol);//切換為巡邏狀態
-        if (!currentEnemy.physicsCheck.isGround || (currentEnemy.physicsCheck.touchLeftWall && currentEnemy.faceDir.x < 0) || (currentEnemy.physicsCheck.touchRightWall && currentEnemy.faceDir.x > 0))
-        {
-            currentEnemy.transform.localScale =new Vector3(currentEnemy.faceDir.x, 1, 1);
-        }
 
-        if (currentEnemy.PlayerInAttackRange())//玩家進入攻擊範圍
+    public override void LogicUpdate()
+    {
+        if (player == null) return;
+
+        float distance = Vector2.Distance(currentEnemy.transform.position, player.position);
+
+        if (distance <= currentEnemy.attackRange)
         {
-            Debug.Log("玩家進入攻擊範圍，切換到 `AttackState`！");
             currentEnemy.SwitchState(EenemyState.Attack);
             return;
         }
+
+        // 玩家消失倒數時間計算
+        if (!currentEnemy.FindPlayer())
+        {
+            currentEnemy.lostTimeCounter -= Time.deltaTime;
+            if (currentEnemy.lostTimeCounter <= 0)
+            {
+                currentEnemy.SwitchState(EenemyState.Patrol);
+            }
+        }
+        else
+        {
+            currentEnemy.lostTimeCounter = currentEnemy.lostTime;
+        }
+
+        // 面向玩家方向
+        if (player.position.x - currentEnemy.transform.position.x > 0)
+            currentEnemy.transform.localScale = new Vector3(-1.6f, 1.6f, 1.6f);
+        else
+            currentEnemy.transform.localScale = new Vector3(1.6f, 1.6f, 1.6f);
     }
 
-    public override void PhysicsUpdate()//物理判斷 
+    public override void PhysicsUpdate()
     {
-       
+        if (player == null || currentEnemy.isDead || currentEnemy.isHit) return;
+
+        currentEnemy.rb.velocity = new Vector2(
+            currentEnemy.currentSpeed * -currentEnemy.transform.localScale.x * Time.deltaTime,
+            currentEnemy.rb.velocity.y
+        );
     }
+
     public override void OnExit()
     {
-        currentEnemy.lostTimeCounter = currentEnemy.lostTime;
         currentEnemy.anim.SetBool("Run", false);
+        currentEnemy.lostTimeCounter = currentEnemy.lostTime;
     }
 }

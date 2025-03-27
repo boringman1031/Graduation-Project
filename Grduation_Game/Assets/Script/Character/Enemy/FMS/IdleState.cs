@@ -7,22 +7,20 @@ public class IdleState : BaseState
     public override void OnEnter(EnemyBase enemy)
     {
         currentEnemy = enemy;
-        currentEnemy.currentSpeed = 0;  // 停止移動
-        currentEnemy.anim.SetBool("Run", false); // 停止跑步動畫      
+        currentEnemy.currentSpeed = 0;
+        currentEnemy.anim.SetBool("Run", false);
+        Debug.Log(currentEnemy.name + " 進入 Idle 狀態");
     }
 
     public override void LogicUpdate()
     {
-        // 空閒狀態下不執行任何邏輯
+        if (currentEnemy.FindPlayer())
+        {
+            currentEnemy.SwitchState(EenemyState.Chase);
+        }
     }
 
-    public override void PhysicsUpdate()
-    {
-        // 空閒狀態下不執行任何物理更新
-    }
+    public override void PhysicsUpdate() { }
 
-    public override void OnExit()
-    {
-        // 退出時不需要特別處理
-    }
+    public override void OnExit() { }
 }

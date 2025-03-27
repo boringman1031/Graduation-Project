@@ -238,12 +238,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 84fb05dd9495c4c43aeacc0e634f3a0b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  rb: {fileID: 0}
   anim: {fileID: 0}
   physicsCheck: {fileID: 0}
-  OnEnemiesActivateEvent: {fileID: 11400000, guid: 5313967e52908ba4d92cc66bac504bb1, type: 2}
   OnEnemyDied: {fileID: 11400000, guid: a3b57538ec29a424aaf1f95d5b36a418, type: 2}
-  normalSpeed: 5
-  chaseSpeed: 20
+  normalSpeed: 50
+  chaseSpeed: 60
   currentSpeed: 0
   faceDir: {x: 0, y: 0, z: 0}
   attacker: {fileID: 0}

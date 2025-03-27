@@ -120,6 +120,14 @@ PrefabInstance:
       value: 7
       objectReference: {fileID: 0}
     - target: {fileID: -7552582706839291426, guid: 43919d1b565d57f4bac33ca25eb7455d, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1.6
+      objectReference: {fileID: 0}
+    - target: {fileID: -7552582706839291426, guid: 43919d1b565d57f4bac33ca25eb7455d, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1.6
+      objectReference: {fileID: 0}
+    - target: {fileID: -7552582706839291426, guid: 43919d1b565d57f4bac33ca25eb7455d, type: 3}
       propertyPath: m_LocalPosition.x
       value: 20.92
       objectReference: {fileID: 0}
@@ -514,7 +522,7 @@ Rigidbody2D:
     m_Bits: 0
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 4
 --- !u!114 &2420376369148690835
 MonoBehaviour:
@@ -585,21 +593,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f73832ca454d42a449014c8c3a438fdd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  rb: {fileID: 0}
   anim: {fileID: 0}
   physicsCheck: {fileID: 0}
-  OnEnemiesActivateEvent: {fileID: 11400000, guid: d9bb2d4100ded3d4f81459a40234d7c7, type: 2}
   OnEnemyDied: {fileID: 11400000, guid: a3b57538ec29a424aaf1f95d5b36a418, type: 2}
-  normalSpeed: 20
-  chaseSpeed: 30
+  normalSpeed: 50
+  chaseSpeed: 100
   currentSpeed: 0
   faceDir: {x: 0, y: 0, z: 0}
   attacker: {fileID: 0}
   HitForce: 5
   attackRange: 5
   attackCooldown: 5
-  centerOffset: {x: 0, y: 2.86}
-  checkSize: {x: 1, y: 1}
-  checkDistance: 6
+  centerOffset: {x: 0, y: 5.18}
+  checkSize: {x: 10, y: 10}
+  checkDistance: 2
   targetLayer:
     serializedVersion: 2
     m_Bits: 256
@@ -622,14 +630,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 206f9b03209ee7f4fa13282e66eecafa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  manual: 0
-  bottomOffeset: {x: 0.03, y: 0}
-  leftOffset: {x: -1.55, y: 2.92}
-  rightOffset: {x: 1.54, y: 2.91}
+  manual: 1
+  bottomOffeset: {x: 0.08, y: 0}
+  leftOffset: {x: -2.1, y: 4.49}
+  rightOffset: {x: 2.08, y: 4.51}
   groundLayer:
     serializedVersion: 2
     m_Bits: 512
-  checkRaduis: 0.3
+  checkRaduis: 0.39
   isGround: 0
   touchLeftWall: 0
   touchRightWall: 0
