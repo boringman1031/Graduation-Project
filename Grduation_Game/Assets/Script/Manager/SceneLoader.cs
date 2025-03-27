@@ -126,9 +126,8 @@ public class SceneLoader : MonoBehaviour, ISaveable
             GameSceneSO randomScene = GetRandomScene();
             if (randomScene != null)
             {
-                sceneToLoad = randomScene;
-                challengeCount++; // 增加挑戰次數          
-                OnLoadRequestEvent(sceneToLoad, firstPosition, true);
+                sceneToLoad = randomScene;                 
+                OnLoadRequestEvent(sceneToLoad, firstPosition, true);                      
                 Debug.Log($"進入{sceneToLoad.GetType()}，還剩{challengeCount}次挑戰");
             }
             else
@@ -193,17 +192,7 @@ public class SceneLoader : MonoBehaviour, ISaveable
     {
         var loadingOption = sceneToLoad.sceneReference.LoadSceneAsync(LoadSceneMode.Additive, true);
         loadingOption.Completed += OnLoadComplete;
-    }
-
-    private void OnOpenRandomCanvasEvent()//當場景中所有敵人被擊敗時通知UIManager
-    {
-        if (currentLoadScene.sceneType != SceneType.Menu&& 
-            currentLoadScene.sceneType != SceneType.Boss&&
-            currentLoadScene.sceneType != SceneType.Necessary)
-        {
-            openRandomCanvaEvent.RaiseEvent();
-        }
-    }
+    }   
     private void OnLoadComplete(AsyncOperationHandle<SceneInstance> _handle)// 加載完成後執行
     {
         currentLoadScene = sceneToLoad;
@@ -212,8 +201,19 @@ public class SceneLoader : MonoBehaviour, ISaveable
         isLoading = false;
         sceneLoadedEvent.RaiseEvent(currentLoadScene);// 觸發帶場景參數的新事件 對話系統使用
         afterSceneLoadedEvent.RaiseEvent(); // 廣播:已加載完成事件
+        challengeCount++; // 增加挑戰次數  
         //saveDataEvent.RaiseEvent(); // 廣播:儲存加載遊戲事件
 
+    }
+
+    private void OnOpenRandomCanvasEvent()//當場景中所有敵人被擊敗時通知UIManager
+    {
+        if (currentLoadScene.sceneType != SceneType.Menu &&
+            currentLoadScene.sceneType != SceneType.Boss &&
+            currentLoadScene.sceneType != SceneType.Necessary)
+        {
+            openRandomCanvaEvent.RaiseEvent();
+        }
     }
     public DataDefination GetDataID()
     {
