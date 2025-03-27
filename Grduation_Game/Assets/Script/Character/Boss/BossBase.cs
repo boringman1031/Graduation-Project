@@ -11,6 +11,8 @@ public class BossBase :MonoBehaviour
     [Header("廣播事件")]
     public VoidEventSO CameraShakeEvent;
     public VoidEventSO BossDeadEvent;
+    public VoidEventSO tutorialBossSummonEvent;
+    public VoidEventSO tutorialBossAttackEvent;
 
     [Header("事件監聽")]
     public VoidEventSO AttackBossEvent;
@@ -120,12 +122,14 @@ public class BossBase :MonoBehaviour
     }
     public virtual void OnAttack()//Boss攻擊
     {
-        anim.SetTrigger("Attack");      
+        anim.SetTrigger("Attack");
+        tutorialBossAttackEvent.RaiseEvent();//廣播開啟攻擊事件教學
     }
 
     public virtual void OnSummon()//Boss召喚
     {
-        anim.SetTrigger("Summon");     
+        anim.SetTrigger("Summon");
+        tutorialBossSummonEvent.RaiseEvent();//廣播開啟召喚事件教學
     }
 
     public virtual void SpawnHeartMinion()//生成愛心小怪

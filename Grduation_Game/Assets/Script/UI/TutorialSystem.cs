@@ -5,12 +5,12 @@ using UnityEngine.UI;
 
 public class TutorialSystem : MonoBehaviour
 {
-    [Header("廣播")]
+    [Header("監聽事件")]
     public VoidEventSO tutorialMoveEvent;
     public VoidEventSO tutorialJumpEvent;
     public VoidEventSO tutorialAttackEvent;
-
-    [Header("監聽事件")]
+    public VoidEventSO tutorialBossSummonEvent;//觸發Boss召喚事件教學
+    public VoidEventSO tutorialBossAttackEvent;//觸發Boss攻擊事件教學
     public VoidEventSO dialogEndEvent; // 對話結束事件
     public SceneLoadedEventSO sceneLoadedEvent; // 新增：場景加載完成事件
 
@@ -36,7 +36,7 @@ public class TutorialSystem : MonoBehaviour
         {
             HideTutorialPanel(); // 按下 R 鍵時隱藏教學 UI
         }
-        if (Input.GetKeyDown(KeyCode.S) && currentScene.tutorialType == TutorialType.MusicGame)
+        if (Input.GetKeyDown(KeyCode.L) && currentScene.tutorialType == TutorialType.MusicGame)
         {
             HideTutorialPanel(); // 按下 R 鍵時隱藏教學 UI
             ShowMusicGameTutorial2(); // 開始音樂遊戲教學
@@ -54,6 +54,8 @@ public class TutorialSystem : MonoBehaviour
         tutorialAttackEvent.OnEventRaised += ShowAttackTutorial;
         dialogEndEvent.OnEventRaised += OnDialogEnd; // 訂閱對話結束事件
         sceneLoadedEvent.OnSceneLoaded += OnSceneLoaded;
+        tutorialBossSummonEvent.OnEventRaised += ShowBossSummonTutorial;
+        tutorialBossAttackEvent.OnEventRaised += ShowBossAttackTutorial;
     }
 
     private void OnDisable()
@@ -63,6 +65,8 @@ public class TutorialSystem : MonoBehaviour
         tutorialAttackEvent.OnEventRaised -= ShowAttackTutorial;
         dialogEndEvent.OnEventRaised -= OnDialogEnd;
         sceneLoadedEvent.OnSceneLoaded -= OnSceneLoaded;
+        tutorialBossSummonEvent.OnEventRaised -= ShowBossSummonTutorial;
+        tutorialBossAttackEvent.OnEventRaised -= ShowBossAttackTutorial;
     }
     void OnDialogEnd()
     {
@@ -165,4 +169,17 @@ public class TutorialSystem : MonoBehaviour
         tutorialText.text = "找到Irene";
         tutorialPanel.SetActive(true);
     }
+
+    private void ShowBossSummonTutorial()
+    {
+        tutorialText.text = "Irene召喚了魚塘的魚，擊敗他們";
+        tutorialPanel.SetActive(true);
+    }
+
+    private void ShowBossAttackTutorial()
+    {
+        tutorialText.text = "小心攻擊!!!!!";
+        tutorialPanel.SetActive(true);
+    }
+
 }
