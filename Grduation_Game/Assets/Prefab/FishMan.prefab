@@ -129,11 +129,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -7552582706839291426, guid: 43919d1b565d57f4bac33ca25eb7455d, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 20.92
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -7552582706839291426, guid: 43919d1b565d57f4bac33ca25eb7455d, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -69.84
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -7552582706839291426, guid: 43919d1b565d57f4bac33ca25eb7455d, type: 3}
       propertyPath: m_LocalPosition.z
@@ -449,7 +449,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.06290245, y: 0.25790024}
+  m_Offset: {x: -0.023767203, y: -2.7971811}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -460,7 +460,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.7548332, y: 0.48419952}
+  m_Size: {x: 1.9281712, y: 0.6142092}
   m_EdgeRadius: 0
 --- !u!70 &6102212152418635581
 CapsuleCollider2D:
@@ -494,8 +494,8 @@ CapsuleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.027873993, y: 2.8916168}
-  m_Size: {x: 1.893692, y: 4.74823}
+  m_Offset: {x: 0.018447638, y: -0.099368095}
+  m_Size: {x: 2.0335102, y: 4.6951675}
   m_Direction: 0
 --- !u!50 &3348658187000255678
 Rigidbody2D:
@@ -605,7 +605,7 @@ MonoBehaviour:
   HitForce: 5
   attackRange: 5
   attackCooldown: 5
-  centerOffset: {x: 0, y: 5.18}
+  centerOffset: {x: 0.09, y: 0}
   checkSize: {x: 10, y: 10}
   checkDistance: 2
   targetLayer:
@@ -631,9 +631,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   manual: 1
-  bottomOffeset: {x: 0.08, y: 0}
-  leftOffset: {x: -2.1, y: 4.49}
-  rightOffset: {x: 2.08, y: 4.51}
+  bottomOffeset: {x: 0.11, y: -4.97}
+  leftOffset: {x: -2.9, y: 0}
+  rightOffset: {x: 2.79, y: 0}
   groundLayer:
     serializedVersion: 2
     m_Bits: 512

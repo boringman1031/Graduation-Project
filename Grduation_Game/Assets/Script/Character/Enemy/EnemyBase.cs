@@ -132,7 +132,7 @@ public class EnemyBase : MonoBehaviour
             {
                 isWait = false;
                 waitTimeCounter = waitTime;
-                transform.localScale = new Vector3(faceDir.x, 10, 10);
+                transform.localScale = new Vector3(faceDir.x,1.6f,1);
             }
         }
         if (!FindPlayer() && lostTimeCounter > 0)
