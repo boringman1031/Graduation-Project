@@ -210,7 +210,8 @@ public class SceneLoader : MonoBehaviour, ISaveable
         isLoading = false;
         sceneLoadedEvent.RaiseEvent(currentLoadScene);// 觸發帶場景參數的新事件 對話系統使用
         afterSceneLoadedEvent.RaiseEvent(); // 廣播:已加載完成事件
-        challengeCount++; // 增加挑戰次數  
+        challengeCount++; // 增加挑戰次數
+        FindObjectOfType<UIManager>()?.UpdateChallengeCountUI(challengeCount);//更新挑戰次數UI
         //saveDataEvent.RaiseEvent(); // 廣播:儲存加載遊戲事件
 
     }

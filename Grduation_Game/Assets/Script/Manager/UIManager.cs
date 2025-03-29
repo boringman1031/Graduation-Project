@@ -46,6 +46,9 @@ public class UIManager : MonoBehaviour
     public Slider BGMSlider;//背景音樂音量
     public Slider FXSlider;//音效音量
 
+    [Header("挑戰次數顯示")]
+    public Image[] challengeLights; // 點亮用的燈（Image 陣列）
+
     public void Awake()
     {
         GameInfoButton.onClick.AddListener(ToggleGameInfoPanel);
@@ -83,6 +86,13 @@ public class UIManager : MonoBehaviour
         syncFXVolumeEvent.OnEventRaised -= OnSyncFXVolumeEvent;
     }
 
+    public void UpdateChallengeCountUI(int count)//更新挑戰次數UI
+    {
+        for (int i = 0; i < challengeLights.Length; i++)
+        {
+            challengeLights[i].enabled = i < count;
+        }
+    }
     private void ToggleRandomChallengeButton()//按下隨機挑戰按鈕觸發
     {
         loadRandomSceneEvent.OnEventRaised();
