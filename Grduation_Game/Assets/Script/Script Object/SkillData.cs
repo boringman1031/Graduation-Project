@@ -11,4 +11,7 @@ public class SkillData : ScriptableObject
     public GameObject skillPrefab; // 技能prefab（含邏輯）
     public bool isUnlocked; // 是否已解鎖
     [TextArea] public string description;
+
+    // 新增：技能冷卻時間，單位秒
+    public float cooldownTime;
 }

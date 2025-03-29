@@ -87,7 +87,7 @@ public class DialogSystem : MonoBehaviour
 
             textFinished = true;
             cancelTyping = false; // 重置標記
-            yield return new WaitUntil(() => Input.GetKeyDown(KeyCode.R)); // 按R繼續
+            yield return new WaitUntil(() => Input.GetKeyDown(KeyCode.F)); // 按R繼續
 
             // 恢復到預設鏡頭
             if (shouldFocus)
