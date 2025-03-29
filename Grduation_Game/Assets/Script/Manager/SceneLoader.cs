@@ -25,6 +25,7 @@ public class SceneLoader : MonoBehaviour, ISaveable
     public VoidEventSO newGameEvent;
     public VoidEventSO backToMenuEvent;
     public VoidEventSO gotoBossEvent;//(測試demo用)進入 Boss 事件
+    public VoidEventSO BossDeadEvent;//Boss死亡事件
     public VoidEventSO goHomeEvent;//回家事件
 
     [Header("場景參數")]
@@ -35,6 +36,7 @@ public class SceneLoader : MonoBehaviour, ISaveable
     public GameSceneSO HomeScene;//租屋處場景
     public GameSceneSO NecessaryScene; //必要關卡 
     public GameSceneSO BossScene;//Boss場景
+    public GameSceneSO Chap1ENDScene;//第一章結束場景
 
     [Header("隨機場景列表")]
     [SerializeField] private List<GameSceneSO> randomScenes; // 可隨機選擇的場景列表
@@ -63,6 +65,7 @@ public class SceneLoader : MonoBehaviour, ISaveable
         onAllEnemiesDefeated.OnEventRaised += OnOpenRandomCanvasEvent;//當場景中所有敵人被擊敗時通知UIManager
         loadRandomSceneEvent.OnEventRaised += OnLoadRandomScene;//隨機挑戰場景加載事件
         gotoBossEvent.OnEventRaised += OnGotoBossScene;//(測試demo用)進入 Boss 事件
+        BossDeadEvent.OnEventRaised += OnGotoEndScene;//Boss死亡事件
         goHomeEvent.OnEventRaised += OnHomeEvent;//回家事件
         ISaveable saveable = this;
         saveable.RegisterSaveData();
@@ -76,6 +79,7 @@ public class SceneLoader : MonoBehaviour, ISaveable
         onAllEnemiesDefeated.OnEventRaised -= OnOpenRandomCanvasEvent;
         loadRandomSceneEvent.OnEventRaised -= OnLoadRandomScene;
         gotoBossEvent.OnEventRaised -= OnGotoBossScene;//(測試demo用)進入 Boss 事件
+        BossDeadEvent.OnEventRaised -= OnGotoEndScene;//Boss死亡事件
         goHomeEvent.OnEventRaised -= OnHomeEvent;//回家事件
         ISaveable saveable = this;
         saveable.UnRegisterSaveData();
@@ -85,6 +89,11 @@ public class SceneLoader : MonoBehaviour, ISaveable
     {
         sceneToLoad = BossScene;
         loadEventSO.RaiseLoadRequestEvent(sceneToLoad, firstPosition, true);
+    }
+
+    private void OnGotoEndScene()//Boss死亡事件
+    {
+        loadEventSO.RaiseLoadRequestEvent(Chap1ENDScene, firstPosition, true);
     }
 
     private void OnHomeEvent()//回家事件

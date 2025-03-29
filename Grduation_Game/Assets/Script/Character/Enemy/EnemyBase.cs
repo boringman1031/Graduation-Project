@@ -33,6 +33,7 @@ public class EnemyBase : MonoBehaviour
     [Header("狀態")]
     public bool isHit;
     public bool isDead;
+    public bool isAttacking;
 
     [Header("計時器")]
     public float waitTime;//巡邏等待時間
@@ -84,14 +85,15 @@ public class EnemyBase : MonoBehaviour
     }
     private void FixedUpdate()
     {
-        if (!isHit & !isDead)
-            OnMove();
         currentState.PhysicsUpdate();
+        Debug.Log($"{name}的速度{currentSpeed}方向{faceDir}");
     }
    
     public virtual void OnMove()
     {
-        rb.velocity = new Vector2(currentSpeed * faceDir.x*Time.deltaTime, rb.velocity.y);
+        if (currentState is AttackState) return; // 攻擊狀態不移動
+        faceDir = new Vector3(-transform.localScale.x, 0, 0); // 每幀更新方向
+        rb.velocity = new Vector2(currentSpeed * faceDir.x, rb.velocity.y);
     }
     public void OnTakeDamage(Transform attackTran)
     {
@@ -145,7 +147,10 @@ public class EnemyBase : MonoBehaviour
     {
         return Physics2D.BoxCast(transform.position + (Vector3)centerOffset, checkSize, 0, faceDir, checkDistance, targetLayer);
     }
-
+    public void EndAttack()
+    {
+        isAttacking = false;
+    }
     public bool PlayerInAttackRange()
     {
         // **獲取玩家位置**

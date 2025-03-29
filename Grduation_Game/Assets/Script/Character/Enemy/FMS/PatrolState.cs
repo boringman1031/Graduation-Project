@@ -9,6 +9,10 @@ public class PatrolState : BaseState
         currentEnemy = _enemy;
         currentEnemy.currentSpeed = currentEnemy.normalSpeed;
         currentEnemy.anim.SetBool("Run", true);
+
+        // 確保方向與 faceDir 同步
+        currentEnemy.faceDir = new Vector3(-currentEnemy.transform.localScale.x, 0, 0);
+
         Debug.Log(currentEnemy.name + " 進入巡邏狀態");
     }
 
@@ -38,7 +42,10 @@ public class PatrolState : BaseState
         }
     }
 
-    public override void PhysicsUpdate() { }
+    public override void PhysicsUpdate() 
+    {
+        currentEnemy.OnMove(); // 執行實際移動
+    }
 
     public override void OnExit()
     {

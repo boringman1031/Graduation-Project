@@ -55,7 +55,7 @@ public class ChaseState : BaseState
         if (player == null || currentEnemy.isDead || currentEnemy.isHit) return;
 
         currentEnemy.rb.velocity = new Vector2(
-            currentEnemy.currentSpeed * -currentEnemy.transform.localScale.x * Time.deltaTime,
+            currentEnemy.currentSpeed * -currentEnemy.transform.localScale.x,
             currentEnemy.rb.velocity.y
         );
     }
@@ -64,5 +64,8 @@ public class ChaseState : BaseState
     {
         currentEnemy.anim.SetBool("Run", false);
         currentEnemy.lostTimeCounter = currentEnemy.lostTime;
+
+        //  確保離開追擊狀態時，方向回到面向前進的方向
+        currentEnemy.faceDir = new Vector3(-currentEnemy.transform.localScale.x, 0, 0);
     }
 }

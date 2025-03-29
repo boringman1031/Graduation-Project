@@ -599,7 +599,7 @@ BoxCollider2D:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 384
   m_LayerOverridePriority: 0
   m_ForceSendLayers:
     serializedVersion: 2
@@ -729,8 +729,8 @@ MonoBehaviour:
   anim: {fileID: 0}
   physicsCheck: {fileID: 0}
   OnEnemyDied: {fileID: 11400000, guid: a3b57538ec29a424aaf1f95d5b36a418, type: 2}
-  normalSpeed: 30
-  chaseSpeed: 50
+  normalSpeed: 1
+  chaseSpeed: 3
   currentSpeed: 0
   faceDir: {x: 0, y: 0, z: 0}
   attacker: {fileID: 0}
@@ -739,7 +739,7 @@ MonoBehaviour:
   attackCooldown: 1
   centerOffset: {x: 0.44, y: -0.15}
   checkSize: {x: 1, y: 1}
-  checkDistance: 5
+  checkDistance: 20
   targetLayer:
     serializedVersion: 2
     m_Bits: 256

@@ -9,8 +9,7 @@ public class Attack : MonoBehaviour
     public float Damage;   
 
     private void OnTriggerStay2D(Collider2D other)//§ðÀ»§P©w
-    {
-        Debug.Log($"À»¤¤{other.name}");
+    {       
         //other.GetComponent<CharactorBase>()?.TakeDamage(this);
         CharactorBase target = other.GetComponent<CharactorBase>();
 

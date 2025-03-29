@@ -15,7 +15,6 @@ public class FollowPlayer : MonoBehaviour
     private void Awake()
     {
         animator = GetComponent<Animator>();
-        player = GameObject.FindWithTag("Player").transform;
     }
 
     private void OnEnable()
@@ -32,6 +31,20 @@ public class FollowPlayer : MonoBehaviour
     {
         if (!isFollowing)
         {
+            if (player == null)
+            {
+                GameObject foundPlayer = GameObject.FindGameObjectWithTag("Player");
+                if (foundPlayer != null)
+                {
+                    player = foundPlayer.transform;
+                }
+                else
+                {
+                    Debug.LogWarning("Player not found in current scene.");
+                    return;
+                }
+            }
+
             isFollowing = true;
             StartCoroutine(FollowPlayerCoroutine());
         }
@@ -39,20 +52,29 @@ public class FollowPlayer : MonoBehaviour
 
     IEnumerator FollowPlayerCoroutine()
     {
-        animator?.SetBool("Walk", true);
-
-        while (Vector3.Distance(transform.position, player.position) > followDistance)
+        while (true)
         {
+            float distance = Vector3.Distance(transform.position, player.position);
             Vector3 direction = player.position - transform.position;
 
+            // 正確翻轉角色
             if (direction.x != 0)
-                transform.localScale = new Vector3(Mathf.Sign(direction.x), 1, 1);
+            {
+                float originalX = Mathf.Abs(transform.localScale.x);
+                float faceX = direction.x > 0 ? originalX : -originalX;
+                transform.localScale = new Vector3(-faceX, transform.localScale.y, transform.localScale.z);
+            }
 
-            transform.position = Vector3.MoveTowards(transform.position, player.position, moveSpeed * Time.deltaTime);
+            // 動畫與移動同步
+            bool shouldMove = distance > followDistance;
+            animator?.SetBool("Walk", shouldMove);
+
+            if (shouldMove)
+            {
+                transform.position = Vector3.MoveTowards(transform.position, player.position, moveSpeed * Time.deltaTime);
+            }
+
             yield return null;
         }
-
-        animator?.SetBool("Walk", false);
-        isFollowing = false;
     }
 }

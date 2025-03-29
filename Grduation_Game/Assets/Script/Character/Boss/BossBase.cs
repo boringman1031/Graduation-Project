@@ -9,8 +9,8 @@ public class BossBase :MonoBehaviour
     public BossHealthUI bossHealthUI;
 
     [Header("廣播事件")]
-    public VoidEventSO CameraShakeEvent;
-    public VoidEventSO BossDeadEvent;
+    public CameraShakeEventSO CameraShakeEvent;
+    public VoidEventSO BossDeadEvent;//Boss死亡事件
     public VoidEventSO tutorialBossSummonEvent;
     public VoidEventSO tutorialBossAttackEvent;
 
@@ -80,7 +80,7 @@ public class BossBase :MonoBehaviour
     //-----------Boss行為----------------
     public virtual void OnBossShow()//相機震動
     {          
-        CameraShakeEvent.RaiseEvent();
+        CameraShakeEvent.RaiseEvent(8f, 6f, 0.4f);
         bossHealthUI.gameObject.SetActive(true); // 血條顯示
     }
 
