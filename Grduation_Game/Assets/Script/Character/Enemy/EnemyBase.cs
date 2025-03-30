@@ -85,8 +85,7 @@ public class EnemyBase : MonoBehaviour
     }
     private void FixedUpdate()
     {
-        currentState.PhysicsUpdate();
-        Debug.Log($"{name}的速度{currentSpeed}方向{faceDir}");
+        currentState.PhysicsUpdate();        
     }
    
     public virtual void OnMove()

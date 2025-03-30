@@ -49,7 +49,7 @@ public class SceneLoader : MonoBehaviour, ISaveable
 
     private Vector3 positionToGo;//要傳送的位置
     private int challengeCount = 0;
-    private int maxChallenges = 3; // 需要完成的隨機挑戰次數
+    private int maxChallenges = 4; // 需要完成的隨機挑戰次數
     private bool fadeScreen;//是否淡出屏幕
     private bool isLoading;//是否正在加載
 
