@@ -678,7 +678,7 @@ MonoBehaviour:
   CurrentPower: 0
   healthRegenAmount: 0
   healthRegenInterval: 0
-  SuperArmourTime: 5
+  SuperArmourTime: 0
   SuperArmour: 0
   OnHealthChange:
     m_PersistentCalls:
@@ -736,8 +736,8 @@ MonoBehaviour:
   attacker: {fileID: 0}
   HitForce: 5
   attackRange: 5
-  attackCooldown: 1
-  centerOffset: {x: 0.44, y: -0.15}
+  attackCooldown: 5
+  centerOffset: {x: 1.33, y: -0.15}
   checkSize: {x: 1, y: 1}
   checkDistance: 20
   targetLayer:
@@ -745,11 +745,13 @@ MonoBehaviour:
     m_Bits: 256
   isHit: 0
   isDead: 0
-  waitTime: 2
-  lostTime: 3
+  isAttacking: 0
+  waitTime: 1
+  lostTime: 0
   waitTimeCounter: 0
   isWait: 0
   lostTimeCounter: 0
+  DeadEffect: {fileID: 3003832800008046713, guid: af157fd49e0bd8140925b56bc936c4b0, type: 3}
 --- !u!114 &6462252262267469645
 MonoBehaviour:
   m_ObjectHideFlags: 0

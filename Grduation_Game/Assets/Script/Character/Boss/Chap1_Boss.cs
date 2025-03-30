@@ -86,7 +86,7 @@ public class Chap1_Boss : BossBase
         {
             float randomX = Random.Range(minX, maxX);
             Vector3 spawnPosition = transform.position + new Vector3(randomX, 0, 0);
-            Addressables.InstantiateAsync(MinionPrefab, spawnPosition, Quaternion.Euler(0, 180, 0))
+            Addressables.InstantiateAsync(MinionPrefab, spawnPosition, Quaternion.Euler(0, 0, 0))
                 .Completed += OnMinionSpawned;
         }
     }

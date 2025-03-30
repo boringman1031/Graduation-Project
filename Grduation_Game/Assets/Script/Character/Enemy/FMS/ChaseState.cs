@@ -14,7 +14,7 @@ public class ChaseState : BaseState
         currentEnemy.currentSpeed = currentEnemy.chaseSpeed;
         player = GameObject.FindGameObjectWithTag("Player")?.transform;
         currentEnemy.anim.SetBool("Run", true);
-        Debug.Log(currentEnemy.name + " 進入追擊狀態");
+        Debug.Log("進入追擊模式");
     }
 
     public override void LogicUpdate()

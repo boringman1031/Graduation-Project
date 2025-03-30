@@ -10,9 +10,9 @@ public class AttackState : BaseState
     public override void OnEnter(EnemyBase enemy)
     {
         currentEnemy = enemy;
-        currentEnemy.currentSpeed = 0; // 停止移動
+        currentEnemy.currentSpeed = 0;
         player = GameObject.FindGameObjectWithTag("Player")?.transform;
-        currentEnemy.anim.SetBool("Run", false);
+        currentEnemy.isAttacking = false; // 進入攻擊狀態時重設攻擊中狀態
         Debug.Log(currentEnemy.name + " 進入攻擊狀態");
     }
 
@@ -22,14 +22,14 @@ public class AttackState : BaseState
 
         float distance = Vector2.Distance(currentEnemy.transform.position, player.position);
 
-        //  若不在攻擊範圍，且不是攻擊中，切回追擊
-        if (!currentEnemy.isAttacking && distance > currentEnemy.attackRange)
+        // 超出攻擊距離就切回追擊狀態
+        if (distance > currentEnemy.attackRange && !currentEnemy.isAttacking)
         {
             currentEnemy.SwitchState(EenemyState.Chase);
             return;
         }
 
-        // 若攻擊冷卻完畢且不是正在攻擊
+        // 如果冷卻時間到，且當前沒有在攻擊中，就進行攻擊
         if (Time.time >= lastAttackTime + currentEnemy.attackCooldown && !currentEnemy.isAttacking)
         {
             lastAttackTime = Time.time;
@@ -37,7 +37,7 @@ public class AttackState : BaseState
             currentEnemy.anim.SetTrigger("Attack");
         }
 
-        //  面向玩家
+        // 面向玩家方向
         if (player.position.x - currentEnemy.transform.position.x > 0)
             currentEnemy.transform.localScale = new Vector3(-1.6f, 1.6f, 1.6f);
         else
@@ -46,12 +46,11 @@ public class AttackState : BaseState
 
     public override void PhysicsUpdate()
     {
-        // 不移動
-        currentEnemy.rb.velocity = new Vector2(0, currentEnemy.rb.velocity.y);
+       
     }
 
     public override void OnExit()
     {
-        currentEnemy.isAttacking = false;
+        currentEnemy.isAttacking = false; // 離開攻擊狀態時保險清除
     }
 }

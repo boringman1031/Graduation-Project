@@ -547,7 +547,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &154006441
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1372,6 +1372,7 @@ MonoBehaviour:
   FXSlider: {fileID: 166581678}
   challengeLights:
   - {fileID: 2139947382}
+  - {fileID: 453920851}
   - {fileID: 154006442}
   - {fileID: 1049737482}
 --- !u!1 &430835876
@@ -1484,7 +1485,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 788.8, y: 29}
+  m_AnchoredPosition: {x: 788.8, y: 30}
   m_SizeDelta: {x: 70, y: 70}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &433787222
@@ -1619,7 +1620,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &453920850
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1731,6 +1732,7 @@ MonoBehaviour:
   tutorialAttackEvent: {fileID: 11400000, guid: c0e7d0811cffe8741964ed73e6a23eb7, type: 2}
   tutorialBossSummonEvent: {fileID: 11400000, guid: b9b73957c2b348d47b3fee4fec7a273a, type: 2}
   tutorialBossAttackEvent: {fileID: 11400000, guid: 103c37f32d8484342b3595c0303e249b, type: 2}
+  tutorialBossBrokenHeartEvent: {fileID: 11400000, guid: f1dd5d41dec01d042b6eeaa23ceeb795, type: 2}
   dialogEndEvent: {fileID: 11400000, guid: 9b0030f4733054648b442de17490fdb0, type: 2}
   sceneLoadedEvent: {fileID: 11400000, guid: 1776d7e1d30ba5c448f8d3d5648b9907, type: 2}
   tutorialPanel: {fileID: 437357357}
@@ -3079,7 +3081,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1049737481
 RectTransform:
   m_ObjectHideFlags: 0
@@ -6560,6 +6562,10 @@ PrefabInstance:
       value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 876225542684795322, guid: 8fe606f421d465a43860c97bb139a223, type: 3}
+      propertyPath: manual
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 876225542684795322, guid: 8fe606f421d465a43860c97bb139a223, type: 3}
       propertyPath: checkRaduis
       value: 0.5
       objectReference: {fileID: 0}
@@ -6829,7 +6835,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4129049325006263578, guid: 8fe606f421d465a43860c97bb139a223, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4429415200532308936, guid: 8fe606f421d465a43860c97bb139a223, type: 3}
       propertyPath: m_Size.x
@@ -6899,6 +6905,10 @@ PrefabInstance:
       propertyPath: DeadEffectPrefab
       value: 
       objectReference: {fileID: 6855314210357232287, guid: 7c2a9b83b809a0848915fabd9596b68b, type: 3}
+    - target: {fileID: 4910103218695575477, guid: 8fe606f421d465a43860c97bb139a223, type: 3}
+      propertyPath: HurtEffectPrefab
+      value: 
+      objectReference: {fileID: 6823200998282874702, guid: 8f8fe12323625f5499b2853dd2ad3e58, type: 3}
     - target: {fileID: 4910103218695575477, guid: 8fe606f421d465a43860c97bb139a223, type: 3}
       propertyPath: cameraShakeEvent
       value: 
@@ -7962,7 +7972,7 @@ MonoBehaviour:
   gotoBossEvent: {fileID: 11400000, guid: c280ad70ab8ffcc44b60327091e93a2f, type: 2}
   BossDeadEvent: {fileID: 11400000, guid: 8eff88c6c7ca8124b82fa0fd4b8dd951, type: 2}
   goHomeEvent: {fileID: 11400000, guid: 8e4300285ab8c3142a25901137ababd8, type: 2}
-  firstLoadScene: {fileID: 11400000, guid: 7304531799ba66d42a76f21ad5e81947, type: 2}
+  firstLoadScene: {fileID: 11400000, guid: a64cf6f0a48c64c4da0bdea97a5d7f7d, type: 2}
   MuneScene: {fileID: 11400000, guid: a89b00abb5bdc9543851dc1aca09facb, type: 2}
   HomeScene: {fileID: 11400000, guid: 4b2b587f0ad2230439f03d27de2c3ca6, type: 2}
   NecessaryScene: {fileID: 11400000, guid: 7dce1fbd846b00f43b4f49d8894f44cb, type: 2}
@@ -8109,7 +8119,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 658, y: 32}
+  m_AnchoredPosition: {x: 658, y: 30}
   m_SizeDelta: {x: 70, y: 70}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1879804470
@@ -8778,7 +8788,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &2139947381
 RectTransform:
   m_ObjectHideFlags: 0

@@ -56,6 +56,7 @@ public class SceneLoader : MonoBehaviour, ISaveable
     private void Start()
     {
         loadEventSO.RaiseLoadRequestEvent(MuneScene, menuPosition, false);
+        FindObjectOfType<UIManager>().UpdateChallengeCountUI(challengeCount);//更新挑戰次數UI
     }
     private void OnEnable()
     {
@@ -135,9 +136,10 @@ public class SceneLoader : MonoBehaviour, ISaveable
             GameSceneSO randomScene = GetRandomScene();
             if (randomScene != null)
             {
-                sceneToLoad = randomScene;                 
-                OnLoadRequestEvent(sceneToLoad, firstPosition, true);                      
-                Debug.Log($"進入{sceneToLoad.GetType()}，還剩{challengeCount}次挑戰");
+                challengeCount++; // 增加挑戰次數
+                FindObjectOfType<UIManager>().UpdateChallengeCountUI(challengeCount);//更新挑戰次數UI
+                sceneToLoad = randomScene;
+                OnLoadRequestEvent(sceneToLoad, firstPosition, true);
             }
             else
             {
@@ -208,10 +210,10 @@ public class SceneLoader : MonoBehaviour, ISaveable
         playerTrans.position = positionToGo;
         playerTrans.gameObject.SetActive(true);
         isLoading = false;
+
         sceneLoadedEvent.RaiseEvent(currentLoadScene);// 觸發帶場景參數的新事件 對話系統使用
-        afterSceneLoadedEvent.RaiseEvent(); // 廣播:已加載完成事件
-        challengeCount++; // 增加挑戰次數
-        FindObjectOfType<UIManager>()?.UpdateChallengeCountUI(challengeCount);//更新挑戰次數UI
+        afterSceneLoadedEvent.RaiseEvent(); // 廣播:已加載完成事件         
+        Debug.Log($"已加載{currentLoadScene.GetType()}，挑戰次數{challengeCount}");
         //saveDataEvent.RaiseEvent(); // 廣播:儲存加載遊戲事件
 
     }

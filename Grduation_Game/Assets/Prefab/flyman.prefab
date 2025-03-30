@@ -538,15 +538,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   newGameEvent: {fileID: 11400000, guid: d9bb2d4100ded3d4f81459a40234d7c7, type: 2}
   goHomeEvent: {fileID: 11400000, guid: 8e4300285ab8c3142a25901137ababd8, type: 2}
-  Health: 100
-  Defence: 200
+  Health: 20
+  Defence: 100
   MaxHealth: 0
   MaxPower: 0
   CurrentHealth: 0
   CurrentPower: 0
   healthRegenAmount: 0
   healthRegenInterval: 0
-  SuperArmourTime: 5
+  SuperArmourTime: 0
   SuperArmour: 0
   OnHealthChange:
     m_PersistentCalls:
@@ -615,7 +615,7 @@ MonoBehaviour:
   isDead: 0
   isAttacking: 0
   waitTime: 1
-  lostTime: 2
+  lostTime: 0
   waitTimeCounter: 0
   isWait: 0
   lostTimeCounter: 0

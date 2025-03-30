@@ -112,9 +112,11 @@ public class EnemyBase : MonoBehaviour
 
     IEnumerator OnHit(Vector2 dir)
     {
+        Debug.Log($"{name}OnHit¡A{isHit}");
         rb.AddForce(dir * HitForce, ForceMode2D.Impulse);
         yield return new WaitForSeconds(0.5f);
         isHit = false;
+        Debug.Log($"OnHit{isHit}");
     }
 
     public virtual void OnDead()

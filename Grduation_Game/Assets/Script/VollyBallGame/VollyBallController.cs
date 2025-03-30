@@ -21,7 +21,7 @@ public class VollyBallController : MonoBehaviour
     [Header("UI相關")]  
     public Text playerScoreText;
     public Text scoreText;
-    public int winningScore = 20;
+    public int winningScore;
     public GameObject startPromptText; // 提示 "按任意鍵開始"
     public GameObject winTextPanel; // 顯示勝利 UI
 

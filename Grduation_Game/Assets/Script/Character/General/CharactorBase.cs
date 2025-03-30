@@ -40,6 +40,10 @@ public class CharactorBase : MonoBehaviour,ISaveable
         ISaveable saveable = this;
         saveable.RegisterSaveData();
         regenCoroutine = StartCoroutine(AutoRegenHealth());//自動回血
+
+        // 血量強制初始化一次
+        if (CurrentHealth <= 0)
+            NewGame();
     }
     private void OnDisable()
     {
@@ -81,16 +85,16 @@ public class CharactorBase : MonoBehaviour,ISaveable
         OnHealthChange?.Invoke(this);      
     }
     public void TakeDamage(Attack _attacker)//受到傷害判定
-    {           
+    {          
         if (SuperArmour)
         {
             return;
-        }
-        if(CurrentHealth-_attacker.Damage > 0)
-        {           
-            CurrentHealth -= _attacker.Damage;
+        }   
+
+        if (CurrentHealth - _attacker.Damage > 0)
+        {
+            CurrentHealth -= _attacker.Damage;             
             TriggerSuperArmour();
-            //受傷時要幹嘛寫在這
             OnTakeDamage?.Invoke(_attacker.transform);//觸發受傷事件
 
         }
@@ -99,7 +103,7 @@ public class CharactorBase : MonoBehaviour,ISaveable
             CurrentHealth = 0;
             OnDead?.Invoke();          
         }
-      OnHealthChange?.Invoke(this);//觸發血量改變事件
+        OnHealthChange?.Invoke(this);//觸發血量改變事件
     }
     
     public void AddHealth(float _health)//增加血量
@@ -131,6 +135,7 @@ public class CharactorBase : MonoBehaviour,ISaveable
         {
             SuperArmour = true;
             SuperArmourTimeCounter = SuperArmourTime;
+            Debug.Log($"{name}觸發霸體，時間{SuperArmourTime}");
         }
     }
 

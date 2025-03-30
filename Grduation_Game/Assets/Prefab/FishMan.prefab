@@ -538,7 +538,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   newGameEvent: {fileID: 11400000, guid: d9bb2d4100ded3d4f81459a40234d7c7, type: 2}
   goHomeEvent: {fileID: 11400000, guid: 8e4300285ab8c3142a25901137ababd8, type: 2}
-  Health: 100
+  Health: 30
   Defence: 100
   MaxHealth: 0
   MaxPower: 0
@@ -546,7 +546,7 @@ MonoBehaviour:
   CurrentPower: 0
   healthRegenAmount: 0
   healthRegenInterval: 0
-  SuperArmourTime: 2
+  SuperArmourTime: 0
   SuperArmour: 0
   OnHealthChange:
     m_PersistentCalls:
@@ -597,14 +597,14 @@ MonoBehaviour:
   anim: {fileID: 0}
   physicsCheck: {fileID: 0}
   OnEnemyDied: {fileID: 11400000, guid: a3b57538ec29a424aaf1f95d5b36a418, type: 2}
-  normalSpeed: 2
-  chaseSpeed: 4
+  normalSpeed: 1
+  chaseSpeed: 2
   currentSpeed: 0
   faceDir: {x: 0, y: 0, z: 0}
   attacker: {fileID: 0}
   HitForce: 5
-  attackRange: 5
-  attackCooldown: 5
+  attackRange: 1
+  attackCooldown: 2
   centerOffset: {x: 0.09, y: 0}
   checkSize: {x: 10, y: 10}
   checkDistance: 20
@@ -614,11 +614,12 @@ MonoBehaviour:
   isHit: 0
   isDead: 0
   isAttacking: 0
-  waitTime: 2
-  lostTime: 3
+  waitTime: 0.5
+  lostTime: 0
   waitTimeCounter: 0
   isWait: 0
   lostTimeCounter: 0
+  DeadEffect: {fileID: 540577976283395429, guid: 8b79b4f4eaa44d24ca29472ee7036af1, type: 3}
 --- !u!114 &5603246810624719995
 MonoBehaviour:
   m_ObjectHideFlags: 0

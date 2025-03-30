@@ -617,14 +617,14 @@ MonoBehaviour:
   newGameEvent: {fileID: 11400000, guid: d9bb2d4100ded3d4f81459a40234d7c7, type: 2}
   goHomeEvent: {fileID: 11400000, guid: 8e4300285ab8c3142a25901137ababd8, type: 2}
   Health: 100
-  Defence: 50
+  Defence: 100
   MaxHealth: 0
   MaxPower: 0
   CurrentHealth: 0
   CurrentPower: 0
   healthRegenAmount: 0
   healthRegenInterval: 0
-  SuperArmourTime: 10
+  SuperArmourTime: 0
   SuperArmour: 0
   OnHealthChange:
     m_PersistentCalls:
@@ -692,11 +692,13 @@ MonoBehaviour:
   isHit: 0
   isDead: 0
   isAttacking: 0
-  waitTime: 2
-  lostTime: 2
+  waitTime: 1
+  lostTime: 0
   waitTimeCounter: 0
   isWait: 0
   lostTimeCounter: 0
+  DeadEffect: {fileID: 3003832800008046713, guid: af157fd49e0bd8140925b56bc936c4b0, type: 3}
+  HitEffect: {fileID: 6823200998282874702, guid: 8f8fe12323625f5499b2853dd2ad3e58, type: 3}
 --- !u!114 &1733263338196886733
 MonoBehaviour:
   m_ObjectHideFlags: 0

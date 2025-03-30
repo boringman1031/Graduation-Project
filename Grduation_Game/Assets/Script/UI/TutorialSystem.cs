@@ -11,6 +11,7 @@ public class TutorialSystem : MonoBehaviour
     public VoidEventSO tutorialAttackEvent;
     public VoidEventSO tutorialBossSummonEvent;//觸發Boss召喚事件教學
     public VoidEventSO tutorialBossAttackEvent;//觸發Boss攻擊事件教學
+    public VoidEventSO tutorialBossBrokenHeartEvent;//觸發Boss心碎事件教學
     public VoidEventSO dialogEndEvent; // 對話結束事件
     public SceneLoadedEventSO sceneLoadedEvent; // 新增：場景加載完成事件
 
@@ -56,6 +57,7 @@ public class TutorialSystem : MonoBehaviour
         sceneLoadedEvent.OnSceneLoaded += OnSceneLoaded;
         tutorialBossSummonEvent.OnEventRaised += ShowBossSummonTutorial;
         tutorialBossAttackEvent.OnEventRaised += ShowBossAttackTutorial;
+        tutorialBossBrokenHeartEvent.OnEventRaised += ShowBosBrokenHeartTutorial;
     }
 
     private void OnDisable()
@@ -67,6 +69,7 @@ public class TutorialSystem : MonoBehaviour
         sceneLoadedEvent.OnSceneLoaded -= OnSceneLoaded;
         tutorialBossSummonEvent.OnEventRaised -= ShowBossSummonTutorial;
         tutorialBossAttackEvent.OnEventRaised -= ShowBossAttackTutorial;
+        tutorialBossBrokenHeartEvent.OnEventRaised -= ShowBosBrokenHeartTutorial;
     }
     void OnDialogEnd()
     {
@@ -182,4 +185,9 @@ public class TutorialSystem : MonoBehaviour
         tutorialPanel.SetActive(true);
     }
 
+    private void ShowBosBrokenHeartTutorial()
+    {
+        tutorialText.text = "你破防了，把對她的愛擊碎";
+        tutorialPanel.SetActive(true);
+    }
 }
