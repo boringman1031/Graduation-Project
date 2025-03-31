@@ -109,9 +109,7 @@ public class Skill_SlackOff : MonoBehaviour, ISkillEffect
                     AudioSource.PlayClipAtPoint(auraDamageSound, hit.transform.position);
                 }
                 // ¶Ç»¼¶Ë®`¼Æ­È
-                Attack atk = new Attack();
-                atk.Damage = damagePerSecond;
-                enemy.TakeDamage(atk);
+                enemy.TakeDamage(damagePerSecond, transform);
             }
         }
     }

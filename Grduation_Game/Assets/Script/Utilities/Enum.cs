@@ -31,20 +31,15 @@ public enum TutorialType
     Move,           // 移動教學
     Jump,           // 跳躍教學
     Attack,         // 攻擊教學
-    MusicGame       // 音樂遊戲教學
+    MusicGame,      // 音樂遊戲教學
+    TriviaGame,     // 對話遊戲
+    CleanEnemy,     // 清除敵人教學
+    Boss            // boss戰教學
 }
 public enum SkillType
 {
     Q_Skill,
     W_Skill,
     E_Skill,
-    R_Ultimate // 大招绑定职业
-    None,           // �L�о�
-    Move,           // ���ʱо�
-    Jump,           // ���D�о�
-    Attack,         // �����о�
-    MusicGame,      // ���ֹC���о�
-    TriviaGame,     //�ݵ��C���о�
-    CleanEnemy,      //�M���ĤH�о�
-    Boss
+    R_Ultimate, // 大招绑定职业
 }

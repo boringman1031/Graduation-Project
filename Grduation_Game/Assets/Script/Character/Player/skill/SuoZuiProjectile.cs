@@ -39,9 +39,8 @@ public class SuoZuiProjectile : MonoBehaviour
         if (enemy != null)
         {
             // 造成傷害：這邊可以根據你的 Attack 邏輯進行調整
-            Attack tempAttack = new Attack();
-            tempAttack.Damage = damage;
-            enemy.TakeDamage(tempAttack);
+
+            enemy.TakeDamage(damage, transform);
 
             // 可在此生成擊中特效、播放命中音效
             // (例如：Instantiate(hitEffectPrefab, enemy.transform.position, Quaternion.identity);)

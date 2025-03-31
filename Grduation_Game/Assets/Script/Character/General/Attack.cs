@@ -20,7 +20,7 @@ public class Attack : MonoBehaviour
             return;
         }
 
-        target.TakeDamage(this);
+        target.TakeDamage(Damage, transform);
     } 
 }
 

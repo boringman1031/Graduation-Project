@@ -117,9 +117,8 @@ public class Skill_NightRush : MonoBehaviour, ISkillEffect
             {
                 AudioSource.PlayClipAtPoint(hitSound, collision.transform.position);
             }
-            Attack atk = new Attack();
-            atk.Damage = damage;
-            target.TakeDamage(atk);
+
+            target.TakeDamage(damage, transform);
         }
     }
 }

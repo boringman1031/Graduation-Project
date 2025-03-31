@@ -80,9 +80,7 @@ public class SkillHoldHand : MonoBehaviour, ISkillEffect
             CharactorBase target = hit.GetComponent<CharactorBase>();
             if (target != null)
             {
-                Attack tempAttack = new Attack();
-                tempAttack.Damage = damage;
-                target.TakeDamage(tempAttack);
+                target.TakeDamage(damage, transform);
                 target.Defence -= defenseReduction;
             }
         }

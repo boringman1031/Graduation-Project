@@ -70,9 +70,7 @@ public class SkillLoveSong : MonoBehaviour, ISkillEffect
                 Instantiate(hitEffect, transform.position, Quaternion.identity);
             }
 
-            Attack tempAttack = new Attack();
-            tempAttack.Damage = damage;
-            enemy.TakeDamage(tempAttack);
+            enemy.TakeDamage(damage, transform);
 
             Destroy(gameObject);
         }

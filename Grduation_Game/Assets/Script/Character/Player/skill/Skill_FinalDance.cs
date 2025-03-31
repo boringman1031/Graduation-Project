@@ -101,9 +101,7 @@ public class Skill_FinalDance : MonoBehaviour, ISkillEffect
             CharactorBase enemy = hit.GetComponent<CharactorBase>();
             if (enemy != null && !enemy.CompareTag("Player"))
             {
-                Attack atk = new Attack();
-                atk.Damage = damagePerSecond;
-                enemy.TakeDamage(atk);
+                enemy.TakeDamage(damagePerSecond, transform);
             }
         }
     }

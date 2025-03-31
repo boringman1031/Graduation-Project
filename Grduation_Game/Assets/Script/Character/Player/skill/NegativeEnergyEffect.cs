@@ -37,9 +37,8 @@ public class NegativeEnergyEffect : MonoBehaviour
             if (Time.time - damageTimers[collision] >= 1f)
             {
                 Debug.Log("受到傷害 " + damagePerSecond);
-                Attack tempAttack = new Attack();
-                tempAttack.Damage = damagePerSecond;
-                enemy.TakeDamage(tempAttack);
+
+                enemy.TakeDamage(damagePerSecond, transform);
                 
 
                 // 生成擊中特效

@@ -86,7 +86,7 @@ public class CharactorBase : MonoBehaviour,ISaveable
         CurrentPower = MaxPower;
         OnHealthChange?.Invoke(this);      
     }
-    public void TakeDamage(Attack _attacker)//受到傷害判定
+    public void TakeDamage(float damage, Transform attacker = null)//受到傷害判定
     {
         // 檢查：是否處於霸體狀態
         if (SuperArmour)
@@ -94,13 +94,13 @@ public class CharactorBase : MonoBehaviour,ISaveable
             return;
         }
 
-        if(CurrentHealth-_attacker.Damage > 0)
+        if(CurrentHealth - damage > 0)
         {           
-            CurrentHealth -= _attacker.Damage;
+            CurrentHealth -= damage;
             TriggerSuperArmour();
             //受傷時要幹嘛寫在這
-            OnTakeDamage?.Invoke(_attacker.transform);//觸發受傷事件
-
+            if (attacker != null)
+                OnTakeDamage?.Invoke(attacker); // 使用傳入的 Transform
         }
         else //死亡
         {
