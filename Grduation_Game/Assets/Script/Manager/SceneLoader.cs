@@ -28,18 +28,19 @@ public class SceneLoader : MonoBehaviour, ISaveable
     public VoidEventSO BossDeadEvent;//Boss死亡事件
     public VoidEventSO goHomeEvent;//回家事件
 
+    
     [Header("場景參數")]
-    private GameSceneSO sceneToLoad;//要新遊戲開始要加載的場景
-    private GameSceneSO currentLoadScene;//當前加載的場景
-    private GameSceneSO lastRandomScene; // 儲存上一次的隨機場景
-
     public GameSceneSO firstLoadScene;//第一個加載的場景(遊戲大聽)
     public GameSceneSO MuneScene;//主場景
     public GameSceneSO HomeScene;//租屋處場景
     public GameSceneSO NecessaryScene; //必要關卡 
     public GameSceneSO BossScene;//Boss場景
     public GameSceneSO Chap1ENDScene;//第一章結束場景
-    
+
+    private GameSceneSO sceneToLoad;//要新遊戲開始要加載的場景
+    private GameSceneSO currentLoadScene;//當前加載的場景
+    private GameSceneSO lastRandomScene; // 儲存上一次的隨機場景
+
 
     [Header("隨機場景列表")]
     [SerializeField] private List<GameSceneSO> randomScenes; // 可隨機選擇的場景列表

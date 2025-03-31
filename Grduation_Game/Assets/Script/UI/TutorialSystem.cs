@@ -151,7 +151,7 @@ public class TutorialSystem : MonoBehaviour
     }
     private void ShowMusicGameTutorial2()
     {
-        tutorialText.text = "在愛心到左側位置時按下鍵盤QWE";
+        tutorialText.text = "在愛心到左側位置時按下鍵盤ZXC";
         tutorialPanel.SetActive(true);
     }
 
