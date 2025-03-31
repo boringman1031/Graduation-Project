@@ -12,8 +12,7 @@ public class AttackState : BaseState
         currentEnemy = enemy;
         currentEnemy.currentSpeed = 0;
         player = GameObject.FindGameObjectWithTag("Player")?.transform;
-        currentEnemy.isAttacking = false; // 進入攻擊狀態時重設攻擊中狀態
-        Debug.Log(currentEnemy.name + " 進入攻擊狀態");
+        currentEnemy.isAttacking = false; // 進入攻擊狀態時重設攻擊中狀態     
     }
 
     public override void LogicUpdate()

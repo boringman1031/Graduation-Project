@@ -13,13 +13,13 @@ public class EnemyManager : MonoBehaviour
     private void OnEnable()
     {
         enemies.AddRange(GameObject.FindGameObjectsWithTag("Enemy")); // 找到所有敵人
-        Debug.Log($"當前場景敵人數量: {enemies.Count}");
+        Debug.Log($"找到 {enemies.Count} 個敵人");
     }
     public void RegisterEnemy(GameObject enemy)
     {
         if (!enemies.Contains(enemy))
         {
-            enemies.Add(enemy);
+            enemies.Add(enemy);        
         }
     }
 

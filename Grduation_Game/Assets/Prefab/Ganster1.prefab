@@ -91,6 +91,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Damage: 30
+  attackRange: 0
+  attackRate: 0
 --- !u!1001 &9091242038482196045
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -596,7 +598,7 @@ MonoBehaviour:
   attackCooldown: 5
   centerOffset: {x: 6.21, y: 0}
   checkSize: {x: 1, y: 1}
-  checkDistance: 30
+  checkDistance: 10
   targetLayer:
     serializedVersion: 2
     m_Bits: 256

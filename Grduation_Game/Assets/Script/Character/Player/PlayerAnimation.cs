@@ -32,20 +32,13 @@ public class PlayerAnimation : MonoBehaviour
     }
     private void Update()
     {
-        SetAnimation();
+        SetAnimation();      
     }
 
-    public void UpdateAnimator()
+    public void UpdateAnimator()//轉場完後更新動畫
     {
-        if (anim != null)
-        {
-            anim.Rebind(); // **強制重置 Animator，確保動畫不錯亂**
-            anim.Update(0); // **立刻更新 Animator**           
-        }
-        else
-        {
-            Debug.LogWarning("Animator 未找到！");
-        }
+        anim.Rebind();
+        anim.Update(0);    
     }
     public void SetAnimation()
     {
@@ -62,7 +55,7 @@ public class PlayerAnimation : MonoBehaviour
     }
     public void OnPlayerAttack()
     {
-        anim.SetTrigger("Attack");
+        anim.SetTrigger("Attack");      
     }
 }
 
