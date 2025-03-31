@@ -41,10 +41,9 @@ public class CharactorBase : MonoBehaviour,ISaveable
         goHomeEvent.OnEventRaised += NewGame;
         ISaveable saveable = this;
         saveable.RegisterSaveData();
-        regenCoroutine = StartCoroutine(AutoRegenHealth());//�۰ʦ^��
+        regenCoroutine = StartCoroutine(AutoRegenHealth());//啟動自動回血
 
-        // ��q�j���l�Ƥ@��
-        if (CurrentHealth <= 0)
+        if (CurrentHealth <= 0)//如果血量小於等於0
             NewGame();
     }
     private void OnDisable()
