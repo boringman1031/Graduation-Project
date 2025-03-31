@@ -13,6 +13,7 @@ public class TriggerMessage : MonoBehaviour
         {
             anim.SetTrigger("Message");
             DialogManager.Instance.StartDialog(Key);
+            gameObject.SetActive(false); // Ãö³¬ª«¥ó
         }
     }
 }

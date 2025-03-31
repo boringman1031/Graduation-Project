@@ -42,6 +42,10 @@ public class EnemyBase : MonoBehaviour
     [HideInInspector] public bool isWait;  
     [HideInInspector] public float lostTimeCounter;
 
+    [Header("¯S®Ä")]
+    public GameObject hitEffect;
+    public GameObject deadEffect;
+
     private BaseState currentState;//·í«eª¬ºA
     protected BaseState patrolState;//¨µÅÞª¬ºA
     protected BaseState chaseState;//°lÀ»ª¬ºA
@@ -143,6 +147,21 @@ public class EnemyBase : MonoBehaviour
             lostTimeCounter -= Time.deltaTime;
         }  
 
+    }
+
+    public void PlayHitEffect()
+    {
+        if (hitEffect != null)
+        {
+            Instantiate(hitEffect, transform.position, Quaternion.identity);
+        }
+    }
+    public void PlayDeadEffect()
+    {
+        if (deadEffect != null)
+        {
+            Instantiate(deadEffect, transform.position, Quaternion.identity);
+        }
     }
     public bool FindPlayer()
     {

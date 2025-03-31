@@ -3,8 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class FishMan : EnemyBase
-{
-    public GameObject DeadEffect;
+{    
     protected override void Awake()
     {
         base.Awake();
@@ -13,9 +12,5 @@ public class FishMan : EnemyBase
         chaseState = new ChaseState();
         attackerState = new AttackState();
     }
-
-    public void OnDeadEffect()
-    {
-        Instantiate(DeadEffect, transform.position, Quaternion.identity);
-    }
+   
 }

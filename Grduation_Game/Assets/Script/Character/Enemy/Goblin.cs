@@ -4,8 +4,7 @@ using UnityEngine;
 
 public class Goblin : EnemyBase
 {
-    public GameObject DeadEffect;
-
+   
     protected override void Awake()
     {
         base.Awake();
@@ -15,9 +14,5 @@ public class Goblin : EnemyBase
         attackerState = new AttackState();
     }
 
-    public  void OnDeadEffect()
-    {
-        Instantiate(DeadEffect, transform.position, Quaternion.identity);
-    }
-    
+      
 }
