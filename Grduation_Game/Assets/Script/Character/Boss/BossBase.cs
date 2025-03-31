@@ -101,7 +101,7 @@ public class BossBase :MonoBehaviour
         if(currentHealth > 0)
         {
             anim.SetTrigger("Hit");
-            currentHealth -= 100;
+            currentHealth -= 200;
             TriggerSuperArmour();
             // §ó·s¦å±ø
             if (bossHealthUI != null)
