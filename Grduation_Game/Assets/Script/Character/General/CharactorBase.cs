@@ -7,9 +7,9 @@ using UnityEngine.Events;
 
 public class CharactorBase : MonoBehaviour,ISaveable
 {
-    [Header("�ƥ��ť")]
-    public VoidEventSO newGameEvent;//�s�C���ƥ�
-    public VoidEventSO goHomeEvent;//�^�a�ƥ�
+    [Header("事件監聽")]
+    public VoidEventSO newGameEvent;//新遊戲事件
+    public VoidEventSO goHomeEvent;//回家事件
 
     [Header("基礎數值")]
     public float Health;
@@ -77,6 +77,11 @@ public class CharactorBase : MonoBehaviour,ISaveable
                 SuperArmour = false;
             }
         }
+
+        if(CurrentHealth <= 0)//如果血量小於等於0
+        {
+            OnDead?.Invoke();
+        }
     }
     private void NewGame()
     {
@@ -137,8 +142,7 @@ public class CharactorBase : MonoBehaviour,ISaveable
         if(!SuperArmour) 
         {
             SuperArmour = true;
-            SuperArmourTimeCounter = SuperArmourTime;
-            Debug.Log($"{name}Ĳ�o�Q��A�ɶ�{SuperArmourTime}");
+            SuperArmourTimeCounter = SuperArmourTime;        
         }
     }
 
