@@ -137,17 +137,28 @@ public class BossBase :MonoBehaviour
     {
         CameraShakeEvent.RaiseEvent(8f, 6f, 0.4f);
     }
+    public void OnBossDeadCameraShake()
+    {
+        CameraShakeEvent.RaiseEvent(10f, 8f, 2.0f);
+    }
     public virtual void SpawnHeartMinion()//生成愛心小怪
     {
         anim.SetTrigger("Hit");
         tutorialBossBrokenHeartEvent.RaiseEvent();//廣播開啟愛心小怪事件教學
     }
-  
+
     public void Die()//Boss死亡
     {
-        BossDeadEvent.RaiseEvent();
+        anim.SetBool("Dead", true);
+        WaitAndTriggerEvent(2.0f, BossDeadEvent);
     }
-
+    private IEnumerator WaitAndTriggerEvent(float waitTime, VoidEventSO eventToTrigger)
+    {
+        yield return new WaitForSeconds(waitTime);
+        eventToTrigger.RaiseEvent();
+    }
+    
+   
     public void SwitchState(BossState _state)//切換狀態
     {
         var newState = _state switch//根據現有狀態切換敵人狀態(switch的語法糖寫法)

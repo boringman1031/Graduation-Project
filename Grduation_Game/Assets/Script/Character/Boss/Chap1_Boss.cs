@@ -14,6 +14,7 @@ public class Chap1_Boss : BossBase
     [Header("特效")]
     public Transform attackEffectSpawnPoint;//攻擊特效生成位置
     public Transform HeartEffectSpawnPoint;//愛心特效生成位置
+    public Transform summonEnemyPoint;//召喚敵人生成位置
     public GameObject AttackWarningEffect;//攻擊預警特效
     public GameObject attackEffectPrefab1;//攻擊特效
     public GameObject attackEffectPrefab2;//攻擊2特效
@@ -32,20 +33,19 @@ public class Chap1_Boss : BossBase
     public void OnAttackEffect()//在動畫某階段生成攻擊特效
     {
 
-        if (currentHealth > maxHealth / 2)
+        int effectCount = 5; // 控制特效的數量
+        float spacing = 20f; // 控制特效之間的間距
+        for (int i = -effectCount / 2; i <= effectCount / 2; i++)
         {
-            int effectCount = 5; // 控制特效的數量
-            float spacing = 20f; // 控制特效之間的間距
-            for (int i = -effectCount / 2; i <= effectCount / 2; i++)
-            {
-                Vector3 spawnPosition = attackEffectSpawnPoint.position + new Vector3(i * spacing, 0, 0);
-                Instantiate(AttackWarningEffect, spawnPosition, Quaternion.identity);
-                // 延遲後生成攻擊特效
-                StartCoroutine(SpawnAttackEffectWithDelay(spawnPosition, 1.0f));
-            }
+            Vector3 spawnPosition = attackEffectSpawnPoint.position + new Vector3(i * spacing, 0, 0);
+            Instantiate(AttackWarningEffect, spawnPosition, Quaternion.identity);
+            // 延遲後生成攻擊特效
+            StartCoroutine(SpawnAttackEffectWithDelay(spawnPosition, 1.0f));
         }
-        else
+
+        /*else
         {
+            Debug.Log("攻擊特效2");
             int effectCount = 5; // 控制特效的數量
             float spacing = 5f; // 控制特效之間的間距
 
@@ -61,7 +61,7 @@ public class Chap1_Boss : BossBase
                 SpawnExplsionDelay(spawnPosition, 1.0f);
             }
 
-        }
+        }*/
     }
     private IEnumerator SpawnAttackEffectWithDelay(Vector3 position, float delay)
     {
@@ -69,11 +69,11 @@ public class Chap1_Boss : BossBase
         Instantiate(attackEffectPrefab1, position, Quaternion.identity);     
     }
 
-    private IEnumerator SpawnExplsionDelay(Vector3 position, float delay)
+    /*private IEnumerator SpawnExplsionDelay(Vector3 position, float delay)
     {
         yield return new WaitForSeconds(delay); // 等待 delay 秒
         Instantiate(attackEffectPrefab2, position, Quaternion.identity);
-    }
+    }*/
 
     public override void OnSummon()
     {
@@ -85,7 +85,7 @@ public class Chap1_Boss : BossBase
         for (int i = 0; i < minionCount; i++)
         {
             float randomX = Random.Range(minX, maxX);
-            Vector3 spawnPosition = transform.position + new Vector3(randomX, 0, 0);
+            Vector3 spawnPosition = summonEnemyPoint.position + new Vector3(randomX, 0, 0);
             Addressables.InstantiateAsync(MinionPrefab, spawnPosition, Quaternion.Euler(0, 0, 0))
                 .Completed += OnMinionSpawned;
         }

@@ -213,8 +213,7 @@ public class PlayerController : MonoBehaviour
         playerInput.GamePlay.Enable();     
     }
     public void Player_Move()
-    {
-        Debug.Log("跑步速度:" + playerStats.speed);
+    {   
         float currentSpeed = playerStats != null ? playerStats.speed : Speed;  // 若沒有PlayerStats, 使用預設Speed
         
         rb.velocity = new Vector2(inputDirection.x * currentSpeed, rb.velocity.y);
