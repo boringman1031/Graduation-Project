@@ -55,15 +55,18 @@ public class AudioManager : MonoBehaviour
     //TODO:暫停時傳遞BGM音量、FX音量數據
     private void OnSetMasterVolume(float _amount)//設定主音量
     {
-        audioMixer.SetFloat("MasterVolume", _amount * 100 - 80);
+        float dB = _amount > 0 ? Mathf.Log10(_amount) * 20 : -80f;
+        audioMixer.SetFloat("MasterVolume", dB);
     }
     private void OnSetBGMVolume(float _amount)//設定背景音樂音量
     {
-        audioMixer.SetFloat("BGMVolume", _amount * 100 - 80);
+        float dB = _amount > 0 ? Mathf.Log10(_amount) * 20 : -80f;
+        audioMixer.SetFloat("BGMVolume", dB);
     }
     private void OnSetFXVolume(float _amount)//設定音效音量
     {
-        audioMixer.SetFloat("FXVolume", _amount * 100 - 80);
+        float dB = _amount > 0 ? Mathf.Log10(_amount) * 20 : -80f;
+        audioMixer.SetFloat("FXVolume", dB);
     }
 
     private void OnFXEvent(AudioClip _clip)//播放音效

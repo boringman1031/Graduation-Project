@@ -10,5 +10,5 @@ public class GameSceneSO : ScriptableObject
     public string dialogKey; // 新增對話鍵字段
 
     [Header("教學設定")]
-    public TutorialType tutorialType; // 新增：場景關聯的教學類型
+    public TutorialType tutorialType; // 新增：場景關聯的教學類型  
 }

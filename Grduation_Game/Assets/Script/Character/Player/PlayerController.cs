@@ -9,6 +9,9 @@ using UnityEngine.InputSystem.Processors;
 
 public class PlayerController : MonoBehaviour
 {
+    [Header("廣播事件")]
+    public CameraShakeEventSO cameraShakeEvent;//攝影機震動事件
+
     [Header("事件監聽")]
     public SceneLoadEventSO SceneloadEvent;//場景加載事件
     public VoidEventSO afterSceneLoadEvent;
@@ -32,7 +35,9 @@ public class PlayerController : MonoBehaviour
     [Header("特效")]
     public GameObject attackEffectPrefab;//攻擊特效
     public GameObject DeadEffectPrefab;//死亡特效
+    public GameObject HurtEffectPrefab;//受傷特效
     public Transform attackEffectPos;//攻擊特效生成位置
+
 
     [Header("玩家狀態")]
     public bool ishurt;//是否受傷
@@ -193,6 +198,7 @@ public class PlayerController : MonoBehaviour
         if (!ishurt && !isAttack)
             Player_Move();
     }
+
     private void OnLoadEvent(GameSceneSO sO, Vector3 vector, bool arg3)//場景加載時停止玩家控制
     {
         playerInput.GamePlay.Disable();          
@@ -253,7 +259,17 @@ public class PlayerController : MonoBehaviour
         if (!physicsCheck.isGround)
             return;
         playerAnimation.OnPlayerAttack();    
-        isAttack = true;
+        isAttack = true;    
+    }
+
+    public void CameraShake()//攝影機震動
+    {
+        cameraShakeEvent.OnEventRaised(0.5f, 1f, 0.15f);
+    }
+
+    public void Player_HurtEffect()//玩家受傷
+    {
+        Instantiate(HurtEffectPrefab, transform.position, Quaternion.identity);
     }
 
     public void Player_AttackEffect()//攻擊特效生成
@@ -272,7 +288,7 @@ public class PlayerController : MonoBehaviour
         rb.velocity = Vector2.zero;
         Vector2 die = new Vector2((transform.position.x - _attacker.position.x), 0).normalized;
 
-        rb.AddForce(die * Hurtforce, ForceMode2D.Impulse);
+        rb.AddForce(die * Hurtforce, ForceMode2D.Impulse);      
     }
 
     public void Player_Dead()

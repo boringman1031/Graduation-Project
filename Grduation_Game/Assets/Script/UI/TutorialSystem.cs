@@ -5,12 +5,13 @@ using UnityEngine.UI;
 
 public class TutorialSystem : MonoBehaviour
 {
-    [Header("廣播")]
+    [Header("監聽事件")]
     public VoidEventSO tutorialMoveEvent;
     public VoidEventSO tutorialJumpEvent;
     public VoidEventSO tutorialAttackEvent;
-
-    [Header("監聽事件")]
+    public VoidEventSO tutorialBossSummonEvent;//觸發Boss召喚事件教學
+    public VoidEventSO tutorialBossAttackEvent;//觸發Boss攻擊事件教學
+    public VoidEventSO tutorialBossBrokenHeartEvent;//觸發Boss心碎事件教學
     public VoidEventSO dialogEndEvent; // 對話結束事件
     public SceneLoadedEventSO sceneLoadedEvent; // 新增：場景加載完成事件
 
@@ -36,7 +37,7 @@ public class TutorialSystem : MonoBehaviour
         {
             HideTutorialPanel(); // 按下 F 鍵時隱藏教學 UI
         }
-        if (Input.GetKeyDown(KeyCode.S) && currentScene.tutorialType == TutorialType.MusicGame)
+        if (Input.GetKeyDown(KeyCode.L) && currentScene.tutorialType == TutorialType.MusicGame)
         {
             HideTutorialPanel(); // 隱藏教學 UI
             ShowMusicGameTutorial2(); // 開始音樂遊戲教學
@@ -54,6 +55,9 @@ public class TutorialSystem : MonoBehaviour
         tutorialAttackEvent.OnEventRaised += ShowAttackTutorial;
         dialogEndEvent.OnEventRaised += OnDialogEnd; // 訂閱對話結束事件
         sceneLoadedEvent.OnSceneLoaded += OnSceneLoaded;
+        tutorialBossSummonEvent.OnEventRaised += ShowBossSummonTutorial;
+        tutorialBossAttackEvent.OnEventRaised += ShowBossAttackTutorial;
+        tutorialBossBrokenHeartEvent.OnEventRaised += ShowBosBrokenHeartTutorial;
     }
 
     private void OnDisable()
@@ -63,6 +67,9 @@ public class TutorialSystem : MonoBehaviour
         tutorialAttackEvent.OnEventRaised -= ShowAttackTutorial;
         dialogEndEvent.OnEventRaised -= OnDialogEnd;
         sceneLoadedEvent.OnSceneLoaded -= OnSceneLoaded;
+        tutorialBossSummonEvent.OnEventRaised -= ShowBossSummonTutorial;
+        tutorialBossAttackEvent.OnEventRaised -= ShowBossAttackTutorial;
+        tutorialBossBrokenHeartEvent.OnEventRaised -= ShowBosBrokenHeartTutorial;
     }
     void OnDialogEnd()
     {
@@ -89,8 +96,20 @@ public class TutorialSystem : MonoBehaviour
                     ShowAttackTutorial();
                     tutorialShownDict[type] = true;
                     break;
-                case TutorialType.MusicGame:
+                case TutorialType.MusicGame:                 
                     ShowMusicGameTutorial();
+                    tutorialShownDict[type] = true;
+                    break;
+                case  TutorialType.TriviaGame:
+                    ShowTriviaGameTutorial();
+                    tutorialShownDict[type] = true;
+                    break;
+                case TutorialType.CleanEnemy:
+                    ShowCleanEnemyTutorial();
+                    tutorialShownDict[type] = true;
+                    break;
+                case TutorialType.Boss:
+                    ShowBossTutorial();
                     tutorialShownDict[type] = true;
                     break;
                 case TutorialType.None:
@@ -127,12 +146,48 @@ public class TutorialSystem : MonoBehaviour
     // 音樂遊戲教學
     private void ShowMusicGameTutorial()
     {
-        tutorialText.text = "按下 S 開始遊戲";
+        tutorialText.text = "按下 L 開始遊戲";    
         tutorialPanel.SetActive(true);
     }
     private void ShowMusicGameTutorial2()
     {
         tutorialText.text = "在愛心到左側位置時按下鍵盤QWE";
+        tutorialPanel.SetActive(true);
+    }
+
+    private void ShowTriviaGameTutorial()
+    {
+        tutorialText.text = "走過去跟她說說話吧";
+        tutorialPanel.SetActive(true);
+    }
+
+    private void ShowCleanEnemyTutorial()
+    {
+        tutorialText.text = "擊敗所有敵人吧";
+        tutorialPanel.SetActive(true);
+    }
+
+    private void ShowBossTutorial()
+    {
+        tutorialText.text = "找到Irene";
+        tutorialPanel.SetActive(true);
+    }
+
+    private void ShowBossSummonTutorial()
+    {
+        tutorialText.text = "Irene召喚了魚塘的魚，擊敗他們";
+        tutorialPanel.SetActive(true);
+    }
+
+    private void ShowBossAttackTutorial()
+    {
+        tutorialText.text = "小心攻擊!!!!!";
+        tutorialPanel.SetActive(true);
+    }
+
+    private void ShowBosBrokenHeartTutorial()
+    {
+        tutorialText.text = "你破防了，把對她的愛擊碎";
         tutorialPanel.SetActive(true);
     }
 }

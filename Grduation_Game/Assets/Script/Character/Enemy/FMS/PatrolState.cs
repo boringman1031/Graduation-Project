@@ -7,18 +7,31 @@ public class PatrolState : BaseState
     public override void OnEnter(EnemyBase _enemy)
     {
         currentEnemy = _enemy;
-        currentEnemy.currentSpeed = currentEnemy.normalSpeed;//切換為巡邏速度
-        Debug.Log("進入巡邏狀態");
+        currentEnemy.currentSpeed = currentEnemy.normalSpeed;
+        currentEnemy.anim.SetBool("Run", true);
+        Debug.Log("進入巡邏模式");
+
+        // 確保方向與 faceDir 同步
+        currentEnemy.faceDir = new Vector3(-currentEnemy.transform.localScale.x, 0, 0);
     }
-    public override void LogicUpdate()//邏輯判斷
+
+    public override void LogicUpdate()
     {
-        //發現player進入追擊狀態
-        if(currentEnemy.FindPlayer())
-        {         
-            currentEnemy.SwitchState(EenemyState.Chase);//切換為追擊狀態
-            Debug.Log("發現player進入追擊狀態");
+        if (currentEnemy.PlayerInAttackRange())
+        {
+            currentEnemy.SwitchState(EenemyState.Attack);
+            return;
         }
-        if (!currentEnemy.physicsCheck.isGround || (currentEnemy.physicsCheck.touchLeftWall && currentEnemy.faceDir.x < 0) || (currentEnemy.physicsCheck.touchRightWall && currentEnemy.faceDir.x > 0))
+
+        if (currentEnemy.FindPlayer())
+        {
+            currentEnemy.SwitchState(EenemyState.Chase);
+            return;
+        }
+
+        if (!currentEnemy.physicsCheck.isGround ||
+            (currentEnemy.physicsCheck.touchLeftWall && currentEnemy.faceDir.x < 0) ||
+            (currentEnemy.physicsCheck.touchRightWall && currentEnemy.faceDir.x > 0))
         {
             currentEnemy.anim.SetBool("Run", false);
         }
@@ -27,10 +40,17 @@ public class PatrolState : BaseState
             currentEnemy.anim.SetBool("Run", true);
         }
     }
-    public override void PhysicsUpdate()//物理判斷
+
+    public override void PhysicsUpdate() 
     {
-        
+        if (currentEnemy.isDead || currentEnemy.isHit) return;
+
+        currentEnemy.rb.velocity = new Vector2(
+            currentEnemy.currentSpeed * -currentEnemy.transform.localScale.x,
+            currentEnemy.rb.velocity.y
+        );
     }
+
     public override void OnExit()
     {
         currentEnemy.anim.SetBool("Run", false);

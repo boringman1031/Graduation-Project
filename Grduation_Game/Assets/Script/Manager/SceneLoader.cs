@@ -25,14 +25,18 @@ public class SceneLoader : MonoBehaviour, ISaveable
     public VoidEventSO newGameEvent;
     public VoidEventSO backToMenuEvent;
     public VoidEventSO gotoBossEvent;//(測試demo用)進入 Boss 事件
+    public VoidEventSO BossDeadEvent;//Boss死亡事件
+    public VoidEventSO goHomeEvent;//回家事件
 
     [Header("場景參數")]
     public GameSceneSO firstLoadScene;//第一個加載的場景(遊戲大聽)
     private GameSceneSO sceneToLoad;//要新遊戲開始要加載的場景
     private GameSceneSO currentLoadScene;//當前加載的場景
     public GameSceneSO MuneScene;//主場景
+    public GameSceneSO HomeScene;//租屋處場景
     public GameSceneSO NecessaryScene; //必要關卡 
     public GameSceneSO BossScene;//Boss場景
+    public GameSceneSO Chap1ENDScene;//第一章結束場景
 
     [Header("隨機場景列表")]
     [SerializeField] private List<GameSceneSO> randomScenes; // 可隨機選擇的場景列表
@@ -45,13 +49,14 @@ public class SceneLoader : MonoBehaviour, ISaveable
 
     private Vector3 positionToGo;//要傳送的位置
     private int challengeCount = 0;
-    private int maxChallenges = 3; // 需要完成的隨機挑戰次數
+    private int maxChallenges = 4; // 需要完成的隨機挑戰次數
     private bool fadeScreen;//是否淡出屏幕
     private bool isLoading;//是否正在加載
 
     private void Start()
     {
         loadEventSO.RaiseLoadRequestEvent(MuneScene, menuPosition, false);
+        FindObjectOfType<UIManager>().UpdateChallengeCountUI(challengeCount);//更新挑戰次數UI
     }
     private void OnEnable()
     {
@@ -61,6 +66,8 @@ public class SceneLoader : MonoBehaviour, ISaveable
         onAllEnemiesDefeated.OnEventRaised += OnOpenRandomCanvasEvent;//當場景中所有敵人被擊敗時通知UIManager
         loadRandomSceneEvent.OnEventRaised += OnLoadRandomScene;//隨機挑戰場景加載事件
         gotoBossEvent.OnEventRaised += OnGotoBossScene;//(測試demo用)進入 Boss 事件
+        BossDeadEvent.OnEventRaised += OnGotoEndScene;//Boss死亡事件
+        goHomeEvent.OnEventRaised += OnHomeEvent;//回家事件
         ISaveable saveable = this;
         saveable.RegisterSaveData();
     }
@@ -73,6 +80,8 @@ public class SceneLoader : MonoBehaviour, ISaveable
         onAllEnemiesDefeated.OnEventRaised -= OnOpenRandomCanvasEvent;
         loadRandomSceneEvent.OnEventRaised -= OnLoadRandomScene;
         gotoBossEvent.OnEventRaised -= OnGotoBossScene;//(測試demo用)進入 Boss 事件
+        BossDeadEvent.OnEventRaised -= OnGotoEndScene;//Boss死亡事件
+        goHomeEvent.OnEventRaised -= OnHomeEvent;//回家事件
         ISaveable saveable = this;
         saveable.UnRegisterSaveData();
     }
@@ -80,6 +89,17 @@ public class SceneLoader : MonoBehaviour, ISaveable
     private void OnGotoBossScene()//(測試demo用)進入 Boss 事件
     {
         sceneToLoad = BossScene;
+        loadEventSO.RaiseLoadRequestEvent(sceneToLoad, firstPosition, true);
+    }
+
+    private void OnGotoEndScene()//Boss死亡事件
+    {
+        loadEventSO.RaiseLoadRequestEvent(Chap1ENDScene, firstPosition, true);
+    }
+
+    private void OnHomeEvent()//回家事件
+    {
+        sceneToLoad = HomeScene;
         loadEventSO.RaiseLoadRequestEvent(sceneToLoad, firstPosition, true);
     }
 
@@ -116,10 +136,10 @@ public class SceneLoader : MonoBehaviour, ISaveable
             GameSceneSO randomScene = GetRandomScene();
             if (randomScene != null)
             {
+                challengeCount++; // 增加挑戰次數
+                FindObjectOfType<UIManager>().UpdateChallengeCountUI(challengeCount);//更新挑戰次數UI
                 sceneToLoad = randomScene;
-                challengeCount++; // 增加挑戰次數          
                 OnLoadRequestEvent(sceneToLoad, firstPosition, true);
-                Debug.Log($"進入{sceneToLoad.GetType()}，還剩{challengeCount}次挑戰");
             }
             else
             {
@@ -183,27 +203,29 @@ public class SceneLoader : MonoBehaviour, ISaveable
     {
         var loadingOption = sceneToLoad.sceneReference.LoadSceneAsync(LoadSceneMode.Additive, true);
         loadingOption.Completed += OnLoadComplete;
-    }
-
-    private void OnOpenRandomCanvasEvent()//當場景中所有敵人被擊敗時通知UIManager
-    {
-        if (currentLoadScene.sceneType != SceneType.Menu&& 
-            currentLoadScene.sceneType != SceneType.Boss&&
-            currentLoadScene.sceneType != SceneType.Necessary)
-        {
-            openRandomCanvaEvent.RaiseEvent();
-        }
-    }
+    }   
     private void OnLoadComplete(AsyncOperationHandle<SceneInstance> _handle)// 加載完成後執行
     {
         currentLoadScene = sceneToLoad;
         playerTrans.position = positionToGo;
         playerTrans.gameObject.SetActive(true);
         isLoading = false;
+
         sceneLoadedEvent.RaiseEvent(currentLoadScene);// 觸發帶場景參數的新事件 對話系統使用
-        afterSceneLoadedEvent.RaiseEvent(); // 廣播:已加載完成事件
+        afterSceneLoadedEvent.RaiseEvent(); // 廣播:已加載完成事件         
+        Debug.Log($"已加載{currentLoadScene.GetType()}，挑戰次數{challengeCount}");
         //saveDataEvent.RaiseEvent(); // 廣播:儲存加載遊戲事件
 
+    }
+
+    private void OnOpenRandomCanvasEvent()//當場景中所有敵人被擊敗時通知UIManager
+    {
+        if (currentLoadScene.sceneType != SceneType.Menu &&
+            currentLoadScene.sceneType != SceneType.Boss &&
+            currentLoadScene.sceneType != SceneType.Necessary)
+        {
+            openRandomCanvaEvent.RaiseEvent();
+        }
     }
     public DataDefination GetDataID()
     {

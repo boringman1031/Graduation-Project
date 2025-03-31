@@ -7,8 +7,9 @@ using UnityEngine.Events;
 
 public class CharactorBase : MonoBehaviour,ISaveable
 {
-    [Header("事件監聽")]
-    public VoidEventSO newGameEvent;//新遊戲事件
+    [Header("�ƥ��ť")]
+    public VoidEventSO newGameEvent;//�s�C���ƥ�
+    public VoidEventSO goHomeEvent;//�^�a�ƥ�
 
     [Header("基礎數值")]
     public float Health;
@@ -37,20 +38,19 @@ public class CharactorBase : MonoBehaviour,ISaveable
     private void OnEnable()
     {
         newGameEvent.OnEventRaised += NewGame;
+        goHomeEvent.OnEventRaised += NewGame;
         ISaveable saveable = this;
         saveable.RegisterSaveData();
-        regenCoroutine = StartCoroutine(AutoRegenHealth());//自動回血
+        regenCoroutine = StartCoroutine(AutoRegenHealth());//�۰ʦ^��
+
+        // ��q�j���l�Ƥ@��
+        if (CurrentHealth <= 0)
+            NewGame();
     }
     private void OnDisable()
     {
-        if (newGameEvent != null)
-        {
-            newGameEvent.OnEventRaised -= NewGame;
-        }
-        else
-        {
-            Debug.LogWarning("newGameEvent is null in OnDisable()");
-        }
+        goHomeEvent.OnEventRaised -= NewGame;
+        newGameEvent.OnEventRaised -= NewGame;
 
         ISaveable saveable = this;
         if (DataManager.instance != null)
@@ -139,6 +139,7 @@ public class CharactorBase : MonoBehaviour,ISaveable
         {
             SuperArmour = true;
             SuperArmourTimeCounter = SuperArmourTime;
+            Debug.Log($"{name}Ĳ�o�Q��A�ɶ�{SuperArmourTime}");
         }
     }
 

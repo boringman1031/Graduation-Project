@@ -7,12 +7,9 @@ using static UnityEngine.EventSystems.EventTrigger;
 
 public class EnemyBase : MonoBehaviour
 {
-    protected Rigidbody2D rb;
+    [HideInInspector] public Rigidbody2D rb;
     [HideInInspector] public Animator anim;
     [HideInInspector] public PhysicsCheck physicsCheck;
-
-    [Header("事件監聽")]
-    public VoidEventSO OnEnemiesActivateEvent;
 
     [Header("事件廣播")]
     public EnemyEventSO OnEnemyDied;
@@ -36,6 +33,7 @@ public class EnemyBase : MonoBehaviour
     [Header("狀態")]
     public bool isHit;
     public bool isDead;
+    public bool isAttacking;
 
     [Header("計時器")]
     public float waitTime;//巡邏等待時間
@@ -43,6 +41,10 @@ public class EnemyBase : MonoBehaviour
     [HideInInspector] public float waitTimeCounter;
     [HideInInspector] public bool isWait;  
     [HideInInspector] public float lostTimeCounter;
+
+    [Header("特效")]
+    public GameObject hitEffect;
+    public GameObject deadEffect;
 
     private BaseState currentState;//當前狀態
     protected BaseState patrolState;//巡邏狀態
@@ -64,25 +66,16 @@ public class EnemyBase : MonoBehaviour
     }
 
     private void OnEnable()
-    {
-        // 訂閱敵人激活事件
-        OnEnemiesActivateEvent.OnEventRaised += SwitchToPatrol;
-
+    {       
         // 初始狀態為 IdleState
         currentState = idleState;
         currentState.OnEnter(this);
     }
     private void OnDisable()
-    {
-        // 取消訂閱事件
-        OnEnemiesActivateEvent.OnEventRaised -= SwitchToPatrol;
-
+    {      
         currentState.OnExit();
     }
-    private void SwitchToPatrol()
-    {
-        SwitchState(EenemyState.Patrol); // 切換到巡邏狀態
-    }
+   
     public void Update()
     {
         faceDir = new Vector3(-transform.localScale.x, 0, 0);
@@ -96,23 +89,23 @@ public class EnemyBase : MonoBehaviour
     }
     private void FixedUpdate()
     {
-        if (!isHit & !isDead)
-            OnMove();
-        currentState.PhysicsUpdate();
+        currentState.PhysicsUpdate();        
     }
    
     public virtual void OnMove()
     {
-        rb.velocity = new Vector2(currentSpeed * faceDir.x*Time.deltaTime, rb.velocity.y);
+        if (currentState is AttackState) return; // 攻擊狀態不移動
+        faceDir = new Vector3(-transform.localScale.x, 0, 0); // 每幀更新方向
+        rb.velocity = new Vector2(currentSpeed * faceDir.x, rb.velocity.y);
     }
     public void OnTakeDamage(Transform attackTran)
     {
         attacker = attackTran;
         //受傷後面向攻擊者
         if (attackTran.position.x - transform.position.x > 0)
-            transform.localScale = new Vector3(-1, 1, 1);
+            transform.localScale = new Vector3(-1.6f, 1.6f, 1.6f);
         if (attackTran.position.x - transform.position.x < 0)
-            transform.localScale = new Vector3(1, 1, 1);
+            transform.localScale = new Vector3(1.6f, 1.6f, 1.6f);
         //受傷被擊退
         isHit = true;
         anim.SetTrigger("Hit");
@@ -123,9 +116,11 @@ public class EnemyBase : MonoBehaviour
 
     IEnumerator OnHit(Vector2 dir)
     {
+        Debug.Log($"{name}OnHit，{isHit}");
         rb.AddForce(dir * HitForce, ForceMode2D.Impulse);
         yield return new WaitForSeconds(0.5f);
         isHit = false;
+        Debug.Log($"OnHit{isHit}");
     }
 
     public virtual void OnDead()
@@ -144,7 +139,7 @@ public class EnemyBase : MonoBehaviour
             {
                 isWait = false;
                 waitTimeCounter = waitTime;
-                transform.localScale = new Vector3(faceDir.x, 10, 10);
+                transform.localScale = new Vector3(faceDir.x,1.6f,1);
             }
         }
         if (!FindPlayer() && lostTimeCounter > 0)
@@ -153,11 +148,29 @@ public class EnemyBase : MonoBehaviour
         }  
 
     }
+
+    public void PlayHitEffect()
+    {
+        if (hitEffect != null)
+        {
+            Instantiate(hitEffect, transform.position, Quaternion.identity);
+        }
+    }
+    public void PlayDeadEffect()
+    {
+        if (deadEffect != null)
+        {
+            Instantiate(deadEffect, transform.position, Quaternion.identity);
+        }
+    }
     public bool FindPlayer()
     {
         return Physics2D.BoxCast(transform.position + (Vector3)centerOffset, checkSize, 0, faceDir, checkDistance, targetLayer);
     }
-
+    public void EndAttack()
+    {
+        isAttacking = false;
+    }
     public bool PlayerInAttackRange()
     {
         // **獲取玩家位置**

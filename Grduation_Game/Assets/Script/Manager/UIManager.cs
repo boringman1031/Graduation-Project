@@ -31,15 +31,14 @@ public class UIManager : MonoBehaviour
     public GameObject RandomChallengePanel;//隨機挑戰面板
     public GameObject GOToBossScenePanel;//進入Boss場景面板
     public GameObject GameInfoPanel;//遊戲資訊面板
-    public GameObject GameStatPanel;//遊戲進度面板
     public GameObject GameSettingPanel;//遊戲設定面板
     public GameObject DialogPanel;//對話框
 
     [Header("按鈕組件")]
     public GameObject restartButton;
-    public Button GameInfoButton;
-    public Button GameStatButton;//遊戲進度按鈕
-    public Button GameSettingButton;//遊戲設定按鈕
+    public Button GameInfoButton;//開啟遊戲資訊按鈕
+    public Button closeGameInfoButton;//關閉遊戲資訊按鈕
+    public Button ExitGameInfoButton;//退出遊戲資訊按鈕
     public Button RandomChallengeButton1;//隨機挑戰1按鈕
 
     [Header("音量控制組件")]
@@ -47,11 +46,14 @@ public class UIManager : MonoBehaviour
     public Slider BGMSlider;//背景音樂音量
     public Slider FXSlider;//音效音量
 
+    [Header("挑戰次數顯示")]
+    public Image[] challengeLights; // 點亮用的燈（Image 陣列）
+
     public void Awake()
     {
         GameInfoButton.onClick.AddListener(ToggleGameInfoPanel);
-        GameStatButton.onClick.AddListener(ToggleGameStatPanel);
-        GameSettingButton.onClick.AddListener(ToggleGameSettingPanel);
+        closeGameInfoButton.onClick.AddListener(ToggleClsoeGameInfoPanel);
+        ExitGameInfoButton.onClick.AddListener(ToggleExitGameEvent);
         RandomChallengeButton1.onClick.AddListener(ToggleRandomChallengeButton);    
     }
 
@@ -84,6 +86,13 @@ public class UIManager : MonoBehaviour
         syncFXVolumeEvent.OnEventRaised -= OnSyncFXVolumeEvent;
     }
 
+    public void UpdateChallengeCountUI(int count)//更新挑戰次數UI
+    {
+        for (int i = 0; i < challengeLights.Length; i++)
+        {
+            challengeLights[i].enabled = i < count;
+        }
+    }
     private void ToggleRandomChallengeButton()//按下隨機挑戰按鈕觸發
     {
         loadRandomSceneEvent.OnEventRaised();
@@ -105,26 +114,29 @@ public class UIManager : MonoBehaviour
         }
     }
 
-    private void ToggleGameStatPanel()//開啟遊戲進度面板    
+    private void ToggleClsoeGameInfoPanel()//關閉遊戲資訊面板
     {
-       GameStatPanel.SetActive(true);
-    }
-    private void ToggleGameSettingPanel()//開啟遊戲設定面板
-    {         
-            GameSettingPanel.SetActive(true);      
+        GameInfoPanel.SetActive(false);
+        Time.timeScale = 1;
     }
 
+    private void ToggleExitGameEvent()//退出遊戲
+    {
+        GameInfoPanel.SetActive(false);
+        Time.timeScale = 1;
+        backToMenuEvent.RaiseEvent();
+    }
     private void OnSyncMasterVolumeEvent(float _amount)//同步主音量
     {
-        MasterSlider.value = (_amount + 80) / 100;
+        MasterSlider.value = Mathf.Pow(10, _amount / 20);
     }
     private void OnSyncBGMVolumeEvent(float _amount)//同步背景音樂音量
     {
-        BGMSlider.value = (_amount + 80) / 100;
+        BGMSlider.value = Mathf.Pow(10, _amount / 20);
     }
     private void OnSyncFXVolumeEvent(float _amount)//同步音效音量
     {
-    FXSlider.value = (_amount + 80) / 100;
+        FXSlider.value = Mathf.Pow(10, _amount / 20);
     }
 
    

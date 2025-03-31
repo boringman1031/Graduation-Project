@@ -58,7 +58,7 @@ public class PlayerAnimation : MonoBehaviour
 
     public void OnPlayerHurt()
     {
-        anim.SetTrigger("Hurt");
+        anim.SetTrigger("Hit");
     }
     public void OnPlayerAttack()
     {

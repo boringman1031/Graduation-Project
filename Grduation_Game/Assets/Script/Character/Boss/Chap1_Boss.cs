@@ -6,6 +6,7 @@ using UnityEngine.ResourceManagement.AsyncOperations;
 
 public class Chap1_Boss : BossBase
 {
+
     [Header("小怪預製體")]
     public string MinionPrefab="Goblin"; //暫時使用Goblin代替小怪
     public string HeartMinionPrefab = "Heart"; //暫時使用Heart代替愛心小怪
@@ -16,14 +17,18 @@ public class Chap1_Boss : BossBase
     public GameObject AttackWarningEffect;//攻擊預警特效
     public GameObject attackEffectPrefab1;//攻擊特效
     public GameObject attackEffectPrefab2;//攻擊2特效
+
+    [Header("BGM")]
+    public AudioDefination audioDefination;//音樂定義
+
     protected override void Awake()
     {
         base.Awake();
+        idleState = new BossIdelState();
         attackState = new BossAttackState();
         summonState = new BossSummonState();
         summonHeartState = new BossSummonHeartState();
-    }
-   
+    }   
     public void OnAttackEffect()//在動畫某階段生成攻擊特效
     {
 
@@ -69,6 +74,7 @@ public class Chap1_Boss : BossBase
         yield return new WaitForSeconds(delay); // 等待 delay 秒
         Instantiate(attackEffectPrefab2, position, Quaternion.identity);
     }
+
     public override void OnSummon()
     {
         base.OnSummon();
@@ -80,7 +86,7 @@ public class Chap1_Boss : BossBase
         {
             float randomX = Random.Range(minX, maxX);
             Vector3 spawnPosition = transform.position + new Vector3(randomX, 0, 0);
-            Addressables.InstantiateAsync(MinionPrefab, spawnPosition, Quaternion.Euler(0, 180, 0))
+            Addressables.InstantiateAsync(MinionPrefab, spawnPosition, Quaternion.Euler(0, 0, 0))
                 .Completed += OnMinionSpawned;
         }
     }
@@ -115,4 +121,13 @@ public class Chap1_Boss : BossBase
             Debug.LogError("無法加載愛心預製體！");
         }
     }
+
+    public override void OnBossShow()
+    {
+       base.OnBossShow();
+       DialogManager.Instance.StartDialog("Boss_Show");
+       isTalk = true;
+       audioDefination.PlayAudioClip();
+    }
+  
 }

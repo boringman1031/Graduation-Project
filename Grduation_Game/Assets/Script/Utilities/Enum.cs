@@ -5,14 +5,14 @@ public enum EenemyState
 }
 public enum BossState
 {
-    Attack,Summon, SummonHeart
+    Idle,Attack, Summon, SummonHeart
 }
 public enum SceneName
 {
     //場景類型:地點,特殊,必要關卡,BOSS,主頁面
     Chap1_Classroom, Chap1_School, Chap1_Cafe, Chap1_Cinema, Chap1_NightMarket,
     Chap1_Necessary, Chap1_Boss, Identity_89, Identity_Sport, Identity_Music,
-    Identity_Rapper, Identity_Dancer, Menu
+    Identity_Rapper, Identity_Dancer, Menu,Home
 }
 
 public enum SceneType
@@ -39,4 +39,12 @@ public enum SkillType
     W_Skill,
     E_Skill,
     R_Ultimate // 大招绑定职业
+    None,           // �L�о�
+    Move,           // ���ʱо�
+    Jump,           // ���D�о�
+    Attack,         // �����о�
+    MusicGame,      // ���ֹC���о�
+    TriviaGame,     //�ݵ��C���о�
+    CleanEnemy,      //�M���ĤH�о�
+    Boss
 }

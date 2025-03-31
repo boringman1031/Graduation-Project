@@ -5,13 +5,20 @@ using UnityEngine;
 public class BossBase :MonoBehaviour
 {
     [HideInInspector] public Animator anim;
+    [Header("UI組件")]
+    public BossHealthUI bossHealthUI;
 
     [Header("廣播事件")]
-    public VoidEventSO CameraShakeEvent;
-    public VoidEventSO BossDeadEvent;
+    public CameraShakeEventSO CameraShakeEvent;
+    public VoidEventSO BossDeadEvent;//Boss死亡事件
+    public VoidEventSO tutorialBossSummonEvent;
+    public VoidEventSO tutorialBossAttackEvent;
+    public VoidEventSO tutorialBossBrokenHeartEvent;
 
     [Header("事件監聽")]
     public VoidEventSO AttackBossEvent;
+    public VoidEventSO dialogEndEvent; // 對話結束事件
+
 
     [Header("基礎數值")]
     public float maxHealth;
@@ -22,8 +29,10 @@ public class BossBase :MonoBehaviour
     public float SuperArmourTime;//霸體時間
     private float SuperArmourTimeCounter;//霸體時間計數器
     public bool SuperArmour;//是否在霸體狀態
+    public bool isTalk = false;
 
     private BossBaseState currentState;
+    protected BossBaseState idleState;//閒置狀態
     protected BossBaseState attackState;//攻擊狀態
     protected BossBaseState summonState;//召喚狀態  
     protected BossBaseState summonHeartState;
@@ -32,19 +41,24 @@ public class BossBase :MonoBehaviour
         anim = GetComponent<Animator>();
         currentHealth = maxHealth;
         isSummonMinion = false;
+        // 初始化血條
+        if (bossHealthUI != null)
+            bossHealthUI.UpdateHealth(currentHealth, maxHealth);
     }
 
     private void OnEnable()
     {
-        currentState = attackState;
+        currentState = idleState;
         currentState.OnEnter(this);
         AttackBossEvent.OnEventRaised += OnTakeDamage;
+        dialogEndEvent.OnEventRaised += OnDialogEnd;
     }
 
     private void OnDisable()
     {
         currentState.OnExit();
         AttackBossEvent.OnEventRaised -= OnTakeDamage;
+        dialogEndEvent.OnEventRaised -= OnDialogEnd;
     }
 
     private void Update()
@@ -59,14 +73,24 @@ public class BossBase :MonoBehaviour
             }
         }
     }
-
     private void FixedUpdate()
     {
         currentState.PhysicsUpdate();
     }
-    public void OnShakeCamera()//相機震動
+
+    //-----------Boss行為----------------
+    public virtual void OnBossShow()//相機震動
+    {          
+        CameraShakeEvent.RaiseEvent(8f, 6f, 0.4f);
+        bossHealthUI.gameObject.SetActive(true); // 血條顯示
+    }
+
+    public void OnDialogEnd()//對話結束
     {
-        CameraShakeEvent.RaiseEvent();
+        if (isTalk)
+        {
+            SwitchState(BossState.Attack);
+        }
     }
     public void OnTakeDamage()//Boss受到傷害
     {
@@ -77,8 +101,11 @@ public class BossBase :MonoBehaviour
         if(currentHealth > 0)
         {
             anim.SetTrigger("Hit");
-            currentHealth -= 100;
+            currentHealth -= 200;
             TriggerSuperArmour();
+            // 更新血條
+            if (bossHealthUI != null)
+                bossHealthUI.UpdateHealth(currentHealth, maxHealth);
             Debug.Log("Boss受到傷害，當前血量：" + currentHealth);
         }     
         else
@@ -96,18 +123,26 @@ public class BossBase :MonoBehaviour
     }
     public virtual void OnAttack()//Boss攻擊
     {
-        anim.SetTrigger("Attack");      
+        anim.SetTrigger("Attack");
+        tutorialBossAttackEvent.RaiseEvent();//廣播開啟攻擊事件教學
     }
 
     public virtual void OnSummon()//Boss召喚
     {
-        anim.SetTrigger("Summon");     
+        anim.SetTrigger("Summon");
+        tutorialBossSummonEvent.RaiseEvent();//廣播開啟召喚事件教學
     }
-
+    
+    public void OnCameraShake() //相機震動
+    {
+        CameraShakeEvent.RaiseEvent(8f, 6f, 0.4f);
+    }
     public virtual void SpawnHeartMinion()//生成愛心小怪
     {
-        anim.SetTrigger("Hit");          
+        anim.SetTrigger("Hit");
+        tutorialBossBrokenHeartEvent.RaiseEvent();//廣播開啟愛心小怪事件教學
     }
+  
     public void Die()//Boss死亡
     {
         BossDeadEvent.RaiseEvent();
@@ -117,6 +152,7 @@ public class BossBase :MonoBehaviour
     {
         var newState = _state switch//根據現有狀態切換敵人狀態(switch的語法糖寫法)
         {
+            BossState.Idle => idleState,
             BossState.Attack => attackState,
             BossState.Summon => summonState,
             BossState.SummonHeart => summonHeartState,
