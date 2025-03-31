@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 053e45de69710934f9aa722d36fe60a7, type: 3}
+  m_Name: Cafe_Question4
+  m_EditorClassIdentifier: 
+  question: "\u9019\u88E1\u653E\u7684\u97F3\u6A02\u5F88\u597D\u807D\u8036\uFF0C\u4F60\u559C\u6B61\u55CE\uFF1F"
+  options:
+  - "\u559C\u6B61\u554A\uFF0C\u8F15\u97F3\u6A02\u8B93\u4EBA\u5F88\u653E\u9B06\uFF0C\u9069\u5408\u73FE\u5728\u7684\u6C1B\u570D\u3002"
+  - "\u6211\u6BD4\u8F03\u559C\u6B61\u807D\u516C\u4E3B\u8ACB\u4E0A\u8ECA\u3002"
+  - "Super Idol\u7684\u7B11\u5BB9\u90FD\u6C92\u4F60\u7684\u751C~"
+  correctAnswerIndex: 0
+  affectionChangeOnCorrect: 10
+  affectionChangeOnWrong: -5
+  correctReply: "\u8DDF\u6211\u4E00\u6A23\u6B38!!\u6211\u8D85\u611B\u9019\u7A2Echill
+    chill\u7684\u97F3\u6A02"
+  wrongReply: "....\u86E4"

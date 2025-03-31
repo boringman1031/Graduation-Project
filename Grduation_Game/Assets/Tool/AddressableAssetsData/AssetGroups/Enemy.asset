@@ -1,0 +1,60 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: Enemy
+  m_EditorClassIdentifier: 
+  m_GroupName: Enemy
+  m_Data:
+    m_SerializedData: []
+  m_GUID: a7fce73dfbbea3145bb99ab764142658
+  m_SerializeEntries:
+  - m_GUID: 088822dd71a85ff4daf3df7792a37504
+    m_Address: Heart
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 04cd4c4d5270fad438d49208ff1f91e1
+    m_Address: Goblin
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 856188e3d479bf34e94d7945abd1f237
+    m_Address: FishMan
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: dd0e5f90be8ba2c4db611d0c01746b75
+    m_Address: Goblin2
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: db0fdc2cdbe766649a6f35f89d4cf6c5
+    m_Address: Flyman
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 824e8502af14f2948a8964cd6d662e53
+    m_Address: Assets/Prefab/Ganster2.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: eaa9e0f86704b11468a5469a670f167c
+    m_Address: Assets/Prefab/Ganster1.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: 5c046cdf2eb28b041a82e1d18fd50487, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: 8a845d03be034aa42b42d2a5ba3c0518, type: 2}
+    - {fileID: 11400000, guid: 123e99a1dad54264698e3cf298ac1593, type: 2}
