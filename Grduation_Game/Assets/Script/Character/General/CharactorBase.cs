@@ -17,8 +17,10 @@ public class CharactorBase : MonoBehaviour,ISaveable
     [Header("當前數值")]
     public float MaxHealth;
     public float MaxPower;
-    [HideInInspector]public float CurrentHealth;
-    [HideInInspector] public float CurrentPower;
+    //[HideInInspector]
+    public float CurrentHealth;
+    //[HideInInspector] 
+    public float CurrentPower;
     public float healthRegenAmount; // 每次回復的生命值
     public float healthRegenInterval; // 回血的時間間隔（秒）
     private Coroutine regenCoroutine; // 用來存儲 Coroutine，確保不會多次啟動

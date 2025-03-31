@@ -24,6 +24,7 @@ public class PlayerController : MonoBehaviour
     private Animator animator;
 
     [Header("玩家物理數值")]
+    public PlayerStats playerStats;
     public float Speed = 10f;
     public float jampforce = 16.5f;
     public float Hurtforce;//玩家受到傷害擊退力
@@ -49,6 +50,7 @@ public class PlayerController : MonoBehaviour
         physicsCheck = GetComponent<PhysicsCheck>();
         playerAnimation = GetComponent<PlayerAnimation>();
         animator = GetComponent<Animator>();
+        playerStats = GetComponent<PlayerStats>();
 
         playerInput = new PlayerInput();
         //跳躍事件
@@ -78,6 +80,10 @@ public class PlayerController : MonoBehaviour
         playerInput.GamePlay.SkillW.started += OnSkillW;
         playerInput.GamePlay.SkillE.started += OnSkillE;
         playerInput.GamePlay.SkillR.started += OnSkillR;
+    }
+    public void UpdateUltimateSkill()
+    {
+        currentSkills[3] = SkillManager.Instance.selectedClass?.ultimateSkill;
     }
     void OnSkillQ(InputAction.CallbackContext context)
     {
@@ -136,13 +142,14 @@ public class PlayerController : MonoBehaviour
     {
         if (activeSkillData != null && activeSkillData.skillPrefab != null)
         {
-            // 先產生技能預置物（初始位置暫定用玩家位置，後續會在 SetOrigin 中調整）
-            GameObject skillInstance = Instantiate(activeSkillData.skillPrefab, transform.position, Quaternion.identity, transform);
-            // 改成用 ISkillEffect 介面取得技能腳本
+            // 根據 activeSkillData 裡面是否需要跟隨玩家來決定是否指定父物件
+            Transform parentTransform = activeSkillData.isFollowPlayer ? this.transform : null;
+            GameObject skillInstance = Instantiate(activeSkillData.skillPrefab, transform.position, Quaternion.identity, parentTransform);
+
             ISkillEffect skillScript = skillInstance.GetComponent<ISkillEffect>();
             if (skillScript != null)
             {
-                // 呼叫 SetOrigin() 方法，把玩家的 transform 傳入，這樣預置物就會根據玩家位置與朝向調整
+                // 這裡傳入玩家 transform 可用來初始位置調整，但生成後是否跟隨取決於是否有指定父物件
                 skillScript.SetOrigin(this.transform);
             }
         }
@@ -200,8 +207,13 @@ public class PlayerController : MonoBehaviour
         playerInput.GamePlay.Enable();     
     }
     public void Player_Move()
-    {       
-        rb.velocity = new Vector2(inputDirection.x * Speed * Time.deltaTime, rb.velocity.y);
+    {
+        Debug.Log("跑步速度:" + playerStats.speed);
+        float currentSpeed = playerStats != null ? playerStats.speed : Speed;  // 若沒有PlayerStats, 使用預設Speed
+        
+        rb.velocity = new Vector2(inputDirection.x * currentSpeed, rb.velocity.y);
+
+        //rb.velocity = new Vector2(inputDirection.x * Speed * Time.deltaTime , rb.velocity.y);
 
         //人物翻轉
         int faceDir = (int)transform.localScale.x;
@@ -212,7 +224,20 @@ public class PlayerController : MonoBehaviour
         transform.localScale = new Vector3(faceDir, 1, 1);
     }
 
+    // 增加玩家速度
+    public void ApplySpeedBoost(float boost, float duration)
+    {
+        StartCoroutine(SpeedBoostRoutine(boost, duration));
+    }
 
+    private IEnumerator SpeedBoostRoutine(float boost, float duration)
+    {
+        // 增加玩家速度
+        playerStats.speed += boost;
+        yield return new WaitForSeconds(duration);
+        // 恢復原本速度
+        playerStats.speed -= boost;
+    }
 
     public void Player_Jump(InputAction.CallbackContext obj)
     {

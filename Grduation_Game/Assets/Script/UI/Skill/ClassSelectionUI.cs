@@ -9,12 +9,12 @@ public class ClassSelectionUI : MonoBehaviour
     public Transform classButtonParent;     // 按鈕父物件
 
     // 先取得 PlayerSkillController 的參考，避免每次點擊都用 FindObjectOfType 搜尋
-    private PlayerSkillController playerSkillController;
+    private PlayerController playerController;
 
     private void Awake()
     {
         // 嘗試在場景中找到 PlayerSkillController
-        playerSkillController = FindObjectOfType<PlayerSkillController>();
+        playerController = FindObjectOfType<PlayerController>();
     }
 
     void Start()
@@ -46,8 +46,8 @@ public class ClassSelectionUI : MonoBehaviour
                     // 當按鈕被點擊時，將選取的職業更新到 SkillManager
                     SkillManager.Instance.selectedClass = data;
                     // 通知玩家技能控制器更新大招（R 技能）
-                    if (playerSkillController != null)
-                        playerSkillController.UpdateUltimateSkill();
+                    if (playerController != null)
+                        playerController.UpdateUltimateSkill();
                 });
             }
         }

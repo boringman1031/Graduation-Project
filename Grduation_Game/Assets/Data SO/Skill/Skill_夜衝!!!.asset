@@ -12,10 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee4c79882e1789e4493edb7077df0dec, type: 3}
   m_Name: "Skill_\u591C\u885D!!!"
   m_EditorClassIdentifier: 
-  skillName: "\u591C\u885D!!!"
+  skillName: "\u591C\u885D"
   icon: {fileID: 21300000, guid: 6a460f19d41c175428228097cf822a4c, type: 3}
   type: 0
-  skillPrefab: {fileID: 0}
+  skillPrefab: {fileID: 234172852894800666, guid: 72f7a278efcbc014a943930643293825, type: 3}
   isUnlocked: 1
   description: "\u89D2\u8272\u5411\u524D\u885D\u523A\uFF0C\u4E26\u5C0D\u6CBF\u9014\u9020\u6210
     \u50B7\u5BB3:10 \u6D88\u8017\u80FD\u91CF:10"
+  cooldownTime: 0
+  isFollowPlayer: 0
