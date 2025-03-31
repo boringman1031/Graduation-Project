@@ -33,13 +33,13 @@ public class TutorialSystem : MonoBehaviour
     }
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.R))
+        if (Input.GetKeyDown(KeyCode.F))
         {
-            HideTutorialPanel(); // 按下 R 鍵時隱藏教學 UI
+            HideTutorialPanel(); // 按下 F 鍵時隱藏教學 UI
         }
         if (Input.GetKeyDown(KeyCode.L) && currentScene.tutorialType == TutorialType.MusicGame)
         {
-            HideTutorialPanel(); // 按下 R 鍵時隱藏教學 UI
+            HideTutorialPanel(); // 隱藏教學 UI
             ShowMusicGameTutorial2(); // 開始音樂遊戲教學
         }
     }
