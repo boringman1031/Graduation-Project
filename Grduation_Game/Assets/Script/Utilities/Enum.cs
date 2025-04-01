@@ -34,7 +34,8 @@ public enum TutorialType
     MusicGame,      // 音樂遊戲教學
     TriviaGame,     // 對話遊戲
     CleanEnemy,     // 清除敵人教學
-    Boss            // boss戰教學
+    Boss,           // boss戰教學
+    SkillAndClass   //更換職業教學
 }
 public enum SkillType
 {

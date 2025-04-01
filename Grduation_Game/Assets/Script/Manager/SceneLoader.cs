@@ -14,6 +14,7 @@ public class SceneLoader : MonoBehaviour, ISaveable
     public VoidEventSO saveDataEvent;//儲存加載遊戲事件
     public VoidEventSO afterSceneLoadedEvent;
     public VoidEventSO openRandomCanvaEvent;//打開隨機挑戰面板
+    public VoidEventSO openGoHomeEvent;//打開回家面板
     public SceneLoadEventSO unLoadSceneEvent;//卸載場景事件
     public TransitionEventSO transitionEvent;
     public SceneLoadedEventSO sceneLoadedEvent;
@@ -224,7 +225,15 @@ public class SceneLoader : MonoBehaviour, ISaveable
             currentLoadScene.sceneType != SceneType.Boss &&
             currentLoadScene.sceneType != SceneType.Necessary)
         {
-            openRandomCanvaEvent.RaiseEvent();
+            // 只有第一關顯示 GoHomePanel
+            if (currentLoadScene.sceneName == SceneName.Chap1_School)
+            {
+                openGoHomeEvent.RaiseEvent(); // 顯示回家面板
+            }
+            else
+            {
+                openRandomCanvaEvent.RaiseEvent(); // 顯示原本的隨機挑戰面板
+            }
         }
     }
     public DataDefination GetDataID()

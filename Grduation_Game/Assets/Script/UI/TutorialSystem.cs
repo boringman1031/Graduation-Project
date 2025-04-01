@@ -112,6 +112,10 @@ public class TutorialSystem : MonoBehaviour
                     ShowBossTutorial();
                     tutorialShownDict[type] = true;
                     break;
+                case TutorialType.SkillAndClass:
+                    ShowClassTutorial();
+                    tutorialShownDict[type] = true;
+                    break;
                 case TutorialType.None:
                 default:
                     break;
@@ -188,6 +192,11 @@ public class TutorialSystem : MonoBehaviour
     private void ShowBosBrokenHeartTutorial()
     {
         tutorialText.text = "你破防了，把對她的愛擊碎";
+        tutorialPanel.SetActive(true);
+    }
+    private void ShowClassTutorial()
+    {
+        tutorialText.text = "按下衣櫃按紐開啟職業選單";
         tutorialPanel.SetActive(true);
     }
 }

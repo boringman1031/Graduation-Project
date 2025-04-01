@@ -1,4 +1,4 @@
-/*-------------------BY017-----------------*/
+ï»¿/*-------------------BY017-----------------*/
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -9,45 +9,48 @@ using UnityEngine.UI;
 public class UIManager : MonoBehaviour
 {
   
-    [Header("¨Æ¥óºÊÅ¥")]
+    [Header("äº‹ä»¶ç›£è½")]
     public CharacterEventSO healthEvenr;
     public SceneLoadEventSO unloadedSceneEvent;  
     public VoidEventSO loadDataEvent;
     public VoidEventSO gameOverEvent;
     public VoidEventSO backToMenuEvent;
-    public VoidEventSO PortalEvent;//ÀH¾÷³õ´º¥[¸ü¨Æ¥ó
-    public VoidEventSO openRandomCanvaEvent;//Åã¥ÜÀH¾÷¬D¾Ô­±ªO¨Æ¥ó
-    public FloatEventSO syncMasterVolumeEvent;//¦P¨B¥D­µ¶q¨Æ¥ó
+    public VoidEventSO PortalEvent;//éš¨æ©Ÿå ´æ™¯åŠ è¼‰äº‹ä»¶
+    public VoidEventSO openRandomCanvaEvent;//é¡¯ç¤ºéš¨æ©ŸæŒ‘æˆ°é¢æ¿äº‹ä»¶
+    public VoidEventSO openGoHomeCanvaEvent;//é¡¯ç¤ºéš¨æ©ŸæŒ‘æˆ°é¢æ¿äº‹ä»¶
+    public FloatEventSO syncMasterVolumeEvent;//åŒæ­¥ä¸»éŸ³é‡äº‹ä»¶
     public FloatEventSO syncBGMVolumeEvent;
     public FloatEventSO syncFXVolumeEvent;
+    public VoidEventSO goHomeEvent;
 
-    [Header("¼s¼½¨Æ¥ó")]
+    [Header("å»£æ’­äº‹ä»¶")]
     public VoidEventSO pasueEvent;
-    public VoidEventSO loadRandomSceneEvent; //ÀH¾÷³õ´º¥[¸ü¨Æ¥ó
+    public VoidEventSO loadRandomSceneEvent; //éš¨æ©Ÿå ´æ™¯åŠ è¼‰äº‹ä»¶
 
-    [Header("­±ªO²Õ¥ó")]
-    public PlayerStatBar playerStatBar;//ª±®aª¬ºA±ø(¦å±ø¡B¯à¶q±ø)
-    public GameObject GameOverPanel;//¹CÀ¸µ²§ô­±ªO
-    public GameObject RandomChallengePanel;//ÀH¾÷¬D¾Ô­±ªO
-    public GameObject GOToBossScenePanel;//¶i¤JBoss³õ´º­±ªO
-    public GameObject GameInfoPanel;//¹CÀ¸¸ê°T­±ªO
-    public GameObject GameSettingPanel;//¹CÀ¸³]©w­±ªO
-    public GameObject DialogPanel;//¹ï¸Ü®Ø
+    [Header("é¢æ¿çµ„ä»¶")]
+    public PlayerStatBar playerStatBar;//ç©å®¶ç‹€æ…‹æ¢(è¡€æ¢ã€èƒ½é‡æ¢)
+    public GameObject GameOverPanel;//éŠæˆ²çµæŸé¢æ¿
+    public GameObject RandomChallengePanel;//éš¨æ©ŸæŒ‘æˆ°é¢æ¿
+    public GameObject GoHomePanel;//å›å®¶é¢æ¿
+    public GameObject GOToBossScenePanel;//é€²å…¥Bosså ´æ™¯é¢æ¿
+    public GameObject GameInfoPanel;//éŠæˆ²è³‡è¨Šé¢æ¿
+    public GameObject GameSettingPanel;//éŠæˆ²è¨­å®šé¢æ¿
+    public GameObject DialogPanel;//å°è©±æ¡†
 
-    [Header("«ö¶s²Õ¥ó")]
+    [Header("æŒ‰éˆ•çµ„ä»¶")]
     public GameObject restartButton;
-    public Button GameInfoButton;//¶}±Ò¹CÀ¸¸ê°T«ö¶s
-    public Button closeGameInfoButton;//Ãö³¬¹CÀ¸¸ê°T«ö¶s
-    public Button ExitGameInfoButton;//°h¥X¹CÀ¸¸ê°T«ö¶s
-    public Button RandomChallengeButton1;//ÀH¾÷¬D¾Ô1«ö¶s
+    public Button GameInfoButton;//é–‹å•ŸéŠæˆ²è³‡è¨ŠæŒ‰éˆ•
+    public Button closeGameInfoButton;//é—œé–‰éŠæˆ²è³‡è¨ŠæŒ‰éˆ•
+    public Button ExitGameInfoButton;//é€€å‡ºéŠæˆ²è³‡è¨ŠæŒ‰éˆ•
+    public Button RandomChallengeButton1;//éš¨æ©ŸæŒ‘æˆ°1æŒ‰éˆ•
 
-    [Header("­µ¶q±±¨î²Õ¥ó")]
-    public Slider MasterSlider;//¥D­µ¶q
-    public Slider BGMSlider;//­I´º­µ¼Ö­µ¶q
-    public Slider FXSlider;//­µ®Ä­µ¶q
+    [Header("éŸ³é‡æ§åˆ¶çµ„ä»¶")]
+    public Slider MasterSlider;//ä¸»éŸ³é‡
+    public Slider BGMSlider;//èƒŒæ™¯éŸ³æ¨‚éŸ³é‡
+    public Slider FXSlider;//éŸ³æ•ˆéŸ³é‡
 
-    [Header("¬D¾Ô¦¸¼ÆÅã¥Ü")]
-    public Image[] challengeLights; // ÂI«G¥Îªº¿O¡]Image °}¦C¡^
+    [Header("æŒ‘æˆ°æ¬¡æ•¸é¡¯ç¤º")]
+    public Image[] challengeLights; // é»äº®ç”¨çš„ç‡ˆï¼ˆImage é™£åˆ—ï¼‰
 
     public void Awake()
     {
@@ -61,15 +64,16 @@ public class UIManager : MonoBehaviour
     {
         healthEvenr.OnEventRaised += OnHealthEvent;
         unloadedSceneEvent.LoadRequestEvent += OnLoadSceneEvent;
-        loadDataEvent.OnEventRaised += OnLoadDataEvent;//Åª¨ú¹CÀ¸¶i«×¨Æ¥ó
-        gameOverEvent.OnEventRaised += OnGameOverEvent;//¹CÀ¸µ²§ô¨Æ¥ó
-        backToMenuEvent.OnEventRaised +=OnLoadDataEvent;//ªğ¦^¥D¿ï³æ¨Æ¥ó
-        openRandomCanvaEvent.OnEventRaised+=OnShowRandomPanelEvents;//Åã¥ÜÀH¾÷¬D¾Ô­±ªO¨Æ¥ó
-        PortalEvent.OnEventRaised += OnShowGoToBossScenePanelEvent;//Åã¥Ü¶i¤JBoss³õ´º­±ªO¨Æ¥ó
+        loadDataEvent.OnEventRaised += OnLoadDataEvent;//è®€å–éŠæˆ²é€²åº¦äº‹ä»¶
+        gameOverEvent.OnEventRaised += OnGameOverEvent;//éŠæˆ²çµæŸäº‹ä»¶
+        backToMenuEvent.OnEventRaised +=OnLoadDataEvent;//è¿”å›ä¸»é¸å–®äº‹ä»¶
+        openRandomCanvaEvent.OnEventRaised+=OnShowRandomPanelEvents;//é¡¯ç¤ºéš¨æ©ŸæŒ‘æˆ°é¢æ¿äº‹ä»¶
+        openGoHomeCanvaEvent.OnEventRaised += OnOpenGoHomeCanvaEvents;//é¡¯ç¤ºå›å®¶çš„é¢æ¿äº‹ä»¶
+        PortalEvent.OnEventRaised += OnShowGoToBossScenePanelEvent;//é¡¯ç¤ºé€²å…¥Bosså ´æ™¯é¢æ¿äº‹ä»¶
         syncMasterVolumeEvent.OnEventRaised += OnSyncMasterVolumeEvent;
         syncBGMVolumeEvent.OnEventRaised += OnSyncBGMVolumeEvent;
         syncFXVolumeEvent.OnEventRaised += OnSyncFXVolumeEvent;
-       
+        goHomeEvent.OnEventRaised += CloseGoHomePanel;
     }
 
     public void OnDisable()
@@ -80,26 +84,28 @@ public class UIManager : MonoBehaviour
         gameOverEvent.OnEventRaised -= OnGameOverEvent;
         backToMenuEvent.OnEventRaised -= OnLoadDataEvent;
         openRandomCanvaEvent.OnEventRaised -= OnShowRandomPanelEvents;
+        openGoHomeCanvaEvent.OnEventRaised -= OnOpenGoHomeCanvaEvents;//é¡¯ç¤ºå›å®¶çš„é¢æ¿äº‹ä»¶
         PortalEvent.OnEventRaised -= OnShowGoToBossScenePanelEvent;
         syncMasterVolumeEvent.OnEventRaised -= OnSyncMasterVolumeEvent;
         syncBGMVolumeEvent.OnEventRaised -= OnSyncBGMVolumeEvent;
         syncFXVolumeEvent.OnEventRaised -= OnSyncFXVolumeEvent;
+        goHomeEvent.OnEventRaised -= CloseGoHomePanel;
     }
 
-    public void UpdateChallengeCountUI(int count)//§ó·s¬D¾Ô¦¸¼ÆUI
+    public void UpdateChallengeCountUI(int count)//æ›´æ–°æŒ‘æˆ°æ¬¡æ•¸UI
     {
         for (int i = 0; i < challengeLights.Length; i++)
         {
             challengeLights[i].enabled = i < count;
         }
     }
-    private void ToggleRandomChallengeButton()//«ö¤UÀH¾÷¬D¾Ô«ö¶sÄ²µo
+    private void ToggleRandomChallengeButton()//æŒ‰ä¸‹éš¨æ©ŸæŒ‘æˆ°æŒ‰éˆ•è§¸ç™¼
     {
         loadRandomSceneEvent.OnEventRaised();
         RandomChallengePanel.SetActive(false);
     }
 
-    private void ToggleGameInfoPanel()//¶}±Ò¹CÀ¸¸ê°T­±ªO
+    private void ToggleGameInfoPanel()//é–‹å•ŸéŠæˆ²è³‡è¨Šé¢æ¿
     {
         if(GameInfoPanel.activeInHierarchy)
         {
@@ -114,60 +120,67 @@ public class UIManager : MonoBehaviour
         }
     }
 
-    private void ToggleClsoeGameInfoPanel()//Ãö³¬¹CÀ¸¸ê°T­±ªO
+    private void ToggleClsoeGameInfoPanel()//é—œé–‰éŠæˆ²è³‡è¨Šé¢æ¿
     {
         GameInfoPanel.SetActive(false);
         Time.timeScale = 1;
     }
 
-    private void ToggleExitGameEvent()//°h¥X¹CÀ¸
+    private void ToggleExitGameEvent()//é€€å‡ºéŠæˆ²
     {
         GameInfoPanel.SetActive(false);
         Time.timeScale = 1;
         backToMenuEvent.RaiseEvent();
     }
-    private void OnSyncMasterVolumeEvent(float _amount)//¦P¨B¥D­µ¶q
+    private void OnSyncMasterVolumeEvent(float _amount)//åŒæ­¥ä¸»éŸ³é‡
     {
         MasterSlider.value = Mathf.Pow(10, _amount / 20);
     }
-    private void OnSyncBGMVolumeEvent(float _amount)//¦P¨B­I´º­µ¼Ö­µ¶q
+    private void OnSyncBGMVolumeEvent(float _amount)//åŒæ­¥èƒŒæ™¯éŸ³æ¨‚éŸ³é‡
     {
         BGMSlider.value = Mathf.Pow(10, _amount / 20);
     }
-    private void OnSyncFXVolumeEvent(float _amount)//¦P¨B­µ®Ä­µ¶q
+    private void OnSyncFXVolumeEvent(float _amount)//åŒæ­¥éŸ³æ•ˆéŸ³é‡
     {
         FXSlider.value = Mathf.Pow(10, _amount / 20);
     }
 
    
-    public void OnHealthEvent(CharactorBase _charactor)//¦å¶qÅÜ¤Æ¨Æ¥ó
+    public void OnHealthEvent(CharactorBase _charactor)//è¡€é‡è®ŠåŒ–äº‹ä»¶
     {
         var persentage=_charactor.CurrentHealth/_charactor.MaxHealth;
         playerStatBar.OnHealthChange(persentage);
     }
 
-    private void OnLoadSceneEvent(GameSceneSO _sceneToLoad, Vector3 arg1, bool arg2)//Åª¨ú³õ´º¨Æ¥ó§PÂ_¬O§_Åã¥Üª±®aª¬ºA±ø
+    private void OnLoadSceneEvent(GameSceneSO _sceneToLoad, Vector3 arg1, bool arg2)//è®€å–å ´æ™¯äº‹ä»¶åˆ¤æ–·æ˜¯å¦é¡¯ç¤ºç©å®¶ç‹€æ…‹æ¢
     {
         var isMenu=_sceneToLoad.sceneName == SceneName.Menu;
         playerStatBar.gameObject.SetActive(!isMenu);
     }
 
-    private void OnLoadDataEvent()//Åª¨ú¹CÀ¸¶i«×¨Æ¥ó§PÂ_ª±®a¦º¤F¨S
+    private void OnLoadDataEvent()//è®€å–éŠæˆ²é€²åº¦äº‹ä»¶åˆ¤æ–·ç©å®¶æ­»äº†æ²’
     {
        GameOverPanel.SetActive(false);
     }
 
-    private void OnGameOverEvent()//¹CÀ¸µ²§ô¨Æ¥ó
+    private void OnGameOverEvent()//éŠæˆ²çµæŸäº‹ä»¶
     {
         GameOverPanel.SetActive(true);
        EventSystem.current.SetSelectedGameObject(restartButton);
     }
 
-    private void OnShowRandomPanelEvents()//Åã¥ÜÀH¾÷¬D¾Ô­±ªO¨Æ¥ó
+    private void OnShowRandomPanelEvents()//é¡¯ç¤ºéš¨æ©ŸæŒ‘æˆ°é¢æ¿äº‹ä»¶
     {
         RandomChallengePanel.SetActive(true);
     }
-
+    private void OnOpenGoHomeCanvaEvents()
+    {
+        GoHomePanel.SetActive(true);
+    }
+    private void CloseGoHomePanel()
+    {
+        GoHomePanel.SetActive(false); // ğŸ‘ˆ é—œæ‰é¢æ¿
+    }
     private void OnShowGoToBossScenePanelEvent()
     {
         GOToBossScenePanel.SetActive(true);

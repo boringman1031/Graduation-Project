@@ -46,6 +46,7 @@ public class PlayerController : MonoBehaviour
 
     // 技能資料陣列，依序對應 Q, W, E, R
     private SkillData[] currentSkills = new SkillData[4];
+    public SkillCooldownUI[] skillCooldownUIs; // index 0 = Q, 1 = W, 2 = E, 3 = R (給冷卻UI)
     private SkillData activeSkillData;     // 目前正在使用的技能資料
     public Transform effectSpawnPoint;     // 指定特效生成點（例如玩家手部或前方空物件）
     private float[] skillLastUsedTime;  // 儲存每個技能上次使用的時間
@@ -122,6 +123,8 @@ public class PlayerController : MonoBehaviour
             // 檢查冷卻：如果現在時間 - 上次使用時間 >= 冷卻時間，則可以使用技能
             if (Time.time - skillLastUsedTime[index] >= skill.cooldownTime)
             {
+                skillCooldownUIs[index]?.StartCooldown(skill.cooldownTime);
+
                 // 記錄這次施放的時間
                 skillLastUsedTime[index] = Time.time;
 
