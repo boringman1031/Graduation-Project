@@ -30,15 +30,19 @@ public class SceneLoader : MonoBehaviour, ISaveable
     public VoidEventSO BossDeadEvent;//Boss死亡事件
     public VoidEventSO goHomeEvent;//回家事件
 
+    
     [Header("場景參數")]
     public GameSceneSO firstLoadScene;//第一個加載的場景(遊戲大聽)
-    private GameSceneSO sceneToLoad;//要新遊戲開始要加載的場景
-    private GameSceneSO currentLoadScene;//當前加載的場景
     public GameSceneSO MuneScene;//主場景
     public GameSceneSO HomeScene;//租屋處場景
     public GameSceneSO NecessaryScene; //必要關卡 
     public GameSceneSO BossScene;//Boss場景
     public GameSceneSO Chap1ENDScene;//第一章結束場景
+
+    private GameSceneSO sceneToLoad;//要新遊戲開始要加載的場景
+    private GameSceneSO currentLoadScene;//當前加載的場景
+    private GameSceneSO lastRandomScene; // 儲存上一次的隨機場景
+
 
     [Header("隨機場景列表")]
     [SerializeField] private List<GameSceneSO> randomScenes; // 可隨機選擇的場景列表
@@ -128,8 +132,22 @@ public class SceneLoader : MonoBehaviour, ISaveable
             return null;
         }
 
-        int randomIndex = UnityEngine.Random.Range(0, randomScenes.Count);
-        return randomScenes[randomIndex];
+        // 只有一個場景時無法避免重複
+        if (randomScenes.Count == 1)
+        {
+            return randomScenes[0];
+        }
+
+        GameSceneSO randomScene;
+        do
+        {
+            int randomIndex = UnityEngine.Random.Range(0, randomScenes.Count);
+            randomScene = randomScenes[randomIndex];
+        }
+        while (randomScene == lastRandomScene); // 如果與上一個相同則重選
+
+        lastRandomScene = randomScene;
+        return randomScene;
     }
     private void OnLoadRandomScene()//隨機挑戰場景加載事件
     {
@@ -213,9 +231,9 @@ public class SceneLoader : MonoBehaviour, ISaveable
         playerTrans.gameObject.SetActive(true);
         isLoading = false;
 
+       
         sceneLoadedEvent.RaiseEvent(currentLoadScene);// 觸發帶場景參數的新事件 對話系統使用
-        afterSceneLoadedEvent.RaiseEvent(); // 廣播:已加載完成事件         
-        Debug.Log($"已加載{currentLoadScene.GetType()}，挑戰次數{challengeCount}");
+        afterSceneLoadedEvent.RaiseEvent(); // 廣播:已加載完成事件                                                       
         //saveDataEvent.RaiseEvent(); // 廣播:儲存加載遊戲事件
 
     }
