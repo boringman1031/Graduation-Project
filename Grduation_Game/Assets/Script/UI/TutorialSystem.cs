@@ -1,30 +1,31 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class TutorialSystem : MonoBehaviour
 {
-    [Header("ºÊÅ¥¨Æ¥ó")]
+    [Header("ç›£è½äº‹ä»¶")]
     public VoidEventSO tutorialMoveEvent;
     public VoidEventSO tutorialJumpEvent;
     public VoidEventSO tutorialAttackEvent;
-    public VoidEventSO tutorialBossSummonEvent;//Ä²µoBoss¥l³ê¨Æ¥ó±Ğ¾Ç
-    public VoidEventSO tutorialBossAttackEvent;//Ä²µoBoss§ğÀ»¨Æ¥ó±Ğ¾Ç
-    public VoidEventSO tutorialBossBrokenHeartEvent;//Ä²µoBoss¤ß¸H¨Æ¥ó±Ğ¾Ç
-    public VoidEventSO dialogEndEvent; // ¹ï¸Üµ²§ô¨Æ¥ó
-    public SceneLoadedEventSO sceneLoadedEvent; // ·s¼W¡G³õ´º¥[¸ü§¹¦¨¨Æ¥ó
+    public VoidEventSO tutorialBossSummonEvent;//è§¸ç™¼Bosså¬å–šäº‹ä»¶æ•™å­¸
+    public VoidEventSO tutorialBossAttackEvent;//è§¸ç™¼Bossæ”»æ“Šäº‹ä»¶æ•™å­¸
+    public VoidEventSO tutorialBossBrokenHeartEvent;//è§¸ç™¼Bosså¿ƒç¢äº‹ä»¶æ•™å­¸
+    public VoidEventSO dialogEndEvent; // å°è©±çµæŸäº‹ä»¶
+    public SceneLoadedEventSO sceneLoadedEvent; // æ–°å¢ï¼šå ´æ™¯åŠ è¼‰å®Œæˆäº‹ä»¶
+    public VoidEventSO unlockSkillEvent; // è§£é–æŠ€èƒ½äº‹ä»¶
 
-    [Header("UI¤¸¥ó")]
+    [Header("UIå…ƒä»¶")]
     public GameObject tutorialPanel;
     public Text tutorialText;
 
-    private Dictionary<TutorialType, bool> tutorialShownDict; // °O¿ı±Ğ¾Ç¬O§_¤wÅã¥Ü
-    private GameSceneSO currentScene; // ½w¦s·í«e³õ´º
-    // ºÊÅ¥«öÁä¿é¤J
+    private Dictionary<TutorialType, bool> tutorialShownDict; // è¨˜éŒ„æ•™å­¸æ˜¯å¦å·²é¡¯ç¤º
+    private GameSceneSO currentScene; // ç·©å­˜ç•¶å‰å ´æ™¯
+    // ç›£è½æŒ‰éµè¼¸å…¥
     private void Awake()
     {
-        // ªì©l¤Æ¦r¨å¡A©Ò¦³±Ğ¾Ç¹w³]¥¼Åã¥Ü
+        // åˆå§‹åŒ–å­—å…¸ï¼Œæ‰€æœ‰æ•™å­¸é è¨­æœªé¡¯ç¤º
         tutorialShownDict = new Dictionary<TutorialType, bool>();
         foreach (TutorialType type in System.Enum.GetValues(typeof(TutorialType)))
         {
@@ -35,15 +36,15 @@ public class TutorialSystem : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.F))
         {
-            HideTutorialPanel(); // «ö¤U F Áä®ÉÁôÂÃ±Ğ¾Ç UI
+            HideTutorialPanel(); // æŒ‰ä¸‹ F éµæ™‚éš±è—æ•™å­¸ UI
         }
         if (Input.GetKeyDown(KeyCode.L) && currentScene.tutorialType == TutorialType.MusicGame)
         {
-            HideTutorialPanel(); // ÁôÂÃ±Ğ¾Ç UI
-            ShowMusicGameTutorial2(); // ¶}©l­µ¼Ö¹CÀ¸±Ğ¾Ç
+            HideTutorialPanel(); // éš±è—æ•™å­¸ UI
+            ShowMusicGameTutorial2(); // é–‹å§‹éŸ³æ¨‚éŠæˆ²æ•™å­¸
         }
     }
-    // ÁôÂÃ±Ğ¾Ç UI
+    // éš±è—æ•™å­¸ UI
     public void HideTutorialPanel()
     {
         tutorialPanel.SetActive(false);
@@ -53,11 +54,12 @@ public class TutorialSystem : MonoBehaviour
         tutorialMoveEvent.OnEventRaised += ShowMoveTutorial;
         tutorialJumpEvent.OnEventRaised += ShowJumpTutorial;
         tutorialAttackEvent.OnEventRaised += ShowAttackTutorial;
-        dialogEndEvent.OnEventRaised += OnDialogEnd; // ­q¾\¹ï¸Üµ²§ô¨Æ¥ó
+        dialogEndEvent.OnEventRaised += OnDialogEnd; // è¨‚é–±å°è©±çµæŸäº‹ä»¶
         sceneLoadedEvent.OnSceneLoaded += OnSceneLoaded;
         tutorialBossSummonEvent.OnEventRaised += ShowBossSummonTutorial;
         tutorialBossAttackEvent.OnEventRaised += ShowBossAttackTutorial;
         tutorialBossBrokenHeartEvent.OnEventRaised += ShowBosBrokenHeartTutorial;
+        unlockSkillEvent.OnEventRaised += ShowUnlockSkillTutorial;
     }
 
     private void OnDisable()
@@ -70,6 +72,7 @@ public class TutorialSystem : MonoBehaviour
         tutorialBossSummonEvent.OnEventRaised -= ShowBossSummonTutorial;
         tutorialBossAttackEvent.OnEventRaised -= ShowBossAttackTutorial;
         tutorialBossBrokenHeartEvent.OnEventRaised -= ShowBosBrokenHeartTutorial;
+        unlockSkillEvent.OnEventRaised -= ShowUnlockSkillTutorial;
     }
     void OnDialogEnd()
     {
@@ -78,15 +81,15 @@ public class TutorialSystem : MonoBehaviour
 
         TutorialType type = currentScene.tutorialType;
 
-        // ÀË¬d±Ğ¾Ç¬O§_¤wÅã¥Ü¹L
+        // æª¢æŸ¥æ•™å­¸æ˜¯å¦å·²é¡¯ç¤ºé
         if (tutorialShownDict.TryGetValue(type, out bool shown) && !shown)
         {
-            // ®Ú¾Ú¼È¦sªº³õ´º°Ñ¼ÆÄ²µo±Ğ¾Ç
+            // æ ¹æ“šæš«å­˜çš„å ´æ™¯åƒæ•¸è§¸ç™¼æ•™å­¸
             switch (type)
             {
                 case TutorialType.Move:
                     ShowMoveTutorial();
-                    tutorialShownDict[type] = true; // ¼Ğ°O¬°¤wÅã¥Ü
+                    tutorialShownDict[type] = true; // æ¨™è¨˜ç‚ºå·²é¡¯ç¤º
                     break;
                 case TutorialType.Jump:
                     ShowJumpTutorial();
@@ -116,6 +119,10 @@ public class TutorialSystem : MonoBehaviour
                     ShowClassTutorial();
                     tutorialShownDict[type] = true;
                     break;
+                case TutorialType.UnlockSkill:
+                    ShowUnlockSkillTutorial();
+                    tutorialShownDict[type] = true;
+                    break;
                 case TutorialType.None:
                 default:
                     break;
@@ -124,79 +131,98 @@ public class TutorialSystem : MonoBehaviour
     }
     private void OnSceneLoaded(GameSceneSO scene)
     {
-        currentScene = scene; // ¼È¦s³õ´º°Ñ¼Æ
+        currentScene = scene; // æš«å­˜å ´æ™¯åƒæ•¸
     }
-    // ·íª±®a¨ì¹F¯S©w¦aÂI®ÉÅã¥Ü±Ğ¾Ç
+    // ç•¶ç©å®¶åˆ°é”ç‰¹å®šåœ°é»æ™‚é¡¯ç¤ºæ•™å­¸
     private void ShowMoveTutorial()
     {
-        tutorialText.text = "¨Ï¥Î ADÁä ²¾°Ê¬İ¬İ¥|©P";
+        tutorialText.text = "ä½¿ç”¨ ADéµ ç§»å‹•çœ‹çœ‹å››å‘¨";
         tutorialPanel.SetActive(true);
     }
 
-    // ·í¹ï¸Üµ²§ô®ÉÅã¥Ü±Ğ¾Ç
+    // ç•¶å°è©±çµæŸæ™‚é¡¯ç¤ºæ•™å­¸
     private void ShowJumpTutorial()
     {
-        tutorialText.text = "¨Ï¥Î ªÅ¥ÕÁä ¸õ¹L³o­Ó¬]Äæ";
+        tutorialText.text = "ä½¿ç”¨ ç©ºç™½éµ è·³éé€™å€‹æŸµæ¬„";
         tutorialPanel.SetActive(true);
     }
 
-    // ·íÀò±o·s§Ş¯à®ÉÅã¥Ü±Ğ¾Ç
+    // ç•¶ç²å¾—æ–°æŠ€èƒ½æ™‚é¡¯ç¤ºæ•™å­¸
     private void ShowAttackTutorial()
     {
-        tutorialText.text = "«ö¤U ·Æ¹«¥ªÁä §ğÀ»";
+        tutorialText.text = "æŒ‰ä¸‹ æ»‘é¼ å·¦éµ æ”»æ“Š";
         tutorialPanel.SetActive(true);
     }
 
-    // ­µ¼Ö¹CÀ¸±Ğ¾Ç
+    // éŸ³æ¨‚éŠæˆ²æ•™å­¸
     private void ShowMusicGameTutorial()
     {
-        tutorialText.text = "«ö¤U L ¶}©l¹CÀ¸";    
+        tutorialText.text = "æŒ‰ä¸‹ L é–‹å§‹éŠæˆ²";    
         tutorialPanel.SetActive(true);
     }
     private void ShowMusicGameTutorial2()
     {
-        tutorialText.text = "¦b·R¤ß¨ì¥ª°¼¦ì¸m®É«ö¤UÁä½LQWE";
+        tutorialText.text = "åœ¨æ„›å¿ƒåˆ°å·¦å´ä½ç½®æ™‚æŒ‰ä¸‹éµç›¤QWE";
         tutorialPanel.SetActive(true);
     }
 
     private void ShowTriviaGameTutorial()
     {
-        tutorialText.text = "¨«¹L¥h¸ò¦o»¡»¡¸Ü§a";
+        tutorialText.text = "èµ°éå»è·Ÿå¥¹èªªèªªè©±å§";
         tutorialPanel.SetActive(true);
     }
 
     private void ShowCleanEnemyTutorial()
     {
-        tutorialText.text = "À»±Ñ©Ò¦³¼Ä¤H§a";
+        tutorialText.text = "æ“Šæ•—æ‰€æœ‰æ•µäººå§";
         tutorialPanel.SetActive(true);
     }
 
     private void ShowBossTutorial()
     {
-        tutorialText.text = "§ä¨ìIrene";
+        tutorialText.text = "æ‰¾åˆ°Irene";
         tutorialPanel.SetActive(true);
     }
 
     private void ShowBossSummonTutorial()
     {
-        tutorialText.text = "Irene¥l³ê¤F³½¶íªº³½¡AÀ»±Ñ¥L­Ì";
+        tutorialText.text = "Ireneå¬å–šäº†é­šå¡˜çš„é­šï¼Œæ“Šæ•—ä»–å€‘";
         tutorialPanel.SetActive(true);
     }
 
     private void ShowBossAttackTutorial()
     {
-        tutorialText.text = "¤p¤ß§ğÀ»!!!!!";
+        tutorialText.text = "å°å¿ƒæ”»æ“Š!!!!!";
         tutorialPanel.SetActive(true);
     }
 
     private void ShowBosBrokenHeartTutorial()
     {
-        tutorialText.text = "§A¯}¨¾¤F¡A§â¹ï¦oªº·RÀ»¸H";
+        tutorialText.text = "ä½ ç ´é˜²äº†ï¼ŒæŠŠå°å¥¹çš„æ„›æ“Šç¢";
         tutorialPanel.SetActive(true);
     }
     private void ShowClassTutorial()
     {
-        tutorialText.text = "«ö¤U¦çÂd«ö¯Ã¶}±ÒÂ¾·~¿ï³æ";
+        tutorialText.text = "æŒ‰ä¸‹è¡£æ«ƒæŒ‰ç´é–‹å•Ÿè·æ¥­é¸å–®";
         tutorialPanel.SetActive(true);
     }
+    private void ShowUnlockSkillTutorial()
+    {
+        if (currentScene == null) return;
+
+        string skillName = currentScene.skillToUnlock;
+
+        if (!string.IsNullOrEmpty(skillName))
+        {
+            SkillManager.Instance.UnlockSkill(skillName);
+            tutorialText.text = $"ä½ è§£é–äº†æ–°æŠ€èƒ½ï¼š{skillName}\nä¸‹æ¬¡å›åˆ°å®¶å¯ä»¥è£å‚™çœ‹çœ‹ï¼";
+            tutorialPanel.SetActive(true);
+            Debug.Log($"âœ… è§£é–æŠ€èƒ½ï¼š{skillName}");
+        }
+        else
+        {
+            Debug.LogWarning("âš ï¸ æ­¤å ´æ™¯æ²’æœ‰è¨­å®š skillToUnlock");
+        }
+    }
+
 }

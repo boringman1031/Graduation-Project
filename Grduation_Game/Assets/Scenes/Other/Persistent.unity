@@ -2147,6 +2147,7 @@ MonoBehaviour:
   tutorialBossBrokenHeartEvent: {fileID: 11400000, guid: f1dd5d41dec01d042b6eeaa23ceeb795, type: 2}
   dialogEndEvent: {fileID: 11400000, guid: 9b0030f4733054648b442de17490fdb0, type: 2}
   sceneLoadedEvent: {fileID: 11400000, guid: 1776d7e1d30ba5c448f8d3d5648b9907, type: 2}
+  unlockSkillEvent: {fileID: 11400000, guid: 8f9845516df029a49b362a376549cb7e, type: 2}
   tutorialPanel: {fileID: 437357357}
   tutorialText: {fileID: 1368654272}
 --- !u!1 &519420028
@@ -7141,10 +7142,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 9464402c1c8f4ad4397ff70abe55f946, type: 2}
   - {fileID: 11400000, guid: 9464402c1c8f4ad4397ff70abe55f946, type: 2}
   allSkills:
-  - {fileID: 11400000, guid: e3d458a9c81ba094d808d0238a5474f0, type: 2}
-  - {fileID: 11400000, guid: c281cf2d96906e04c9856b7a4aa84d62, type: 2}
-  - {fileID: 11400000, guid: 01bde04d0f06f4b4091c3751649b4f4e, type: 2}
-  - {fileID: 11400000, guid: 73a5434f72b46c644a6a8e2cbb466480, type: 2}
   - {fileID: 11400000, guid: fef879b218c989f48b71fab35e06d271, type: 2}
   - {fileID: 11400000, guid: 340319914a63b9a4788b4139206daf55, type: 2}
   - {fileID: 11400000, guid: a5426017f32cfb7408170568409d6507, type: 2}
@@ -7159,6 +7156,8 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 868bb8132d5441b429c4e49487151fc3, type: 2}
   - {fileID: 11400000, guid: 289c6d8e80413f4429683345e7fbf95e, type: 2}
   - {fileID: 11400000, guid: 5b7fcd900e34f1046a38eb82428f0d90, type: 2}
+  - {fileID: 11400000, guid: 62bf55ed6117f4a42821311d1a9e6bfa, type: 2}
+  - {fileID: 11400000, guid: d7d0440d7f7f95940b4a212275cf6ddb, type: 2}
 --- !u!1 &1566747140
 GameObject:
   m_ObjectHideFlags: 0
@@ -8127,6 +8126,10 @@ PrefabInstance:
       propertyPath: afterSceneLoadedEvent
       value: 
       objectReference: {fileID: 11400000, guid: a157eafef39c6b246b3a3c865f8d87ac, type: 2}
+    - target: {fileID: 618363585568518696, guid: 8fe606f421d465a43860c97bb139a223, type: 3}
+      propertyPath: MaxPower
+      value: 10000
+      objectReference: {fileID: 0}
     - target: {fileID: 618363585568518696, guid: 8fe606f421d465a43860c97bb139a223, type: 3}
       propertyPath: goHomeEvent
       value: 
@@ -9749,6 +9752,7 @@ MonoBehaviour:
   unLoadSceneEvent: {fileID: 11400000, guid: 335f2ec0442e34942bca483dbd1b6f44, type: 2}
   transitionEvent: {fileID: 11400000, guid: 5968fd9e78d8dd347bf03100f1e91743, type: 2}
   sceneLoadedEvent: {fileID: 11400000, guid: 1776d7e1d30ba5c448f8d3d5648b9907, type: 2}
+  unlockSkillEvent: {fileID: 11400000, guid: 8f9845516df029a49b362a376549cb7e, type: 2}
   loadEventSO: {fileID: 11400000, guid: 59208caf5cb1e354086b5943ea6e480d, type: 2}
   onAllEnemiesDefeated: {fileID: 11400000, guid: aeb5c483798026f42b4a8190bb79651d, type: 2}
   loadRandomSceneEvent: {fileID: 11400000, guid: 381f9febe87016148a8902e5ff57fe6f, type: 2}

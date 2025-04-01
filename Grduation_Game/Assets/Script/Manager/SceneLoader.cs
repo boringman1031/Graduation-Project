@@ -18,6 +18,7 @@ public class SceneLoader : MonoBehaviour, ISaveable
     public SceneLoadEventSO unLoadSceneEvent;//卸載場景事件
     public TransitionEventSO transitionEvent;
     public SceneLoadedEventSO sceneLoadedEvent;
+    public VoidEventSO unlockSkillEvent;//打開回家面板
 
     [Header("事件監聽")]
     public SceneLoadEventSO loadEventSO;//場景加載事件
@@ -228,10 +229,12 @@ public class SceneLoader : MonoBehaviour, ISaveable
             // 只有第一關顯示 GoHomePanel
             if (currentLoadScene.sceneName == SceneName.Chap1_School)
             {
+                unlockSkillEvent.RaiseEvent();
                 openGoHomeEvent.RaiseEvent(); // 顯示回家面板
             }
             else
             {
+                unlockSkillEvent.RaiseEvent();
                 openRandomCanvaEvent.RaiseEvent(); // 顯示原本的隨機挑戰面板
             }
         }
