@@ -1,14 +1,12 @@
-using UnityEngine;
+ï»¿using UnityEngine;
 using UnityEngine.UI;
-using TMPro;
 
 public class SkillCooldownUI : MonoBehaviour
 {
-    public Image cooldownOverlay; // ¥b³z©ú¾B¸n
+    public Image cooldownOverlay;
 
     private float cooldownTime;
     private float lastUsedTime;
-
     private bool isCooling;
 
     public void StartCooldown(float duration)
@@ -34,5 +32,16 @@ public class SkillCooldownUI : MonoBehaviour
                 cooldownOverlay.fillAmount = remaining / cooldownTime;
             }
         }
+    }
+
+    public bool IsCooling()
+    {
+        return isCooling;
+    }
+
+    public void ResetCooldown()
+    {
+        cooldownOverlay.fillAmount = 0f;
+        isCooling = false;
     }
 }

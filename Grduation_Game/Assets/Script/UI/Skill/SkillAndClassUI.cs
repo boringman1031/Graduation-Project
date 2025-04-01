@@ -1,17 +1,18 @@
-// ±¾¦b SkillAndClassPanel ¤Wªº¥D±±¨î¾¹
+ï»¿// æ›åœ¨ SkillAndClassPanel ä¸Šçš„ä¸»æ§åˆ¶å™¨
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.U2D.Animation;
 
 public class SkillAndClassUI : MonoBehaviour
 {
-    [Header("§Ş¯à°Ï")]
-    public Transform skillListParent; // §Ş¯àÅã¥Ü®e¾¹
-    public GameObject skillItemPrefab; // §Ş¯à UI ¶µ¥Ø prefab
+    [Header("æŠ€èƒ½å€")]
+    public Transform skillListParent; // æŠ€èƒ½é¡¯ç¤ºå®¹å™¨
+    public GameObject skillItemPrefab; // æŠ€èƒ½ UI é …ç›® prefab
 
-    [Header("Â¾·~°Ï")]
+    [Header("è·æ¥­å€")]
     public Transform classListParent;
-    public GameObject classItemPrefab; // Â¾·~ UI ¶µ¥Ø prefab
+    public GameObject classItemPrefab; // è·æ¥­ UI é …ç›® prefab
 
     void OnEnable()
     {
@@ -27,7 +28,17 @@ public class SkillAndClassUI : MonoBehaviour
         {
             if (!skill.isUnlocked) continue;
             var go = Instantiate(skillItemPrefab, skillListParent);
-            go.GetComponent<SkillUIItem>().Setup(skill, OnSkillSelected);
+            var item = go.GetComponent<SkillUIItem>();
+            bool isEquipped = false;
+            foreach (var equipped in SkillManager.Instance.equippedSkills)
+            {
+                if (equipped == skill)
+                {
+                    isEquipped = true;
+                    break;
+                }
+            }
+            item.Setup(skill, OnSkillSelected, isEquipped);
         }
     }
 
@@ -38,23 +49,19 @@ public class SkillAndClassUI : MonoBehaviour
         foreach (var cls in SkillManager.Instance.allClasses)
         {
             var go = Instantiate(classItemPrefab, classListParent);
-            go.GetComponent<ClassUIItem>().Setup(cls, OnClassSelected);
+            bool isSelected = SkillManager.Instance.selectedClass == cls;
+            go.GetComponent<ClassUIItem>().Setup(cls, OnClassSelected, isSelected);
         }
     }
-
+    private int lastEquipIndex = 0;
     void OnSkillSelected(SkillData skill)
     {
-        // ¦Û°Ê¸Ë³Æ§Ş¯à¨ì²Ä¤@­ÓªÅ¦ì©Î´À´« index 0
-        for (int i = 0; i < SkillManager.Instance.equippedSkills.Length; i++)
-        {
-            if (SkillManager.Instance.equippedSkills[i] == null)
-            {
-                SkillManager.Instance.EquipSkill(skill, i);
-                return;
-            }
-        }
-        // ¥şº¡¡A¦Û°Ê´À´«²Ä0¦ì
-        SkillManager.Instance.EquipSkill(skill, 0);
+        // è¼ªæ›¿è£å‚™æŠ€èƒ½
+        SkillManager.Instance.EquipSkill(skill, lastEquipIndex);
+        lastEquipIndex = (lastEquipIndex + 1) % 3;
+
+        PopulateSkillUI();
+        FindObjectOfType<SkillUIController>()?.RefreshSkillIcons();
     }
 
     void OnClassSelected(ClassData cls)
@@ -63,5 +70,9 @@ public class SkillAndClassUI : MonoBehaviour
         FindObjectOfType<PlayerCostumeChanger>()?.ChangeCostume(cls.className);
         FindObjectOfType<PlayerController>()?.UpdateUltimateSkill();
         SkillManager.Instance.OnClassChanged?.Invoke();
+        PopulateClassUI();
+        FindObjectOfType<SkillUIController>()?.RefreshSkillIcons(); // âœ… æ›´æ–°åœ–ç¤ºèˆ‡å†·å»
     }
 }
+
+// å…¶é¤˜å­é¡ SkillUIItem / ClassUIItem / PlayerCostumeChanger ä¸è®Š

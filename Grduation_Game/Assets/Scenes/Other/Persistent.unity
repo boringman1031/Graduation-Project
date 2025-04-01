@@ -7044,7 +7044,11 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 4fc89ae656791f648977f8aa2c2542d3, type: 2}
   - {fileID: 11400000, guid: c827428598e46b4469ffdc9747e4e8e8, type: 2}
   - {fileID: 11400000, guid: 507653a7a244a0b4bacb82eb3f66e3be, type: 2}
-  allClasses: []
+  allClasses:
+  - {fileID: 11400000, guid: 28b9ac81f5ff73d43a44766cf6276b97, type: 2}
+  - {fileID: 11400000, guid: 868bb8132d5441b429c4e49487151fc3, type: 2}
+  - {fileID: 11400000, guid: 289c6d8e80413f4429683345e7fbf95e, type: 2}
+  - {fileID: 11400000, guid: 5b7fcd900e34f1046a38eb82428f0d90, type: 2}
 --- !u!1 &1566747140
 GameObject:
   m_ObjectHideFlags: 0
@@ -7136,6 +7140,7 @@ GameObject:
   - component: {fileID: 1568012501}
   - component: {fileID: 1568012503}
   - component: {fileID: 1568012502}
+  - component: {fileID: 1568012504}
   m_Layer: 5
   m_Name: SkillCDpanel
   m_TagString: Untagged
@@ -7204,6 +7209,31 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1568012500}
   m_CullTransparentMesh: 1
+--- !u!114 &1568012504
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1568012500}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1fc5713beecacad4d96cc6c39b86642a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  skillSlots:
+  - key: 113
+    skillIcon: {fileID: 76664752}
+    cooldownUI: {fileID: 76664750}
+  - key: 119
+    skillIcon: {fileID: 939835920}
+    cooldownUI: {fileID: 939835922}
+  - key: 101
+    skillIcon: {fileID: 1864300171}
+    cooldownUI: {fileID: 1864300173}
+  - key: 114
+    skillIcon: {fileID: 778534014}
+    cooldownUI: {fileID: 778534011}
 --- !u!1 &1591436510
 GameObject:
   m_ObjectHideFlags: 0
@@ -9335,6 +9365,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 4129049325006263578, guid: 8fe606f421d465a43860c97bb139a223, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1892058801}
+    - targetCorrespondingSourceObject: {fileID: 4129049325006263578, guid: 8fe606f421d465a43860c97bb139a223, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1892058812}
   m_SourcePrefab: {fileID: 100100000, guid: 8fe606f421d465a43860c97bb139a223, type: 3}
 --- !u!4 &1767499848 stripped
 Transform:
@@ -10120,6 +10153,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 6
   attack: 5
+--- !u!114 &1892058812
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1767499849}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c31a54f246b71c440bb1646fb1ba2566, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spriteLibrary: {fileID: 1892058792}
 --- !u!1 &1933575703
 GameObject:
   m_ObjectHideFlags: 0
