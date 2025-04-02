@@ -1,5 +1,5 @@
-/*-------------BY017--------*/
-/*--------���a�ʵe����-----*/
+﻿/*-------------BY017--------*/
+/*--------玩家動畫控制-----*/
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,7 +7,7 @@ using static UnityEngine.InputSystem.InputSettings;
 
 public class PlayerAnimation : MonoBehaviour
 {
-    [Header("�ƥ��ť")]
+    [Header("事件監聽")]
     public VoidEventSO afterSceneLoadedEvent;
 
     private Animator anim;
@@ -35,10 +35,17 @@ public class PlayerAnimation : MonoBehaviour
         SetAnimation();      
     }
 
-    public void UpdateAnimator()//��������s�ʵe
+    public void UpdateAnimator()//轉場完後更新動畫
     {
         anim.Rebind();
-        anim.Update(0);    
+        anim.Update(0);
+
+        // ✅ 清空 trigger，避免攻擊、受傷卡住
+        anim.ResetTrigger("Hit");
+        anim.ResetTrigger("Attack");
+
+        // ✅ 重設動畫狀態參數
+        SetAnimation();
     }
     public void SetAnimation()
     {
