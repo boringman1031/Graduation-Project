@@ -48,7 +48,7 @@ public class CameraController : MonoBehaviour
     public void GetNewCameraBound()
     {
         var obj = GameObject.FindGameObjectWithTag("Bound");
-        if (obj != null)
+        if (obj == null)
             return;
         confiner2D.m_BoundingShape2D = obj.GetComponent<Collider2D>();
         confiner2D.InvalidateCache();//重新計算邊界
