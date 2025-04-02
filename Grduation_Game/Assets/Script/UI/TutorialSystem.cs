@@ -150,7 +150,7 @@ public class TutorialSystem : MonoBehaviour
     // 當獲得新技能時顯示教學
     private void ShowAttackTutorial()
     {
-        tutorialText.text = "按下 滑鼠左鍵 攻擊";
+        tutorialText.text = "按下 滑鼠右鍵 攻擊";
         tutorialPanel.SetActive(true);
     }
 
