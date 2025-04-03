@@ -112,6 +112,8 @@ public class SceneLoader : MonoBehaviour, ISaveable
     private void OnNewGameStartEvent()//新遊戲事件時執行
     {
         sceneToLoad = firstLoadScene;
+        challengeCount=0; // 增加挑戰次數
+        FindObjectOfType<UIManager>().UpdateChallengeCountUI(challengeCount);//更新挑戰次數UI
         loadEventSO.RaiseLoadRequestEvent(sceneToLoad, firstPosition, true);
     }
     private void OnBackToMenuEvent()//返回主菜單事件時執行
