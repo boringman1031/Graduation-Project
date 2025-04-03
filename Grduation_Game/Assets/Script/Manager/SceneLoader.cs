@@ -1,4 +1,4 @@
-/*-------------BY017---------------*/
+ï»¿/*-------------BY017---------------*/
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -10,70 +10,70 @@ using UnityEngine.SceneManagement;
 
 public class SceneLoader : MonoBehaviour, ISaveable
 {
-    [Header("¼s¼½")]
-    public VoidEventSO saveDataEvent;//Àx¦s¥[¸ü¹CÀ¸¨Æ¥ó
+    [Header("å»£æ’­")]
+    public VoidEventSO saveDataEvent;//å„²å­˜åŠ è¼‰éŠæˆ²äº‹ä»¶
     public VoidEventSO afterSceneLoadedEvent;
-    public VoidEventSO openRandomCanvaEvent;//¥´¶}ÀH¾÷¬D¾Ô­±ªO
-    public VoidEventSO openGoHomeEvent;//¥´¶}¦^®a­±ªO
-    public SceneLoadEventSO unLoadSceneEvent;//¨ø¸ü³õ´º¨Æ¥ó
+    public VoidEventSO openRandomCanvaEvent;//æ‰“é–‹éš¨æ©ŸæŒ‘æˆ°é¢æ¿
+    public VoidEventSO openGoHomeEvent;//æ‰“é–‹å›å®¶é¢æ¿
+    public SceneLoadEventSO unLoadSceneEvent;//å¸è¼‰å ´æ™¯äº‹ä»¶
     public TransitionEventSO transitionEvent;
     public SceneLoadedEventSO sceneLoadedEvent;
-    public VoidEventSO unlockSkillEvent;//¥´¶}¦^®a­±ªO
+    public VoidEventSO unlockSkillEvent;//æ‰“é–‹å›å®¶é¢æ¿
 
-    [Header("¨Æ¥óºÊÅ¥")]
-    public SceneLoadEventSO loadEventSO;//³õ´º¥[¸ü¨Æ¥ó
-    public VoidEventSO onAllEnemiesDefeated;//·í³õ´º¤¤©Ò¦³¼Ä¤H³QÀ»±Ñ®Éªº¨Æ¥ó
-    public VoidEventSO loadRandomSceneEvent;//ÀH¾÷³õ´º¥[¸ü¨Æ¥ó
+    [Header("äº‹ä»¶ç›£è½")]
+    public SceneLoadEventSO loadEventSO;//å ´æ™¯åŠ è¼‰äº‹ä»¶
+    public VoidEventSO onAllEnemiesDefeated;//ç•¶å ´æ™¯ä¸­æ‰€æœ‰æ•µäººè¢«æ“Šæ•—æ™‚çš„äº‹ä»¶
+    public VoidEventSO loadRandomSceneEvent;//éš¨æ©Ÿå ´æ™¯åŠ è¼‰äº‹ä»¶
     public VoidEventSO newGameEvent;
     public VoidEventSO backToMenuEvent;
-    public VoidEventSO gotoBossEvent;//(´ú¸Õdemo¥Î)¶i¤J Boss ¨Æ¥ó
-    public VoidEventSO BossDeadEvent;//Boss¦º¤`¨Æ¥ó
-    public VoidEventSO goHomeEvent;//¦^®a¨Æ¥ó
+    public VoidEventSO gotoBossEvent;//(æ¸¬è©¦demoç”¨)é€²å…¥ Boss äº‹ä»¶
+    public VoidEventSO BossDeadEvent;//Bossæ­»äº¡äº‹ä»¶
+    public VoidEventSO goHomeEvent;//å›å®¶äº‹ä»¶
 
     
-    [Header("³õ´º°Ñ¼Æ")]
-    public GameSceneSO firstLoadScene;//²Ä¤@­Ó¥[¸üªº³õ´º(¹CÀ¸¤jÅ¥)
-    public GameSceneSO MuneScene;//¥D³õ´º
-    public GameSceneSO HomeScene;//¯²«Î³B³õ´º
-    public GameSceneSO NecessaryScene; //¥²­nÃö¥d 
-    public GameSceneSO BossScene;//Boss³õ´º
-    public GameSceneSO Chap1ENDScene;//²Ä¤@³¹µ²§ô³õ´º
+    [Header("å ´æ™¯åƒæ•¸")]
+    public GameSceneSO firstLoadScene;//ç¬¬ä¸€å€‹åŠ è¼‰çš„å ´æ™¯(éŠæˆ²å¤§è½)
+    public GameSceneSO MuneScene;//ä¸»å ´æ™¯
+    public GameSceneSO HomeScene;//ç§Ÿå±‹è™•å ´æ™¯
+    public GameSceneSO NecessaryScene; //å¿…è¦é—œå¡ 
+    public GameSceneSO BossScene;//Bosså ´æ™¯
+    public GameSceneSO Chap1ENDScene;//ç¬¬ä¸€ç« çµæŸå ´æ™¯
 
-    private GameSceneSO sceneToLoad;//­n·s¹CÀ¸¶}©l­n¥[¸üªº³õ´º
-    private GameSceneSO currentLoadScene;//·í«e¥[¸üªº³õ´º
-    private GameSceneSO lastRandomScene; // Àx¦s¤W¤@¦¸ªºÀH¾÷³õ´º
+    private GameSceneSO sceneToLoad;//è¦æ–°éŠæˆ²é–‹å§‹è¦åŠ è¼‰çš„å ´æ™¯
+    private GameSceneSO currentLoadScene;//ç•¶å‰åŠ è¼‰çš„å ´æ™¯
+    private GameSceneSO lastRandomScene; // å„²å­˜ä¸Šä¸€æ¬¡çš„éš¨æ©Ÿå ´æ™¯
 
 
-    [Header("ÀH¾÷³õ´º¦Cªí")]
-    [SerializeField] private List<GameSceneSO> randomScenes; // ¥iÀH¾÷¿ï¾Üªº³õ´º¦Cªí
+    [Header("éš¨æ©Ÿå ´æ™¯åˆ—è¡¨")]
+    [SerializeField] private List<GameSceneSO> randomScenes; // å¯éš¨æ©Ÿé¸æ“‡çš„å ´æ™¯åˆ—è¡¨
 
-    [Header("½Õ¾ã°Ñ¼Æ")]
-    public Transform playerTrans;//ª±®a¦ì¸m
-    public Vector3 firstPosition;//²Ä¤@­Ó³õ´ºªº¦ì¸m
-    public Vector3 menuPosition;//¥Dµæ³æ¦ì¸m
-    public float fadeTime;//²H¤J²H¥X®É¶¡
+    [Header("èª¿æ•´åƒæ•¸")]
+    public Transform playerTrans;//ç©å®¶ä½ç½®
+    public Vector3 firstPosition;//ç¬¬ä¸€å€‹å ´æ™¯çš„ä½ç½®
+    public Vector3 menuPosition;//ä¸»èœå–®ä½ç½®
+    public float fadeTime;//æ·¡å…¥æ·¡å‡ºæ™‚é–“
 
-    private Vector3 positionToGo;//­n¶Ç°eªº¦ì¸m
+    private Vector3 positionToGo;//è¦å‚³é€çš„ä½ç½®
     private int challengeCount = 0;
-    private int maxChallenges = 4; // »İ­n§¹¦¨ªºÀH¾÷¬D¾Ô¦¸¼Æ
-    private bool fadeScreen;//¬O§_²H¥X«Ì¹õ
-    private bool isLoading;//¬O§_¥¿¦b¥[¸ü
+    private int maxChallenges = 4; // éœ€è¦å®Œæˆçš„éš¨æ©ŸæŒ‘æˆ°æ¬¡æ•¸
+    private bool fadeScreen;//æ˜¯å¦æ·¡å‡ºå±å¹•
+    private bool isLoading;//æ˜¯å¦æ­£åœ¨åŠ è¼‰
 
     private void Start()
     {
         loadEventSO.RaiseLoadRequestEvent(MuneScene, menuPosition, false);
-        FindObjectOfType<UIManager>().UpdateChallengeCountUI(challengeCount);//§ó·s¬D¾Ô¦¸¼ÆUI
+        FindObjectOfType<UIManager>().UpdateChallengeCountUI(challengeCount);//æ›´æ–°æŒ‘æˆ°æ¬¡æ•¸UI
     }
     private void OnEnable()
     {
         loadEventSO.LoadRequestEvent += OnLoadRequestEvent;
         newGameEvent.OnEventRaised += OnNewGameStartEvent;
         backToMenuEvent.OnEventRaised += OnBackToMenuEvent;
-        onAllEnemiesDefeated.OnEventRaised += OnOpenRandomCanvasEvent;//·í³õ´º¤¤©Ò¦³¼Ä¤H³QÀ»±Ñ®É³qª¾UIManager
-        loadRandomSceneEvent.OnEventRaised += OnLoadRandomScene;//ÀH¾÷¬D¾Ô³õ´º¥[¸ü¨Æ¥ó
-        gotoBossEvent.OnEventRaised += OnGotoBossScene;//(´ú¸Õdemo¥Î)¶i¤J Boss ¨Æ¥ó
-        BossDeadEvent.OnEventRaised += OnGotoEndScene;//Boss¦º¤`¨Æ¥ó
-        goHomeEvent.OnEventRaised += OnHomeEvent;//¦^®a¨Æ¥ó
+        onAllEnemiesDefeated.OnEventRaised += OnOpenRandomCanvasEvent;//ç•¶å ´æ™¯ä¸­æ‰€æœ‰æ•µäººè¢«æ“Šæ•—æ™‚é€šçŸ¥UIManager
+        loadRandomSceneEvent.OnEventRaised += OnLoadRandomScene;//éš¨æ©ŸæŒ‘æˆ°å ´æ™¯åŠ è¼‰äº‹ä»¶
+        gotoBossEvent.OnEventRaised += OnGotoBossScene;//(æ¸¬è©¦demoç”¨)é€²å…¥ Boss äº‹ä»¶
+        BossDeadEvent.OnEventRaised += OnGotoEndScene;//Bossæ­»äº¡äº‹ä»¶
+        goHomeEvent.OnEventRaised += OnHomeEvent;//å›å®¶äº‹ä»¶
         ISaveable saveable = this;
         saveable.RegisterSaveData();
     }
@@ -85,47 +85,47 @@ public class SceneLoader : MonoBehaviour, ISaveable
         backToMenuEvent.OnEventRaised -= OnBackToMenuEvent;
         onAllEnemiesDefeated.OnEventRaised -= OnOpenRandomCanvasEvent;
         loadRandomSceneEvent.OnEventRaised -= OnLoadRandomScene;
-        gotoBossEvent.OnEventRaised -= OnGotoBossScene;//(´ú¸Õdemo¥Î)¶i¤J Boss ¨Æ¥ó
-        BossDeadEvent.OnEventRaised -= OnGotoEndScene;//Boss¦º¤`¨Æ¥ó
-        goHomeEvent.OnEventRaised -= OnHomeEvent;//¦^®a¨Æ¥ó
+        gotoBossEvent.OnEventRaised -= OnGotoBossScene;//(æ¸¬è©¦demoç”¨)é€²å…¥ Boss äº‹ä»¶
+        BossDeadEvent.OnEventRaised -= OnGotoEndScene;//Bossæ­»äº¡äº‹ä»¶
+        goHomeEvent.OnEventRaised -= OnHomeEvent;//å›å®¶äº‹ä»¶
         ISaveable saveable = this;
         saveable.UnRegisterSaveData();
     }
 
-    private void OnGotoBossScene()//(´ú¸Õdemo¥Î)¶i¤J Boss ¨Æ¥ó
+    private void OnGotoBossScene()//(æ¸¬è©¦demoç”¨)é€²å…¥ Boss äº‹ä»¶
     {
         sceneToLoad = BossScene;
         loadEventSO.RaiseLoadRequestEvent(sceneToLoad, firstPosition, true);
     }
 
-    private void OnGotoEndScene()//Boss¦º¤`¨Æ¥ó
+    private void OnGotoEndScene()//Bossæ­»äº¡äº‹ä»¶
     {
         loadEventSO.RaiseLoadRequestEvent(Chap1ENDScene, firstPosition, true);
     }
 
-    private void OnHomeEvent()//¦^®a¨Æ¥ó
+    private void OnHomeEvent()//å›å®¶äº‹ä»¶
     {
         sceneToLoad = HomeScene;
         loadEventSO.RaiseLoadRequestEvent(sceneToLoad, firstPosition, true);
     }
 
-    private void OnNewGameStartEvent()//·s¹CÀ¸¨Æ¥ó®É°õ¦æ
+    private void OnNewGameStartEvent()//æ–°éŠæˆ²äº‹ä»¶æ™‚åŸ·è¡Œ
     {
         sceneToLoad = firstLoadScene;
-        challengeCount=0; // ¼W¥[¬D¾Ô¦¸¼Æ
-        FindObjectOfType<UIManager>().UpdateChallengeCountUI(challengeCount);//§ó·s¬D¾Ô¦¸¼ÆUI
+        challengeCount=0; // å¢åŠ æŒ‘æˆ°æ¬¡æ•¸
+        FindObjectOfType<UIManager>().UpdateChallengeCountUI(challengeCount);//æ›´æ–°æŒ‘æˆ°æ¬¡æ•¸UI
         loadEventSO.RaiseLoadRequestEvent(sceneToLoad, firstPosition, true);
     }
-    private void OnBackToMenuEvent()//ªğ¦^¥Dµæ³æ¨Æ¥ó®É°õ¦æ
+    private void OnBackToMenuEvent()//è¿”å›ä¸»èœå–®äº‹ä»¶æ™‚åŸ·è¡Œ
     {
         sceneToLoad = MuneScene;
         loadEventSO.RaiseLoadRequestEvent(sceneToLoad, firstPosition, true);
     }
 
     /// <summary>
-    /// ÀH¾÷¬D¾ÔÅŞ¿è(ÀH¾÷¿ï¾Ü¤@­Ó³õ´º¡C)
+    /// éš¨æ©ŸæŒ‘æˆ°é‚è¼¯(éš¨æ©Ÿé¸æ“‡ä¸€å€‹å ´æ™¯ã€‚)
     /// </summary>
-    /// <returns>ªğ¦^ÀH¾÷¿ï¾Üªº³õ´º¡C¦pªG¦Cªí¬°ªÅ¡Aªğ¦^ null¡C</returns>
+    /// <returns>è¿”å›éš¨æ©Ÿé¸æ“‡çš„å ´æ™¯ã€‚å¦‚æœåˆ—è¡¨ç‚ºç©ºï¼Œè¿”å› nullã€‚</returns>
     private GameSceneSO GetRandomScene()
     {
         if (randomScenes == null || randomScenes.Count == 0)
@@ -134,7 +134,7 @@ public class SceneLoader : MonoBehaviour, ISaveable
             return null;
         }
 
-        // ¥u¦³¤@­Ó³õ´º®ÉµLªkÁ×§K­«½Æ
+        // åªæœ‰ä¸€å€‹å ´æ™¯æ™‚ç„¡æ³•é¿å…é‡è¤‡
         if (randomScenes.Count == 1)
         {
             return randomScenes[0];
@@ -146,43 +146,43 @@ public class SceneLoader : MonoBehaviour, ISaveable
             int randomIndex = UnityEngine.Random.Range(0, randomScenes.Count);
             randomScene = randomScenes[randomIndex];
         }
-        while (randomScene == lastRandomScene); // ¦pªG»P¤W¤@­Ó¬Û¦P«h­«¿ï
+        while (randomScene == lastRandomScene); // å¦‚æœèˆ‡ä¸Šä¸€å€‹ç›¸åŒå‰‡é‡é¸
 
         lastRandomScene = randomScene;
         return randomScene;
     }
-    private void OnLoadRandomScene()//ÀH¾÷¬D¾Ô³õ´º¥[¸ü¨Æ¥ó
+    private void OnLoadRandomScene()//éš¨æ©ŸæŒ‘æˆ°å ´æ™¯åŠ è¼‰äº‹ä»¶
     {
         if (challengeCount < maxChallenges)
         {
             GameSceneSO randomScene = GetRandomScene();
             if (randomScene != null)
             {
-                challengeCount++; // ¼W¥[¬D¾Ô¦¸¼Æ
-                FindObjectOfType<UIManager>().UpdateChallengeCountUI(challengeCount);//§ó·s¬D¾Ô¦¸¼ÆUI
+                challengeCount++; // å¢åŠ æŒ‘æˆ°æ¬¡æ•¸
+                FindObjectOfType<UIManager>().UpdateChallengeCountUI(challengeCount);//æ›´æ–°æŒ‘æˆ°æ¬¡æ•¸UI
                 sceneToLoad = randomScene;
                 OnLoadRequestEvent(sceneToLoad, firstPosition, true);
             }
             else
             {
-                Debug.LogError("¨S¦³·s³õ´º");
+                Debug.LogError("æ²’æœ‰æ–°å ´æ™¯");
             }
         }
         else
         {        
-            sceneToLoad = NecessaryScene;// ·í¬D¾Ô¦¸¼Æ¹F¨ì 3¡A¶i¤J Boss «eªº¯S©wÃö¥d
-            challengeCount = 0; // ­«¸m¬D¾Ô¦¸¼Æ
-            Debug.Log("¶i¤J¥²­n Ãö¥d");
+            sceneToLoad = NecessaryScene;// ç•¶æŒ‘æˆ°æ¬¡æ•¸é”åˆ° 3ï¼Œé€²å…¥ Boss å‰çš„ç‰¹å®šé—œå¡
+            challengeCount = 0; // é‡ç½®æŒ‘æˆ°æ¬¡æ•¸
+            Debug.Log("é€²å…¥å¿…è¦ é—œå¡");
             OnLoadRequestEvent(sceneToLoad, firstPosition, true);
         }
     }
 
     /// <summary>
-    /// ³B²z³õ´º¥[¸ü½Ğ¨D¨Æ¥ó¡C
+    /// è™•ç†å ´æ™¯åŠ è¼‰è«‹æ±‚äº‹ä»¶ã€‚
     /// </summary>
-    /// <param name="_locationToLaod">­n¥[¸üªº³õ´º¡C</param>
-    /// <param name="_PosToGo">ª±®a­n¶Ç°e¨ìªº¦ì¸m¡C</param>
-    /// <param name="fadeScreen">¬O§_²H¥X«Ì¹õ¡C</param>
+    /// <param name="_locationToLaod">è¦åŠ è¼‰çš„å ´æ™¯ã€‚</param>
+    /// <param name="_PosToGo">ç©å®¶è¦å‚³é€åˆ°çš„ä½ç½®ã€‚</param>
+    /// <param name="fadeScreen">æ˜¯å¦æ·¡å‡ºå±å¹•ã€‚</param>
     private void OnLoadRequestEvent(GameSceneSO _locationToLaod, Vector3 _PosToGo, bool fadeScreen)
     {
         if (isLoading)
@@ -191,6 +191,7 @@ public class SceneLoader : MonoBehaviour, ISaveable
         sceneToLoad = _locationToLaod;
         positionToGo = _PosToGo;
         this.fadeScreen = fadeScreen;
+        
 
         if (currentLoadScene != null)
         {
@@ -202,60 +203,68 @@ public class SceneLoader : MonoBehaviour, ISaveable
         }
     }
 
-    private IEnumerator UnLoadPreviousScene()//¨ø¸ü·í«e³õ´º
+    private IEnumerator UnLoadPreviousScene()//å¸è¼‰ç•¶å‰å ´æ™¯
     {
         yield return new WaitForSeconds(fadeTime);
         if (fadeScreen)
         {
-            transitionEvent.TransitionIn();//Âà³õ
+            transitionEvent.TransitionIn();//è½‰å ´
         }
-        unLoadSceneEvent.RaiseLoadRequestEvent(sceneToLoad, positionToGo, true);//¼s¼½:½Õ¾ã¦å±øÅã¥Ü
-        yield return currentLoadScene.sceneReference.UnLoadScene();//¨ø¸ü·í«e³õ´º                                                               
-        playerTrans.gameObject.SetActive(false); //Ãö³¬ª±®a¤Hª«
-        LoadNewScene();//¥[¸ü·s³õ´º
+        unLoadSceneEvent.RaiseLoadRequestEvent(sceneToLoad, positionToGo, true);//å»£æ’­:èª¿æ•´è¡€æ¢é¡¯ç¤º
+        yield return currentLoadScene.sceneReference.UnLoadScene();//å¸è¼‰ç•¶å‰å ´æ™¯                                                               
+        playerTrans.gameObject.SetActive(false); //é—œé–‰ç©å®¶äººç‰©       
+        LoadNewScene();//åŠ è¼‰æ–°å ´æ™¯
     }
 
     /// <summary>
-    /// ÀH¾÷¥[¸ü³õ´ºªº¨Æ¥ó³B²zµ{§Ç¡C
+    /// éš¨æ©ŸåŠ è¼‰å ´æ™¯çš„äº‹ä»¶è™•ç†ç¨‹åºã€‚
     /// </summary>
-    /// <param name="_sceneToGo">­n¥[¸üªº³õ´º¡C</param>
-    /// <param name="_positionToGo">ª±®a­n¶Ç°e¨ìªº¦ì¸m¡C</param>
-    /// <param name="fadeScreen">¬O§_²H¥X«Ì¹õ¡C</param>
-    private void LoadNewScene()//¥[¸ü·s³õ´º
+    /// <param name="_sceneToGo">è¦åŠ è¼‰çš„å ´æ™¯ã€‚</param>
+    /// <param name="_positionToGo">ç©å®¶è¦å‚³é€åˆ°çš„ä½ç½®ã€‚</param>
+    /// <param name="fadeScreen">æ˜¯å¦æ·¡å‡ºå±å¹•ã€‚</param>
+    private void LoadNewScene()//åŠ è¼‰æ–°å ´æ™¯
     {
         var loadingOption = sceneToLoad.sceneReference.LoadSceneAsync(LoadSceneMode.Additive, true);
         loadingOption.Completed += OnLoadComplete;
     }   
-    private void OnLoadComplete(AsyncOperationHandle<SceneInstance> _handle)// ¥[¸ü§¹¦¨«á°õ¦æ
+    private void OnLoadComplete(AsyncOperationHandle<SceneInstance> _handle)// åŠ è¼‰å®Œæˆå¾ŒåŸ·è¡Œ
     {
         currentLoadScene = sceneToLoad;
         playerTrans.position = positionToGo;
-        playerTrans.gameObject.SetActive(true);
+        playerTrans.gameObject.SetActive(true); // âœ… å•Ÿç”¨ç©å®¶ GameObjectï¼ˆAnimator å’Œ SpriteSkin æœƒé–‹å§‹åŸ·è¡Œï¼‰   
         isLoading = false;
 
-       
-        sceneLoadedEvent.RaiseEvent(currentLoadScene);// Ä²µo±a³õ´º°Ñ¼Æªº·s¨Æ¥ó ¹ï¸Ü¨t²Î¨Ï¥Î
-        afterSceneLoadedEvent.RaiseEvent(); // ¼s¼½:¤w¥[¸ü§¹¦¨¨Æ¥ó                                                       
-        //saveDataEvent.RaiseEvent(); // ¼s¼½:Àx¦s¥[¸ü¹CÀ¸¨Æ¥ó
+        // âœ… å°è©±ç³»çµ±ä½¿ç”¨çš„äº‹ä»¶ï¼Œç«‹åˆ»é€å‡º
+        sceneLoadedEvent.RaiseEvent(currentLoadScene);
+
+        // âœ… ç­‰ä¸€å¹€å¾Œå†è§¸ç™¼ afterSceneLoadedï¼Œç¢ºä¿ SpriteSkin å’Œ Animator å•Ÿç”¨å®Œæˆ
+        StartCoroutine(DelayRaiseAfterSceneLoaded());
 
     }
 
-    private void OnOpenRandomCanvasEvent()//·í³õ´º¤¤©Ò¦³¼Ä¤H³QÀ»±Ñ®É³qª¾UIManager
+    private IEnumerator DelayRaiseAfterSceneLoaded()
+    {
+        yield return null; // ç­‰å¾…ä¸€å¹€
+
+        afterSceneLoadedEvent.RaiseEvent(); // âœ… æ­¤æ™‚è§¸ç™¼å‹•ç•«åˆå§‹åŒ–ï¼Œéª¨æ¶ç‹€æ…‹æœƒæ­£ç¢º
+    }
+
+    private void OnOpenRandomCanvasEvent()//ç•¶å ´æ™¯ä¸­æ‰€æœ‰æ•µäººè¢«æ“Šæ•—æ™‚é€šçŸ¥UIManager
     {
         if (currentLoadScene.sceneType != SceneType.Menu &&
             currentLoadScene.sceneType != SceneType.Boss &&
             currentLoadScene.sceneType != SceneType.Necessary)
         {
-            // ¥u¦³²Ä¤@ÃöÅã¥Ü GoHomePanel
+            // åªæœ‰ç¬¬ä¸€é—œé¡¯ç¤º GoHomePanel
             if (currentLoadScene.sceneName == SceneName.Chap1_School)
             {
                 unlockSkillEvent.RaiseEvent();
-                openGoHomeEvent.RaiseEvent(); // Åã¥Ü¦^®a­±ªO
+                openGoHomeEvent.RaiseEvent(); // é¡¯ç¤ºå›å®¶é¢æ¿
             }
             else
             {
                 unlockSkillEvent.RaiseEvent();
-                openRandomCanvaEvent.RaiseEvent(); // Åã¥Ü­ì¥»ªºÀH¾÷¬D¾Ô­±ªO
+                openRandomCanvaEvent.RaiseEvent(); // é¡¯ç¤ºåŸæœ¬çš„éš¨æ©ŸæŒ‘æˆ°é¢æ¿
             }
         }
     }
@@ -265,18 +274,18 @@ public class SceneLoader : MonoBehaviour, ISaveable
     }
 
     /// <summary>
-    /// «O¦s·í«e³õ´º¼Æ¾Ú¡C
+    /// ä¿å­˜ç•¶å‰å ´æ™¯æ•¸æ“šã€‚
     /// </summary>
-    /// <param name="_data">«O¦s¼Æ¾Úªº¹ï¶H¡C</param>
+    /// <param name="_data">ä¿å­˜æ•¸æ“šçš„å°è±¡ã€‚</param>
     public void GetSaveData(Data _data)
     {
         _data.SaveGameScene(currentLoadScene);
     }
 
     /// <summary>
-    /// ¥[¸ü«O¦sªº³õ´º¼Æ¾Ú¡C
+    /// åŠ è¼‰ä¿å­˜çš„å ´æ™¯æ•¸æ“šã€‚
     /// </summary>
-    /// <param name="_data">«O¦s¼Æ¾Úªº¹ï¶H¡C</param>
+    /// <param name="_data">ä¿å­˜æ•¸æ“šçš„å°è±¡ã€‚</param>
     public void LoadData(Data _data)
     {
         var playerID = playerTrans.GetComponent<DataDefination>().ID;
