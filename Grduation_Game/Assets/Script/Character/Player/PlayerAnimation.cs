@@ -39,11 +39,7 @@ public class PlayerAnimation : MonoBehaviour
     {
         anim.Rebind();
         anim.Update(0);
-
-        // ✅ 清空 trigger，避免攻擊、受傷卡住
-        anim.ResetTrigger("Hit");
-        anim.ResetTrigger("Attack");
-
+       
         // ✅ 重設動畫狀態參數
         SetAnimation();
     }

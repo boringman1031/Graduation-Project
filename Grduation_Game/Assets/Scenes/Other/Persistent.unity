@@ -1838,8 +1838,8 @@ MonoBehaviour:
   GameInfoPanel: {fileID: 1467685014}
   GameSettingPanel: {fileID: 1467685011}
   DialogPanel: {fileID: 47529202}
-  GoHomeButton: {fileID: 1842411819}
-  GoToLobbyButton: {fileID: 185155438}
+  GoHomeButton: {fileID: 0}
+  GoToLobbyButton: {fileID: 0}
   GameInfoButton: {fileID: 1467685005}
   closeGameInfoButton: {fileID: 1500557586}
   ExitGameInfoButton: {fileID: 799756368}
@@ -2483,7 +2483,7 @@ Transform:
   m_GameObject: {fileID: 519420028}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -12.024427, y: -60.9135, z: -10}
+  m_LocalPosition: {x: -12.024427, y: -69.55, z: -10}
   m_LocalScale: {x: 1.5747333, y: 1.5598755, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -8755,7 +8755,7 @@ Transform:
   m_GameObject: {fileID: 1742691487}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -12.024427, y: -60.9135, z: -10}
+  m_LocalPosition: {x: -12.024427, y: -69.55, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -8884,6 +8884,10 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 8
       objectReference: {fileID: 0}
+    - target: {fileID: 471687282833143302, guid: 8fe606f421d465a43860c97bb139a223, type: 3}
+      propertyPath: OnloadSceneEvent
+      value: 
+      objectReference: {fileID: 11400000, guid: da244784e79efe447b71e56c0480ae87, type: 2}
     - target: {fileID: 471687282833143302, guid: 8fe606f421d465a43860c97bb139a223, type: 3}
       propertyPath: afterSceneLoadedEvent
       value: 
@@ -9062,7 +9066,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1344896546113029617, guid: 8fe606f421d465a43860c97bb139a223, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -60.6235
+      value: -69.26
       objectReference: {fileID: 0}
     - target: {fileID: 1344896546113029617, guid: 8fe606f421d465a43860c97bb139a223, type: 3}
       propertyPath: m_LocalPosition.z
@@ -9310,7 +9314,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4129049325006263578, guid: 8fe606f421d465a43860c97bb139a223, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4429415200532308936, guid: 8fe606f421d465a43860c97bb139a223, type: 3}
       propertyPath: m_Size.x
