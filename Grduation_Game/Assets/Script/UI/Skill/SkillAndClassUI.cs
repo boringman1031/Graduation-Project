@@ -48,6 +48,8 @@ public class SkillAndClassUI : MonoBehaviour
 
         foreach (var cls in SkillManager.Instance.allClasses)
         {
+            if (!cls.isUnlocked) continue;
+
             var go = Instantiate(classItemPrefab, classListParent);
             bool isSelected = SkillManager.Instance.selectedClass == cls;
             go.GetComponent<ClassUIItem>().Setup(cls, OnClassSelected, isSelected);

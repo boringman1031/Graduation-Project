@@ -2,8 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
+using UnityEditor.Experimental.GraphView;
 
-public class SkillUIItem : MonoBehaviour
+public class SkillUIItem : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
     public Image icon;
     public Text nameText;
@@ -20,6 +22,17 @@ public class SkillUIItem : MonoBehaviour
         nameText.text = skill.skillName;
         if (equippedMark != null) equippedMark.SetActive(isEquipped);
     }
+
+    public void OnPointerEnter(PointerEventData eventData)
+    {
+        TooltipController.Instance.Show(data.description);
+    }
+
+    public void OnPointerExit(PointerEventData eventData)
+    {
+        TooltipController.Instance.Hide();
+    }
+    
 
     public void OnClick() => onClick?.Invoke(data);
 }
