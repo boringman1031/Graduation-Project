@@ -3,6 +3,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.U2D.Animation;
 using static UnityEngine.InputSystem.InputSettings;
 
 public class PlayerAnimation : MonoBehaviour
@@ -37,12 +38,18 @@ public class PlayerAnimation : MonoBehaviour
 
     public void UpdateAnimator()//轉場完後更新動畫
     {
-        anim.Rebind();
-        anim.Update(0);
+        // 🔁 重啟 SpriteSkin，重綁骨架
+        SpriteSkin skin = GetComponent<SpriteSkin>();
+        if (skin != null)
+        {
+            skin.enabled = false;
+            skin.enabled = true;
+        }
 
-        // ✅ 清空 trigger，避免攻擊、受傷卡住
-        anim.ResetTrigger("Hit");
-        anim.ResetTrigger("Attack");
+        // ✅ 強制播放 Idle 動畫（注意名稱一定要正確）
+        anim.Play("Player_Idle", 0, 0f); // 第二個參數為 Layer，第三為時間（從頭播）
+
+        Debug.Log("已強制播放 Idle 動畫");
 
         // ✅ 重設動畫狀態參數
         SetAnimation();

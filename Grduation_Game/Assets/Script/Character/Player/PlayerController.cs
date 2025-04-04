@@ -1,4 +1,5 @@
 ﻿/*------------------by 017-----------------------*/
+using CartoonFX;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -37,6 +38,11 @@ public class PlayerController : MonoBehaviour
     public GameObject DeadEffectPrefab;
     public GameObject HurtEffectPrefab;
     public Transform attackEffectPos;
+    public GameObject comboTextPrefab; // 指向 ComboText 的預製體
+    public Transform comboTextSpawnPoint; // Combo 文字生成的位置
+    private int comboCount = 0; // 目前 Combo 數
+    private float lastComboTime = 0f;
+    public float comboResetTime = 2f; // 連擊重置時間（秒）
 
     [Header("玩家狀態")]
     public bool ishurt;
@@ -99,6 +105,12 @@ public class PlayerController : MonoBehaviour
     {
         // 更新移動輸入值
         inputDirection = playerInput.GamePlay.Move.ReadValue<Vector2>();
+
+        // Combo 倒數計時
+        if (comboCount > 0 && Time.time - lastComboTime > comboResetTime)
+        {
+            comboCount = 0;
+        }
 
         // 額外支援鍵盤快捷測試
         if (Input.GetKeyDown(KeyCode.Q)) UseSkillByIndex(0);
@@ -243,7 +255,29 @@ public class PlayerController : MonoBehaviour
         if (!physicsCheck.isGround)
             return;
         playerAnimation.OnPlayerAttack();
-        isAttack = true;
+        isAttack = true;     
+    }
+
+    private void ShowComboText(int count)
+    {
+        if (comboTextPrefab == null || comboTextSpawnPoint == null) return;
+
+        var go = Instantiate(comboTextPrefab, comboTextSpawnPoint.position, Quaternion.identity);
+        var particleText = go.GetComponent<CFXR_ParticleText>();
+
+        string text = count == 1 ? "Hit!" : $"Combo x{count}";
+        Color color1 = Color.yellow;
+        Color color2 = count >= 5 ? Color.red : Color.white;
+
+        particleText.UpdateText(
+            newText: text,
+            newSize: 1f + count * 0.1f,
+            newColor1: color1,
+            newColor2: color2,
+            newLifetimeMultiplier: 1f
+        );
+
+        Destroy(go, 2f); // 自動銷毀
     }
 
     // 攝影機震動
@@ -251,10 +285,16 @@ public class PlayerController : MonoBehaviour
     {
         cameraShakeEvent.OnEventRaised(0.5f, 1f, 0.15f);
     }
-
+  
     // 特效生成方法
     public void Player_HurtEffect() => Instantiate(HurtEffectPrefab, transform.position, Quaternion.identity);
-    public void Player_AttackEffect() => Instantiate(attackEffectPrefab, attackEffectPos.position, Quaternion.identity);
+    public void Player_AttackEffect() 
+    { 
+        Instantiate(attackEffectPrefab, attackEffectPos.position, Quaternion.identity);
+        comboCount++;
+        lastComboTime = Time.time;
+        ShowComboText(comboCount);
+    }
     public void Player_DeadEffect() => Instantiate(DeadEffectPrefab, transform.position, Quaternion.identity);
 
     #region UnityEvents

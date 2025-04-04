@@ -26,7 +26,7 @@ public class UIManager : MonoBehaviour
     [Header("廣播事件")]
     public VoidEventSO pasueEvent;
     public VoidEventSO loadRandomSceneEvent; //隨機場景加載事件
-
+   
     [Header("面板組件")]
     public PlayerStatBar playerStatBar;//玩家狀態條(血條、能量條)
     public GameObject GameOverPanel;//遊戲結束面板
@@ -38,7 +38,8 @@ public class UIManager : MonoBehaviour
     public GameObject DialogPanel;//對話框
 
     [Header("按鈕組件")]
-    public GameObject restartButton;
+    public Button GoHomeButton;//回家按鈕
+    public Button GoToLobbyButton;//回到大廳按鈕
     public Button GameInfoButton;//開啟遊戲資訊按鈕
     public Button closeGameInfoButton;//關閉遊戲資訊按鈕
     public Button ExitGameInfoButton;//退出遊戲資訊按鈕
@@ -57,7 +58,8 @@ public class UIManager : MonoBehaviour
         GameInfoButton.onClick.AddListener(ToggleGameInfoPanel);
         closeGameInfoButton.onClick.AddListener(ToggleClsoeGameInfoPanel);
         ExitGameInfoButton.onClick.AddListener(ToggleExitGameEvent);
-        RandomChallengeButton1.onClick.AddListener(ToggleRandomChallengeButton);    
+        RandomChallengeButton1.onClick.AddListener(ToggleRandomChallengeButton);
+      
     }
 
     public void OnEnable()
@@ -165,8 +167,7 @@ public class UIManager : MonoBehaviour
 
     private void OnGameOverEvent()//遊戲結束事件
     {
-        GameOverPanel.SetActive(true);
-       EventSystem.current.SetSelectedGameObject(restartButton);
+        GameOverPanel.SetActive(true);     
     }
 
     private void OnShowRandomPanelEvents()//顯示隨機挑戰面板事件
