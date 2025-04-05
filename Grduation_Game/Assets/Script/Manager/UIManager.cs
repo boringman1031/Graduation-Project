@@ -44,6 +44,9 @@ public class UIManager : MonoBehaviour
     public Button closeGameInfoButton;//關閉遊戲資訊按鈕
     public Button ExitGameInfoButton;//退出遊戲資訊按鈕
     public Button RandomChallengeButton1;//隨機挑戰1按鈕
+    public Button RandomChallengeButton2;
+    public Button RandomChallengeButton3;
+    
 
     [Header("音量控制組件")]
     public Slider MasterSlider;//主音量
@@ -52,14 +55,17 @@ public class UIManager : MonoBehaviour
 
     [Header("挑戰次數顯示")]
     public Image[] challengeLights; // 點亮用的燈（Image 陣列）
+    private List<GameSceneSO> currentOptions;
 
     public void Awake()
     {
         GameInfoButton.onClick.AddListener(ToggleGameInfoPanel);
         closeGameInfoButton.onClick.AddListener(ToggleClsoeGameInfoPanel);
         ExitGameInfoButton.onClick.AddListener(ToggleExitGameEvent);
-        RandomChallengeButton1.onClick.AddListener(ToggleRandomChallengeButton);
-      
+        RandomChallengeButton1.onClick.AddListener(() => ChooseScene(0));
+        RandomChallengeButton2.onClick.AddListener(() => ChooseScene(1));
+        RandomChallengeButton3.onClick.AddListener(() => ChooseScene(2));
+
     }
 
     public void OnEnable()
@@ -94,18 +100,33 @@ public class UIManager : MonoBehaviour
         goHomeEvent.OnEventRaised -= CloseGoHomePanel;
     }
 
+    public void ShowRandomChallengeOptions(List<GameSceneSO> options)//顯示隨機挑戰選項
+    {
+        currentOptions = options;
+        RandomChallengePanel.SetActive(true);
+
+        // 設定每個按鈕的文字
+        RandomChallengeButton1.GetComponentInChildren<Text>().text = options[0].displayName;
+        RandomChallengeButton2.GetComponentInChildren<Text>().text = options[1].displayName;
+        RandomChallengeButton3.GetComponentInChildren<Text>().text = options[2].displayName;
+
+    }
+
+    private void ChooseScene(int index)
+    {
+        if (index < currentOptions.Count)
+        {
+            FindObjectOfType<SceneLoader>().LoadChosenScene(currentOptions[index]);
+            RandomChallengePanel.SetActive(false);
+        }
+    }
     public void UpdateChallengeCountUI(int count)//更新挑戰次數UI
     {
         for (int i = 0; i < challengeLights.Length; i++)
         {
             challengeLights[i].enabled = i < count;
         }
-    }
-    private void ToggleRandomChallengeButton()//按下隨機挑戰按鈕觸發
-    {
-        loadRandomSceneEvent.OnEventRaised();
-        RandomChallengePanel.SetActive(false);
-    }
+    }  
 
     private void ToggleGameInfoPanel()//開啟遊戲資訊面板
     {
@@ -172,7 +193,17 @@ public class UIManager : MonoBehaviour
 
     private void OnShowRandomPanelEvents()//顯示隨機挑戰面板事件
     {
-        RandomChallengePanel.SetActive(true);
+        // 如果 SceneLoader 有選項正在準備，從它那邊拿來用
+        var loader = FindObjectOfType<SceneLoader>();
+
+        if (loader != null && loader.selectedSceneChoices != null && loader.selectedSceneChoices.Count == 3)
+        {
+            ShowRandomChallengeOptions(loader.selectedSceneChoices);
+        }
+        else
+        {
+            Debug.LogWarning("SceneLoader 沒有提供三選一選項，無法顯示隨機挑戰面板！");
+        }
     }
     private void OnOpenGoHomeCanvaEvents()
     {
@@ -185,5 +216,5 @@ public class UIManager : MonoBehaviour
     private void OnShowGoToBossScenePanelEvent()
     {
         GOToBossScenePanel.SetActive(true);
-    }
+    }   
 }
