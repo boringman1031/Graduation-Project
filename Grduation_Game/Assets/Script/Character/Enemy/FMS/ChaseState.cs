@@ -14,7 +14,6 @@ public class ChaseState : BaseState
         currentEnemy.currentSpeed = currentEnemy.chaseSpeed;
         player = GameObject.FindGameObjectWithTag("Player")?.transform;
         currentEnemy.anim.SetBool("Run", true);
-        Debug.Log("∂i§J∞l¿ªº“¶°");
     }
 
     public override void LogicUpdate()

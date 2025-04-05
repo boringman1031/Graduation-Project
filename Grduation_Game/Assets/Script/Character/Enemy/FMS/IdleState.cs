@@ -8,8 +8,7 @@ public class IdleState : BaseState
     {
         currentEnemy = enemy;
         currentEnemy.currentSpeed = 0;
-        currentEnemy.anim.SetBool("Run", false);
-        Debug.Log(currentEnemy.name + " ¶i¤J Idle ª¬ºA");
+        currentEnemy.anim.SetBool("Run", false);       
     }
 
     public override void LogicUpdate()
