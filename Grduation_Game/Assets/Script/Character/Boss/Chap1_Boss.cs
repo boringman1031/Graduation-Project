@@ -33,7 +33,7 @@ public class Chap1_Boss : BossBase
     public void OnAttackEffect()//笆礶琘顶琿ネΘю阑疭
     {
 
-        int effectCount = 5; // 北疭计秖
+        int effectCount = 8; // 北疭计秖
         float spacing = 20f; // 北疭ぇ丁丁禯
         for (int i = -effectCount / 2; i <= effectCount / 2; i++)
         {

@@ -1,15 +1,30 @@
-/*----------------BY017------------*/
+ï»¿/*----------------BY017------------*/
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 [CreateAssetMenu(menuName = "GameScene/GameSceneSO")]
 public class GameSceneSO : ScriptableObject
 {
+   
+    [Header("å ´æ™¯åç¨±")]
     public SceneName sceneName;
-    public SceneType sceneType;
-    public AssetReference sceneReference;
-    public string dialogKey; // ·s¼W¹ï¸ÜÁä¦r¬q
-    public string skillToUnlock; // ¸ÑÂêªº§Ş¯à¦WºÙ
 
-    [Header("±Ğ¾Ç³]©w")]
-    public TutorialType tutorialType; // ·s¼W¡G³õ´ºÃöÁpªº±Ğ¾ÇÃş«¬  
+    [Header("BUTTONé¡¯ç¤ºåç¨±")]
+    public string displayName;
+
+    [Header("å ´æ™¯é¡å‹")]
+    public SceneType sceneType;
+
+    [Header("å ´æ™¯Reference")]
+    public AssetReference sceneReference;
+
+    [Header("å°è©±éµå­—æ®µ")]
+    public string dialogKey; // æ–°å¢å°è©±éµå­—æ®µ
+
+    [Header("å¯è§£é–çš„æŠ€èƒ½")]
+    public string skillToUnlock; // è§£é–çš„æŠ€èƒ½åç¨±
+
+    [Header("æ•™å­¸è¨­å®š")]
+    public TutorialType tutorialType; // æ–°å¢ï¼šå ´æ™¯é—œè¯çš„æ•™å­¸é¡å‹  
+
+   
 }

@@ -29,8 +29,9 @@ public class SceneLoader : MonoBehaviour, ISaveable
     public VoidEventSO gotoBossEvent;//(測試demo用)進入 Boss 事件
     public VoidEventSO BossDeadEvent;//Boss死亡事件
     public VoidEventSO goHomeEvent;//回家事件
+   
 
-    
+
     [Header("場景參數")]
     public GameSceneSO firstLoadScene;//第一個加載的場景(遊戲大聽)
     public GameSceneSO MuneScene;//主場景
@@ -46,6 +47,7 @@ public class SceneLoader : MonoBehaviour, ISaveable
 
     [Header("隨機場景列表")]
     [SerializeField] private List<GameSceneSO> randomScenes; // 可隨機選擇的場景列表
+    public List<GameSceneSO> selectedSceneChoices = new List<GameSceneSO>();//隨機選擇的場景列表
 
     [Header("調整參數")]
     public Transform playerTrans;//玩家位置
@@ -125,48 +127,16 @@ public class SceneLoader : MonoBehaviour, ISaveable
     /// <summary>
     /// 隨機挑戰邏輯(隨機選擇一個場景。)
     /// </summary>
-    /// <returns>返回隨機選擇的場景。如果列表為空，返回 null。</returns>
-    private GameSceneSO GetRandomScene()
-    {
-        if (randomScenes == null || randomScenes.Count == 0)
-        {
-            Debug.LogError("Random scenes list is empty. Please add scenes to the list.");
-            return null;
-        }
-
-        // 只有一個場景時無法避免重複
-        if (randomScenes.Count == 1)
-        {
-            return randomScenes[0];
-        }
-
-        GameSceneSO randomScene;
-        do
-        {
-            int randomIndex = UnityEngine.Random.Range(0, randomScenes.Count);
-            randomScene = randomScenes[randomIndex];
-        }
-        while (randomScene == lastRandomScene); // 如果與上一個相同則重選
-
-        lastRandomScene = randomScene;
-        return randomScene;
-    }
+    /// <returns>返回隨機選擇的場景。如果列表為空，返回 null。</returns> 
     private void OnLoadRandomScene()//隨機挑戰場景加載事件
     {
         if (challengeCount < maxChallenges)
         {
-            GameSceneSO randomScene = GetRandomScene();
-            if (randomScene != null)
-            {
-                challengeCount++; // 增加挑戰次數
-                FindObjectOfType<UIManager>().UpdateChallengeCountUI(challengeCount);//更新挑戰次數UI
-                sceneToLoad = randomScene;
-                OnLoadRequestEvent(sceneToLoad, firstPosition, true);
-            }
-            else
-            {
-                Debug.LogError("沒有新場景");
-            }
+
+            selectedSceneChoices = GetThreeRandomScenes();
+            // 呼叫 UIManager 顯示這三個選項（你等等會加這功能）
+            FindObjectOfType<UIManager>().ShowRandomChallengeOptions(selectedSceneChoices);                          
+
         }
         else
         {        
@@ -176,7 +146,32 @@ public class SceneLoader : MonoBehaviour, ISaveable
             OnLoadRequestEvent(sceneToLoad, firstPosition, true);
         }
     }
+    private List<GameSceneSO> GetThreeRandomScenes()
+    {
+        List<GameSceneSO> choices = new List<GameSceneSO>();
+        List<GameSceneSO> pool = new List<GameSceneSO>(randomScenes);
 
+        if (pool.Contains(lastRandomScene))
+            pool.Remove(lastRandomScene);
+
+        while (choices.Count < 3 && pool.Count > 0)
+        {
+            int index = UnityEngine.Random.Range(0, pool.Count);
+            choices.Add(pool[index]);
+            pool.RemoveAt(index);
+        }
+
+        return choices;
+    }
+
+    public void LoadChosenScene(GameSceneSO chosenScene)
+    {
+        lastRandomScene = chosenScene;
+        challengeCount++;
+        FindObjectOfType<UIManager>().UpdateChallengeCountUI(challengeCount);
+        sceneToLoad = chosenScene;
+        OnLoadRequestEvent(sceneToLoad, firstPosition, true);
+    }
     /// <summary>
     /// 處理場景加載請求事件。
     /// </summary>

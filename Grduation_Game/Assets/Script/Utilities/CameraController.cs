@@ -1,16 +1,16 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Cinemachine;
 using System;
 public class CameraController : MonoBehaviour
 {
-    [Header("¨Æ¥óºÊÅ¥")]
-    public VoidEventSO afterSceneLoadedEvent;//³õ´º¥[¸ü§¹¦¨¨Æ¥ó
-    public CameraShakeEventSO CameraShakeEvent; // ´«¦¨·sª©
+    [Header("äº‹ä»¶ç›£è½")]
+    public VoidEventSO afterSceneLoadedEvent;//å ´æ™¯åŠ è¼‰å®Œæˆäº‹ä»¶
+    public CameraShakeEventSO CameraShakeEvent; // æ›æˆæ–°ç‰ˆ
 
-    private CinemachineConfiner2D confiner2D;//¬Û¾÷Ãä¬É
-    public CinemachineImpulseSource impulseSource;//¬Û¾÷¾_°Ê
+    private CinemachineConfiner2D confiner2D;//ç›¸æ©Ÿé‚Šç•Œ
+    public CinemachineImpulseSource impulseSource;//ç›¸æ©Ÿéœ‡å‹•
 
 
     private void Awake()
@@ -29,20 +29,21 @@ public class CameraController : MonoBehaviour
             afterSceneLoadedEvent.OnEventRaised -= OnAfterSceneLoadedEvent;
     }
 
-    private void OnCameraShakeEvent(float amplitude, float frequency, float decayTime)//¬Û¾÷¾_°Ê¨Æ¥ó³B¸Ì
+
+    private void OnCameraShakeEvent(float amplitude, float frequency, float decayTime)//ç›¸æ©Ÿéœ‡å‹•äº‹ä»¶è™•è£¡
     {
+        // è¨­å®šå®šç¾©ï¼ˆé‚„æ˜¯å¯ä¿ç•™ï¼‰
         var def = impulseSource.m_ImpulseDefinition;
-        def.m_AmplitudeGain = amplitude;
-        def.m_FrequencyGain = frequency;
         def.m_TimeEnvelope.m_AttackTime = 0.05f;
-        def.m_TimeEnvelope.m_SustainTime = 0f;
+        def.m_TimeEnvelope.m_SustainTime = 0.1f;
         def.m_TimeEnvelope.m_DecayTime = decayTime;
 
-        impulseSource.GenerateImpulse();
+        // âœ… ä½¿ç”¨å‹•æ…‹å‚³å…¥çš„ impulse forceï¼ˆamplitude ä½œç‚ºå¼·åº¦ï¼‰
+        impulseSource.GenerateImpulse(Vector3.one * amplitude);
     }   
-    private void OnAfterSceneLoadedEvent()//³õ´º¥[¸ü§¹¦¨¨Æ¥ó³B¸Ì
+    private void OnAfterSceneLoadedEvent()//å ´æ™¯åŠ è¼‰å®Œæˆäº‹ä»¶è™•è£¡
     {
-        GetNewCameraBound(); //³õ´º§ó´«®É­«·s¨ú±oÃä¬É
+        GetNewCameraBound(); //å ´æ™¯æ›´æ›æ™‚é‡æ–°å–å¾—é‚Šç•Œ
     }
    
     public void GetNewCameraBound()
@@ -51,6 +52,6 @@ public class CameraController : MonoBehaviour
         if (obj == null)
             return;
         confiner2D.m_BoundingShape2D = obj.GetComponent<Collider2D>();
-        confiner2D.InvalidateCache();//­«·s­pºâÃä¬É
+        confiner2D.InvalidateCache();//é‡æ–°è¨ˆç®—é‚Šç•Œ
     }
 }

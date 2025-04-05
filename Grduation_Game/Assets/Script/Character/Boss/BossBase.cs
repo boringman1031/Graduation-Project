@@ -80,9 +80,9 @@ public class BossBase :MonoBehaviour
 
     //-----------Boss行為----------------
     public virtual void OnBossShow()//相機震動
-    {          
-        CameraShakeEvent.RaiseEvent(8f, 6f, 0.4f);
+    {                
         bossHealthUI.gameObject.SetActive(true); // 血條顯示
+        CameraShakeEvent.RaiseEvent(3.5f, 50f, 0.3f);
     }
 
     public void OnDialogEnd()//對話結束
@@ -98,6 +98,7 @@ public class BossBase :MonoBehaviour
         {
             return;
         }  
+
         if(currentHealth > 0)
         {
             anim.SetTrigger("Hit");
@@ -107,8 +108,9 @@ public class BossBase :MonoBehaviour
             if (bossHealthUI != null)
                 bossHealthUI.UpdateHealth(currentHealth, maxHealth);
             Debug.Log("Boss受到傷害，當前血量：" + currentHealth);
-        }     
-        else
+        }
+        
+        if (currentHealth<=0)
         {
             Die();
         }
@@ -123,7 +125,7 @@ public class BossBase :MonoBehaviour
     }
     public virtual void OnAttack()//Boss攻擊
     {
-        anim.SetTrigger("Attack");
+        anim.SetTrigger("Attack");    
         tutorialBossAttackEvent.RaiseEvent();//廣播開啟攻擊事件教學
     }
 
@@ -135,11 +137,12 @@ public class BossBase :MonoBehaviour
     
     public void OnCameraShake() //相機震動
     {
-        CameraShakeEvent.RaiseEvent(8f, 6f, 0.4f);
+        CameraShakeEvent.RaiseEvent(0.5f, 10f, 0.15f);
     }
     public void OnBossDeadCameraShake()
     {
-        CameraShakeEvent.RaiseEvent(10f, 8f, 2.0f);
+        // 超強烈震動參數：amplitude, frequency, duration
+        CameraShakeEvent.RaiseEvent(3.5f, 50f, 0.3f);
     }
     public virtual void SpawnHeartMinion()//生成愛心小怪
     {
@@ -150,12 +153,13 @@ public class BossBase :MonoBehaviour
     public void Die()//Boss死亡
     {
         anim.SetBool("Dead", true);
-        WaitAndTriggerEvent(2.0f, BossDeadEvent);
-    }
-    private IEnumerator WaitAndTriggerEvent(float waitTime, VoidEventSO eventToTrigger)
-    {
+        StartCoroutine(WaitAndTriggerEvent(2));
+    }   
+    private IEnumerator WaitAndTriggerEvent(float waitTime)
+    {       
         yield return new WaitForSeconds(waitTime);
-        eventToTrigger.RaiseEvent();
+        BossDeadEvent.OnEventRaised();
+      
     }
     
    
