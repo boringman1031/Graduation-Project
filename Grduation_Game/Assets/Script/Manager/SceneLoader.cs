@@ -134,13 +134,13 @@ public class SceneLoader : MonoBehaviour, ISaveable
         {
 
             selectedSceneChoices = GetThreeRandomScenes();
-            // 呼叫 UIManager 顯示這三個選項（你等等會加這功能）
+            // 呼叫 UIManager 顯示這三個選項
             FindObjectOfType<UIManager>().ShowRandomChallengeOptions(selectedSceneChoices);                          
 
         }
         else
         {        
-            sceneToLoad = NecessaryScene;// 當挑戰次數達到 3，進入 Boss 前的特定關卡
+            sceneToLoad = NecessaryScene;// 當挑戰次數達到 4，進入 Boss 前的特定關卡
             challengeCount = 0; // 重置挑戰次數
             Debug.Log("進入必要 關卡");
             OnLoadRequestEvent(sceneToLoad, firstPosition, true);

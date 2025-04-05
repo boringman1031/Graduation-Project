@@ -12,6 +12,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Demon
       objectReference: {fileID: 0}
+    - target: {fileID: -8653719598885068355, guid: 9f899abde78d85341ab4177c905e386e, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: -8653719598885068355, guid: 9f899abde78d85341ab4177c905e386e, type: 3}
+      propertyPath: m_TagString
+      value: Enemy
+      objectReference: {fileID: 0}
     - target: {fileID: -7552582706839291426, guid: 9f899abde78d85341ab4177c905e386e, type: 3}
       propertyPath: m_LocalScale.x
       value: 0.1
@@ -59,6 +67,30 @@ PrefabInstance:
     - target: {fileID: -7552582706839291426, guid: 9f899abde78d85341ab4177c905e386e, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -7091597461512135326, guid: 9f899abde78d85341ab4177c905e386e, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: -2703642945637992379, guid: 9f899abde78d85341ab4177c905e386e, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 386791141387813222, guid: 9f899abde78d85341ab4177c905e386e, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 3297364353584691495, guid: 9f899abde78d85341ab4177c905e386e, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 5288945214719562594, guid: 9f899abde78d85341ab4177c905e386e, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 6181300385887193387, guid: 9f899abde78d85341ab4177c905e386e, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -233,7 +265,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 206f9b03209ee7f4fa13282e66eecafa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  manual: 0
+  manual: 1
   bottomOffeset: {x: 0, y: -1.27}
   leftOffset: {x: 1.39, y: 0}
   rightOffset: {x: -1.62, y: 0}
