@@ -116,6 +116,7 @@ public class SceneLoader : MonoBehaviour, ISaveable
         sceneToLoad = firstLoadScene;
         challengeCount=0; // 增加挑戰次數
         FindObjectOfType<UIManager>().UpdateChallengeCountUI(challengeCount);//更新挑戰次數UI
+        FindObjectOfType<SkillManager>().resetSkillAndClass(); // 重製技能職業
         loadEventSO.RaiseLoadRequestEvent(sceneToLoad, firstPosition, true);
     }
     private void OnBackToMenuEvent()//返回主菜單事件時執行

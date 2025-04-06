@@ -1,5 +1,7 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.Events;
+using UnityEngine.TextCore.Text;
 
 public class SkillLoveSong : MonoBehaviour, ISkillEffect
 {
@@ -17,11 +19,40 @@ public class SkillLoveSong : MonoBehaviour, ISkillEffect
 
     private Transform origin;
 
+    public CharacterEventSO powerChangeEvent;
+    public CharactorBase _player;
+    private void OnEnable()
+    {
+        _player = FindObjectOfType<CharactorBase>();
+    }
+    void costPower(CharactorBase _Charater) //扣除能量
+    {
+        _Charater.AddPower(-energyCost);
+        powerChangeEvent.OnEventRaised(_Charater);
+    }
     // 這個方法會在玩家技能動畫事件中呼叫
     public void SetOrigin(Transform originTransform)
     {
         origin = originTransform;
         transform.position = origin.position;
+
+        // 取得玩家生命與能量管理組件 (例如 CharactorBase)
+        CharactorBase character = origin.GetComponent<CharactorBase>();
+        if (character == null)
+        {
+            Debug.LogWarning("未找到 CharactorBase 組件，無法施放技能");
+            Destroy(gameObject);
+            return;
+        }
+
+        // 檢查能量是否足夠
+        if (character.CurrentPower < energyCost)
+        {
+            Debug.Log("能量不足，無法施放技能");
+            Destroy(gameObject);
+            return;
+        }
+        costPower(_player); //扣除能量
 
         // 播放生成時音效
         if (spawnSound != null)

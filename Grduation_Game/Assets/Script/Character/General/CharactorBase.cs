@@ -23,6 +23,7 @@ public class CharactorBase : MonoBehaviour,ISaveable
     //[HideInInspector] 
     public float CurrentPower;
     public float healthRegenAmount; // 每次回復的生命值
+    public float powerRegenAmount; //每次回覆的能量
     public float healthRegenInterval; // 回血的時間間隔（秒）
     private Coroutine regenCoroutine; // 用來存儲 Coroutine，確保不會多次啟動
 
@@ -32,6 +33,7 @@ public class CharactorBase : MonoBehaviour,ISaveable
     public bool SuperArmour;//是否在霸體狀態
 
     public UnityEvent<CharactorBase> OnHealthChange;//血量改變事件(用於更新UI廣播)
+    public UnityEvent<CharactorBase> OnPowerChange; //能量改變
     public UnityEvent<Transform> OnTakeDamage;
     public UnityEvent OnDead;
 
@@ -136,6 +138,7 @@ public class CharactorBase : MonoBehaviour,ISaveable
         {
             CurrentPower = MaxPower;
         }
+        OnPowerChange?.Invoke(this);
     }
     private void TriggerSuperArmour()//觸發霸體
     {
@@ -151,6 +154,7 @@ public class CharactorBase : MonoBehaviour,ISaveable
         while (true)
         {
             yield return new WaitForSeconds(healthRegenInterval); // 等待時間間隔
+            AddPower(powerRegenAmount);
             if (CurrentHealth < MaxHealth) // 如果血量未滿才回血
             {
                 AddHealth(healthRegenAmount);

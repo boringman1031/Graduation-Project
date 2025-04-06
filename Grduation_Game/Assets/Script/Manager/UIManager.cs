@@ -11,6 +11,7 @@ public class UIManager : MonoBehaviour
   
     [Header("事件監聽")]
     public CharacterEventSO healthEvenr;
+    public CharacterEventSO powerEvent;
     public SceneLoadEventSO unloadedSceneEvent;  
     public VoidEventSO loadDataEvent;
     public VoidEventSO gameOverEvent;
@@ -71,6 +72,7 @@ public class UIManager : MonoBehaviour
     public void OnEnable()
     {
         healthEvenr.OnEventRaised += OnHealthEvent;
+        powerEvent.OnEventRaised += OnPowerEvent;
         unloadedSceneEvent.LoadRequestEvent += OnLoadSceneEvent;
         loadDataEvent.OnEventRaised += OnLoadDataEvent;//讀取遊戲進度事件
         gameOverEvent.OnEventRaised += OnGameOverEvent;//遊戲結束事件
@@ -87,6 +89,7 @@ public class UIManager : MonoBehaviour
     public void OnDisable()
     {
         healthEvenr.OnEventRaised -= OnHealthEvent;
+        powerEvent.OnEventRaised -= OnPowerEvent;
         unloadedSceneEvent.LoadRequestEvent -= OnLoadSceneEvent;      
         loadDataEvent.OnEventRaised -= OnLoadDataEvent;
         gameOverEvent.OnEventRaised -= OnGameOverEvent;
@@ -174,6 +177,11 @@ public class UIManager : MonoBehaviour
         var persentage=_charactor.CurrentHealth/_charactor.MaxHealth;
         playerStatBar.OnHealthChange(persentage);
     }
+    public void OnPowerEvent(CharactorBase _charactor)//能量變化事件
+    {
+        var persentage = _charactor.CurrentPower / _charactor.MaxPower;
+        playerStatBar.OnPowerChange(persentage);
+    }
 
     private void OnLoadSceneEvent(GameSceneSO _sceneToLoad, Vector3 arg1, bool arg2)//讀取場景事件判斷是否顯示玩家狀態條
     {
@@ -211,6 +219,8 @@ public class UIManager : MonoBehaviour
     }
     private void CloseGoHomePanel()
     {
+        FindObjectOfType<PlayerController>().isDead = false;
+        GameOverPanel.SetActive(false); // 關掉死亡面板
         GoHomePanel.SetActive(false); // 👈 關掉面板
     }
     private void OnShowGoToBossScenePanelEvent()

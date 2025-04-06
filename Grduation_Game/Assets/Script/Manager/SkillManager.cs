@@ -39,4 +39,18 @@ public class SkillManager : MonoBehaviour
             equippedSkills[slotIndex] = skill;
     }
 
+    public void resetSkillAndClass()
+    {
+        foreach (SkillData skillData in allSkills)
+        {
+            skillData.isUnlocked = false;
+        }
+
+        foreach (ClassData classData in allClasses)
+        {
+            classData.isUnlocked = false;
+            if (classData.name == "normal")
+                classData.isUnlocked = true;
+        }
+    }
 }
