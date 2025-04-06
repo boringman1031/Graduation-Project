@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Mathematics;
 using UnityEngine;
 
 public class SkillZheCanAA : MonoBehaviour, ISkillEffect
@@ -17,19 +18,36 @@ public class SkillZheCanAA : MonoBehaviour, ISkillEffect
     // 技能消耗能量
     public float energyCost = 20f;
 
-    // ISkillEffect 實作：設定技能發出者
-    public void SetOrigin(Transform origin)
+    public CharacterEventSO powerChangeEvent;
+    void costPower(CharactorBase _Charater) //扣除能量
     {
-        this.origin = origin;
-        // 消耗玩家能量：這邊假設玩家使用 CharactorBase 管理能量
-        CharactorBase playerChar = origin.GetComponent<CharactorBase>();
-        if (playerChar != null)
+        _Charater.AddPower(-energyCost);
+        powerChangeEvent.OnEventRaised(_Charater);
+    }
+    // ISkillEffect 實作：設定技能發出者
+    public void SetOrigin(Transform originT)
+    {
+        origin = originT;
+
+        // 嘗試取得玩家的 CharactorBase
+        CharactorBase character = origin.GetComponent<CharactorBase>();
+        if (character == null)
         {
-            playerChar.CurrentPower -= energyCost;
-            if (playerChar.CurrentPower < 0)
-                playerChar.CurrentPower = 0;
-            // 若有能量更新事件，可在此呼叫
+            Debug.LogWarning("施放者缺少 CharactorBase 元件，無法施放技能。");
+            Destroy(gameObject);
+            return;
         }
+
+        // 檢查能量是否足夠
+        if (character.CurrentPower < energyCost)
+        {
+            Debug.Log("能量不足，無法施放技能");
+            Destroy(gameObject);
+            return;
+        }
+
+        // 扣除能量
+        costPower(character);
     }
 
     // ISkillEffect 實作：設定玩家動畫（如有需要）

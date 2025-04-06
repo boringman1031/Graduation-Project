@@ -3018,6 +3018,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1148630249}
+        m_TargetAssemblyTypeName: VollyBallController, Assembly-CSharp
+        m_MethodName: closePanel
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &187333581
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4097,6 +4109,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c4a4d4d9f88fd1f40a8827544489785e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  unlockSkillEvent: {fileID: 11400000, guid: 8f9845516df029a49b362a376549cb7e, type: 2}
   speed: 500
   speedIncrease: 1.05
   angleVariation: 0.5
@@ -4110,6 +4123,7 @@ MonoBehaviour:
   winningScore: 10
   startPromptText: {fileID: 908988628}
   winTextPanel: {fileID: 230868265}
+  VollyBallGamePanel: {fileID: 1174906791}
   playerScoreEffect: {fileID: 5339739117810204693, guid: 26e1cb216e3635e4a820f58a1118d6b9, type: 3}
   aiScoreEffect: {fileID: 7200908102442406646, guid: 14dd6a85c952baf4b8c1c350e920156f, type: 3}
 --- !u!1 &1174906791

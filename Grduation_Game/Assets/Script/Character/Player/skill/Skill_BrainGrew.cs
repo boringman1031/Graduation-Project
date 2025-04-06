@@ -16,6 +16,13 @@ public class Skill_BrainGrew : MonoBehaviour, ISkillEffect
 
     private Transform origin; // 觸發技能的玩家 Transform
 
+    public CharacterEventSO powerChangeEvent;
+
+    void costPower(CharactorBase _Charater) //扣除能量
+    {
+        _Charater.AddPower(-energyCost);
+        powerChangeEvent.OnEventRaised(_Charater);
+    }
     public void SetPlayerAnimator(Animator animator)
     {
         // 可依需求實作
@@ -25,20 +32,6 @@ public class Skill_BrainGrew : MonoBehaviour, ISkillEffect
     public void SetOrigin(Transform originTransform)
     {
         origin = originTransform;
-
-        // 播放激活音效
-        if (activationSound != null)
-        {
-            AudioSource.PlayClipAtPoint(activationSound, origin.position);
-        }
-
-        // 生成特效，特效位置加上偏移
-        if (specialEffectPrefab != null)
-        {
-            GameObject effect = Instantiate(specialEffectPrefab, origin.position + effectSpawnOffset, Quaternion.identity);
-            effect.transform.SetParent(origin);
-            Destroy(effect, 2f);
-        }
 
         // 取得玩家的生命與能量管理組件（CharactorBase）
         CharactorBase character = origin.GetComponent<CharactorBase>();
@@ -57,8 +50,22 @@ public class Skill_BrainGrew : MonoBehaviour, ISkillEffect
             return;
         }
 
+        // 播放激活音效
+        if (activationSound != null)
+        {
+            AudioSource.PlayClipAtPoint(activationSound, origin.position);
+        }
+
+        // 生成特效，特效位置加上偏移
+        if (specialEffectPrefab != null)
+        {
+            GameObject effect = Instantiate(specialEffectPrefab, origin.position + effectSpawnOffset, Quaternion.identity);
+            effect.transform.SetParent(origin);
+            Destroy(effect, 2f);
+        }
+
         // 扣除能量
-        character.CurrentPower -= energyCost;
+        costPower(character);
 
         // 回復血量 (使用 CharactorBase 中的 AddHealth 方法)
         character.AddHealth(healAmount);

@@ -12,7 +12,12 @@ public class SkillQiZaiLai : MonoBehaviour, ISkillEffect
     public float hpDeductPercentage = 0.1f;      // 扣除玩家10%生命
 
     private Transform origin;
-
+    public CharacterEventSO powerChangeEvent;
+    void costPower(CharactorBase _Charater) //扣除能量
+    {
+        _Charater.AddPower(-energyCost);
+        powerChangeEvent.OnEventRaised(_Charater);
+    }
     public void SetOrigin(Transform origin)
     {
         this.origin = origin;
@@ -40,6 +45,17 @@ public class SkillQiZaiLai : MonoBehaviour, ISkillEffect
 
         // 取得玩家的 CharactorBase 組件（扣血與能量相關）
         CharactorBase character = origin.GetComponent<CharactorBase>();
+
+        // 檢查能量是否足夠
+        if (character.CurrentPower < energyCost)
+        {
+            Debug.Log("能量不足，無法施放技能");
+            Destroy(gameObject);
+            return;
+        }
+        // 扣除能量
+        costPower(character);
+
         if (character != null)
         {
             // 扣除10%血量
@@ -48,9 +64,6 @@ public class SkillQiZaiLai : MonoBehaviour, ISkillEffect
             if (character.CurrentHealth < 0)
                 character.CurrentHealth = 0;
             character.OnHealthChange?.Invoke(character);
-
-            // 消耗能量 30
-            character.CurrentPower -= energyCost;
         }
         else
         {

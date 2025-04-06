@@ -16639,6 +16639,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1300511370}
+        m_TargetAssemblyTypeName: MusicGameManager, Assembly-CSharp
+        m_MethodName: closeScoreBoard
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!222 &957493984
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -17172,6 +17184,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   onNoteHit: {fileID: 11400000, guid: 8d1a13b6ea9eedd47b8b1c650286de34, type: 2}
   onNoteMiss: {fileID: 11400000, guid: eccb5afd7c767584fa081ea46d6714d2, type: 2}
+  unlockSkillEvent: {fileID: 11400000, guid: 8f9845516df029a49b362a376549cb7e, type: 2}
   hitEffect: {fileID: 8641899607812354010, guid: 6befbb631b9e30e4caeaad20ff45be3b, type: 3}
   missEffect: {fileID: 8433079331162208932, guid: 3b7e489cc13dac144b93495cf5b38349, type: 3}
   effectPos: {fileID: 1175978305}

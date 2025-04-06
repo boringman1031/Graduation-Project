@@ -20,11 +20,7 @@ public class SkillLoveSong : MonoBehaviour, ISkillEffect
     private Transform origin;
 
     public CharacterEventSO powerChangeEvent;
-    public CharactorBase _player;
-    private void OnEnable()
-    {
-        _player = FindObjectOfType<CharactorBase>();
-    }
+
     void costPower(CharactorBase _Charater) //扣除能量
     {
         _Charater.AddPower(-energyCost);
@@ -52,7 +48,7 @@ public class SkillLoveSong : MonoBehaviour, ISkillEffect
             Destroy(gameObject);
             return;
         }
-        costPower(_player); //扣除能量
+        costPower(character); //扣除能量
 
         // 播放生成時音效
         if (spawnSound != null)

@@ -25,6 +25,12 @@ public class Skill_SlackOff : MonoBehaviour, ISkillEffect
 
     private Transform origin;              // 觸發技能的玩家 Transform
 
+    public CharacterEventSO powerChangeEvent;
+    void costPower(CharactorBase _Charater) //扣除能量
+    {
+        _Charater.AddPower(-energyCost);
+        powerChangeEvent.OnEventRaised(_Charater);
+    }
     public void SetPlayerAnimator(Animator animator)
     {
         // 可依需求實作
@@ -58,7 +64,7 @@ public class Skill_SlackOff : MonoBehaviour, ISkillEffect
             return;
         }
         // 扣除能量
-        character.CurrentPower -= energyCost;
+        costPower(character);
 
         // 回復血量：回復 10% 的最大血量
         float healAmount = character.MaxHealth * healPercentage;

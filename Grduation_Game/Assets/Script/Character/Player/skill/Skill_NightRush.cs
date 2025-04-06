@@ -18,6 +18,12 @@ public class Skill_NightRush : MonoBehaviour, ISkillEffect
     private Rigidbody2D playerRb;        // 玩家自己的 Rigidbody2D
     private float dashDirection;         // 用來記錄玩家原始面向：正數向右，負數向左
 
+    public CharacterEventSO powerChangeEvent;
+    void costPower(CharactorBase _Charater) //扣除能量
+    {
+        _Charater.AddPower(-energyCost);
+        powerChangeEvent.OnEventRaised(_Charater);
+    }
     public void SetPlayerAnimator(Animator animator)
     {
         // 可依需求實作
@@ -27,6 +33,26 @@ public class Skill_NightRush : MonoBehaviour, ISkillEffect
     public void SetOrigin(Transform originTransform)
     {
         origin = originTransform;
+
+        // 嘗試取得玩家的 CharactorBase
+        CharactorBase character = origin.GetComponent<CharactorBase>();
+        if (character == null)
+        {
+            Debug.LogWarning("施放者缺少 CharactorBase 元件，無法施放技能。");
+            Destroy(gameObject);
+            return;
+        }
+
+        // 檢查能量是否足夠
+        if (character.CurrentPower < energyCost)
+        {
+            Debug.Log("能量不足，無法施放技能");
+            Destroy(gameObject);
+            return;
+        }
+
+        // 扣除能量
+        costPower(character);
 
         // 播放生成音效
         if (spawnSound != null)

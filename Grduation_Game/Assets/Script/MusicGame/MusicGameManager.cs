@@ -9,6 +9,7 @@ public class MusicGameManager : MonoBehaviour
     [Header("事件監聽")]
     public VoidEventSO onNoteHit;
     public VoidEventSO onNoteMiss;
+    public VoidEventSO unlockSkillEvent; // 解鎖技能事件
 
     [Header("特效")]
     public GameObject hitEffect;
@@ -51,9 +52,9 @@ public class MusicGameManager : MonoBehaviour
     public Text Curracy_text;
     public Text Rank_text;
 
-
     private Dictionary<KeyCode, GameObject> notePrefabs;
     private Dictionary<KeyCode, Transform> spawnPoints;
+
 
     [System.Serializable]
     public class NoteData
@@ -157,6 +158,10 @@ public class MusicGameManager : MonoBehaviour
         }
     }
 
+    public void closeScoreBoard()
+    {
+        scoreBoard.SetActive(false);
+    }
     private IEnumerator WaitForLastNote()
     {
         if (beatMap.Count == 0)
@@ -245,5 +250,7 @@ public class MusicGameManager : MonoBehaviour
         Curracy_text.text = $"準確率: {accuracy:F2}%";
         Rank_text.text = $"{rank}";
         //ShowResults(currentScore, maxCombo, accuracy, rank);
+
+        unlockSkillEvent.RaiseEvent();
     }
 }

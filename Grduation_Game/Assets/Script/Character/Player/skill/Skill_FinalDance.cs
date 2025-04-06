@@ -18,6 +18,13 @@ public class Skill_FinalDance : MonoBehaviour, ISkillEffect
     private AudioSource musicSource;         // 用來播放背景音樂
     private GameObject effectInstance;       // 持續特效的實例
 
+    public CharacterEventSO powerChangeEvent;
+
+    void costPower(CharactorBase _Charater) //扣除能量
+    {
+        _Charater.AddPower(-energyCost);
+        powerChangeEvent.OnEventRaised(_Charater);
+    }
     public void SetPlayerAnimator(Animator animator)
     {
         // 可依需求實作
@@ -46,7 +53,8 @@ public class Skill_FinalDance : MonoBehaviour, ISkillEffect
         }
 
         // 扣除能量
-        character.CurrentPower -= energyCost;
+        costPower(character);
+        //character.CurrentPower -= energyCost;
 
         // 生成持續特效，並設為玩家的子物件讓其跟隨玩家
         if (finalDanceEffectPrefab != null)

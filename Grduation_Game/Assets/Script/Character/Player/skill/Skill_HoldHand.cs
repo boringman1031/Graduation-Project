@@ -25,22 +25,46 @@ public class SkillHoldHand : MonoBehaviour, ISkillEffect
 
     private bool hasAttacked = false;
 
+    public CharacterEventSO powerChangeEvent;
+
+    private bool isActivated = false; // 是否成功啟動技能
+
+    void costPower(CharactorBase _Charater) //扣除能量
+    {
+        _Charater.AddPower(-energyCost);
+        powerChangeEvent.OnEventRaised(_Charater);
+    }
+
     // 實作 ISkillEffect 介面
     public void SetOrigin(Transform origin)
     {
         this.origin = origin;
-        // 根據玩家位置與朝向計算正確生成位置
+
+        // 嘗試取得玩家的 CharactorBase
+        CharactorBase character = origin.GetComponent<CharactorBase>();
+        if (character == null)
+        {
+            Debug.LogWarning("施放者缺少 CharactorBase 元件，無法施放技能。");
+            Destroy(gameObject);
+            return;
+        }
+
+        // 檢查能量是否足夠
+        if (character.CurrentPower < energyCost)
+        {
+            Debug.Log("能量不足，無法施放技能");
+            Destroy(gameObject);
+            return;
+        }
+
+        // 扣除能量
+        costPower(character);
+        isActivated = true;
+
+        // 計算正確生成位置（依照玩家面向）
         int faceDir = origin.localScale.x >= 0 ? 1 : -1;
         transform.position = origin.position + new Vector3(spawnOffset.x * faceDir, spawnOffset.y, spawnOffset.z);
-    }
 
-    public void SetPlayerAnimator(Animator animator)
-    {
-        playerAnimator = animator;
-    }
-
-    private void Start()
-    {
         // 播放技能音效
         if (skillSound != null)
         {
@@ -51,7 +75,7 @@ public class SkillHoldHand : MonoBehaviour, ISkillEffect
         {
             skillEffect.Play();
         }
-        // 觸發玩家動畫
+        // 觸發動畫
         if (playerAnimator != null)
         {
             playerAnimator.SetTrigger("Skill1");
@@ -62,8 +86,15 @@ public class SkillHoldHand : MonoBehaviour, ISkillEffect
         }
     }
 
+    public void SetPlayerAnimator(Animator animator)
+    {
+        playerAnimator = animator;
+    }
+
     private void Update()
     {
+        if (!isActivated) return;
+
         if (!hasAttacked)
         {
             Attack();
