@@ -35,7 +35,6 @@ public class UIManager : MonoBehaviour
     public GameObject GoHomePanel;//回家面板
     public GameObject GOToBossScenePanel;//進入Boss場景面板
     public GameObject GameInfoPanel;//遊戲資訊面板
-    public GameObject GameSettingPanel;//遊戲設定面板
     public GameObject DialogPanel;//對話框
 
     [Header("按鈕組件")]
@@ -60,9 +59,11 @@ public class UIManager : MonoBehaviour
 
     public void Awake()
     {
-        GameInfoButton.onClick.AddListener(ToggleGameInfoPanel);
-        closeGameInfoButton.onClick.AddListener(ToggleClsoeGameInfoPanel);
-        ExitGameInfoButton.onClick.AddListener(ToggleExitGameEvent);
+        GameInfoButton.onClick.AddListener(ToggleGameInfoPanel);//開啟設定
+        closeGameInfoButton.onClick.AddListener(ToggleClsoeGameInfoPanel);//關閉設定
+        ExitGameInfoButton.onClick.AddListener(ToggleExitGameEvent);//退出遊戲
+        GoHomeButton.onClick.AddListener(ToggleGoHomeEvent);//回家按鈕
+
         RandomChallengeButton1.onClick.AddListener(() => ChooseScene(0));
         RandomChallengeButton2.onClick.AddListener(() => ChooseScene(1));
         RandomChallengeButton3.onClick.AddListener(() => ChooseScene(2));
@@ -152,6 +153,12 @@ public class UIManager : MonoBehaviour
         Time.timeScale = 1;
     }
 
+    private void ToggleGoHomeEvent()//回家面板
+    {
+        GameInfoPanel.SetActive(false);
+        Time.timeScale = 1;
+       goHomeEvent.RaiseEvent();
+    }
     private void ToggleExitGameEvent()//退出遊戲
     {
         GameInfoPanel.SetActive(false);

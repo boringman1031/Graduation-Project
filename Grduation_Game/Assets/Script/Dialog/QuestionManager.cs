@@ -125,11 +125,7 @@ public class QuestionManager : MonoBehaviour
         }
         else
         {
-            dialogueText.text = "...我還有點事，先走了...(你這個哥布林還是回山洞吧)";
-            Button.onClick.AddListener(() =>
-            {
-                goHomeEvent.OnEventRaised();
-            });
+            dialogueText.text = "...我還有點事，先走了...(你這個哥布林還是回山洞吧)";      
             nextButton.SetActive(true);
         }
         foreach (var btn in optionButtons)
