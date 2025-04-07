@@ -2799,6 +2799,7 @@ MonoBehaviour:
   tutorialJumpEvent: {fileID: 11400000, guid: b31f9170a08632d41a6ab54fadbdb174, type: 2}
   tutorialAttackEvent: {fileID: 11400000, guid: c0e7d0811cffe8741964ed73e6a23eb7, type: 2}
   tutorialBossSummonEvent: {fileID: 11400000, guid: b9b73957c2b348d47b3fee4fec7a273a, type: 2}
+  tutorialBoss2SummonEvent: {fileID: 0}
   tutorialBossAttackEvent: {fileID: 11400000, guid: 103c37f32d8484342b3595c0303e249b, type: 2}
   tutorialBossBrokenHeartEvent: {fileID: 11400000, guid: f1dd5d41dec01d042b6eeaa23ceeb795, type: 2}
   dialogEndEvent: {fileID: 11400000, guid: 9b0030f4733054648b442de17490fdb0, type: 2}
@@ -10171,7 +10172,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4129049325006263578, guid: 8fe606f421d465a43860c97bb139a223, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4429415200532308936, guid: 8fe606f421d465a43860c97bb139a223, type: 3}
       propertyPath: m_Size.x

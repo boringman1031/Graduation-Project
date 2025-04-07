@@ -10,6 +10,7 @@ public class TutorialSystem : MonoBehaviour
     public VoidEventSO tutorialJumpEvent;
     public VoidEventSO tutorialAttackEvent;
     public VoidEventSO tutorialBossSummonEvent;
+    public VoidEventSO tutorialBoss2SummonEvent;
     public VoidEventSO tutorialBossAttackEvent;
     public VoidEventSO tutorialBossBrokenHeartEvent;
     public VoidEventSO dialogEndEvent;
@@ -43,6 +44,7 @@ public class TutorialSystem : MonoBehaviour
         dialogEndEvent.OnEventRaised += OnDialogEnd;
         sceneLoadedEvent.OnSceneLoaded += OnSceneLoaded;
         tutorialBossSummonEvent.OnEventRaised += ShowBossSummonTutorial;
+        tutorialBoss2SummonEvent.OnEventRaised += ShowBoss2SummonTutorial;
         tutorialBossAttackEvent.OnEventRaised += ShowBossAttackTutorial;
         tutorialBossBrokenHeartEvent.OnEventRaised += ShowBosBrokenHeartTutorial;
         unlockSkillEvent.OnEventRaised += ShowUnlockSkillTutorial;
@@ -56,6 +58,7 @@ public class TutorialSystem : MonoBehaviour
         dialogEndEvent.OnEventRaised -= OnDialogEnd;
         sceneLoadedEvent.OnSceneLoaded -= OnSceneLoaded;
         tutorialBossSummonEvent.OnEventRaised -= ShowBossSummonTutorial;
+        tutorialBoss2SummonEvent.OnEventRaised -= ShowBoss2SummonTutorial;
         tutorialBossAttackEvent.OnEventRaised -= ShowBossAttackTutorial;
         tutorialBossBrokenHeartEvent.OnEventRaised -= ShowBosBrokenHeartTutorial;
         unlockSkillEvent.OnEventRaised -= ShowUnlockSkillTutorial;
@@ -217,13 +220,19 @@ public class TutorialSystem : MonoBehaviour
     private void ShowBossTutorial()
     {
         currentTutorialType = TutorialType.Boss;
-        ShowTutorial("找到Irene");
+        ShowTutorial("找到她");
     }
 
     private void ShowBossSummonTutorial()
     {
         currentTutorialType = TutorialType.Boss;
         ShowTutorial("Irene召喚了魚塘的魚，擊敗他們");
+    }
+
+    private void ShowBoss2SummonTutorial()
+    {
+        currentTutorialType = TutorialType.Boss;
+        ShowTutorial("葳葳召喚了她的乾哥們，擊敗他們");
     }
 
     private void ShowBossAttackTutorial()
