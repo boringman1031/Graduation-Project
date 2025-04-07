@@ -5553,9 +5553,21 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 11400000, guid: 301a99b60303eb540a180cb570f08ce8, type: 2}
+      - m_Target: {fileID: 11400000, guid: 381f9febe87016148a8902e5ff57fe6f, type: 2}
         m_TargetAssemblyTypeName: VoidEventSO, Assembly-CSharp
         m_MethodName: RaiseEvent
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1231388253}
+        m_TargetAssemblyTypeName: QuestionManager, Assembly-CSharp
+        m_MethodName: closeUI
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -6264,7 +6276,7 @@ Canvas:
   m_AdditionalShaderChannelsFlag: 0
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 15
   m_TargetDisplay: 0
 --- !u!1 &1125459570
 GameObject:
@@ -15026,6 +15038,7 @@ MonoBehaviour:
   affectionText: {fileID: 2108619087}
   nextButton: {fileID: 577530970}
   Button: {fileID: 577530972}
+  UI: {fileID: 1124827819}
 --- !u!1 &1335139749
 GameObject:
   m_ObjectHideFlags: 0

@@ -20,6 +20,7 @@ public class QuestionManager : MonoBehaviour
     public Text affectionText;//好感度文字框
     public GameObject nextButton;
     public Button Button;
+    public GameObject UI; // 對話UI
 
     private int affection = 0;
 
@@ -32,7 +33,11 @@ public class QuestionManager : MonoBehaviour
     {
         Button.onClick.RemoveAllListeners();
     }
-
+    
+    public void closeUI()
+    {
+        UI.SetActive(false);
+    }
     void NextRandomQuestion()
     {
         if (dialoguePool.Count == 0)
