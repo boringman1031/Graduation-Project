@@ -56,7 +56,7 @@ public class SceneLoader : MonoBehaviour, ISaveable
     public float fadeTime;//淡入淡出時間
 
     private Vector3 positionToGo;//要傳送的位置
-    private int challengeCount = 0;
+    public int challengeCount = 0;
     private int maxChallenges = 4; // 需要完成的隨機挑戰次數
     private bool fadeScreen;//是否淡出屏幕
     private bool isLoading;//是否正在加載

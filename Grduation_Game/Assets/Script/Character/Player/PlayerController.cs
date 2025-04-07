@@ -312,7 +312,8 @@ public class PlayerController : MonoBehaviour
     public void Player_Dead()
     {
         isDead = true;
-        //playerInput.GamePlay.Disable();
+        //playerInput.GamePlay.Disable(); 
+        GetComponent<SceneLoader>().challengeCount = 0;
     }
 
     #endregion
