@@ -31,7 +31,12 @@ public class SkillManager : MonoBehaviour
         SkillData skill = allSkills.Find(s => s.skillName == skillName);
         if (skill != null) skill.isUnlocked = true;
     }
-
+    // 解鎖技能（戰鬥場景調用）
+    public void UnlockClass(string className)
+    {
+        ClassData classes = allClasses.Find(s => s.className == className);
+        if (classes != null) classes.isUnlocked = true;
+    }
     // 配置技能槽（藏身處調用）
     public void EquipSkill(SkillData skill, int slotIndex)
     {

@@ -211,8 +211,18 @@ public class TutorialSystem : MonoBehaviour
         if (currentScene == null) return;
 
         string skillName = currentScene.skillToUnlock;
+        string className = currentScene.classToUnlock;
 
-        if (!string.IsNullOrEmpty(skillName))
+        if (!string.IsNullOrEmpty(className))
+        {
+            SkillManager.Instance.UnlockClass(className);
+            SkillManager.Instance.UnlockSkill(skillName);
+            tutorialText.text = $"你解鎖了新職業：{className}\n下次回到家可以裝備看看！";
+            tutorialPanel.SetActive(true);
+            Debug.Log($"✅ 解鎖技能：{className}");
+        }
+
+        else if (!string.IsNullOrEmpty(skillName))
         {
             SkillManager.Instance.UnlockSkill(skillName);
             tutorialText.text = $"你解鎖了新技能：{skillName}\n下次回到家可以裝備看看！";
@@ -223,6 +233,7 @@ public class TutorialSystem : MonoBehaviour
         {
             Debug.LogWarning("⚠️ 此場景沒有設定 skillToUnlock");
         }
+        
     }
 
 }
