@@ -14,6 +14,8 @@ public class SkillAndClassUI : MonoBehaviour
     public Transform classListParent;
     public GameObject classItemPrefab; // 職業 UI 項目 prefab
 
+    private int lastEquipIndex = 0; // 用來記錄下次裝到哪一格
+
     void OnEnable()
     {
         PopulateSkillUI();
@@ -24,11 +26,22 @@ public class SkillAndClassUI : MonoBehaviour
     {
         foreach (Transform child in skillListParent) Destroy(child.gameObject);
 
+        // 先收集所有職業技能（R鍵用的 ultimateSkill）
+        HashSet<SkillData> classSkills = new HashSet<SkillData>();
+        foreach (var cls in SkillManager.Instance.allClasses)
+        {
+            if (cls.ultimateSkill != null)
+                classSkills.Add(cls.ultimateSkill);
+        }
+
         foreach (var skill in SkillManager.Instance.allSkills)
         {
-            if (!skill.isUnlocked) continue;
+            // ✅ 過濾掉職業專屬技能，並檢查是否解鎖
+            if (!skill.isUnlocked || classSkills.Contains(skill)) continue;
+
             var go = Instantiate(skillItemPrefab, skillListParent);
             var item = go.GetComponent<SkillUIItem>();
+
             bool isEquipped = false;
             foreach (var equipped in SkillManager.Instance.equippedSkills)
             {
@@ -38,9 +51,11 @@ public class SkillAndClassUI : MonoBehaviour
                     break;
                 }
             }
+
             item.Setup(skill, OnSkillSelected, isEquipped);
         }
     }
+
 
     void PopulateClassUI()
     {
@@ -48,17 +63,27 @@ public class SkillAndClassUI : MonoBehaviour
 
         foreach (var cls in SkillManager.Instance.allClasses)
         {
-            if (!cls.isUnlocked) continue;
-
             var go = Instantiate(classItemPrefab, classListParent);
             bool isSelected = SkillManager.Instance.selectedClass == cls;
             go.GetComponent<ClassUIItem>().Setup(cls, OnClassSelected, isSelected);
         }
     }
-    private int lastEquipIndex = 0;
+
     void OnSkillSelected(SkillData skill)
     {
-        // 輪替裝備技能
+        // 如果已經裝備了，就取消裝備
+        for (int i = 0; i < SkillManager.Instance.equippedSkills.Length; i++)
+        {
+            if (SkillManager.Instance.equippedSkills[i] == skill)
+            {
+                SkillManager.Instance.EquipSkill(null, i);
+                PopulateSkillUI();
+                FindObjectOfType<SkillUIController>()?.RefreshSkillIcons();
+                return;
+            }
+        }
+
+        // 沒裝過就裝到下一個位置
         SkillManager.Instance.EquipSkill(skill, lastEquipIndex);
         lastEquipIndex = (lastEquipIndex + 1) % 3;
 
@@ -73,8 +98,6 @@ public class SkillAndClassUI : MonoBehaviour
         FindObjectOfType<PlayerController>()?.UpdateUltimateSkill();
         SkillManager.Instance.OnClassChanged?.Invoke();
         PopulateClassUI();
-        FindObjectOfType<SkillUIController>()?.RefreshSkillIcons(); // ✅ 更新圖示與冷卻
+        FindObjectOfType<SkillUIController>()?.RefreshSkillIcons();
     }
 }
-
-// 其餘子類 SkillUIItem / ClassUIItem / PlayerCostumeChanger 不變
