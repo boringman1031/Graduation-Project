@@ -9,52 +9,38 @@ public class TutorialSystem : MonoBehaviour
     public VoidEventSO tutorialMoveEvent;
     public VoidEventSO tutorialJumpEvent;
     public VoidEventSO tutorialAttackEvent;
-    public VoidEventSO tutorialBossSummonEvent;//觸發Boss召喚事件教學
-    public VoidEventSO tutorialBossAttackEvent;//觸發Boss攻擊事件教學
-    public VoidEventSO tutorialBossBrokenHeartEvent;//觸發Boss心碎事件教學
-    public VoidEventSO dialogEndEvent; // 對話結束事件
-    public SceneLoadedEventSO sceneLoadedEvent; // 新增：場景加載完成事件
-    public VoidEventSO unlockSkillEvent; // 解鎖技能事件
+    public VoidEventSO tutorialBossSummonEvent;
+    public VoidEventSO tutorialBossAttackEvent;
+    public VoidEventSO tutorialBossBrokenHeartEvent;
+    public VoidEventSO dialogEndEvent;
+    public SceneLoadedEventSO sceneLoadedEvent;
+    public VoidEventSO unlockSkillEvent;
 
     [Header("UI元件")]
     public GameObject tutorialPanel;
     public Text tutorialText;
 
-    private Dictionary<TutorialType, bool> tutorialShownDict; // 記錄教學是否已顯示
-    private GameSceneSO currentScene; // 緩存當前場景
-    // 監聽按鍵輸入
+    private Dictionary<TutorialType, bool> tutorialShownDict;
+    private GameSceneSO currentScene;
+
+    private TutorialType currentTutorialType = TutorialType.None;
+    private Coroutine autoHideCoroutine;
+
     private void Awake()
     {
-        // 初始化字典，所有教學預設未顯示
         tutorialShownDict = new Dictionary<TutorialType, bool>();
         foreach (TutorialType type in System.Enum.GetValues(typeof(TutorialType)))
         {
             tutorialShownDict[type] = false;
         }
     }
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.F))
-        {
-            HideTutorialPanel(); // 按下 F 鍵時隱藏教學 UI
-        }
-        if (Input.GetKeyDown(KeyCode.L) && currentScene.tutorialType == TutorialType.MusicGame)
-        {
-            HideTutorialPanel(); // 隱藏教學 UI
-            ShowMusicGameTutorial2(); // 開始音樂遊戲教學
-        }
-    }
-    // 隱藏教學 UI
-    public void HideTutorialPanel()
-    {
-        tutorialPanel.SetActive(false);
-    }
+
     private void OnEnable()
     {
         tutorialMoveEvent.OnEventRaised += ShowMoveTutorial;
         tutorialJumpEvent.OnEventRaised += ShowJumpTutorial;
         tutorialAttackEvent.OnEventRaised += ShowAttackTutorial;
-        dialogEndEvent.OnEventRaised += OnDialogEnd; // 訂閱對話結束事件
+        dialogEndEvent.OnEventRaised += OnDialogEnd;
         sceneLoadedEvent.OnSceneLoaded += OnSceneLoaded;
         tutorialBossSummonEvent.OnEventRaised += ShowBossSummonTutorial;
         tutorialBossAttackEvent.OnEventRaised += ShowBossAttackTutorial;
@@ -74,138 +60,190 @@ public class TutorialSystem : MonoBehaviour
         tutorialBossBrokenHeartEvent.OnEventRaised -= ShowBosBrokenHeartTutorial;
         unlockSkillEvent.OnEventRaised -= ShowUnlockSkillTutorial;
     }
-    void OnDialogEnd()
+
+    private void Update()
     {
-        
+        if (!tutorialPanel.activeSelf) return;
+
+        switch (currentTutorialType)
+        {
+            case TutorialType.Move:
+                if (Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.D))
+                    HideTutorialPanel();
+                break;
+            case TutorialType.Jump:
+                if (Input.GetKeyDown(KeyCode.Space))
+                    HideTutorialPanel();
+                break;
+            case TutorialType.Attack:
+                if (Input.GetKeyDown(KeyCode.Mouse1))
+                    HideTutorialPanel();
+                break;
+        }
+
+        if (Input.GetKeyDown(KeyCode.F))
+        {
+            HideTutorialPanel();
+            currentTutorialType = TutorialType.None;
+        }
+
+        if (Input.GetKeyDown(KeyCode.L) && currentScene.tutorialType == TutorialType.MusicGame)
+        {
+            HideTutorialPanel();
+            ShowMusicGameTutorial2();
+        }
+    }
+
+    public void HideTutorialPanel()
+    {
+        tutorialPanel.SetActive(false);
+        currentTutorialType = TutorialType.None;
+
+        if (autoHideCoroutine != null)
+        {
+            StopCoroutine(autoHideCoroutine);
+            autoHideCoroutine = null;
+        }
+    }
+
+    private void OnDialogEnd()
+    {
         if (currentScene == null) return;
 
         TutorialType type = currentScene.tutorialType;
 
-        // 檢查教學是否已顯示過
         if (tutorialShownDict.TryGetValue(type, out bool shown) && !shown)
         {
-            // 根據暫存的場景參數觸發教學
             switch (type)
             {
                 case TutorialType.Move:
                     ShowMoveTutorial();
-                    tutorialShownDict[type] = true; // 標記為已顯示
                     break;
                 case TutorialType.Jump:
                     ShowJumpTutorial();
-                    tutorialShownDict[type] = true;
                     break;
                 case TutorialType.Attack:
                     ShowAttackTutorial();
-                    tutorialShownDict[type] = true;
                     break;
-                case TutorialType.MusicGame:                 
+                case TutorialType.MusicGame:
                     ShowMusicGameTutorial();
-                    tutorialShownDict[type] = true;
                     break;
-                case  TutorialType.TriviaGame:
+                case TutorialType.TriviaGame:
                     ShowTriviaGameTutorial();
-                    tutorialShownDict[type] = true;
                     break;
                 case TutorialType.CleanEnemy:
                     ShowCleanEnemyTutorial();
-                    tutorialShownDict[type] = true;
                     break;
                 case TutorialType.Boss:
                     ShowBossTutorial();
-                    tutorialShownDict[type] = true;
                     break;
                 case TutorialType.SkillAndClass:
                     ShowClassTutorial();
-                    tutorialShownDict[type] = true;
                     break;
                 case TutorialType.UnlockSkill:
                     ShowUnlockSkillTutorial();
-                    tutorialShownDict[type] = true;
-                    break;
-                case TutorialType.None:
-                default:
                     break;
             }
+
+            tutorialShownDict[type] = true;
         }
     }
+
     private void OnSceneLoaded(GameSceneSO scene)
     {
-        currentScene = scene; // 暫存場景參數
+        currentScene = scene;
     }
-    // 當玩家到達特定地點時顯示教學
+
+    private void ShowTutorial(string text, float autoHideTime = -1f)
+    {
+        tutorialText.text = text;
+        tutorialPanel.SetActive(true);
+
+        if (autoHideCoroutine != null)
+            StopCoroutine(autoHideCoroutine);
+
+        if (autoHideTime > 0)
+            autoHideCoroutine = StartCoroutine(AutoHideTutorialAfterSeconds(autoHideTime));
+    }
+
+    private IEnumerator AutoHideTutorialAfterSeconds(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        HideTutorialPanel();
+    }
+
     private void ShowMoveTutorial()
     {
-        tutorialText.text = "使用 AD鍵 移動看看四周";
-        tutorialPanel.SetActive(true);
+        currentTutorialType = TutorialType.Move;
+        ShowTutorial("使用 AD鍵 移動看看四周");
     }
 
-    // 當對話結束時顯示教學
     private void ShowJumpTutorial()
     {
-        tutorialText.text = "使用 空白鍵 跳過這個柵欄";
-        tutorialPanel.SetActive(true);
+        currentTutorialType = TutorialType.Jump;
+        ShowTutorial("使用 空白鍵 跳過這個柵欄");
     }
 
-    // 當獲得新技能時顯示教學
     private void ShowAttackTutorial()
     {
-        tutorialText.text = "按下 滑鼠右鍵 攻擊";
-        tutorialPanel.SetActive(true);
+        currentTutorialType = TutorialType.Attack;
+        ShowTutorial("按下 滑鼠右鍵 攻擊");
     }
 
-    // 音樂遊戲教學
     private void ShowMusicGameTutorial()
     {
-        tutorialText.text = "按下 L 開始遊戲";    
-        tutorialPanel.SetActive(true);
+        currentTutorialType = TutorialType.MusicGame;
+        ShowTutorial("按下 L 開始遊戲");
     }
+
     private void ShowMusicGameTutorial2()
     {
-        tutorialText.text = "在愛心到左側位置時按下鍵盤ZXC";
-        tutorialPanel.SetActive(true);
+        currentTutorialType = TutorialType.MusicGame;
+        ShowTutorial("在愛心到左側位置時按下鍵盤QWE");
     }
 
     private void ShowTriviaGameTutorial()
     {
-        tutorialText.text = "走過去跟她說說話吧";
-        tutorialPanel.SetActive(true);
+        currentTutorialType = TutorialType.TriviaGame;
+        ShowTutorial("走過去跟她說說話吧");
     }
 
     private void ShowCleanEnemyTutorial()
     {
-        tutorialText.text = "擊敗所有敵人吧";
-        tutorialPanel.SetActive(true);
+        currentTutorialType = TutorialType.CleanEnemy;
+        ShowTutorial("擊敗所有敵人吧");
     }
 
     private void ShowBossTutorial()
     {
-        tutorialText.text = "找到Irene";
-        tutorialPanel.SetActive(true);
+        currentTutorialType = TutorialType.Boss;
+        ShowTutorial("找到Irene");
     }
 
     private void ShowBossSummonTutorial()
     {
-        tutorialText.text = "Irene召喚了魚塘的魚，擊敗他們";
-        tutorialPanel.SetActive(true);
+        currentTutorialType = TutorialType.Boss;
+        ShowTutorial("Irene召喚了魚塘的魚，擊敗他們");
     }
 
     private void ShowBossAttackTutorial()
     {
-        tutorialText.text = "小心攻擊!!!!!";
-        tutorialPanel.SetActive(true);
+        currentTutorialType = TutorialType.Boss;
+        ShowTutorial("小心攻擊!!!!!");
     }
 
     private void ShowBosBrokenHeartTutorial()
     {
-        tutorialText.text = "你破防了，把對她的愛擊碎";
-        tutorialPanel.SetActive(true);
+        currentTutorialType = TutorialType.Boss;
+        ShowTutorial("你破防了，把對她的愛擊碎");
     }
+
     private void ShowClassTutorial()
     {
-        tutorialText.text = "按下衣櫃按紐開啟職業選單";
-        tutorialPanel.SetActive(true);
+        currentTutorialType = TutorialType.SkillAndClass;
+        ShowTutorial("按下衣櫃按鈕開啟職業選單");
     }
+
     private void ShowUnlockSkillTutorial()
     {
         if (currentScene == null) return;
@@ -213,27 +251,22 @@ public class TutorialSystem : MonoBehaviour
         string skillName = currentScene.skillToUnlock;
         string className = currentScene.classToUnlock;
 
+        currentTutorialType = TutorialType.UnlockSkill;
+
         if (!string.IsNullOrEmpty(className))
         {
             SkillManager.Instance.UnlockClass(className);
             SkillManager.Instance.UnlockSkill(skillName);
-            tutorialText.text = $"你解鎖了新職業：{className}\n下次回到家可以裝備看看！";
-            tutorialPanel.SetActive(true);
-            Debug.Log($"✅ 解鎖技能：{className}");
+            ShowTutorial($"你解鎖了新職業：{className}\n下次回到家可以裝備看看！", 3f);
         }
-
         else if (!string.IsNullOrEmpty(skillName))
         {
             SkillManager.Instance.UnlockSkill(skillName);
-            tutorialText.text = $"你解鎖了新技能：{skillName}\n下次回到家可以裝備看看！";
-            tutorialPanel.SetActive(true);
-            Debug.Log($"✅ 解鎖技能：{skillName}");
+            ShowTutorial($"你解鎖了新技能：{skillName}\n下次回到家可以裝備看看！", 3f);
         }
         else
         {
             Debug.LogWarning("⚠️ 此場景沒有設定 skillToUnlock");
         }
-        
     }
-
 }
