@@ -1785,16 +1785,16 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 344122347}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1778934483}
+  m_Father: {fileID: 1606986243}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 267, y: 178}
+  m_AnchoredPosition: {x: -116, y: 195}
   m_SizeDelta: {x: 420.6661, y: 212.093}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &344122349
@@ -16509,10 +16509,10 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: 20.155945, y: 6.020527}
-      - {x: -18.006088, y: 6.215523}
-      - {x: -18.011972, y: -7.232342}
-      - {x: 20.226912, y: -7.3800087}
+    - - {x: 20.293095, y: 6.2948303}
+      - {x: -18.417545, y: 6.284096}
+      - {x: -18.697733, y: -9.5639305}
+      - {x: 20.15833, y: -9.711597}
   m_UseDelaunayMesh: 0
 --- !u!1 &957493980
 GameObject:
@@ -16630,6 +16630,18 @@ MonoBehaviour:
       - m_Target: {fileID: 11400000, guid: 381f9febe87016148a8902e5ff57fe6f, type: 2}
         m_TargetAssemblyTypeName: VoidEventSO, Assembly-CSharp
         m_MethodName: RaiseEvent
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1300511370}
+        m_TargetAssemblyTypeName: MusicGameManager, Assembly-CSharp
+        m_MethodName: closeScoreBoard
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -16852,7 +16864,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   defaltImage: {fileID: 21300000, guid: b56071d91b2ce694dbe6ed2ee028b189, type: 3}
   PressImage: {fileID: 21300000, guid: 98bf9d7d7c1444e4ca8d8a30a2aa5670, type: 3}
-  key: 119
+  key: 120
 --- !u!212 &1000623104
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -16892,7 +16904,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 65629913
-  m_SortingLayer: 4
+  m_SortingLayer: 5
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: b56071d91b2ce694dbe6ed2ee028b189, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -17026,7 +17038,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   defaltImage: {fileID: 21300000, guid: b56071d91b2ce694dbe6ed2ee028b189, type: 3}
   PressImage: {fileID: 21300000, guid: 11eb01e441b113a40a6d36f57ad821f9, type: 3}
-  key: 101
+  key: 99
 --- !u!212 &1065097143
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -17066,7 +17078,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 65629913
-  m_SortingLayer: 4
+  m_SortingLayer: 5
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: b56071d91b2ce694dbe6ed2ee028b189, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -17172,6 +17184,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   onNoteHit: {fileID: 11400000, guid: 8d1a13b6ea9eedd47b8b1c650286de34, type: 2}
   onNoteMiss: {fileID: 11400000, guid: eccb5afd7c767584fa081ea46d6714d2, type: 2}
+  unlockSkillEvent: {fileID: 11400000, guid: 8f9845516df029a49b362a376549cb7e, type: 2}
   hitEffect: {fileID: 8641899607812354010, guid: 6befbb631b9e30e4caeaad20ff45be3b, type: 3}
   missEffect: {fileID: 8433079331162208932, guid: 3b7e489cc13dac144b93495cf5b38349, type: 3}
   effectPos: {fileID: 1175978305}
@@ -17181,12 +17194,12 @@ MonoBehaviour:
   beatScroller: {fileID: 466633714}
   audioDefination: {fileID: 1300511369}
   songOffset: 10
-  notePrefabQ: {fileID: 3830761287653415225, guid: cdee9c6682c0ba04b81cdc8382f9ba53, type: 3}
-  notePrefabW: {fileID: 8638162076065787444, guid: 86dec30b7aeae884ca84c24258b6d797, type: 3}
-  notePrefabE: {fileID: 5072429939129656201, guid: d99daa54b43b39747a73add1ecd7bcdf, type: 3}
-  spawnPointQ: {fileID: 971510735}
-  spawnPointW: {fileID: 549329899}
-  spawnPointE: {fileID: 203493282}
+  notePrefabZ: {fileID: 3830761287653415225, guid: cdee9c6682c0ba04b81cdc8382f9ba53, type: 3}
+  notePrefabX: {fileID: 8638162076065787444, guid: 86dec30b7aeae884ca84c24258b6d797, type: 3}
+  notePrefabC: {fileID: 5072429939129656201, guid: d99daa54b43b39747a73add1ecd7bcdf, type: 3}
+  spawnPointZ: {fileID: 971510735}
+  spawnPointX: {fileID: 549329899}
+  spawnPointC: {fileID: 203493282}
   currentScore: 0
   scorePerNote: 10
   scoreMultiplier: 1
@@ -17513,7 +17526,8 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 344122348}
   m_Father: {fileID: 1778934483}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
@@ -17921,7 +17935,6 @@ RectTransform:
   - {fileID: 1424382818}
   - {fileID: 1606986243}
   - {fileID: 957493981}
-  - {fileID: 344122348}
   m_Father: {fileID: 438862154}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
@@ -18088,7 +18101,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   defaltImage: {fileID: 21300000, guid: b56071d91b2ce694dbe6ed2ee028b189, type: 3}
   PressImage: {fileID: 21300000, guid: 3911317247904b14398b8ee5449b6bd6, type: 3}
-  key: 113
+  key: 122
 --- !u!212 &1796568627
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -18128,7 +18141,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 65629913
-  m_SortingLayer: 4
+  m_SortingLayer: 5
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: b56071d91b2ce694dbe6ed2ee028b189, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}

@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 327804183085334310}
   - component: {fileID: 4740595356503173678}
   m_Layer: 0
-  m_Name: Yellow
+  m_Name: yellow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -73,7 +73,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 65629913
-  m_SortingLayer: 4
+  m_SortingLayer: 5
   m_SortingOrder: 10
   m_Sprite: {fileID: 21300000, guid: 11eb01e441b113a40a6d36f57ad821f9, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -101,7 +101,7 @@ MonoBehaviour:
   onNoteHit: {fileID: 11400000, guid: 8d1a13b6ea9eedd47b8b1c650286de34, type: 2}
   onNoteMiss: {fileID: 11400000, guid: eccb5afd7c767584fa081ea46d6714d2, type: 2}
   canBePressed: 0
-  keyToPress: 113
+  keyToPress: 99
 --- !u!58 &4740595356503173678
 CircleCollider2D:
   m_ObjectHideFlags: 0

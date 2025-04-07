@@ -80,9 +80,9 @@ public class BossBase :MonoBehaviour
 
     //-----------Boss行為----------------
     public virtual void OnBossShow()//相機震動
-    {          
-        CameraShakeEvent.RaiseEvent(8f, 6f, 0.4f);
+    {                
         bossHealthUI.gameObject.SetActive(true); // 血條顯示
+        CameraShakeEvent.RaiseEvent(3.5f, 50f, 0.3f);
     }
 
     public void OnDialogEnd()//對話結束
@@ -98,6 +98,7 @@ public class BossBase :MonoBehaviour
         {
             return;
         }  
+
         if(currentHealth > 0)
         {
             anim.SetTrigger("Hit");
@@ -107,8 +108,9 @@ public class BossBase :MonoBehaviour
             if (bossHealthUI != null)
                 bossHealthUI.UpdateHealth(currentHealth, maxHealth);
             Debug.Log("Boss受到傷害，當前血量：" + currentHealth);
-        }     
-        else
+        }
+        
+        if (currentHealth<=0)
         {
             Die();
         }
@@ -123,7 +125,7 @@ public class BossBase :MonoBehaviour
     }
     public virtual void OnAttack()//Boss攻擊
     {
-        anim.SetTrigger("Attack");
+        anim.SetTrigger("Attack");    
         tutorialBossAttackEvent.RaiseEvent();//廣播開啟攻擊事件教學
     }
 
@@ -135,19 +137,32 @@ public class BossBase :MonoBehaviour
     
     public void OnCameraShake() //相機震動
     {
-        CameraShakeEvent.RaiseEvent(8f, 6f, 0.4f);
+        CameraShakeEvent.RaiseEvent(0.5f, 10f, 0.15f);
+    }
+    public void OnBossDeadCameraShake()
+    {
+        // 超強烈震動參數：amplitude, frequency, duration
+        CameraShakeEvent.RaiseEvent(3.5f, 50f, 0.3f);
     }
     public virtual void SpawnHeartMinion()//生成愛心小怪
     {
         anim.SetTrigger("Hit");
         tutorialBossBrokenHeartEvent.RaiseEvent();//廣播開啟愛心小怪事件教學
     }
-  
+
     public void Die()//Boss死亡
     {
-        BossDeadEvent.RaiseEvent();
+        anim.SetBool("Dead", true);
+        StartCoroutine(WaitAndTriggerEvent(2));
+    }   
+    private IEnumerator WaitAndTriggerEvent(float waitTime)
+    {       
+        yield return new WaitForSeconds(waitTime);
+        BossDeadEvent.OnEventRaised();
+      
     }
-
+    
+   
     public void SwitchState(BossState _state)//切換狀態
     {
         var newState = _state switch//根據現有狀態切換敵人狀態(switch的語法糖寫法)

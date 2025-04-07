@@ -1,5 +1,5 @@
-/*--------by017--------*/
-/*----------¨¤¦â°òÂ¦¼Æ­È----------------*/
+ï»¿/*--------by017--------*/
+/*----------è§’è‰²åŸºç¤æ•¸å€¼----------------*/
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,29 +7,33 @@ using UnityEngine.Events;
 
 public class CharactorBase : MonoBehaviour,ISaveable
 {
-    [Header("¨Æ¥óºÊÅ¥")]
-    public VoidEventSO newGameEvent;//·s¹CÀ¸¨Æ¥ó
-    public VoidEventSO goHomeEvent;//¦^®a¨Æ¥ó
+    [Header("äº‹ä»¶ç›£è½")]
+    public VoidEventSO newGameEvent;//æ–°éŠæˆ²äº‹ä»¶
+    public VoidEventSO goHomeEvent;//å›å®¶äº‹ä»¶
 
-    [Header("°òÂ¦¼Æ­È")]
+    [Header("åŸºç¤æ•¸å€¼")]
     public float Health;
     public float Defence;
 
-    [Header("·í«e¼Æ­È")]
+    [Header("ç•¶å‰æ•¸å€¼")]
     public float MaxHealth;
     public float MaxPower;
-    [HideInInspector]public float CurrentHealth;
-    [HideInInspector] public float CurrentPower;
-    public float healthRegenAmount; // ¨C¦¸¦^´_ªº¥Í©R­È
-    public float healthRegenInterval; // ¦^¦åªº®É¶¡¶¡¹j¡]¬í¡^
-    private Coroutine regenCoroutine; // ¥Î¨Ó¦sÀx Coroutine¡A½T«O¤£·|¦h¦¸±Ò°Ê
+    //[HideInInspector]
+    public float CurrentHealth;
+    //[HideInInspector] 
+    public float CurrentPower;
+    public float healthRegenAmount; // æ¯æ¬¡å›å¾©çš„ç”Ÿå‘½å€¼
+    public float powerRegenAmount; //æ¯æ¬¡å›è¦†çš„èƒ½é‡
+    public float healthRegenInterval; // å›è¡€çš„æ™‚é–“é–“éš”ï¼ˆç§’ï¼‰
+    private Coroutine regenCoroutine; // ç”¨ä¾†å­˜å„² Coroutineï¼Œç¢ºä¿ä¸æœƒå¤šæ¬¡å•Ÿå‹•
 
-    [Header("ª¬ºA")]
-    public float SuperArmourTime;//ÅQÅé®É¶¡
-    private float SuperArmourTimeCounter;//ÅQÅé®É¶¡­p¼Æ¾¹
-    public bool SuperArmour;//¬O§_¦bÅQÅéª¬ºA
+    [Header("ç‹€æ…‹")]
+    public float SuperArmourTime;//éœ¸é«”æ™‚é–“
+    private float SuperArmourTimeCounter;//éœ¸é«”æ™‚é–“è¨ˆæ•¸å™¨
+    public bool SuperArmour;//æ˜¯å¦åœ¨éœ¸é«”ç‹€æ…‹
 
-    public UnityEvent<CharactorBase> OnHealthChange;//¦å¶q§ïÅÜ¨Æ¥ó(¥Î©ó§ó·sUI¼s¼½)
+    public UnityEvent<CharactorBase> OnHealthChange;//è¡€é‡æ”¹è®Šäº‹ä»¶(ç”¨æ–¼æ›´æ–°UIå»£æ’­)
+    public UnityEvent<CharactorBase> OnPowerChange; //èƒ½é‡æ”¹è®Š
     public UnityEvent<Transform> OnTakeDamage;
     public UnityEvent OnDead;
 
@@ -39,10 +43,9 @@ public class CharactorBase : MonoBehaviour,ISaveable
         goHomeEvent.OnEventRaised += NewGame;
         ISaveable saveable = this;
         saveable.RegisterSaveData();
-        regenCoroutine = StartCoroutine(AutoRegenHealth());//¦Û°Ê¦^¦å
+        regenCoroutine = StartCoroutine(AutoRegenHealth());//å•Ÿå‹•è‡ªå‹•å›è¡€
 
-        // ¦å¶q±j¨îªì©l¤Æ¤@¦¸
-        if (CurrentHealth <= 0)
+        if (CurrentHealth <= 0)//å¦‚æœè¡€é‡å°æ–¼ç­‰æ–¼0
             NewGame();
     }
     private void OnDisable()
@@ -60,7 +63,7 @@ public class CharactorBase : MonoBehaviour,ISaveable
             Debug.LogWarning("DataManager instance is null in OnDisable()");
         }
       
-        if (regenCoroutine != null)  // Ãö³¬¦Û°Ê¦^¦å
+        if (regenCoroutine != null)  // é—œé–‰è‡ªå‹•å›è¡€
         {
             StopCoroutine(regenCoroutine);
         }
@@ -76,6 +79,11 @@ public class CharactorBase : MonoBehaviour,ISaveable
                 SuperArmour = false;
             }
         }
+
+        if(CurrentHealth <= 0)//å¦‚æœè¡€é‡å°æ–¼ç­‰æ–¼0
+        {
+            OnDead?.Invoke();
+        }
     }
     private void NewGame()
     {
@@ -84,29 +92,31 @@ public class CharactorBase : MonoBehaviour,ISaveable
         CurrentPower = MaxPower;
         OnHealthChange?.Invoke(this);      
     }
-    public void TakeDamage(Attack _attacker)//¨ü¨ì¶Ë®`§P©w
-    {          
+    public void TakeDamage(float damage, Transform attacker = null)//å—åˆ°å‚·å®³åˆ¤å®š
+    {
+        // æª¢æŸ¥ï¼šæ˜¯å¦è™•æ–¼éœ¸é«”ç‹€æ…‹
         if (SuperArmour)
         {
             return;
-        }   
-
-        if (CurrentHealth - _attacker.Damage > 0)
-        {
-            CurrentHealth -= _attacker.Damage;             
-            TriggerSuperArmour();
-            OnTakeDamage?.Invoke(_attacker.transform);//Ä²µo¨ü¶Ë¨Æ¥ó
-
         }
-        else //¦º¤`
+
+        if(CurrentHealth - damage > 0)
+        {           
+            CurrentHealth -= damage;
+            TriggerSuperArmour();
+            //å—å‚·æ™‚è¦å¹¹å˜›å¯«åœ¨é€™
+            if (attacker != null)
+                OnTakeDamage?.Invoke(attacker); // ä½¿ç”¨å‚³å…¥çš„ Transform
+        }
+        else //æ­»äº¡
         {
             CurrentHealth = 0;
             OnDead?.Invoke();          
         }
-        OnHealthChange?.Invoke(this);//Ä²µo¦å¶q§ïÅÜ¨Æ¥ó
+      OnHealthChange?.Invoke(this);//è§¸ç™¼è¡€é‡æ”¹è®Šäº‹ä»¶
     }
     
-    public void AddHealth(float _health)//¼W¥[¦å¶q
+    public void AddHealth(float _health)//å¢åŠ è¡€é‡
     {
         if (CurrentHealth + _health <= MaxHealth)
         {
@@ -116,9 +126,9 @@ public class CharactorBase : MonoBehaviour,ISaveable
         {
             CurrentHealth = MaxHealth;
         }
-        OnHealthChange?.Invoke(this);//Ä²µo¦å¶q§ïÅÜ¨Æ¥ó
+        OnHealthChange?.Invoke(this);//è§¸ç™¼è¡€é‡æ”¹è®Šäº‹ä»¶
     }
-    public void AddPower(float _power)//¼W¥[¯à¶q
+    public void AddPower(float _power)//å¢åŠ èƒ½é‡
     {
         if (CurrentPower + _power <= MaxPower)
         {
@@ -128,23 +138,24 @@ public class CharactorBase : MonoBehaviour,ISaveable
         {
             CurrentPower = MaxPower;
         }
+        OnPowerChange?.Invoke(this);
     }
-    private void TriggerSuperArmour()//Ä²µoÅQÅé
+    private void TriggerSuperArmour()//è§¸ç™¼éœ¸é«”
     {
         if(!SuperArmour) 
         {
             SuperArmour = true;
-            SuperArmourTimeCounter = SuperArmourTime;
-            Debug.Log($"{name}Ä²µoÅQÅé¡A®É¶¡{SuperArmourTime}");
+            SuperArmourTimeCounter = SuperArmourTime;        
         }
     }
 
-    private IEnumerator AutoRegenHealth()//¦Û°Ê¦^¦å
+    private IEnumerator AutoRegenHealth()//è‡ªå‹•å›è¡€
     {    
         while (true)
         {
-            yield return new WaitForSeconds(healthRegenInterval); // µ¥«İ®É¶¡¶¡¹j
-            if (CurrentHealth < MaxHealth) // ¦pªG¦å¶q¥¼º¡¤~¦^¦å
+            yield return new WaitForSeconds(healthRegenInterval); // ç­‰å¾…æ™‚é–“é–“éš”
+            AddPower(powerRegenAmount);
+            if (CurrentHealth < MaxHealth) // å¦‚æœè¡€é‡æœªæ»¿æ‰å›è¡€
             {
                 AddHealth(healthRegenAmount);
                 OnHealthChange?.Invoke(this);              
@@ -152,37 +163,37 @@ public class CharactorBase : MonoBehaviour,ISaveable
         }
     }
 
-    public DataDefination GetDataID()//Àò¨úID
+    public DataDefination GetDataID()//ç²å–ID
     {
         return  GetComponent<DataDefination>(); 
     }
 
     public void GetSaveData(Data _data)
     {
-        if(_data.characterPosDict.ContainsKey(GetDataID().ID))//¦pªG¦³³o­ÓIDªº¦ì¸m¼Æ¾Ú       
+        if(_data.characterPosDict.ContainsKey(GetDataID().ID))//å¦‚æœæœ‰é€™å€‹IDçš„ä½ç½®æ•¸æ“š       
         {
-           _data.characterPosDict[GetDataID().ID] = transform.position;//§ó§ïª±®a¦ì¸m¼Æ¾Ú
-            _data.flaotSaveDataDict[GetDataID().ID + "health"] = this.CurrentHealth;//§ó§ïª±®a¦å¶q¼Æ¾Ú
-            _data.flaotSaveDataDict[GetDataID().ID + "power"] = this.CurrentPower;//§ó§ïª±®a¯à¶q¼Æ¾Ú
+           _data.characterPosDict[GetDataID().ID] = transform.position;//æ›´æ”¹ç©å®¶ä½ç½®æ•¸æ“š
+            _data.flaotSaveDataDict[GetDataID().ID + "health"] = this.CurrentHealth;//æ›´æ”¹ç©å®¶è¡€é‡æ•¸æ“š
+            _data.flaotSaveDataDict[GetDataID().ID + "power"] = this.CurrentPower;//æ›´æ”¹ç©å®¶èƒ½é‡æ•¸æ“š
         }
         else
         {
-            _data.characterPosDict.Add(GetDataID().ID, transform.position);//·s¼Wª±®a¦ì¸m¼Æ¾Ú
-            _data.flaotSaveDataDict.Add(GetDataID().ID+"health",this.CurrentHealth);//·s¼Wª±®a¦å¶q¼Æ¾Ú
-            _data.flaotSaveDataDict.Add(GetDataID().ID + "power", this.CurrentPower);//·s¼Wª±®a¯à¶q¼Æ¾Ú
+            _data.characterPosDict.Add(GetDataID().ID, transform.position);//æ–°å¢ç©å®¶ä½ç½®æ•¸æ“š
+            _data.flaotSaveDataDict.Add(GetDataID().ID+"health",this.CurrentHealth);//æ–°å¢ç©å®¶è¡€é‡æ•¸æ“š
+            _data.flaotSaveDataDict.Add(GetDataID().ID + "power", this.CurrentPower);//æ–°å¢ç©å®¶èƒ½é‡æ•¸æ“š
         }
 
     }
 
     public void LoadData(Data _data)
     {
-        if(_data.characterPosDict.ContainsKey(GetDataID().ID))//¦pªG¦³³o­ÓIDªºª±®a¦ì¸m¼Æ¾Ú
+        if(_data.characterPosDict.ContainsKey(GetDataID().ID))//å¦‚æœæœ‰é€™å€‹IDçš„ç©å®¶ä½ç½®æ•¸æ“š
         {
-            transform.position = _data.characterPosDict[GetDataID().ID];//Åª¨úª±®a¦ì¸m¼Æ¾Ú
-            this.CurrentHealth = _data.flaotSaveDataDict[GetDataID().ID + "health"];//Åª¨úª±®a¦å¶q¼Æ¾Ú
-            this.CurrentPower = _data.flaotSaveDataDict[GetDataID().ID + "power"];//Åª¨úª±®a¯à¶q¼Æ¾Ú
+            transform.position = _data.characterPosDict[GetDataID().ID];//è®€å–ç©å®¶ä½ç½®æ•¸æ“š
+            this.CurrentHealth = _data.flaotSaveDataDict[GetDataID().ID + "health"];//è®€å–ç©å®¶è¡€é‡æ•¸æ“š
+            this.CurrentPower = _data.flaotSaveDataDict[GetDataID().ID + "power"];//è®€å–ç©å®¶èƒ½é‡æ•¸æ“š
 
-            OnHealthChange?.Invoke(this);//Ä²µo¦å¶q§ïÅÜ¨Æ¥ó
+            OnHealthChange?.Invoke(this);//è§¸ç™¼è¡€é‡æ”¹è®Šäº‹ä»¶
         }
     }
 

@@ -6,6 +6,9 @@ using UnityEngine.UI;
 
 public class VollyBallController : MonoBehaviour
 {
+    [Header("事件廣播")]
+    public VoidEventSO unlockSkillEvent; // 解鎖技能事件
+
     [Header("球速設定")]
     public float speed = 400f;
     public float speedIncrease = 1.05f;
@@ -24,6 +27,7 @@ public class VollyBallController : MonoBehaviour
     public int winningScore;
     public GameObject startPromptText; // 提示 "按任意鍵開始"
     public GameObject winTextPanel; // 顯示勝利 UI
+    public GameObject VollyBallGamePanel;
 
     [Header("特效")]
     public GameObject playerScoreEffect;
@@ -87,7 +91,10 @@ public class VollyBallController : MonoBehaviour
             ResetBall();
         }
     }
-
+    public void closePanel()
+    {
+        VollyBallGamePanel.SetActive(false);
+    }
     private void StartGame()
     {
         gameStarted = true;
@@ -154,7 +161,8 @@ public class VollyBallController : MonoBehaviour
         gameOver = true;
         rectTransform.localPosition = Vector3.zero;
 
-        winTextPanel.SetActive(true);   
+        winTextPanel.SetActive(true);
+        unlockSkillEvent.RaiseEvent();
     }
     // ================== 改良碰撞判斷 ==================
     private bool BallHitsPaddle(RectTransform paddle)

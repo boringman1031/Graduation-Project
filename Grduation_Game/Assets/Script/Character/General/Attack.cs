@@ -1,24 +1,26 @@
 /*--------by017--------*/
-/*----------§ðÀ»§P©w--------------*/
+/*----------ï¿½ï¿½ï¿½ï¿½ï¿½Pï¿½w--------------*/
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class Attack : MonoBehaviour
 {
-    public float Damage;   
+    public float Damage;
+    public float attackRange;//ï¿½ï¿½ï¿½ï¿½ï¿½dï¿½ï¿½
+    public float attackRate;//ï¿½ï¿½ï¿½ï¿½ï¿½tï¿½ï¿½
 
-    private void OnTriggerStay2D(Collider2D other)//§ðÀ»§P©w
+    private void OnTriggerStay2D(Collider2D other)//ï¿½ï¿½ï¿½ï¿½ï¿½Pï¿½w
     {       
         //other.GetComponent<CharactorBase>()?.TakeDamage(this);
         CharactorBase target = other.GetComponent<CharactorBase>();
 
-        if (target == null) // ½T«O target ¤£¬° null
+        if (target == null) // ï¿½Tï¿½O target ï¿½ï¿½ï¿½ï¿½ null
         {            
             return;
         }
 
-        target.TakeDamage(this);
+        target.TakeDamage(Damage, transform);
     } 
 }
 

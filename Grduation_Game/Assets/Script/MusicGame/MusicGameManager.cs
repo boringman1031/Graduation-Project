@@ -9,6 +9,7 @@ public class MusicGameManager : MonoBehaviour
     [Header("事件監聽")]
     public VoidEventSO onNoteHit;
     public VoidEventSO onNoteMiss;
+    public VoidEventSO unlockSkillEvent; // 解鎖技能事件
 
     [Header("特效")]
     public GameObject hitEffect;
@@ -26,14 +27,14 @@ public class MusicGameManager : MonoBehaviour
     public float songOffset = 0f; // 音樂開始時間
 
     [Header("音符 Prefab 對應表")]
-    public GameObject notePrefabQ;
-    public GameObject notePrefabW;
-    public GameObject notePrefabE;
+    public GameObject notePrefabZ;
+    public GameObject notePrefabX;
+    public GameObject notePrefabC;
 
     [Header("音符生成點")]
-    public Transform spawnPointQ;
-    public Transform spawnPointW;
-    public Transform spawnPointE;
+    public Transform spawnPointZ;
+    public Transform spawnPointX;
+    public Transform spawnPointC;
 
     [Header("分數系統")]
     public int currentScore = 0;  // 當前分數
@@ -51,9 +52,9 @@ public class MusicGameManager : MonoBehaviour
     public Text Curracy_text;
     public Text Rank_text;
 
-
     private Dictionary<KeyCode, GameObject> notePrefabs;
     private Dictionary<KeyCode, Transform> spawnPoints;
+
 
     [System.Serializable]
     public class NoteData
@@ -69,17 +70,17 @@ public class MusicGameManager : MonoBehaviour
         // 設定音符對應 Prefab
         notePrefabs = new Dictionary<KeyCode, GameObject>()
         {
-            { KeyCode.Q, notePrefabQ },
-            { KeyCode.W, notePrefabW },
-            { KeyCode.E, notePrefabE }
+            { KeyCode.Z, notePrefabZ },
+            { KeyCode.X, notePrefabX },
+            { KeyCode.C, notePrefabC }
         };
 
         // 設定對應的 spawnPoint
         spawnPoints = new Dictionary<KeyCode, Transform>()
         {
-            { KeyCode.Q, spawnPointQ },
-            { KeyCode.W, spawnPointW },
-            { KeyCode.E, spawnPointE }
+            { KeyCode.Z, spawnPointZ },
+            { KeyCode.X, spawnPointX },
+            { KeyCode.C, spawnPointC }
         };       
         LoadBeatMap(currentSongIndex); // 讀取對應的 Beatmap
         StartCoroutine(SpawnNotes());
@@ -157,6 +158,10 @@ public class MusicGameManager : MonoBehaviour
         }
     }
 
+    public void closeScoreBoard()
+    {
+        scoreBoard.SetActive(false);
+    }
     private IEnumerator WaitForLastNote()
     {
         if (beatMap.Count == 0)
@@ -245,5 +250,7 @@ public class MusicGameManager : MonoBehaviour
         Curracy_text.text = $"準確率: {accuracy:F2}%";
         Rank_text.text = $"{rank}";
         //ShowResults(currentScore, maxCombo, accuracy, rank);
+
+        unlockSkillEvent.RaiseEvent();
     }
 }

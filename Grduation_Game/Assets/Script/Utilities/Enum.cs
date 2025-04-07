@@ -1,4 +1,4 @@
-/*-----by017--------*/
+ï»¿/*-----by017--------*/
 public enum EenemyState
 {
     Idle, Patrol, Chase,Attack
@@ -9,9 +9,10 @@ public enum BossState
 }
 public enum SceneName
 {
-    //³õ´ºÃş«¬:¦aÂI,¯S®í,¥²­nÃö¥d,BOSS,¥D­¶­±
+    //å ´æ™¯é¡å‹:åœ°é»,ç‰¹æ®Š,å¿…è¦é—œå¡,BOSS,ä¸»é é¢
     Chap1_Classroom, Chap1_School, Chap1_Cafe, Chap1_Cinema, Chap1_NightMarket,
-    Chap1_Necessary, Chap1_Boss, Identity_89, Identity_Sport, Identity_Music,
+    Chap1_Necessary, Chap1_Boss, Chap2_Boss,
+    Identity_89, Identity_Sport, Identity_Music,
     Identity_Rapper, Identity_Dancer, Menu,Home
 }
 
@@ -27,12 +28,21 @@ public enum PersistentType
 }
 public enum TutorialType
 {
-    None,           // µL±Ğ¾Ç
-    Move,           // ²¾°Ê±Ğ¾Ç
-    Jump,           // ¸õÅD±Ğ¾Ç
-    Attack,         // §ğÀ»±Ğ¾Ç
-    MusicGame,      // ­µ¼Ö¹CÀ¸±Ğ¾Ç
-    TriviaGame,     //°İµª¹CÀ¸±Ğ¾Ç
-    CleanEnemy,      //²M°£¼Ä¤H±Ğ¾Ç
-    Boss
+    None,           // ç„¡æ•™å­¸
+    Move,           // ç§»å‹•æ•™å­¸
+    Jump,           // è·³èºæ•™å­¸
+    Attack,         // æ”»æ“Šæ•™å­¸
+    MusicGame,      // éŸ³æ¨‚éŠæˆ²æ•™å­¸
+    TriviaGame,     // å°è©±éŠæˆ²
+    CleanEnemy,     // æ¸…é™¤æ•µäººæ•™å­¸
+    Boss,           // bossæˆ°æ•™å­¸
+    UnlockSkill,    // è§£é–æŠ€èƒ½æé†’
+    SkillAndClass   //æ›´æ›è·æ¥­æ•™å­¸
+}
+public enum SkillType
+{
+    Q_Skill,
+    W_Skill,
+    E_Skill,
+    R_Ultimate, // å¤§æ‹›ç»‘å®šèŒä¸š
 }

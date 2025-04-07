@@ -8,6 +8,7 @@ public class QuestionManager : MonoBehaviour
 {
     [Header("廣播事件")]
     public VoidEventSO goHomeEvent;
+    public VoidEventSO loadRandomSceneEvent;
 
     [Header("對話資料")]
     public List<QuestionDataSO> dialogueList;
@@ -20,6 +21,7 @@ public class QuestionManager : MonoBehaviour
     public Text affectionText;//好感度文字框
     public GameObject nextButton;
     public Button Button;
+    public GameObject UI; // 對話UI
 
     private int affection = 0;
 
@@ -27,12 +29,23 @@ public class QuestionManager : MonoBehaviour
     {
         dialoguePool = new List<QuestionDataSO>(dialogueList);
         NextRandomQuestion();
-    }        
+    }
+    private void OnEnable()
+    {
+        Button.onClick.AddListener(() =>
+        {
+            loadRandomSceneEvent.OnEventRaised();
+        });
+    }
     private void OnDisable()
     {
         Button.onClick.RemoveAllListeners();
     }
-
+        
+    public void closeUI()
+    {
+        UI.SetActive(false);
+    }
     void NextRandomQuestion()
     {
         if (dialoguePool.Count == 0)
@@ -112,11 +125,7 @@ public class QuestionManager : MonoBehaviour
         }
         else
         {
-            dialogueText.text = "...我還有點事，先走了...(你這個哥布林還是回山洞吧)";
-            Button.onClick.AddListener(() =>
-            {
-                goHomeEvent.OnEventRaised();
-            });
+            dialogueText.text = "...我還有點事，先走了...(你這個哥布林還是回山洞吧)";      
             nextButton.SetActive(true);
         }
         foreach (var btn in optionButtons)

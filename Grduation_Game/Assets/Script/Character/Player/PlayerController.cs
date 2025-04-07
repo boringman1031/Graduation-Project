@@ -1,4 +1,5 @@
-/*------------------by 017-----------------------*/
+ï»¿/*------------------by 017-----------------------*/
+using CartoonFX;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -9,64 +10,91 @@ using UnityEngine.InputSystem.Processors;
 
 public class PlayerController : MonoBehaviour
 {
-    [Header("¼s¼½¨Æ¥ó")]
-    public CameraShakeEventSO cameraShakeEvent;//Äá¼v¾÷¾_°Ê¨Æ¥ó
+    [Header("å»£æ’­äº‹ä»¶")]
+    public CameraShakeEventSO cameraShakeEvent; // æ”å½±æ©Ÿéœ‡å‹•äº‹ä»¶
 
-    [Header("¨Æ¥óºÊÅ¥")]
-    public SceneLoadEventSO SceneloadEvent;//³õ´º¥[¸ü¨Æ¥ó
+    [Header("äº‹ä»¶ç›£è½")]
+    public SceneLoadEventSO SceneloadEvent;
     public VoidEventSO afterSceneLoadEvent;
     public VoidEventSO loadDataEvent;
     public VoidEventSO backToMenuEvent;
 
-    public PlayerInput playerInput;
-    public Vector2 inputDirection;
+    public PlayerInput playerInput; // è¼¸å…¥ç³»çµ±
+
+    public Vector2 inputDirection; // ç§»å‹•æ–¹å‘
     private Rigidbody2D rb;
     private PhysicsCheck physicsCheck;
     private PlayerAnimation playerAnimation;
+    private Animator animator;
 
-    [Header("ª±®aª«²z¼Æ­È")]
+    [Header("ç©å®¶ç‰©ç†æ•¸å€¼")]
+    public PlayerStats playerStats;
     public float Speed = 10f;
     public float jampforce = 16.5f;
-    public float Hurtforce;//ª±®a¨ü¨ì¶Ë®`À»°h¤O
+    public float Hurtforce; // è¢«æ“Šé€€åŠ›é“
 
-    [Header("¯S®Ä")]
-    public GameObject attackEffectPrefab;//§ğÀ»¯S®Ä
-    public GameObject DeadEffectPrefab;//¦º¤`¯S®Ä
-    public GameObject HurtEffectPrefab;//¨ü¶Ë¯S®Ä
-    public Transform attackEffectPos;//§ğÀ»¯S®Ä¥Í¦¨¦ì¸m
+    [Header("ç‰¹æ•ˆ")]
+    public GameObject attackEffectPrefab;
+    public GameObject DeadEffectPrefab;
+    public GameObject HurtEffectPrefab;
+    public Transform attackEffectPos;
+    public GameObject comboTextPrefab; // æŒ‡å‘ ComboText çš„é è£½é«”
+    public Transform comboTextSpawnPoint; // Combo æ–‡å­—ç”Ÿæˆçš„ä½ç½®
+    private int comboCount = 0; // ç›®å‰ Combo æ•¸
+    private float lastComboTime = 0f;
+    public float comboResetTime = 2f; // é€£æ“Šé‡ç½®æ™‚é–“ï¼ˆç§’ï¼‰
 
+    [Header("ç©å®¶ç‹€æ…‹")]
+    public bool ishurt;
+    public bool isDead;
+    public bool isAttack;
 
-    [Header("ª±®aª¬ºA")]
-    public bool ishurt;//¬O§_¨ü¶Ë
-    public bool isDead;//¬O§_¦º¤`
-    public bool isAttack;//¬O§_§ğÀ»
+    public SkillCooldownUI[] skillCooldownUIs; // æŠ€èƒ½å†·å» UI é™£åˆ—ï¼ˆQWERï¼‰
+    public SkillData activeSkillData; // ç•¶å‰å‹•ç•«äº‹ä»¶å³å°‡è§¸ç™¼çš„æŠ€èƒ½
+    public Transform effectSpawnPoint; // æŠ€èƒ½ç‰¹æ•ˆç”Ÿæˆä½ç½®
+    private float[] skillLastUsedTime; // ä¸Šæ¬¡ä½¿ç”¨æŠ€èƒ½çš„æ™‚é–“ï¼Œç”¨ä¾†æ§åˆ¶å†·å»
 
     private void Awake()
     {
+        // å–å¾—çµ„ä»¶
         rb = GetComponent<Rigidbody2D>();
         physicsCheck = GetComponent<PhysicsCheck>();
         playerAnimation = GetComponent<PlayerAnimation>();
+        animator = GetComponent<Animator>();
+        playerStats = GetComponent<PlayerStats>();
 
+        // å»ºç«‹è¼¸å…¥å°è±¡
         playerInput = new PlayerInput();
-        //¸õÅD¨Æ¥ó
-        playerInput.GamePlay.Jump.started += Player_Jump;
-        //§ğÀ»¨Æ¥ó
-        playerInput.GamePlay.Attack.started += Player_Attack;
-       
 
+        // è¨»å†Šè¼¸å…¥äº‹ä»¶
+        playerInput.GamePlay.Jump.started += Player_Jump;
+        playerInput.GamePlay.Attack.started += Player_Attack;
+        playerInput.GamePlay.SkillQ.started += ctx => ActivateSkill(0);
+        playerInput.GamePlay.SkillW.started += ctx => ActivateSkill(1);
+        playerInput.GamePlay.SkillE.started += ctx => ActivateSkill(2);
+        playerInput.GamePlay.SkillR.started += ctx => ActivateSkill(3);
+
+        // åˆå§‹åŒ–æŠ€èƒ½å†·å»æ™‚é–“ç‚ºå¯ç«‹å³ä½¿ç”¨
+        skillLastUsedTime = new float[4];
+        for (int i = 0; i < skillLastUsedTime.Length; i++)
+        {
+            skillLastUsedTime[i] = -10f;
+        }
     }
 
     private void OnEnable()
-    {      
-        SceneloadEvent.LoadRequestEvent += OnLoadEvent;//³õ´º¥[¸ü®É°±¤îª±®a±±¨î
-        afterSceneLoadEvent.OnEventRaised += OnAfterSceneLoadEvent;//³õ´º¥[¸ü§¹¦¨¶}°_ª±®a±±¨î
-        loadDataEvent.OnEventRaised += OnLoadDataEvent;//Åª¨ú¹CÀ¸¶i«×¨Æ¥ó
-        backToMenuEvent.OnEventRaised += OnLoadDataEvent;//ªğ¦^¥D¿ï³æ¨Æ¥ó
+    {
+        // è¨‚é–±å ´æ™¯äº‹ä»¶
+        SceneloadEvent.LoadRequestEvent += OnLoadEvent;
+        afterSceneLoadEvent.OnEventRaised += OnAfterSceneLoadEvent;
+        loadDataEvent.OnEventRaised += OnLoadDataEvent;
+        backToMenuEvent.OnEventRaised += OnLoadDataEvent;
     }
 
     private void OnDisable()
     {
         playerInput.Disable();
+        // å–æ¶ˆè¨‚é–±äº‹ä»¶
         SceneloadEvent.LoadRequestEvent -= OnLoadEvent;
         afterSceneLoadEvent.OnEventRaised -= OnAfterSceneLoadEvent;
         loadDataEvent.OnEventRaised -= OnLoadDataEvent;
@@ -75,33 +103,121 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
+        // æ›´æ–°ç§»å‹•è¼¸å…¥å€¼
         inputDirection = playerInput.GamePlay.Move.ReadValue<Vector2>();
-    } 
 
+        // Combo å€’æ•¸è¨ˆæ™‚
+        if (comboCount > 0 && Time.time - lastComboTime > comboResetTime)
+        {
+            comboCount = 0;
+        }
+
+        // é¡å¤–æ”¯æ´éµç›¤å¿«æ·æ¸¬è©¦
+        if (Input.GetKeyDown(KeyCode.Q)) UseSkillByIndex(0);
+        if (Input.GetKeyDown(KeyCode.W)) UseSkillByIndex(1);
+        if (Input.GetKeyDown(KeyCode.E)) UseSkillByIndex(2);
+        if (Input.GetKeyDown(KeyCode.R)) UseSkillByIndex(3);
+    }
+    // âœ… ç•¶è·æ¥­è¢«åˆ‡æ›æ™‚ï¼Œæ›´æ–°å¤§æ‹›æŠ€èƒ½
+    private void OnGUI()
+    {
+        //GUI.Label(new Rect(10, 10, 400, 20), $"Q: {SkillManager.Instance.equippedSkills[0]?.skillName}");
+        //GUI.Label(new Rect(10, 30, 400, 20), $"W: {SkillManager.Instance.equippedSkills[1]?.skillName}");
+        //GUI.Label(new Rect(10, 50, 400, 20), $"E: {SkillManager.Instance.equippedSkills[2]?.skillName}");
+        //GUI.Label(new Rect(10, 70, 400, 20), $"R: {SkillManager.Instance.selectedClass?.ultimateSkill?.skillName}");
+        //GUI.Label(new Rect(10, 100, 500, 20), $"ActiveSkillData: {activeSkillData?.skillName}");
+    }
+
+    public void UpdateUltimateSkill()
+    {
+        activeSkillData = SkillManager.Instance.selectedClass?.ultimateSkill;
+        Debug.Log("Ultimate skill å·²æ›´æ–°: " + activeSkillData?.skillName);
+    }
     private void FixedUpdate()
     {
         if (!ishurt && !isAttack)
             Player_Move();
     }
 
-    private void OnLoadEvent(GameSceneSO sO, Vector3 vector, bool arg3)//³õ´º¥[¸ü®É°±¤îª±®a±±¨î
+    // æ’­æ”¾æŠ€èƒ½å‹•ç•«ï¼ˆå‹•ç•«è§¸ç™¼ OnSkillEffectTriggerï¼‰
+    void UseSkillByIndex(int index)
     {
-        playerInput.GamePlay.Disable();          
+        SkillData skill = index == 3 ? SkillManager.Instance.selectedClass?.ultimateSkill : SkillManager.Instance.equippedSkills[index];
+        if (skill == null) return;
+
+        activeSkillData = skill;
+        //animator.Play("Skill" + index);
     }
-    private void OnLoadDataEvent()//Åª¨ú¹CÀ¸¶i«×¨Æ¥ó
+
+    // å˜—è©¦ç™¼å‹•æŠ€èƒ½ï¼šåˆ¤æ–·å†·å»èˆ‡æ˜¯å¦è§£é–
+    void ActivateSkill(int index)
+    {
+        SkillData skill = index == 3 ? SkillManager.Instance.selectedClass?.ultimateSkill : SkillManager.Instance.equippedSkills[index];
+
+        if (skill != null && skill.isUnlocked)
+        {
+            if (Time.time - skillLastUsedTime[index] >= skill.cooldownTime)
+            {
+                skillCooldownUIs[index]?.StartCooldown(skill.cooldownTime);
+                skillLastUsedTime[index] = Time.time;
+
+                activeSkillData = skill;
+                animator.SetTrigger(skill.skillName);
+            }
+            else
+            {
+                float remaining = skill.cooldownTime - (Time.time - skillLastUsedTime[index]);
+                Debug.Log($"Skill {index} å†·å»ä¸­ï¼Œé‚„æœ‰ {remaining:F1} ç§’");
+            }
+        }
+        else
+        {
+            Debug.Log($"Skill {index} æœªè§£é–æˆ–æœªè¨­å®š");
+        }
+    }
+
+    // æŠ€èƒ½å‹•ç•«äº‹ä»¶è§¸ç™¼ï¼šç”ŸæˆæŠ€èƒ½ç‰¹æ•ˆ
+    public void OnSkillEffectTrigger()
+    {
+        if (activeSkillData != null && activeSkillData.skillPrefab != null)
+        {
+            Transform parentTransform = activeSkillData.isFollowPlayer ? this.transform : null;
+            GameObject skillInstance = Instantiate(activeSkillData.skillPrefab, transform.position, Quaternion.identity, parentTransform);
+
+            ISkillEffect skillScript = skillInstance.GetComponent<ISkillEffect>();
+            if (skillScript != null)
+            {
+                skillScript.SetOrigin(this.transform);
+            }
+        }
+        else
+        {
+            Debug.LogWarning("OnSkillEffectTrigger: activeSkillData æˆ– skillPrefab æœªè¨­å®š");
+        }
+    }
+
+    // å ´æ™¯è¼‰å…¥æ™‚ç¦æ­¢æ§åˆ¶
+    private void OnLoadEvent(GameSceneSO sO, Vector3 vector, bool arg3)
+    {
+        playerInput.GamePlay.Disable();
+    }
+
+    private void OnLoadDataEvent()
     {
         isDead = false;
     }
 
-    private void OnAfterSceneLoadEvent()//³õ´º¥[¸ü§¹¦¨¶}°_ª±®a±±¨î
+    private void OnAfterSceneLoadEvent()
     {
-        playerInput.GamePlay.Enable();     
+        playerInput.GamePlay.Enable();
     }
-    public void Player_Move()
-    {       
-        rb.velocity = new Vector2(inputDirection.x * Speed * Time.deltaTime, rb.velocity.y);
 
-        //¤Hª«Â½Âà
+    // ç©å®¶ç§»å‹•é‚è¼¯
+    public void Player_Move()
+    {
+        float currentSpeed = playerStats != null ? playerStats.speed : Speed;
+        rb.velocity = new Vector2(inputDirection.x * currentSpeed, rb.velocity.y);
+
         int faceDir = (int)transform.localScale.x;
         if (inputDirection.x > 0)
             faceDir = -1;
@@ -110,8 +226,20 @@ public class PlayerController : MonoBehaviour
         transform.localScale = new Vector3(faceDir, 1, 1);
     }
 
+    // é€Ÿåº¦å¢ç›Šï¼ˆå¦‚æŠ€èƒ½åŠ é€Ÿï¼‰
+    public void ApplySpeedBoost(float boost, float duration)
+    {
+        StartCoroutine(SpeedBoostRoutine(boost, duration));
+    }
 
+    private IEnumerator SpeedBoostRoutine(float boost, float duration)
+    {
+        playerStats.speed += boost;
+        yield return new WaitForSeconds(duration);
+        playerStats.speed -= boost;
+    }
 
+    // è·³èºé‚è¼¯
     public void Player_Jump(InputAction.CallbackContext obj)
     {
         if (physicsCheck.isGround)
@@ -121,47 +249,72 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    // æ”»æ“Šäº‹ä»¶
     public void Player_Attack(InputAction.CallbackContext obj)
     {
         if (!physicsCheck.isGround)
             return;
-        playerAnimation.OnPlayerAttack();    
-        isAttack = true;    
+        playerAnimation.OnPlayerAttack();
+        isAttack = true;     
     }
 
-    public void CameraShake()//Äá¼v¾÷¾_°Ê
+    private void ShowComboText(int count)
+    {
+        if (comboTextPrefab == null || comboTextSpawnPoint == null) return;
+
+        var go = Instantiate(comboTextPrefab, comboTextSpawnPoint.position, Quaternion.identity);
+        var particleText = go.GetComponent<CFXR_ParticleText>();
+
+        string text = count == 1 ? "Hit!" : $"Combo x{count}";
+        Color color1 = Color.yellow;
+        Color color2 = count >= 5 ? Color.red : Color.white;
+
+        particleText.UpdateText(
+            newText: text,
+            newSize: 1f + count * 0.1f,
+            newColor1: color1,
+            newColor2: color2,
+            newLifetimeMultiplier: 1f
+        );
+
+        Destroy(go, 2f); // è‡ªå‹•éŠ·æ¯€
+    }
+
+    // æ”å½±æ©Ÿéœ‡å‹•
+    public void CameraShake()
     {
         cameraShakeEvent.OnEventRaised(0.5f, 1f, 0.15f);
     }
-
-    public void Player_HurtEffect()//ª±®a¨ü¶Ë
-    {
-        Instantiate(HurtEffectPrefab, transform.position, Quaternion.identity);
-    }
-
-    public void Player_AttackEffect()//§ğÀ»¯S®Ä¥Í¦¨
-    {
+  
+    // ç‰¹æ•ˆç”Ÿæˆæ–¹æ³•
+    public void Player_HurtEffect() => Instantiate(HurtEffectPrefab, transform.position, Quaternion.identity);
+    public void Player_AttackEffect() 
+    { 
         Instantiate(attackEffectPrefab, attackEffectPos.position, Quaternion.identity);
+        comboCount++;
+        lastComboTime = Time.time;
+        ShowComboText(comboCount);
     }
+    public void Player_DeadEffect() => Instantiate(DeadEffectPrefab, transform.position, Quaternion.identity);
 
-    public void Player_DeadEffect()//¦º¤`¯S®Ä¥Í¦¨
-    {
-        Instantiate(DeadEffectPrefab, transform.position, Quaternion.identity);
-    }
-    #region  ¥H¤U¬°¦bUnityEvent¤¤°õ¦æ³¡¤À
-    public void Player_GetHurt(Transform _attacker)//¨ü¶ËÀ»­¸
+    #region UnityEvents
+
+    // ç©å®¶å—å‚·ï¼šæ“Šé€€ä¸¦æ¨™è¨˜å—å‚·ç‹€æ…‹
+    public void Player_GetHurt(Transform _attacker)
     {
         ishurt = true;
         rb.velocity = Vector2.zero;
         Vector2 die = new Vector2((transform.position.x - _attacker.position.x), 0).normalized;
-
-        rb.AddForce(die * Hurtforce, ForceMode2D.Impulse);      
+        rb.AddForce(die * Hurtforce, ForceMode2D.Impulse);
     }
 
+    // ç©å®¶æ­»äº¡ï¼šç¦ç”¨è¼¸å…¥
     public void Player_Dead()
     {
         isDead = true;
-        playerInput.GamePlay.Disable();
+        //playerInput.GamePlay.Disable(); 
+        FindObjectOfType<SceneLoader>().challengeCount = 0;
     }
+
     #endregion
 }
