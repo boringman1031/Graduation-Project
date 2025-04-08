@@ -126,7 +126,7 @@ public class Chap1_Boss : BossBase
     {
        base.OnBossShow();
        DialogManager.Instance.StartDialog("Boss_Show");
-       isTalk = true;
+        isTalk = true;
        audioDefination.PlayAudioClip();
     }
   

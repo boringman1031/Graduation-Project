@@ -41,7 +41,8 @@ public class Chap2_Boss : BossBase
             // 延遲後生成攻擊特效
             StartCoroutine(SpawnAttackEffectWithDelay(spawnPosition, 1.0f));
         }
-     
+        Debug.Log("攻擊特效1");
+
     }
     private IEnumerator SpawnAttackEffectWithDelay(Vector3 position, float delay)
     {
@@ -101,6 +102,7 @@ public class Chap2_Boss : BossBase
     {
         base.OnBossShow();
         DialogManager.Instance.StartDialog("Boss2_Show");
+        Debug.Log("Boss2_Show");
         isTalk = true;
         audioDefination.PlayAudioClip();
     }
