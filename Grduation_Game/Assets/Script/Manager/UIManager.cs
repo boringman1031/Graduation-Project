@@ -42,7 +42,7 @@ public class UIManager : MonoBehaviour
     public Button GoToLobbyButton;//回到大廳按鈕
     public Button GameInfoButton;//開啟遊戲資訊按鈕
     public Button closeGameInfoButton;//關閉遊戲資訊按鈕
-    public Button ExitGameInfoButton;//退出遊戲資訊按鈕
+    public Button ExitGameButton;//退出遊戲資訊按鈕
     public Button RandomChallengeButton1;//隨機挑戰1按鈕
     public Button RandomChallengeButton2;
     public Button RandomChallengeButton3;
@@ -61,7 +61,7 @@ public class UIManager : MonoBehaviour
     {
         GameInfoButton.onClick.AddListener(ToggleGameInfoPanel);//開啟設定
         closeGameInfoButton.onClick.AddListener(ToggleClsoeGameInfoPanel);//關閉設定
-        ExitGameInfoButton.onClick.AddListener(ToggleExitGameEvent);//退出遊戲
+        ExitGameButton.onClick.AddListener(ToggleExitGameEvent);//退出遊戲
         GoHomeButton.onClick.AddListener(ToggleGoHomeEvent);//回家按鈕
 
         RandomChallengeButton1.onClick.AddListener(() => ChooseScene(0));
