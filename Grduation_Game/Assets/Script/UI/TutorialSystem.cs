@@ -262,20 +262,55 @@ public class TutorialSystem : MonoBehaviour
 
         currentTutorialType = TutorialType.UnlockSkill;
 
+        // 若有解鎖職業
         if (!string.IsNullOrEmpty(className))
         {
             SkillManager.Instance.UnlockClass(className);
-            SkillManager.Instance.UnlockSkill(skillName);
-            ShowTutorial($"你解鎖了新職業：{className}\n下次回到家可以裝備看看！", 3f);
+
+            // 嘗試找出這個職業
+            ClassData unlockedClass = SkillManager.Instance.allClasses.Find(c => c.className == className);
+            if (unlockedClass != null)
+            {
+                // 切換成新職業
+                SkillManager.Instance.selectedClass = unlockedClass;
+
+                // ✅ 自動裝備 ultimateSkill 到 R 鍵
+                if (unlockedClass.ultimateSkill != null && unlockedClass.ultimateSkill.isUnlocked)
+                {
+                    SkillManager.Instance.EquipSkill(unlockedClass.ultimateSkill, 3);
+                }
+            }
+
+            // ✅ 顯示提示
+            ShowTutorial($"你解鎖了新職業：{className}\n大招已自動裝備！", 3f);
         }
-        else if (!string.IsNullOrEmpty(skillName))
+
+        // 若有解鎖一般技能
+        if (!string.IsNullOrEmpty(skillName))
         {
             SkillManager.Instance.UnlockSkill(skillName);
-            ShowTutorial($"你解鎖了新技能：{skillName}\n下次回到家可以裝備看看！", 3f);
+
+            // 嘗試找出這個技能
+            SkillData unlockedSkill = SkillManager.Instance.allSkills.Find(s => s.skillName == skillName);
+            if (unlockedSkill != null)
+            {
+                // ✅ 自動裝到 Q/W/E 任一個空位
+                for (int i = 0; i < 3; i++)
+                {
+                    if (SkillManager.Instance.equippedSkills[i] == null)
+                    {
+                        SkillManager.Instance.EquipSkill(unlockedSkill, i);
+                        break;
+                    }
+                }
+            }
+
+            ShowTutorial($"你解鎖了新技能：{skillName}\n已自動裝備在快捷鍵！", 3f);
         }
-        else
-        {
-            Debug.LogWarning("⚠️ 此場景沒有設定 skillToUnlock");
-        }
+
+        // ✅ 更新技能 UI 和玩家大招資料
+        FindObjectOfType<PlayerController>()?.UpdateUltimateSkill();
+        FindObjectOfType<SkillUIController>()?.RefreshSkillIcons();
     }
+
 }

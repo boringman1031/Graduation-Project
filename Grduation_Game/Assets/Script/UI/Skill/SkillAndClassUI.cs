@@ -71,7 +71,6 @@ public class SkillAndClassUI : MonoBehaviour
         }
     }
 
-
     void OnSkillSelected(SkillData skill)
     {
         // 如果已經裝備了，就取消裝備
