@@ -171,7 +171,7 @@ Rigidbody2D:
     m_Bits: 0
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 4
 --- !u!61 &3829764003224162669
 BoxCollider2D:
@@ -252,10 +252,14 @@ MonoBehaviour:
   CurrentHealth: 0
   CurrentPower: 0
   healthRegenAmount: 0
+  powerRegenAmount: 0
   healthRegenInterval: 0
   SuperArmourTime: 0
   SuperArmour: 0
   OnHealthChange:
+    m_PersistentCalls:
+      m_Calls: []
+  OnPowerChange:
     m_PersistentCalls:
       m_Calls: []
   OnTakeDamage:
