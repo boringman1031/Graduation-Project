@@ -63,11 +63,14 @@ public class SkillAndClassUI : MonoBehaviour
 
         foreach (var cls in SkillManager.Instance.allClasses)
         {
+            if (!cls.isUnlocked) continue; // ✅ 加上這行只顯示已解鎖的職業
+
             var go = Instantiate(classItemPrefab, classListParent);
             bool isSelected = SkillManager.Instance.selectedClass == cls;
             go.GetComponent<ClassUIItem>().Setup(cls, OnClassSelected, isSelected);
         }
     }
+
 
     void OnSkillSelected(SkillData skill)
     {
