@@ -1,148 +1,122 @@
-using System.Collections;
+ï»¿using System.Collections;
 using UnityEngine;
 
 public class Skill_NightRush : MonoBehaviour, ISkillEffect
 {
-    [Header("§Ş¯à°Ñ¼Æ")]
-    public float dashSpeed = 2f;         // ½Ä¨ë³t«×
-    public float duration = 2f;          // ½Ä¨ë«ùÄò®É¶¡
-    public float damage = 10f;           // ªu³~¹ï¼Ä¤Hªº¶Ë®`
-    public float energyCost = 10f;       // ®ø¯Ó¯à¶q
+    [Header("æŠ€èƒ½åƒæ•¸")]
+    public float dashSpeed = 8f;
+    public float duration = 1f;
+    public float damage = 10f;
+    public float energyCost = 10f;
 
-    [Header("­µ®Ä³]©w")]
-    public AudioClip spawnSound;         // ¥Í¦¨­µ®Ä
-    public AudioClip hitSound;           // ¼²À»­µ®Ä
+    [Header("éŸ³æ•ˆè¨­å®š")]
+    public AudioClip spawnSound;
+    public AudioClip hitSound;
 
-    private Transform origin;            // Ä²µo§Ş¯àªºª±®a Transform
-    private Rigidbody2D rb;              // MountPoint ªº­èÅé
-    private Rigidbody2D playerRb;        // ª±®a¦Û¤vªº Rigidbody2D
-    private float dashDirection;         // ¥Î¨Ó°O¿ıª±®a­ì©l­±¦V¡G¥¿¼Æ¦V¥k¡A­t¼Æ¦V¥ª
+    [Header("æ›è¼‰ä½ç½®è¨­å®š")]
+    public Transform playerMountPoint;
 
     public CharacterEventSO powerChangeEvent;
-    void costPower(CharactorBase _Charater) //¦©°£¯à¶q
+
+    private Transform origin;
+    private Rigidbody2D rb;
+    private Rigidbody2D playerRb;
+    private FixedJoint2D joint;
+    private float dashDirection;
+    private bool hasHit = false;
+
+    void costPower(CharactorBase character)
     {
-        _Charater.AddPower(-energyCost);
-        powerChangeEvent.OnEventRaised(_Charater);
-    }
-    public void SetPlayerAnimator(Animator animator)
-    {
-        // ¥i¨Ì»İ¨D¹ê§@
+        character.AddPower(-energyCost);
+        powerChangeEvent.OnEventRaised(character);
     }
 
-    // ¦¹¤èªk·|¥Ñª±®a§Ş¯à°Êµe¨Æ¥ó©I¥s
+    public void SetPlayerAnimator(Animator animator) { }
+
     public void SetOrigin(Transform originTransform)
     {
         origin = originTransform;
 
-        // ¹Á¸Õ¨ú±oª±®aªº CharactorBase
         CharactorBase character = origin.GetComponent<CharactorBase>();
-        if (character == null)
+        if (character == null || character.CurrentPower < energyCost)
         {
-            Debug.LogWarning("¬I©ñªÌ¯Ê¤Ö CharactorBase ¤¸¥ó¡AµLªk¬I©ñ§Ş¯à¡C");
+            Debug.Log("èƒ½é‡ä¸è¶³æˆ–è§’è‰²ç¼ºå¤±");
             Destroy(gameObject);
             return;
         }
 
-        // ÀË¬d¯à¶q¬O§_¨¬°÷
-        if (character.CurrentPower < energyCost)
-        {
-            Debug.Log("¯à¶q¤£¨¬¡AµLªk¬I©ñ§Ş¯à");
-            Destroy(gameObject);
-            return;
-        }
-
-        // ¦©°£¯à¶q
         costPower(character);
 
-        // ¼½©ñ¥Í¦¨­µ®Ä
         if (spawnSound != null)
-        {
             AudioSource.PlayClipAtPoint(spawnSound, origin.position);
-        }
 
-        // ³]©w MountPoint ¦ì¸m»P±ÛÂà
         transform.position = origin.position;
-        transform.rotation = origin.rotation;
 
-        // ¨ú±o©Î¥[¤J Rigidbody2D¡A½T«O MountPoint ¬°°ÊºA
         rb = GetComponent<Rigidbody2D>();
         if (rb == null)
-        {
             rb = gameObject.AddComponent<Rigidbody2D>();
-        }
-        rb.isKinematic = false;
 
-        // ¸T¥Îª±®a²¾°Ê±±¨î¤Îª±®a Rigidbody2D ª«²z¹Bºâ
-        //PlayerController playerCtrl = origin.GetComponent<PlayerController>();
-        //if (playerCtrl != null)
-        //{
-        //    playerCtrl.enabled = false;
-        //}
+        rb.gravityScale = 0;
+        rb.constraints = RigidbodyConstraints2D.FreezeRotation;
+
         playerRb = origin.GetComponent<Rigidbody2D>();
-        if (playerRb != null)
+
+        // âœ… è¨­å®šç§»å‹•æ–¹å‘ & ç¿»è½‰åœ–åƒï¼ˆæ ¹æ“šä½ å‰é¢å®šç¾©çš„éœ€æ±‚ï¼‰
+        if (origin.localScale.x < 0) // é¢å·¦
         {
-            playerRb.isKinematic = true;
+            dashDirection = 1f;
+            transform.localScale = new Vector3(-1, 1, 1);
+        }
+        else // é¢å³
+        {
+            dashDirection = -1f;
+            transform.localScale = new Vector3(1, 1, 1);
         }
 
-        // ¨ú±o­ì©lª±®a­±¦V (¥¼¨ü reparent ¼vÅT)
-        dashDirection = (originTransform.localScale.x > 0 ? -1f : 1f);
-        Debug.Log("dashDirection: " + dashDirection);
+        // âœ… åŠ ä¸Š Jointï¼Œè®“ player è·Ÿè‘—èµ°ï¼ˆä¸å†ç›´æ¥æ§åˆ¶ positionï¼‰
+        joint = gameObject.AddComponent<FixedJoint2D>();
+        joint.connectedBody = playerRb;
+        joint.enableCollision = false;
 
-        // ®Ú¾Ú dashDirection Â½Âà MountPoint
-        transform.localScale = new Vector3(-dashDirection, 1, 1);
-
-        // ±Nª±®a reparent ¨ì MountPoint ¤U¡A«O¯d¥@¬É¦ì«º
-        origin.SetParent(transform, true);
-
-        // ±Ò°Ê½Ä¨ë¨óµ{¡A¨Ï¥Î dashDirection ¨Ó³]©w³t«×
         StartCoroutine(DashRoutine());
     }
 
     private IEnumerator DashRoutine()
     {
-        if (rb != null)
-        {
-            rb.velocity = new Vector2(dashSpeed * dashDirection, 0f);
-        }
-
         float elapsed = 0f;
+
         while (elapsed < duration)
         {
-            elapsed += Time.deltaTime;
-            yield return null;
+            rb.MovePosition(rb.position + new Vector2(dashSpeed * dashDirection * Time.fixedDeltaTime, 0));
+
+            if (origin != null && playerMountPoint != null)
+            {
+                origin.position = playerMountPoint.position;
+            }
+
+            elapsed += Time.fixedDeltaTime;
+            yield return new WaitForFixedUpdate();
         }
 
-        if (rb != null)
-        {
-            rb.velocity = Vector2.zero;
-        }
-
-        // ¸Ñ°£ª±®a»P MountPoint ªº¤÷¤lÃö«Y
-        origin.SetParent(null);
-
-        // «ì´_ª±®aªº Rigidbody2D ª«²z¹Bºâ»P²¾°Ê±±¨î
         if (playerRb != null)
-        {
             playerRb.isKinematic = false;
-        }
-        //PlayerController playerCtrl = origin.GetComponent<PlayerController>();
-        //if (playerCtrl != null)
-        //{
-        //    playerCtrl.enabled = true;
-        //}
+
+        if (joint != null)
+            Destroy(joint);
 
         Destroy(gameObject);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        if (hasHit) return;
+
         CharactorBase target = collision.GetComponent<CharactorBase>();
         if (target != null && !target.CompareTag("Player"))
         {
+            hasHit = true;
             if (hitSound != null)
-            {
                 AudioSource.PlayClipAtPoint(hitSound, collision.transform.position);
-            }
 
             target.TakeDamage(damage, transform);
         }
