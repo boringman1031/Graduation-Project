@@ -24,7 +24,7 @@ public class QuestionManager : MonoBehaviour
     public GameObject UI; // 對話UI
 
     private int affection = 0;
-
+    public VoidEventSO unlockSkillEvent;
     void Start()
     {
         dialoguePool = new List<QuestionDataSO>(dialogueList);
@@ -41,7 +41,7 @@ public class QuestionManager : MonoBehaviour
     {
         Button.onClick.RemoveAllListeners();
     }
-        
+     
     public void closeUI()
     {
         UI.SetActive(false);
@@ -118,6 +118,7 @@ public class QuestionManager : MonoBehaviour
 
     void EndDialogue()
     {
+        unlockSkillEvent.RaiseEvent();
         if (affection >= 40)
         {
             dialogueText.text = "今天聊得很開心，下次再一起來吧！不過，如果有機會，我更想找個更浪漫的地方，只和你一起。";
