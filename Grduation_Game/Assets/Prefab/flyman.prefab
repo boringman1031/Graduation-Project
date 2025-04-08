@@ -547,10 +547,14 @@ MonoBehaviour:
   CurrentHealth: 0
   CurrentPower: 0
   healthRegenAmount: 0
+  powerRegenAmount: 0
   healthRegenInterval: 0
   SuperArmourTime: 0
   SuperArmour: 0
   OnHealthChange:
+    m_PersistentCalls:
+      m_Calls: []
+  OnPowerChange:
     m_PersistentCalls:
       m_Calls: []
   OnTakeDamage:
@@ -605,7 +609,7 @@ MonoBehaviour:
   faceDir: {x: 0, y: 0, z: 0}
   attacker: {fileID: 0}
   HitForce: 5
-  attackRange: 5
+  attackRange: 2
   attackCooldown: 1
   centerOffset: {x: -1.96, y: 0}
   checkSize: {x: 1, y: 1}
