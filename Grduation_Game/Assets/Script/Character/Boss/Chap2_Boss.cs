@@ -4,11 +4,10 @@ using UnityEngine;
 using UnityEngine.AddressableAssets;
 using UnityEngine.ResourceManagement.AsyncOperations;
 
-public class Chap1_Boss : BossBase
+public class Chap2_Boss : BossBase
 {
-
     [Header("小怪預製體")]
-    public string MinionPrefab="Goblin"; //暫時使用Goblin代替小怪
+    public string MinionPrefab = "Goblin"; //暫時使用Goblin代替小怪
     public string HeartMinionPrefab = "Heart"; //暫時使用Heart代替愛心小怪
 
     [Header("特效")]
@@ -29,7 +28,7 @@ public class Chap1_Boss : BossBase
         attackState = new BossAttackState();
         summonState = new BossSummonState();
         summonHeartState = new BossSummonHeartState();
-    }   
+    }
     public void OnAttackEffect()//在動畫某階段生成攻擊特效
     {
 
@@ -42,39 +41,16 @@ public class Chap1_Boss : BossBase
             // 延遲後生成攻擊特效
             StartCoroutine(SpawnAttackEffectWithDelay(spawnPosition, 1.0f));
         }
+        Debug.Log("攻擊特效1");
 
-        /*else
-        {
-            Debug.Log("攻擊特效2");
-            int effectCount = 5; // 控制特效的數量
-            float spacing = 5f; // 控制特效之間的間距
-
-            for (int i = 0; i < effectCount; i++)
-            {
-                Vector3 spawnPosition = attackEffectSpawnPoint.position + new Vector3(i * spacing, 0, 0);
-                SpawnExplsionDelay(spawnPosition, 1.0f);
-            }
-
-            for (int i = 0; i < effectCount; i++)
-            {
-                Vector3 spawnPosition = attackEffectSpawnPoint.position + new Vector3(i * -spacing, 0, 0);
-                SpawnExplsionDelay(spawnPosition, 1.0f);
-            }
-
-        }*/
     }
     private IEnumerator SpawnAttackEffectWithDelay(Vector3 position, float delay)
     {
         yield return new WaitForSeconds(delay); // 等待 delay 秒
-        Instantiate(attackEffectPrefab1, position, Quaternion.identity);     
+        Instantiate(attackEffectPrefab1, position, Quaternion.identity);
     }
 
-    /*private IEnumerator SpawnExplsionDelay(Vector3 position, float delay)
-    {
-        yield return new WaitForSeconds(delay); // 等待 delay 秒
-        Instantiate(attackEffectPrefab2, position, Quaternion.identity);
-    }*/
-
+  
     public override void OnSummon()
     {
         base.OnSummon();
@@ -95,7 +71,7 @@ public class Chap1_Boss : BossBase
     {
         if (obj.Status == AsyncOperationStatus.Succeeded)
         {
-            obj.Result.tag = "Enemy";       
+            obj.Result.tag = "Enemy";
         }
         else
         {
@@ -107,14 +83,14 @@ public class Chap1_Boss : BossBase
     {
         base.SpawnHeartMinion();
         Addressables.InstantiateAsync(HeartMinionPrefab, HeartEffectSpawnPoint.position + Vector3.left * 2, Quaternion.identity)
-             .Completed += OnHeartSpawned;      
+             .Completed += OnHeartSpawned;
     }
 
     private void OnHeartSpawned(AsyncOperationHandle<GameObject> obj)
     {
         if (obj.Status == AsyncOperationStatus.Succeeded)
         {
-            obj.Result.tag = "Heart";      
+            obj.Result.tag = "Heart";
         }
         else
         {
@@ -124,10 +100,11 @@ public class Chap1_Boss : BossBase
 
     public override void OnBossShow()
     {
-       base.OnBossShow();
-       DialogManager.Instance.StartDialog("Boss_Show");
+        base.OnBossShow();
+        DialogManager.Instance.StartDialog("Boss2_Show");
+        Debug.Log("Boss2_Show");
         isTalk = true;
-       audioDefination.PlayAudioClip();
+        audioDefination.PlayAudioClip();
     }
-  
+
 }

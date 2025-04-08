@@ -23,7 +23,7 @@ public class GameSceneSO : ScriptableObject
     [Header("可解鎖的技能")]
     public string skillToUnlock; // 解鎖的技能名稱
 
-    [Header("可解鎖的技能")]
+    [Header("可解鎖的職業")]
     public string classToUnlock; // 解鎖的職業名稱
 
     [Header("教學設定")]
