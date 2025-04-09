@@ -202,7 +202,7 @@ public class TutorialSystem : MonoBehaviour
     private void ShowMusicGameTutorial2()
     {
         currentTutorialType = TutorialType.MusicGame;
-        ShowTutorial("在愛心到左側位置時按下鍵盤QWE");
+        ShowTutorial("在愛心到左側位置時按下鍵盤ZXC");
     }
 
     private void ShowTriviaGameTutorial()

@@ -161,7 +161,7 @@ public class SceneLoader : MonoBehaviour, ISaveable
             FindObjectOfType<UIManager>().ShowRandomChallengeOptions(selectedSceneChoices);                          
 
         }
-        else
+        if(challengeCount>=maxChallenges) 
         {        
             sceneToLoad = NecessaryScene;// 當挑戰次數達到 4，進入 Boss 前的特定關卡
             challengeCount = 0; // 重置挑戰次數

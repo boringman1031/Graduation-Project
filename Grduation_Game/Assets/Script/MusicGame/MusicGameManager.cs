@@ -251,6 +251,6 @@ public class MusicGameManager : MonoBehaviour
         Rank_text.text = $"{rank}";
         //ShowResults(currentScore, maxCombo, accuracy, rank);
 
-        unlockSkillEvent.RaiseEvent();
+        unlockSkillEvent.RaiseEvent(); // ¸ÑÂê§Þ¯à
     }
 }
