@@ -2170,6 +2170,7 @@ MonoBehaviour:
   goHomeEvent: {fileID: 11400000, guid: 8e4300285ab8c3142a25901137ababd8, type: 2}
   pasueEvent: {fileID: 11400000, guid: 4299f1c9fcd22234f9158e7003dd4ab5, type: 2}
   loadRandomSceneEvent: {fileID: 11400000, guid: 381f9febe87016148a8902e5ff57fe6f, type: 2}
+  gotoNesserySceneEvent: {fileID: 0}
   playerStatBar: {fileID: 1467685003}
   GameOverPanel: {fileID: 1467685015}
   RandomChallengePanel: {fileID: 1663231859}
@@ -10917,7 +10918,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4129049325006263578, guid: 8fe606f421d465a43860c97bb139a223, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4429415200532308936, guid: 8fe606f421d465a43860c97bb139a223, type: 3}
       propertyPath: m_Size.x
@@ -12118,6 +12119,7 @@ MonoBehaviour:
   gotoBoss3Event: {fileID: 11400000, guid: de1af5ecaac24a54e80292e4adbbe831, type: 2}
   BossDeadEvent: {fileID: 11400000, guid: 8eff88c6c7ca8124b82fa0fd4b8dd951, type: 2}
   goHomeEvent: {fileID: 11400000, guid: 8e4300285ab8c3142a25901137ababd8, type: 2}
+  gotoNesserySceneEvent: {fileID: 11400000, guid: 0d07f2f40c60e484bb581ba2184777cb, type: 2}
   firstLoadScene: {fileID: 11400000, guid: a64cf6f0a48c64c4da0bdea97a5d7f7d, type: 2}
   MuneScene: {fileID: 11400000, guid: a89b00abb5bdc9543851dc1aca09facb, type: 2}
   HomeScene: {fileID: 11400000, guid: 4b2b587f0ad2230439f03d27de2c3ca6, type: 2}
@@ -12141,6 +12143,7 @@ MonoBehaviour:
   menuPosition: {x: 959.3304, y: 544.71027, z: 0.24347681}
   fadeTime: 0.5
   challengeCount: 0
+  maxChallenges: 4
 --- !u!114 &1815163383
 MonoBehaviour:
   m_ObjectHideFlags: 0

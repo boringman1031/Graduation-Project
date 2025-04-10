@@ -31,7 +31,8 @@ public class SceneLoader : MonoBehaviour, ISaveable
     public VoidEventSO gotoBoss3Event;//(測試demo用)進入第三章Boss 事件
     public VoidEventSO BossDeadEvent;//Boss死亡事件
     public VoidEventSO goHomeEvent;//回家事件
-   
+    public VoidEventSO gotoNesserySceneEvent;
+
 
 
     [Header("場景參數")]
@@ -61,7 +62,7 @@ public class SceneLoader : MonoBehaviour, ISaveable
 
     private Vector3 positionToGo;//要傳送的位置
     public int challengeCount = 0;
-    private int maxChallenges = 4; // 需要完成的隨機挑戰次數
+    public int maxChallenges = 4; // 需要完成的隨機挑戰次數
     private bool fadeScreen;//是否淡出屏幕
     private bool isLoading;//是否正在加載
 
@@ -82,6 +83,7 @@ public class SceneLoader : MonoBehaviour, ISaveable
         gotoBoss3Event.OnEventRaised += OnGotoBoss3Scene;//(測試demo用)進入第三章Boss 事件
         BossDeadEvent.OnEventRaised += OnGotoEndScene;//Boss死亡事件
         goHomeEvent.OnEventRaised += OnHomeEvent;//回家事件
+        gotoNesserySceneEvent.OnEventRaised += OnLoadNecessaryScene;
         ISaveable saveable = this;
         saveable.RegisterSaveData();
     }
@@ -98,6 +100,7 @@ public class SceneLoader : MonoBehaviour, ISaveable
         gotoBoss3Event.OnEventRaised -= OnGotoBoss3Scene;//(測試demo用)進入第三章Boss 事件
         BossDeadEvent.OnEventRaised -= OnGotoEndScene;//Boss死亡事件
         goHomeEvent.OnEventRaised -= OnHomeEvent;//回家事件
+        gotoNesserySceneEvent.OnEventRaised -= OnLoadNecessaryScene;
         ISaveable saveable = this;
         saveable.UnRegisterSaveData();
     }
@@ -125,6 +128,13 @@ public class SceneLoader : MonoBehaviour, ISaveable
     private void OnGotoEndScene()//Boss死亡事件
     {
         loadEventSO.RaiseLoadRequestEvent(Chap1ENDScene, firstPosition, true);
+    }
+
+    private void OnLoadNecessaryScene()
+    {
+        sceneToLoad = NecessaryScene;// 當挑戰次數達到 4，進入 Boss 前的特定關卡
+        Debug.Log("進入必要 關卡");
+        OnLoadRequestEvent(sceneToLoad, firstPosition, true);
     }
 
     private void OnHomeEvent()//回家事件
@@ -155,19 +165,12 @@ public class SceneLoader : MonoBehaviour, ISaveable
     {
         if (challengeCount < maxChallenges)
         {
-
             selectedSceneChoices = GetThreeRandomScenes();
             // 呼叫 UIManager 顯示這三個選項
             FindObjectOfType<UIManager>().ShowRandomChallengeOptions(selectedSceneChoices);                          
 
         }
-        if(challengeCount>=maxChallenges) 
-        {        
-            sceneToLoad = NecessaryScene;// 當挑戰次數達到 4，進入 Boss 前的特定關卡
-            challengeCount = 0; // 重置挑戰次數
-            Debug.Log("進入必要 關卡");
-            OnLoadRequestEvent(sceneToLoad, firstPosition, true);
-        }
+       
     }
     private List<GameSceneSO> GetThreeRandomScenes()
     {
@@ -281,8 +284,17 @@ public class SceneLoader : MonoBehaviour, ISaveable
             }
             else
             {
-                unlockSkillEvent.RaiseEvent();
-                openRandomCanvaEvent.RaiseEvent(); // 顯示原本的隨機挑戰面板
+                if (challengeCount < maxChallenges)
+                {
+                    unlockSkillEvent.RaiseEvent();
+                    openRandomCanvaEvent.RaiseEvent(); // 顯示隨機挑戰面板
+                }
+                else
+                {
+                    sceneToLoad = NecessaryScene;// 當挑戰次數達到 4，進入 Boss 前的特定關卡
+                    Debug.Log("進入必要 關卡");
+                    OnLoadRequestEvent(sceneToLoad, firstPosition, true);
+                }              
             }
         }
     }

@@ -1,4 +1,5 @@
 /*------------BY017------------------*/
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -34,7 +35,13 @@ public class EnemyManager : MonoBehaviour
         if (enemies.Count == 0)
         {
             Debug.Log("所有敵人已被擊敗，廣播事件！");
-            onAllEnemiesDefeated.RaiseEvent();
+            StartCoroutine(AllEnemyDefeated());
         }
+    }
+
+    private IEnumerator  AllEnemyDefeated()
+    {
+        yield return new WaitForSeconds(2);
+        onAllEnemiesDefeated.RaiseEvent();
     }
 }
