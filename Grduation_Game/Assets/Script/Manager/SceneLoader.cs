@@ -171,6 +171,12 @@ public class SceneLoader : MonoBehaviour, ISaveable
             FindObjectOfType<UIManager>().ShowRandomChallengeOptions(selectedSceneChoices);                          
 
         }
+        else
+        {
+            sceneToLoad = NecessaryScene;// 當挑戰次數達到 4，進入 Boss 前的特定關卡
+            Debug.Log("進入必要 關卡");
+            OnLoadRequestEvent(sceneToLoad, firstPosition, true);
+        }
        
     }
     private List<GameSceneSO> GetThreeRandomScenes()
