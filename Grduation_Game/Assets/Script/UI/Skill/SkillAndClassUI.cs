@@ -1,8 +1,6 @@
 ﻿// 掛在 SkillAndClassPanel 上的主控制器
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
-using UnityEngine.U2D.Animation;
 
 public class SkillAndClassUI : MonoBehaviour
 {

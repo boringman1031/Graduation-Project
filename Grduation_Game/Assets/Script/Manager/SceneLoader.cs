@@ -139,6 +139,7 @@ public class SceneLoader : MonoBehaviour, ISaveable
         challengeCount=0; // 增加挑戰次數
         FindObjectOfType<UIManager>().UpdateChallengeCountUI(challengeCount);//更新挑戰次數UI
         FindObjectOfType<SkillManager>().resetSkillAndClass(); // 重製技能職業
+        FindObjectOfType<SkillUIController>()?.RefreshSkillIcons(); //重製技能UI
         loadEventSO.RaiseLoadRequestEvent(sceneToLoad, firstPosition, true);
     }
     private void OnBackToMenuEvent()//返回主菜單事件時執行

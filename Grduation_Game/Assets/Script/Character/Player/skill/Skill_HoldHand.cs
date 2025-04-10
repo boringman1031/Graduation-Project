@@ -1,125 +1,81 @@
-using System.Collections;
-using System.Collections.Generic;
+ï»¿using System.Collections;
 using UnityEngine;
 
 public class SkillHoldHand : MonoBehaviour, ISkillEffect
 {
-    [Header("§Ş¯à¼Æ­È")]
+    [Header("æŠ€èƒ½æ•¸å€¼")]
     public float damage = 50f;
-    public float defenseReduction = 10f;
     public float energyCost = 10f;
-    public float attackRadius = 1f;
 
-    [Header("®ÄªG³]©w")]
+    [Header("æ•ˆæœè¨­å®š")]
     public AudioClip skillSound;
     public ParticleSystem skillEffect;
-    public Animator animator; // ¹w¸mª«¦Û¨­ªº Animator¡A¥i¿ï
+    public Animator animator;
 
-    [Header("¨ä¥L³]©w")]
-    public LayerMask targetLayer;
-    public Vector3 spawnOffset; // ¨Ò¦p (1, 0, 0)
-
-    [Header("°ÊºA°Ñ¦Ò")]
-    public Transform origin; // ª±®a©Î¥Í¦¨ÂI°Ñ¦Ò
-    public Animator playerAnimator; // ª±®a¨¤¦âªº Animator
-
-    private bool hasAttacked = false;
+    [Header("å…¶ä»–è¨­å®š")]
+    public Vector3 spawnOffset; // ä¾‹å¦‚ (1, 0, 0)
+    public Transform origin;
+    public Animator playerAnimator;
 
     public CharacterEventSO powerChangeEvent;
 
-    private bool isActivated = false; // ¬O§_¦¨¥\±Ò°Ê§Ş¯à
+    private bool isActivated = false;
 
-    void costPower(CharactorBase _Charater) //¦©°£¯à¶q
+    void costPower(CharactorBase character)
     {
-        _Charater.AddPower(-energyCost);
-        powerChangeEvent.OnEventRaised(_Charater);
+        character.AddPower(-energyCost);
+        powerChangeEvent.OnEventRaised(character);
     }
 
-    // ¹ê§@ ISkillEffect ¤¶­±
     public void SetOrigin(Transform origin)
     {
         this.origin = origin;
 
-        // ¹Á¸Õ¨ú±oª±®aªº CharactorBase
         CharactorBase character = origin.GetComponent<CharactorBase>();
-        if (character == null)
+        if (character == null || character.CurrentPower < energyCost)
         {
-            Debug.LogWarning("¬I©ñªÌ¯Ê¤Ö CharactorBase ¤¸¥ó¡AµLªk¬I©ñ§Ş¯à¡C");
+            Debug.LogWarning("æŠ€èƒ½æ–½æ”¾å¤±æ•—ï¼šèƒ½é‡ä¸è¶³æˆ–æ‰¾ä¸åˆ°è§’è‰²å…ƒä»¶");
             Destroy(gameObject);
             return;
         }
 
-        // ÀË¬d¯à¶q¬O§_¨¬°÷
-        if (character.CurrentPower < energyCost)
-        {
-            Debug.Log("¯à¶q¤£¨¬¡AµLªk¬I©ñ§Ş¯à");
-            Destroy(gameObject);
-            return;
-        }
-
-        // ¦©°£¯à¶q
         costPower(character);
         isActivated = true;
 
-        // ­pºâ¥¿½T¥Í¦¨¦ì¸m¡]¨Ì·Óª±®a­±¦V¡^
         int faceDir = origin.localScale.x >= 0 ? 1 : -1;
         transform.position = origin.position + new Vector3(spawnOffset.x * faceDir, spawnOffset.y, spawnOffset.z);
+        transform.localScale = new Vector3(faceDir, 1, 1); // æœå‘
 
-        // ¼½©ñ§Ş¯à­µ®Ä
-        if (skillSound != null)
-        {
-            AudioSource.PlayClipAtPoint(skillSound, transform.position);
-        }
-        // ¼½©ñ¯S®Ä
-        if (skillEffect != null)
-        {
-            skillEffect.Play();
-        }
-        // Ä²µo°Êµe
+        if (skillSound != null) AudioSource.PlayClipAtPoint(skillSound, transform.position);
+        if (skillEffect != null) skillEffect.Play();
         if (playerAnimator != null)
-        {
             playerAnimator.SetTrigger("Skill1");
-        }
         else if (animator != null)
-        {
             animator.SetTrigger("Skill1");
-        }
+
+        // âœ… é–‹å§‹çŸ­æ™‚é–“å…§çš„æ”»æ“Šç¢°æ’
+        StartCoroutine(ActivateAttackCollider());
     }
 
     public void SetPlayerAnimator(Animator animator)
     {
-        playerAnimator = animator;
+        this.playerAnimator = animator;
     }
 
-    private void Update()
+    IEnumerator ActivateAttackCollider()
     {
-        if (!isActivated) return;
-
-        if (!hasAttacked)
+        Collider2D col = GetComponent<Collider2D>();
+        if (col != null)
         {
-            Attack();
-            hasAttacked = true;
+            col.enabled = true;
         }
-        Destroy(gameObject, 1f);
-    }
 
-    private void Attack()
-    {
-        Collider2D[] hits = Physics2D.OverlapCircleAll(transform.position, attackRadius, targetLayer);
-        foreach (Collider2D hit in hits)
+        yield return new WaitForSeconds(0.3f); // å¯ä»¥å‘½ä¸­æ•µäººçš„æ™‚é–“
+        if (col != null)
         {
-            CharactorBase target = hit.GetComponent<CharactorBase>();
-            if (target != null)
-            {
-                target.TakeDamage(damage, transform);
-                target.Defence -= defenseReduction;
-            }
+            col.enabled = false;
         }
-    }
 
-    private void OnDrawGizmosSelected()
-    {
-        Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(transform.position, attackRadius);
+        Destroy(gameObject, 0.5f); // å»¶é²éŠ·æ¯€ï¼ˆè®“ç‰¹æ•ˆè·‘å®Œï¼‰
     }
 }
