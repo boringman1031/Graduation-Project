@@ -130,8 +130,22 @@ public class PlayerController : MonoBehaviour
 
     public void UpdateUltimateSkill()
     {
-        activeSkillData = SkillManager.Instance.selectedClass?.ultimateSkill;
-        Debug.Log("Ultimate skill 已更新: " + activeSkillData?.skillName);
+        var ultimate = SkillManager.Instance.selectedClass?.ultimateSkill;
+
+        if (ultimate == null)
+        {
+            Debug.Log("Ultimate skill 已更新: NULL");
+        }
+        else if (!ultimate.isUnlocked)
+        {
+            Debug.Log("Ultimate skill 已更新: 已存在但未解鎖");
+        }
+        else
+        {
+            Debug.Log("Ultimate skill 已更新: " + ultimate.skillName);
+        }
+
+        activeSkillData = ultimate;
     }
     private void FixedUpdate()
     {
@@ -298,6 +312,16 @@ public class PlayerController : MonoBehaviour
     public void Player_DeadEffect() => Instantiate(DeadEffectPrefab, transform.position, Quaternion.identity);
 
     #region UnityEvents
+    // ✅ 解鎖技能後重設所有技能冷卻時間與 UI
+    public void ResetSkillCooldowns()
+    {
+        for (int i = 0; i < skillLastUsedTime.Length; i++)
+        {
+            skillLastUsedTime[i] = -10f; // 表示冷卻已結束
+            skillCooldownUIs[i]?.ResetCooldown(); // 重置 UI 冷卻圈圈
+        }
+    }
+
 
     // 玩家受傷：擊退並標記受傷狀態
     public void Player_GetHurt(Transform _attacker)
