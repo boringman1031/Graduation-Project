@@ -10,6 +10,8 @@ using UnityEngine.InputSystem.Processors;
 
 public class PlayerController : MonoBehaviour
 {
+    public static PlayerController Instance;// 單例模式
+
     [Header("廣播事件")]
     public CameraShakeEventSO cameraShakeEvent; // 攝影機震動事件
 
@@ -54,9 +56,13 @@ public class PlayerController : MonoBehaviour
     public SkillData activeSkillData; // 當前動畫事件即將觸發的技能
     public Transform effectSpawnPoint; // 技能特效生成位置
     private float[] skillLastUsedTime; // 上次使用技能的時間，用來控制冷卻
+    
 
     private void Awake()
     {
+        if (Instance == null) Instance = this;
+        else Destroy(gameObject);
+
         // 取得組件
         rb = GetComponent<Rigidbody2D>();
         physicsCheck = GetComponent<PhysicsCheck>();

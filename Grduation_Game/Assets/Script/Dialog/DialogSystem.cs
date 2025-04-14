@@ -56,16 +56,7 @@ public class DialogSystem : MonoBehaviour
         }
 
         // 禁止玩家移動
-        GameObject player = GameObject.FindGameObjectWithTag("Player");
-        if (player != null)
-        {
-            var controller = player.GetComponent<PlayerController>();
-            if (controller != null)
-            {
-                controller.canMove = false;
-            }
-        }
-
+        PlayerController.Instance.canMove = false;
         Panel.gameObject.SetActive(true);
         StartCoroutine(DisplayText());
     }
@@ -110,15 +101,7 @@ public class DialogSystem : MonoBehaviour
         dialogEndEvent.RaiseEvent();
 
         // 對話完成後開啟玩家移動
-        GameObject player = GameObject.FindGameObjectWithTag("Player");
-        if (player != null)
-        {
-            var controller = player.GetComponent<PlayerController>();
-            if (controller != null)
-            {
-                controller.canMove = true;
-            }
-        }
+        PlayerController.Instance.canMove = true;
     }
     // 設置 FocusCamera 的位置
     private void SetFocusCamera(Vector2 position)
