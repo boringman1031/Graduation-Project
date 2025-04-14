@@ -48,6 +48,7 @@ public class PlayerController : MonoBehaviour
     public bool ishurt;
     public bool isDead;
     public bool isAttack;
+    public bool canMove = true;
 
     public SkillCooldownUI[] skillCooldownUIs; // 技能冷卻 UI 陣列（QWER）
     public SkillData activeSkillData; // 當前動畫事件即將觸發的技能
@@ -149,8 +150,8 @@ public class PlayerController : MonoBehaviour
     }
     private void FixedUpdate()
     {
-        if (!ishurt && !isAttack)
-            Player_Move();
+        if (!canMove || ishurt || isAttack) return;
+        Player_Move();
     }
 
     // 播放技能動畫（動畫觸發 OnSkillEffectTrigger）

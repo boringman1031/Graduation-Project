@@ -41,19 +41,29 @@ public class DialogSystem : MonoBehaviour
     // 設置並顯示對話
     public void SetDialog(DialogData.DialogEntry dialogEntry)
     {
-        
-        StopAllCoroutines(); // 停止可能正在運行的逐字顯示
-        textLabel.text = ""; // 清空文字
+        StopAllCoroutines();
+        textLabel.text = "";
         dialogQueue.Clear();
 
-        // 將句子、運鏡標記、位置加入隊列
+        // 加入句子
         for (int i = 0; i < dialogEntry.sentences.Count; i++)
         {
             dialogQueue.Enqueue((
-                dialogEntry.sentences[i], 
+                dialogEntry.sentences[i],
                 dialogEntry.shouldFocusCamera[i],
                 dialogEntry.focusCameraPositions[i]
-                ));
+            ));
+        }
+
+        // 禁止玩家移動
+        GameObject player = GameObject.FindGameObjectWithTag("Player");
+        if (player != null)
+        {
+            var controller = player.GetComponent<PlayerController>();
+            if (controller != null)
+            {
+                controller.canMove = false;
+            }
         }
 
         Panel.gameObject.SetActive(true);
@@ -98,6 +108,17 @@ public class DialogSystem : MonoBehaviour
 
         Panel.gameObject.SetActive(false); // 關閉對話框
         dialogEndEvent.RaiseEvent();
+
+        // 對話完成後開啟玩家移動
+        GameObject player = GameObject.FindGameObjectWithTag("Player");
+        if (player != null)
+        {
+            var controller = player.GetComponent<PlayerController>();
+            if (controller != null)
+            {
+                controller.canMove = true;
+            }
+        }
     }
     // 設置 FocusCamera 的位置
     private void SetFocusCamera(Vector2 position)
