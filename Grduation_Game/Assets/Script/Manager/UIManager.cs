@@ -193,7 +193,7 @@ public class UIManager : MonoBehaviour
 
     private void OnLoadSceneEvent(GameSceneSO _sceneToLoad, Vector3 arg1, bool arg2)//讀取場景事件判斷是否顯示玩家狀態條
     {
-        var isMenu=_sceneToLoad.sceneName == SceneName.Menu;
+        var isMenu=_sceneToLoad.sceneType == SceneType.Menu;
         playerStatBar.gameObject.SetActive(!isMenu);
     }
 

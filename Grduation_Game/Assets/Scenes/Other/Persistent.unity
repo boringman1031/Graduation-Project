@@ -12118,30 +12118,55 @@ MonoBehaviour:
   gotoBoss2Event: {fileID: 11400000, guid: f4584d4dea7744c4c807d910558a5583, type: 2}
   gotoBoss3Event: {fileID: 11400000, guid: de1af5ecaac24a54e80292e4adbbe831, type: 2}
   BossDeadEvent: {fileID: 11400000, guid: 8eff88c6c7ca8124b82fa0fd4b8dd951, type: 2}
+  Boss2DeadEvent: {fileID: 0}
+  Boss3DeadEvent: {fileID: 0}
   goHomeEvent: {fileID: 11400000, guid: 8e4300285ab8c3142a25901137ababd8, type: 2}
   gotoNesserySceneEvent: {fileID: 11400000, guid: 0d07f2f40c60e484bb581ba2184777cb, type: 2}
-  firstLoadScene: {fileID: 11400000, guid: 7730eb9cc9ef44943a47993ae5ae0d38, type: 2}
   MuneScene: {fileID: 11400000, guid: a89b00abb5bdc9543851dc1aca09facb, type: 2}
   HomeScene: {fileID: 11400000, guid: 4b2b587f0ad2230439f03d27de2c3ca6, type: 2}
-  NecessaryScene: {fileID: 11400000, guid: 7dce1fbd846b00f43b4f49d8894f44cb, type: 2}
+  firstLoadScene: {fileID: 11400000, guid: 7730eb9cc9ef44943a47993ae5ae0d38, type: 2}
   BossScene: {fileID: 11400000, guid: a58abba614720a042aa612a9d8f49df0, type: 2}
   Boss2Scene: {fileID: 11400000, guid: 020407d0da00f91469650e612a46a645, type: 2}
   Boss3Scene: {fileID: 11400000, guid: 67913cd78e37ab34c9b2e68b65013a5a, type: 2}
+  NecessaryScene: {fileID: 11400000, guid: 7dce1fbd846b00f43b4f49d8894f44cb, type: 2}
+  NecessaryScene2: {fileID: 11400000, guid: f592f65b4e069164f844a2ed05ccecc3, type: 2}
+  NecessaryScene3: {fileID: 11400000, guid: 52a74ed6e641b5646a0b3a322d2d850b, type: 2}
   Chap1ENDScene: {fileID: 11400000, guid: e8c96ba9ccffd434193857042ffe531d, type: 2}
-  randomScenes:
-  - {fileID: 11400000, guid: d3e63cb94eff76e48a63a2dbf47cdbcd, type: 2}
-  - {fileID: 11400000, guid: ce2297955bfc30c498fb7a7c0901d020, type: 2}
+  Chap2ENDScene: {fileID: 0}
+  FinalENDScene: {fileID: 0}
+  playerTrans: {fileID: 1892058791}
+  firstPosition: {x: -12.074428, y: -60.6235, z: 0}
+  menuPosition: {x: 959.3304, y: 544.71027, z: 0.24347681}
+  fadeTime: 0.5
+  currentChapter: 0
+  chap1RandomScenes:
   - {fileID: 11400000, guid: 7c7a6333463b76646917fe422625790a, type: 2}
+  - {fileID: 11400000, guid: ce2297955bfc30c498fb7a7c0901d020, type: 2}
+  - {fileID: 11400000, guid: d3e63cb94eff76e48a63a2dbf47cdbcd, type: 2}
   - {fileID: 11400000, guid: f6aa9d8a712c3614bab092554179a97d, type: 2}
   - {fileID: 11400000, guid: 7304531799ba66d42a76f21ad5e81947, type: 2}
   - {fileID: 11400000, guid: 7730eb9cc9ef44943a47993ae5ae0d38, type: 2}
   - {fileID: 11400000, guid: f13ced2b00084a540b5ded1932323cba, type: 2}
   - {fileID: 11400000, guid: a126bb246628eb740af3c957198b7521, type: 2}
+  chap2RandomScenes:
+  - {fileID: 11400000, guid: 9628b46d751b4ed4e89b4816e489cbdc, type: 2}
+  - {fileID: 11400000, guid: 88b53fce0f7d7064e92294097353256d, type: 2}
+  - {fileID: 11400000, guid: 07133b90740a8f64b9467d80d8c5fca7, type: 2}
+  - {fileID: 11400000, guid: eeb4bbb0fd6cb10478034dc599215759, type: 2}
+  - {fileID: 11400000, guid: 7304531799ba66d42a76f21ad5e81947, type: 2}
+  - {fileID: 11400000, guid: 7730eb9cc9ef44943a47993ae5ae0d38, type: 2}
+  - {fileID: 11400000, guid: f13ced2b00084a540b5ded1932323cba, type: 2}
+  - {fileID: 11400000, guid: a126bb246628eb740af3c957198b7521, type: 2}
+  chap3RandomScenes:
+  - {fileID: 11400000, guid: 6370538c2c91fee49ace78cc9be15c93, type: 2}
+  - {fileID: 11400000, guid: d8081afbe05c84a438fc34e90ee8fc92, type: 2}
+  - {fileID: 11400000, guid: 06b1be4c0c7563740b8a23fb7ae8ce95, type: 2}
+  - {fileID: 11400000, guid: 90fef9d72fced264795933e8c9c2d94d, type: 2}
+  - {fileID: 11400000, guid: 7304531799ba66d42a76f21ad5e81947, type: 2}
+  - {fileID: 11400000, guid: 7730eb9cc9ef44943a47993ae5ae0d38, type: 2}
+  - {fileID: 11400000, guid: f13ced2b00084a540b5ded1932323cba, type: 2}
+  - {fileID: 11400000, guid: a126bb246628eb740af3c957198b7521, type: 2}
   selectedSceneChoices: []
-  playerTrans: {fileID: 1892058791}
-  firstPosition: {x: -12.074428, y: -60.6235, z: 0}
-  menuPosition: {x: 959.3304, y: 544.71027, z: 0.24347681}
-  fadeTime: 0.5
   challengeCount: 0
   maxChallenges: 4
 --- !u!114 &1815163383

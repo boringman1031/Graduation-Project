@@ -7,14 +7,9 @@ public enum BossState
 {
     Idle,Attack, Summon, SummonHeart
 }
-public enum SceneName
-{
-    //場景類型:地點,特殊,必要關卡,BOSS,主頁面
-    Chap1_Classroom, Chap1_School, Chap1_Cafe, Chap1_Cinema, Chap1_NightMarket,
-    Chap1_Necessary, Chap1_Boss, Chap2_Boss,
-    Identity_89, Identity_Sport, Identity_Music,
-    Identity_Rapper, Identity_Dancer, Menu,Home
-}
+
+public enum Chapter { Chap1, Chap2, Chap3 }
+
 
 public enum SceneType
 {
