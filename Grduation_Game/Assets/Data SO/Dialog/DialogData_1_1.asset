@@ -21,6 +21,7 @@ MonoBehaviour:
     focusCameraPositions:
     - {x: 0, y: 0}
     - {x: 0, y: 0}
+    shouldShakeCamera: 0000
   - key: FirstScene_meetGirl
     sentences:
     - "\u54C7\u8CFD\u9019\u662F\u8AB0\u554A\uFF1F\u7A7F\u7684\u8863\u670D\u4E5F\u592A\u6709\u54C1\u5473\u4E86\u5427!"
@@ -37,9 +38,10 @@ MonoBehaviour:
     - {x: 0, y: 0}
     - {x: 88.3, y: -68.5}
     - {x: 0, y: 0}
+    shouldShakeCamera: 000000000001
   - key: Cafe
     sentences:
-    - "\u563F\u563F\uFF0C\u7D42\u65BC\u6709\u6A5F\u6703\u8DDF\u5979\u4E00\u8D77\u4F86\u5496\u5561\u5EF3\u8A0E\u8AD6\u5831\u544A\uFF0C\u9019\u6B21\u53EF\u4E0D\u80FD\u641E\u7838\uFF01"
+    - "\u563F\u563F\uFF0C\u7D42\u65BC\u6709\u6A5F\u6703\u8DDF\u5979\u4E00\u8D77\u4F86\u5496\u5561\u5EF3\u8A0E\u8AD6\u5831\u544A\uFF0C\u9019\u6B21\u53EF\u4E0D\u80FD\u5931\u6557\uFF01"
     - "\u9019\u9593\u5496\u5561\u5EF3\u6709\u6599\u5427\uFF1F\u908A\u8A0E\u8AD6\u908A\u4EAB\u53D7\u5496\u5561\u9084\u6709\u751C\u9EDE\uFF0C\u5C0F\u5C0FIrene\u62FF\u634F\uFF01"
     - "\u6B38\u9760\u676F\u5979\u600E\u9EBC\u5DF2\u7D93\u5230\u4E86!!!!"
     shouldFocusCamera: 000000
@@ -47,6 +49,7 @@ MonoBehaviour:
     - {x: 0, y: 0}
     - {x: 0, y: 0}
     - {x: 0, y: 0}
+    shouldShakeCamera: 000000
   - key: Cafe_meetGirl
     sentences:
     - "Irene:\u54C8\u56C9~~\u4F60\u4F86\u5566~~"
@@ -59,6 +62,7 @@ MonoBehaviour:
     - {x: 0, y: 0}
     - {x: 0, y: 0}
     - {x: 0, y: 0}
+    shouldShakeCamera: 00000000
   - key: Cinema
     sentences:
     - "\u6C92\u60F3\u5230\u5979\u6703\u540C\u610F\u8DDF\u6211\u55AE\u7368\u4E00\u8D77\u770B\u96FB\u5F71!!"
@@ -67,12 +71,14 @@ MonoBehaviour:
     focusCameraPositions:
     - {x: 0, y: 0}
     - {x: 0, y: 0}
+    shouldShakeCamera: 0000
   - key: Cinema_meetGirl
     sentences:
     - "Irene:\u9019\u908A\u9019\u908A\u96FB\u5F71\u8981\u958B\u59CB\u4E86~~"
     shouldFocusCamera: 00
     focusCameraPositions:
     - {x: 0, y: 0}
+    shouldShakeCamera: 00
   - key: Classroom
     sentences:
     - "\u807D\u8AAA\u901A\u8B58\u8AB2\u662F\u5927\u5B78\u8A8D\u8B58\u5973\u751F\u7684\u6700\u597D\u6A5F\u6703\uFF0C\u6211\u8981\u597D\u597D\u628A\u63E1!!"
@@ -80,13 +86,14 @@ MonoBehaviour:
     - "\u54C7\u9760\uFF01\u5979\u8DDF\u6211\u9078\u5230\u540C\u4E00\u5802\u8AB2\u8036\uFF01"
     - "\u5E0C\u671B\u80FD\u6709\u6A5F\u6703\u8DDF\u5979\u540C\u7D44\u554A\uFF0C\u9019\u6A23\u5C31\u80FD\u591A\u76F8\u8655\u4E86\u3002"
     - ".....\u600E\u9EBC\u6709\u4E00\u5806\u84BC\u8805\u570D\u4E0A\u53BB\u4E86\n\u6EFE\u958B!!!!"
-    shouldFocusCamera: 0001000001
+    shouldFocusCamera: 0000010101
     focusCameraPositions:
     - {x: 0, y: 0}
+    - {x: 0, y: 0}
     - {x: 214.6, y: -64.4}
-    - {x: 0, y: 0}
-    - {x: 0, y: 0}
+    - {x: 214.6, y: -64.4}
     - {x: 188.6, y: -64.8}
+    shouldShakeCamera: 0000000001
   - key: Nightmarket
     sentences:
     - "(\u54C7\u5E79\u6C92\u60F3\u5230Irene\u771F\u7684\u7B54\u61C9\u8DDF\u6211\u901B\u591C\u5E02\u311F)"
@@ -108,6 +115,7 @@ MonoBehaviour:
     - {x: 0, y: 0}
     - {x: 0, y: 0}
     - {x: 260.1, y: -65.8}
+    shouldShakeCamera: 0000000000000001
   - key: Musicman
     sentences:
     - "\u54C7\u585E\uFF0C\u90A3\u500B\u5409\u4ED6\u7537\u771F\u7684\u8D85\u53D7\u6B61\u8FCE\u8036\uFF01"
@@ -126,6 +134,7 @@ MonoBehaviour:
     - {x: -1.14, y: -68.31}
     - {x: -1.14, y: -68.31}
     - {x: -1.14, y: -68.31}
+    shouldShakeCamera: 00000000000000
   - key: Sport
     sentences:
     - "\u54C7\u6392\u7403\u5834\u597D\u591A\u4EBA\u5728\u6253\u6392\u7403"
@@ -138,12 +147,13 @@ MonoBehaviour:
     - {x: 0, y: 0}
     - {x: 0, y: 0}
     - {x: 0, y: 0}
+    shouldShakeCamera: 00000000
   - key: Sport_meetSportman
     sentences:
     - "\u6B38\u5B78\u5F1F\u807D\u8AAA\u4F60\u60F3\u52A0\u5165\u7CFB\u6392"
     - "\u60F3\u52A0\u5165\u7CFB\u6392\u53EF\u6C92\u8457\u9EBC\u5BB9\u6613!!"
     - "\u57FA\u672C\u6258\u7403\u6703\u5427!!\u7528W\u3001S\u64CD \u63A7\u65B9\u5411 "
-    - "\u6211\u537F\u81EA\u6E2C\u9A57\u4F60\u6709\u6C92\u6709\u8CC7\u683C\u52A0\u5165\u7CFB\u6392"
+    - "\u6211\u89AA\u81EA\u6E2C\u9A57\u4F60\u6709\u6C92\u6709\u8CC7\u683C\u52A0\u5165\u7CFB\u6392"
     - "\u4EC0\u9EBC\u9B3C??\u9019\u5B78\u9577\u5728\u512A\u8D8A\u4EC0\u9EBC??"
     - "\u4E0D\u7BA1\u4E86\u6BD4\u5C31\u6BD4!!W\u3001S\u662F\u5427\u8F38\u8D0F\u8FA3"
     shouldFocusCamera: 010101010000
@@ -154,6 +164,7 @@ MonoBehaviour:
     - {x: 19.3, y: -66.7}
     - {x: 0, y: 0}
     - {x: 0, y: 0}
+    shouldShakeCamera: 000000000000
   - key: 8+9
     sentences:
     - "\u666E\u9686\u5BAE.....\u9019\u662F\u4EC0\u9EBC\u5947\u602A\u7684\u5EDF\u554A??"
@@ -172,6 +183,7 @@ MonoBehaviour:
     - {x: 55.2, y: -66.5}
     - {x: 55.2, y: -66.5}
     - {x: 0, y: 0}
+    shouldShakeCamera: 00010000010000
   - key: Dancer
     sentences:
     - "\u6B38\u6B38\u771F\u5047\uFF01\u9019\u793E\u5718\u6D3B\u52D5\u73FE\u5834\u4E5F\u592A\u71B1\u9B27\u4E86\u5427\uFF01"
@@ -190,6 +202,7 @@ MonoBehaviour:
     - {x: 3.3, y: -67.6}
     - {x: 3.3, y: -67.6}
     - {x: 0, y: 0}
+    shouldShakeCamera: 00000000000000
   - key: Chatroom
     sentences:
     - "\u6700\u8FD1\u807D\u5230\u4E0D\u5C11\u540C\u5B78\u7684\u9592\u8A71\u2026\u2026"
@@ -200,6 +213,7 @@ MonoBehaviour:
     - {x: 0, y: 0}
     - {x: 0, y: 0}
     - {x: 0, y: 0}
+    shouldShakeCamera: 000000
   - key: Message1
     sentences:
     - "\u6B38\u6B38\uFF0C\u9019\u9031\u516D\u6709\u7A7A\u55CE\uFF1F"
@@ -208,6 +222,7 @@ MonoBehaviour:
     focusCameraPositions:
     - {x: 0, y: 0}
     - {x: 0, y: 0}
+    shouldShakeCamera: 0000
   - key: Message2
     sentences:
     - "Irene:\u71D2\u8089\u54E6\uFF5E\u611F\u89BA\u8D85\u8B9A\u6B38\uFF01"
@@ -216,30 +231,35 @@ MonoBehaviour:
     focusCameraPositions:
     - {x: 0, y: 0}
     - {x: 0, y: 0}
+    shouldShakeCamera: 0000
   - key: Message2
     sentences:
     - "\u9019\u6A23\u554A\uFF0C\u90A3\u79AE\u62DC\u5929\u5462\uFF1F\u665A\u4E0A\u7684\u8A71\u61C9\u8A72OK\u5427\uFF1F"
     shouldFocusCamera: 00
     focusCameraPositions:
     - {x: 0, y: 0}
+    shouldShakeCamera: 00
   - key: Message3
     sentences:
     - "Irene:\u79AE\u62DC\u5929\u2026\u2026\u6211\u61C9\u8A72\u6703\u721B\u5728\u5BB6\u5566\uFF0C\u6700\u8FD1\u6709\u9EDE\u61F6\u5F97\u51FA\u9580"
     shouldFocusCamera: 00
     focusCameraPositions:
     - {x: 0, y: 0}
+    shouldShakeCamera: 00
   - key: Message4
     sentences:
     - "\u597D\u5566\u597D\u5566\uFF0C\u90A3\u4E0B\u79AE\u62DC\u5462\uFF1F\u5148\u7D04\u8D77\u4F86\uFF0C\u4E0D\u7136\u59B3\u53C8\u8AAA\u81E8\u6642\u6709\u4E8B\uFF01"
     shouldFocusCamera: 00
     focusCameraPositions:
     - {x: 0, y: 0}
+    shouldShakeCamera: 00
   - key: Message5
     sentences:
     - "Irene:\u4E0B\u79AE\u62DC\u5594\uFF5E\u9084\u4E0D\u78BA\u5B9A\u8036\uFF0C\u5230\u6642\u5019\u518D\u770B\u770B\u597D\u55CE"
     shouldFocusCamera: 00
     focusCameraPositions:
     - {x: 0, y: 0}
+    shouldShakeCamera: 00
   - key: Message6
     sentences:
     - "\u2026\u2026\u597D\u5566                                                                                       "
@@ -248,6 +268,7 @@ MonoBehaviour:
     focusCameraPositions:
     - {x: 0, y: 0}
     - {x: 0, y: 0}
+    shouldShakeCamera: 0000
   - key: Message7
     sentences:
     - "Irene:\u6B38\u5C0D\u4E86\u5C0D\u4E86\uFF01\u6211\u6700\u8FD1\u5728\u8FFD\u4E00\u90E8\u97D3\u5287"
@@ -256,6 +277,7 @@ MonoBehaviour:
     focusCameraPositions:
     - {x: 0, y: 0}
     - {x: 0, y: 0}
+    shouldShakeCamera: 0000
   - key: Message8
     sentences:
     - "\u54E6\uFF1F\u54EA\u4E00\u90E8\uFF1F                                                                       "
@@ -264,6 +286,7 @@ MonoBehaviour:
     focusCameraPositions:
     - {x: 0, y: 0}
     - {x: 0, y: 0}
+    shouldShakeCamera: 0000
   - key: Message9
     sentences:
     - "Irene:\u5C31\u662F\u90A3\u90E8\u6700\u8FD1\u8D85\u7D05\u7684\u554A\uFF01"
@@ -272,6 +295,7 @@ MonoBehaviour:
     focusCameraPositions:
     - {x: 0, y: 0}
     - {x: 0, y: 0}
+    shouldShakeCamera: 0000
   - key: Message10
     sentences:
     - "\u807D\u8D77\u4F86\u597D\u50CF\u771F\u7684\u4E0D\u932F\u2026\u2026                                               "
@@ -280,12 +304,14 @@ MonoBehaviour:
     focusCameraPositions:
     - {x: 0, y: 0}
     - {x: 0, y: 0}
+    shouldShakeCamera: 0000
   - key: Message11
     sentences:
     - "Irene:\u800C\u4E14\u4ED6\u9084\u6703\u8A18\u4F4F\u5973\u751F\u8B1B\u904E\u7684\u6BCF\u53E5\u8A71\uFF0C\u8D85\u7D1A\u52A0\u5206\u7684\u5566\uFF01"
     shouldFocusCamera: 00
     focusCameraPositions:
     - {x: 0, y: 0}
+    shouldShakeCamera: 00
   - key: Message12
     sentences:
     - "\u59B3\u771F\u7684\u5F88\u5403\u9019\u4E00\u5957\u6B38\u3002                                                      "
@@ -294,12 +320,14 @@ MonoBehaviour:
     focusCameraPositions:
     - {x: 0, y: 0}
     - {x: 0, y: 0}
+    shouldShakeCamera: 0000
   - key: Message13
     sentences:
     - "Irene:\u5C0D\u554A\uFF01\u5982\u679C\u73FE\u5BE6\u88E1\u6709\u9019\u7A2E\u7537\u751F\u5C31\u597D\u4E86\uFF5E\u53EF\u60DC\u53EA\u5B58\u5728\u97D3\u5287\u88E1"
     shouldFocusCamera: 00
     focusCameraPositions:
     - {x: 0, y: 0}
+    shouldShakeCamera: 00
   - key: Message14
     sentences:
     - "(\u9019\u8A71\u2026\u2026\u662F\u4E0D\u662F\u5DF2\u7D93\u8AAA\u5F97\u8D85\u76F4\u767D\u4E86\u2026\u2026\uFF1F\uFF09"
@@ -310,6 +338,7 @@ MonoBehaviour:
     - {x: 0, y: 0}
     - {x: 0, y: 0}
     - {x: 0, y: 0}
+    shouldShakeCamera: 000000
   - key: Message15
     sentences:
     - "Irene:\u54A6\uFF1F\u4F60\u525B\u525B\u6253\u5B57\u4E86\u53C8\u522A\u6389"
@@ -318,6 +347,7 @@ MonoBehaviour:
     focusCameraPositions:
     - {x: 0, y: 0}
     - {x: 0, y: 0}
+    shouldShakeCamera: 0000
   - key: Message16
     sentences:
     - "\u6C92\u4E8B\u2026\u2026\u53EA\u662F\u7A81\u7136\u89BA\u5F97\u6211\u61C9\u8A72\u53BB\u770B\u770B\u9019\u90E8\u5287"
@@ -328,6 +358,7 @@ MonoBehaviour:
     - {x: 0, y: 0}
     - {x: 0, y: 0}
     - {x: 0, y: 0}
+    shouldShakeCamera: 000000
   - key: Boss
     sentences:
     - "(\u4F60\u539F\u672C\u6B63\u5728\u6E96\u5099\u63A5\u4E0B\u4F86\u8981\u8DDFIrene\u544A\u767D\uFF0C\u4F46\u7A81\u7136\u807D\u5230\u670B\u53CB\u7684\u5C0D\u8A71)"
@@ -346,6 +377,7 @@ MonoBehaviour:
     - {x: 0, y: 0}
     - {x: 0, y: 0}
     - {x: 0, y: 0}
+    shouldShakeCamera: 00000000000000
   - key: Boss_meetGirl
     sentences:
     - "Irene\u6211\u525B\u525B\u807D\u8AAA\u2026\u2026\u4F60\u6700\u8FD1\u8DDF\u90A3\u500B\u5B78\u9577\u8D70\u5F97\u5F88\u8FD1\uFF1F"
@@ -368,6 +400,7 @@ MonoBehaviour:
     - {x: 0, y: 0}
     - {x: 0, y: 0}
     - {x: 0, y: 0}
+    shouldShakeCamera: 000001000001000000
   - key: Boss_Show
     sentences:
     - "Irene:\u5475\u2026\u2026\u4F60\u771F\u4EE5\u70BA\u6211\u6703\u5728\u9019\u7A2E\u6642\u5019\u9084\u9A19\u4F60\uFF1F"
@@ -382,16 +415,16 @@ MonoBehaviour:
     - {x: 0, y: 0}
     - {x: 0, y: 0}
     - {x: 0, y: 0}
+    shouldShakeCamera: 0000000100
   - key: Home
     sentences:
-    - "\u963F\u6628\u5929\u90A3\u500B\u5973\u751F\u771F\u7684\u597D\u6F02\u4EAE"
-    - "\u5E0C\u671B\u4ECA\u5929\u9084\u53EF\u4EE5\u9047\u898B\u4ED6"
+    - "\u56DE\u5230\u5BB6\u4E86~~"
     - "\u4ECA\u5929\u52E2\u5FC5\u8981\u63DB\u4E0A\u6700\u9177\u7684\u5957\u88DD\u51FA\u767C\u53BB\u5B78\u6821\u4E86"
-    shouldFocusCamera: 000000
+    shouldFocusCamera: 0000
     focusCameraPositions:
     - {x: 0, y: 0}
     - {x: 0, y: 0}
-    - {x: 0, y: 0}
+    shouldShakeCamera: 0000
   - key: Boss2
     sentences:
     - "\u53EF\u60E1\u96FB\u8A71\u4E0D\u63A5\u3001\u8A0A\u606F\u4E0D\u770B"
@@ -406,6 +439,7 @@ MonoBehaviour:
     - {x: 0, y: 0}
     - {x: 0, y: 0}
     - {x: 0, y: 0}
+    shouldShakeCamera: 
   - key: Boss2_meetGirl
     sentences:
     - "\u8473\u8473:\u4F60\u600E\u9EBC\u6703\u5728\u9019\u88E1"
@@ -418,6 +452,7 @@ MonoBehaviour:
     - {x: 0, y: 0}
     - {x: 0, y: 0}
     - {x: 0, y: 0}
+    shouldShakeCamera: 
   - key: Boss2_Show
     sentences:
     - "\u8473\u8473:\u7D66\u4F60\u4E00\u9EDE\u751C\u982D\u9084\u771F\u628A\u81EA\u5DF1\u7576\u5E25\u54E5\u963F"
@@ -430,3 +465,4 @@ MonoBehaviour:
     - {x: 0, y: 0}
     - {x: 0, y: 0}
     - {x: 0, y: 0}
+    shouldShakeCamera: 

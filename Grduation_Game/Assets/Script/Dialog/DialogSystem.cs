@@ -1,83 +1,90 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using Cinemachine;
+using UnityEditor.Search;
 
-// DialogSystem ¥u¥Î¨ÓÅã¥Ü¹ï¸Ü
+// DialogSystem åªç”¨ä¾†é¡¯ç¤ºå°è©±
 
 public class DialogSystem : MonoBehaviour
 {
-    [Header("¼s¼½")]
+    [Header("å»£æ’­")]
     public VoidEventSO dialogEndEvent;
 
-    [Header("UI²Õ¥ó")]
-    public Text textLabel; // UI¹ï¸Ü®Ø¤å¦r²Õ¥ó
-    public Image faceImage; // UI¹ï¸Ü®ØÀY¹³¹Ï¤ù
+    [Header("UIçµ„ä»¶")]
+    public Text textLabel; // UIå°è©±æ¡†æ–‡å­—çµ„ä»¶
+    public Image faceImage; // UIå°è©±æ¡†é ­åƒåœ–ç‰‡
     public Image Panel;
-    public Button SkipButton; // Ä~Äò«ö¶s
+    public Button SkipButton; // ç¹¼çºŒæŒ‰éˆ•
 
-    [Header("Cinemachine ÃèÀY")]
-    public CinemachineVirtualCamera defaultCamera; // ¹w³]ÃèÀY
-    public CinemachineVirtualCamera focusCamera;  // »EµJÃèÀY
+    [Header("Cinemachine é¡é ­")]
+    public CinemachineVirtualCamera defaultCamera; // é è¨­é¡é ­
+    public CinemachineVirtualCamera focusCamera;  // èšç„¦é¡é ­
+    public CameraShakeEventSO cameraShakeEvent;// é¡é ­éœ‡å‹•äº‹ä»¶
 
-    private Queue<(string sentence, bool shouldFocusCamera, Vector2 focusPosition)> dialogQueue; // Àx¦s¥y¤l©M¹BÃè¼Ğ°O
+    private Queue<(string sentence, bool shouldFocusCamera, Vector2 focusPosition, bool shouldShakeCamera)> dialogQueue;
 
     public int index;
     public float textSpeed;
 
-    bool textFinished; // ¬O§_§¹¦¨¥´¦r
-    bool cancelTyping; // ¨ú®ø¥´¦r
+    bool textFinished; // æ˜¯å¦å®Œæˆæ‰“å­—
+    bool cancelTyping; // å–æ¶ˆæ‰“å­—
 
     void Awake()
     {
-        dialogQueue = new Queue<(string, bool, Vector2)>();
+        dialogQueue = new Queue<(string, bool, Vector2, bool)> ();
     }
     private void OnEnable()
     {
         textFinished = true;
         SkipButton.onClick.AddListener(onSkipButtonClick);
     }
-    // ³]¸m¨ÃÅã¥Ü¹ï¸Ü
+    // è¨­ç½®ä¸¦é¡¯ç¤ºå°è©±
     public void SetDialog(DialogData.DialogEntry dialogEntry)
     {
         StopAllCoroutines();
         textLabel.text = "";
         dialogQueue.Clear();
 
-        // ¥[¤J¥y¤l
+        // åŠ å…¥å¥å­
         for (int i = 0; i < dialogEntry.sentences.Count; i++)
         {
-            dialogQueue.Enqueue((
-                dialogEntry.sentences[i],
-                dialogEntry.shouldFocusCamera[i],
-                dialogEntry.focusCameraPositions[i]
-            ));
+                dialogQueue.Enqueue((
+            dialogEntry.sentences[i],
+            dialogEntry.shouldFocusCamera[i],
+            dialogEntry.focusCameraPositions[i],
+            dialogEntry.shouldShakeCamera[i]  // âœ… æ–°å¢éœ‡å‹•æ¬„ä½
+        ));
         }
 
-        // ¸T¤îª±®a²¾°Ê
+        // ç¦æ­¢ç©å®¶ç§»å‹•
         PlayerController.Instance.canMove = false;
         Panel.gameObject.SetActive(true);
         StartCoroutine(DisplayText());
     }
-    // ³v¦rÅã¥Ü¹ï¸Ü
+    // é€å­—é¡¯ç¤ºå°è©±
     IEnumerator DisplayText()
     {
         while (dialogQueue.Count > 0)
         {
             textFinished = false;
-            textLabel.text = ""; // ²MªÅÂÂ¹ï¸Ü
+            textLabel.text = ""; // æ¸…ç©ºèˆŠå°è©±
 
-            var (currentLine, shouldFocus, focusPosition) = dialogQueue.Dequeue();
+            var (currentLine, shouldFocus, focusPosition, shouldShake) = dialogQueue.Dequeue();
 
+            if (shouldShake && cameraShakeEvent != null)
+            {
+                cameraShakeEvent.OnEventRaised(0.5f, 1f, 0.2f); // âœ… é¡é ­éœ‡å‹•ï¼
+            }
             if (shouldFocus)
             {
-                SetFocusCamera(focusPosition); // ³]¸m FocusCamera ªº¦ì¸m
-                SwitchToFocusCamera(); // ¤Á´«¨ì»EµJÃèÀY
+                SetFocusCamera(focusPosition); // è¨­ç½® FocusCamera çš„ä½ç½®
+                SwitchToFocusCamera(); // åˆ‡æ›åˆ°èšç„¦é¡é ­
             }
             foreach (char letter in currentLine.ToCharArray())
             {
-                if (cancelTyping) // «ö¤U¸õ¹LÁä®É¡Aª½±µÅã¥Ü§¹¾ã¥y¤l
+                if (cancelTyping) // æŒ‰ä¸‹è·³ééµæ™‚ï¼Œç›´æ¥é¡¯ç¤ºå®Œæ•´å¥å­
                 {
                     textLabel.text = currentLine;
                     break;
@@ -87,48 +94,48 @@ public class DialogSystem : MonoBehaviour
             }
 
             textFinished = true;
-            cancelTyping = false; // ­«¸m¼Ğ°O
-            yield return new WaitUntil(() => Input.GetKeyDown(KeyCode.F)); // «öRÄ~Äò
+            cancelTyping = false; // é‡ç½®æ¨™è¨˜
+            yield return new WaitUntil(() => Input.GetKeyDown(KeyCode.F)); // æŒ‰Rç¹¼çºŒ
 
-            // «ì´_¨ì¹w³]ÃèÀY
+            // æ¢å¾©åˆ°é è¨­é¡é ­
             if (shouldFocus)
             {
                 SwitchToDefaultCamera();
             }
         }
 
-        Panel.gameObject.SetActive(false); // Ãö³¬¹ï¸Ü®Ø
+        Panel.gameObject.SetActive(false); // é—œé–‰å°è©±æ¡†
         dialogEndEvent.RaiseEvent();
 
-        // ¹ï¸Ü§¹¦¨«á¶}±Òª±®a²¾°Ê
+        // å°è©±å®Œæˆå¾Œé–‹å•Ÿç©å®¶ç§»å‹•
         PlayerController.Instance.canMove = true;
     }
-    // ³]¸m FocusCamera ªº¦ì¸m
+    // è¨­ç½® FocusCamera çš„ä½ç½®
     private void SetFocusCamera(Vector2 position)
     {
         focusCamera.transform.position = new Vector3(position.x, position.y, focusCamera.transform.position.z);
     }
 
-    // ¤Á´«¨ì»EµJÃèÀY
+    // åˆ‡æ›åˆ°èšç„¦é¡é ­
     private void SwitchToFocusCamera()
     {
-        defaultCamera.Priority = 0; // ­°§C¹w³]ÃèÀYªºÀu¥ı¯Å
-        focusCamera.Priority = 10;  // ´£°ª»EµJÃèÀYªºÀu¥ı¯Å
+        defaultCamera.Priority = 0; // é™ä½é è¨­é¡é ­çš„å„ªå…ˆç´š
+        focusCamera.Priority = 10;  // æé«˜èšç„¦é¡é ­çš„å„ªå…ˆç´š
     }
 
-    // ¤Á´«¦^¹w³]ÃèÀY
+    // åˆ‡æ›å›é è¨­é¡é ­
     private void SwitchToDefaultCamera()
     {
-        focusCamera.Priority = 0;  // ­°§C»EµJÃèÀYªºÀu¥ı¯Å
-        defaultCamera.Priority = 10; // ´£°ª¹w³]ÃèÀYªºÀu¥ı¯Å
+        focusCamera.Priority = 0;  // é™ä½èšç„¦é¡é ­çš„å„ªå…ˆç´š
+        defaultCamera.Priority = 10; // æé«˜é è¨­é¡é ­çš„å„ªå…ˆç´š
     }
-    // «ö¤U R ®É¡A¸õ¹L³v¦r¿é¥X¡Aª½±µÅã¥Ü§¹¾ã¥y¤l
+    // æŒ‰ä¸‹ R æ™‚ï¼Œè·³éé€å­—è¼¸å‡ºï¼Œç›´æ¥é¡¯ç¤ºå®Œæ•´å¥å­
     
     public void onSkipButtonClick()
     {
         if (!textFinished)
         {
-            cancelTyping = true; // ¸õ¹L¥´¦r°Êµe
+            cancelTyping = true; // è·³éæ‰“å­—å‹•ç•«
         }
     }
    

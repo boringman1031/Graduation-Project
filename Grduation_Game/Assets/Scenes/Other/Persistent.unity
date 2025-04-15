@@ -2170,7 +2170,7 @@ MonoBehaviour:
   goHomeEvent: {fileID: 11400000, guid: 8e4300285ab8c3142a25901137ababd8, type: 2}
   pasueEvent: {fileID: 11400000, guid: 4299f1c9fcd22234f9158e7003dd4ab5, type: 2}
   loadRandomSceneEvent: {fileID: 11400000, guid: 381f9febe87016148a8902e5ff57fe6f, type: 2}
-  gotoNesserySceneEvent: {fileID: 0}
+  gotoNesserySceneEvent: {fileID: 11400000, guid: 0d07f2f40c60e484bb581ba2184777cb, type: 2}
   playerStatBar: {fileID: 1467685003}
   GameOverPanel: {fileID: 1467685015}
   RandomChallengePanel: {fileID: 1663231859}
@@ -12016,6 +12016,7 @@ MonoBehaviour:
   SkipButton: {fileID: 1313435439}
   defaultCamera: {fileID: 1742691488}
   focusCamera: {fileID: 1394603692}
+  cameraShakeEvent: {fileID: 11400000, guid: 955e5606396303b448c5c92977173dfb, type: 2}
   index: 0
   textSpeed: 0
 --- !u!1 &1793539121
@@ -12137,7 +12138,8 @@ MonoBehaviour:
   playerTrans: {fileID: 1892058791}
   firstPosition: {x: -12.074428, y: -60.6235, z: 0}
   menuPosition: {x: 959.3304, y: 544.71027, z: 0.24347681}
-  fadeTime: 0.5
+  challengeCount: 0
+  maxChallenges: 4
   currentChapter: 0
   chap1RandomScenes:
   - {fileID: 11400000, guid: 7c7a6333463b76646917fe422625790a, type: 2}
@@ -12167,8 +12169,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: f13ced2b00084a540b5ded1932323cba, type: 2}
   - {fileID: 11400000, guid: a126bb246628eb740af3c957198b7521, type: 2}
   selectedSceneChoices: []
-  challengeCount: 0
-  maxChallenges: 4
+  fadeTime: 0.5
 --- !u!114 &1815163383
 MonoBehaviour:
   m_ObjectHideFlags: 0

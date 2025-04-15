@@ -11,7 +11,7 @@ using UnityEngine.SceneManagement;
 public class SceneLoader : MonoBehaviour, ISaveable
 {  
 
-    [Header("廣播")]
+    [Header("事件廣播")]
     public VoidEventSO saveDataEvent;
     public VoidEventSO afterSceneLoadedEvent;
     public VoidEventSO openRandomCanvaEvent;
@@ -36,42 +36,54 @@ public class SceneLoader : MonoBehaviour, ISaveable
     public VoidEventSO goHomeEvent;
     public VoidEventSO gotoNesserySceneEvent;
 
-    [Header("場景參數")]
+    [Header("主要場景")]
     public GameSceneSO MuneScene;
     public GameSceneSO HomeScene;
     public GameSceneSO firstLoadScene;
+
+    [Header("Boss場景")]
     public GameSceneSO BossScene;
     public GameSceneSO Boss2Scene;
     public GameSceneSO Boss3Scene;
+
+    [Header("必要場景")]
     public GameSceneSO NecessaryScene;
     public GameSceneSO NecessaryScene2;
     public GameSceneSO NecessaryScene3;
+
+    [Header("結束場景")]
     public GameSceneSO Chap1ENDScene;
     public GameSceneSO Chap2ENDScene;
     public GameSceneSO FinalENDScene;
-
-    public Transform playerTrans;
-    public Vector3 firstPosition;
-    public Vector3 menuPosition;
-    public float fadeTime;
 
     private GameSceneSO sceneToLoad;
     private GameSceneSO currentLoadScene;
     private GameSceneSO lastRandomScene;
 
+    [Header("玩家位置")]
+    public Transform playerTrans;
+    public Vector3 firstPosition;
+    public Vector3 menuPosition;
+
+    [Header("挑戰次數")]
+    public int challengeCount = 0;
+    public int maxChallenges = 4;
+
+    [Header("目前章節")]
     public Chapter currentChapter = Chapter.Chap1;
 
+    [Header("隨機場景列表")]
     public List<GameSceneSO> chap1RandomScenes;
     public List<GameSceneSO> chap2RandomScenes;
     public List<GameSceneSO> chap3RandomScenes;
 
+    [Header("隨機場景選擇列表")]
     public List<GameSceneSO> selectedSceneChoices = new();
-
-    public int challengeCount = 0;
-    public int maxChallenges = 4;
+    
     private Vector3 positionToGo;
     private bool fadeScreen;
     private bool isLoading;
+    public float fadeTime;
 
     private void Start()
     {
