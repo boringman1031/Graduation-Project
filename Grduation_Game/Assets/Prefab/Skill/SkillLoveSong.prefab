@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 1874208144990356345}
   - component: {fileID: 7630038644073935474}
   - component: {fileID: 3415627812315223376}
+  - component: {fileID: 8671920746762870577}
   m_Layer: 0
   m_Name: SkillLoveSong
   m_TagString: Untagged
@@ -104,6 +105,7 @@ MonoBehaviour:
   projectileSpeed: 10
   damage: 50
   energyCost: 10
+  audioPlayer: {fileID: 8671920746762870577}
   spawnSound: {fileID: 8300000, guid: 29445bcbcf35a4845aa9b5a485d1c561, type: 3}
   hitSound: {fileID: 8300000, guid: d79abd903602fe64f8c894b2fb4ee222, type: 3}
   hitEffect: {fileID: 1995381589776712739, guid: 219726b2131c6f8499b86da523e3e2e1, type: 3}
@@ -180,3 +182,18 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 2.9135313, y: 2.969925}
   m_EdgeRadius: 0
+--- !u!114 &8671920746762870577
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2641247951660282740}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 382469160c5fb1044b544fb3b962a440, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playAudioEvent: {fileID: 11400000, guid: 65ebe43ce1b57af42838ea556ca8530e, type: 2}
+  audioClip: {fileID: 0}
+  playOnEnable: 0

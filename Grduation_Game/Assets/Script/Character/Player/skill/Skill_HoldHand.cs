@@ -8,6 +8,7 @@ public class SkillHoldHand : MonoBehaviour, ISkillEffect
     public float energyCost = 10f;
 
     [Header("效果設定")]
+    public AudioDefination audioPlayer;// 音效播放器
     public AudioClip skillSound;
     public ParticleSystem skillEffect;
     public Animator animator;
@@ -46,7 +47,11 @@ public class SkillHoldHand : MonoBehaviour, ISkillEffect
         transform.position = origin.position + new Vector3(spawnOffset.x * faceDir, spawnOffset.y, spawnOffset.z);
         transform.localScale = new Vector3(faceDir, 1, 1); // 朝向
 
-        if (skillSound != null) AudioSource.PlayClipAtPoint(skillSound, transform.position);
+        if (audioPlayer != null && skillSound != null)
+        {
+            audioPlayer.audioClip = skillSound;
+            audioPlayer.PlayAudioClip();
+        }
         if (skillEffect != null) skillEffect.Play();
         if (playerAnimator != null)
             playerAnimator.SetTrigger("Skill1");

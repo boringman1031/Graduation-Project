@@ -13,6 +13,7 @@ public class SkillLoveSong : MonoBehaviour, ISkillEffect
     public float energyCost = 10f;      // 消耗能量
 
     [Header("音效特效設定")]
+    public AudioDefination audioPlayer; // 音效播放器
     public AudioClip spawnSound;        // 技能生成音效
     public AudioClip hitSound;          // 命中敵人音效
     public GameObject hitEffect;          // 命中敵人音效
@@ -51,9 +52,10 @@ public class SkillLoveSong : MonoBehaviour, ISkillEffect
         costPower(character); //扣除能量
 
         // 播放生成時音效
-        if (spawnSound != null)
+        if (audioPlayer != null && spawnSound != null)
         {
-            AudioSource.PlayClipAtPoint(spawnSound, transform.position);
+            audioPlayer.audioClip = spawnSound;
+            audioPlayer.PlayAudioClip();
         }
 
         // 根據玩家面向決定飛行方向
@@ -87,9 +89,10 @@ public class SkillLoveSong : MonoBehaviour, ISkillEffect
 
         if (enemy != null)
         {
-            if (hitSound != null)
+            if (audioPlayer != null && hitSound != null)
             {
-                AudioSource.PlayClipAtPoint(hitSound, transform.position);
+                audioPlayer.audioClip = hitSound;
+                audioPlayer.PlayAudioClip();
             }
 
             if (hitEffect != null)

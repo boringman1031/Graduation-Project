@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 5572118476717414656}
   - component: {fileID: 8775224071233543567}
   - component: {fileID: 1419601260964012213}
+  - component: {fileID: 9141946475162438019}
   m_Layer: 10
   m_Name: Skill_HoldHand
   m_TagString: Untagged
@@ -49,6 +50,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damage: 50
   energyCost: 10
+  audioPlayer: {fileID: 9141946475162438019}
   skillSound: {fileID: 8300000, guid: fe0b1f9aeb45b41b089175aeeabd5d95, type: 3}
   skillEffect: {fileID: 5035338686032660460}
   animator: {fileID: 2993434078183897089, guid: 8fe606f421d465a43860c97bb139a223, type: 3}
@@ -106,6 +108,21 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 3.73
+--- !u!114 &9141946475162438019
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4342785686579105582}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 382469160c5fb1044b544fb3b962a440, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playAudioEvent: {fileID: 11400000, guid: 65ebe43ce1b57af42838ea556ca8530e, type: 2}
+  audioClip: {fileID: 0}
+  playOnEnable: 0
 --- !u!1001 &8582179642662683839
 PrefabInstance:
   m_ObjectHideFlags: 0

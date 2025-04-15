@@ -17,6 +17,7 @@ public class SkillEmo : MonoBehaviour, ISkillEffect
 
     [Header("負面能量效果預置物")]
     public GameObject negativeEffectPrefab; // 負面能量效果 prefab
+    public AudioDefination audioPlayer;// 音效播放器
     public AudioClip skillSound;
 
     public void SetOrigin(Transform origin)
@@ -51,9 +52,10 @@ public class SkillEmo : MonoBehaviour, ISkillEffect
         transform.SetParent(origin);
         transform.localPosition = Vector3.zero;
 
-        if (skillSound != null)
+        if (audioPlayer != null && skillSound != null)
         {
-            AudioSource.PlayClipAtPoint(skillSound, transform.position);
+            audioPlayer.audioClip = skillSound;
+            audioPlayer.PlayAudioClip();
         }
 
         // 開始生成負面能量效果

@@ -16,6 +16,7 @@ public class SkillCangYingPaiAnim : MonoBehaviour, ISkillEffect
     public float buffDuration = 3f;    // 速度加成持續時間（秒）
 
     [Header("音效")]
+    public AudioDefination audioPlayer; // 音效播放器
     public AudioClip triggerSound;     // 技能觸發音效
     public AudioClip impactSound;      // 拍擊地板時播放的音效
 
@@ -52,9 +53,10 @@ public class SkillCangYingPaiAnim : MonoBehaviour, ISkillEffect
         if (!isActivated) return;
 
         // 播放地板撞擊音效
-        if (impactSound != null)
+        if (audioPlayer != null && impactSound != null)
         {
-            AudioSource.PlayClipAtPoint(impactSound, transform.position);
+            audioPlayer.audioClip = impactSound;
+            audioPlayer.PlayAudioClip();
         }
 
         // 產生地板撞擊特效
@@ -123,9 +125,10 @@ public class SkillCangYingPaiAnim : MonoBehaviour, ISkillEffect
         transform.localPosition = Vector3.zero;
 
         // 播放技能觸發音效
-        if (triggerSound != null)
+        if (audioPlayer != null && triggerSound != null)
         {
-            AudioSource.PlayClipAtPoint(triggerSound, transform.position);
+            audioPlayer.audioClip = triggerSound;
+            audioPlayer.PlayAudioClip();
         }
 
         // 提升玩家速度，並啟動計時器恢復原速度

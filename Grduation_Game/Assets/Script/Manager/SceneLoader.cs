@@ -231,11 +231,20 @@ public class SceneLoader : MonoBehaviour, ISaveable
     private void OnOpenRandomCanvasEvent()
     {
         if (currentLoadScene.sceneType != SceneType.Menu &&
-            currentLoadScene.sceneType != SceneType.Boss &&
-            currentLoadScene.sceneType != SceneType.Necessary)
+       currentLoadScene.sceneType != SceneType.Boss &&
+       currentLoadScene.sceneType != SceneType.Necessary)
         {
-            unlockSkillEvent.RaiseEvent();
-            openRandomCanvaEvent.RaiseEvent();
+            // 第一關結束時顯示回家面板
+            if (currentLoadScene.displayName == "教學關卡")
+            {
+                unlockSkillEvent.RaiseEvent();
+                openGoHomeEvent.RaiseEvent(); // ✅ 顯示回家面板
+            }
+            else
+            {
+                unlockSkillEvent.RaiseEvent();
+                openRandomCanvaEvent.RaiseEvent(); // 顯示挑戰面板
+            }
         }
     }
 
