@@ -5,7 +5,7 @@ using UnityEngine.AddressableAssets;
 public class GameSceneSO : ScriptableObject
 {
    
-    [Header("BUTTON顯示名稱")]
+    [Header("場景名稱")]
     public string displayName;
 
     [Header("場景類型")]

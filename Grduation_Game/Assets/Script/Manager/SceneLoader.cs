@@ -231,8 +231,8 @@ public class SceneLoader : MonoBehaviour, ISaveable
     private void OnOpenRandomCanvasEvent()
     {
         if (currentLoadScene.sceneType != SceneType.Menu &&
-       currentLoadScene.sceneType != SceneType.Boss &&
-       currentLoadScene.sceneType != SceneType.Necessary)
+            currentLoadScene.sceneType != SceneType.Boss &&
+            currentLoadScene.sceneType != SceneType.Necessary)
         {
             // 第一關結束時顯示回家面板
             if (currentLoadScene.displayName == "教學關卡")
