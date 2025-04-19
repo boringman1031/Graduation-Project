@@ -235,7 +235,7 @@ public class SceneLoader : MonoBehaviour, ISaveable
             currentLoadScene.sceneType != SceneType.Necessary)
         {
             // 第一關結束時顯示回家面板
-            if (currentLoadScene.displayName == "教學關卡")
+            if (currentLoadScene.displayName == "教學關卡"|| currentLoadScene.displayName == "夜店")
             {
                 unlockSkillEvent.RaiseEvent();
                 openGoHomeEvent.RaiseEvent(); // ✅ 顯示回家面板
