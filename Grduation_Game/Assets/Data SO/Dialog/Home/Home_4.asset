@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 053e45de69710934f9aa722d36fe60a7, type: 3}
+  m_Name: Home_4
+  m_EditorClassIdentifier: 
+  question: "\u5979\u7B11\u8457\u6416\u6416\u982D\uFF0C\u4F38\u624B\u6233\u4E86\u4F60\u4E00\u4E0B\uFF0C\u8A9E\u6C23\u5E36\u9EDE\u7121\u5948\u3002"
+  options:
+  - "\u59B3\u662F\u4E0D\u662F\u767C\u73FE\u6211\u5176\u5BE6\u8D85\u7121\u804A\u7684\u2026"
+  - "\u62DC\u8A17\uFF0C\u6211\u525B\u525B\u53EF\u662F\u88AB\u59B3\u8ABF\u6232\u5230\u81C9\u7D05\u4E86\uFF01"
+  - "\u6B38\uFF0C\u4F60\u9019\u6A23\u5C0D\u6211\uFF0C\u6211\u6703\u60F3\u4F60\u7559\u4E0B\u4F86\u6B38\u3002 "
+  responses:
+  - reply: "\u9084\u597D\u5566\uFF0C\u7B97\u662F\u6BD4\u60F3\u50CF\u4E2D\u53EF\u611B\u4E00\u9EDE\u3002"
+    affectionChange: 10
+  - reply: "\u90A3\u8868\u793A\u4F60\u9084\u6EFF\u6709\u6F5B\u529B\u7E7C\u7E8C\u88AB\u6211\u8ABF\u6232\u7684\u3002"
+    affectionChange: 5
+  - reply: "\u4F60\u9019\u500B\u8272\u9B3C\u6211\u5011\u9084\u6C92\u5230\u90A3\u7A2E\u95DC\u4FC2"
+    affectionChange: -10

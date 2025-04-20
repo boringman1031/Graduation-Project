@@ -80,18 +80,10 @@ public class QuestionManager : MonoBehaviour
 
     void ChooseOption(int selectedIndex)
     {
-        bool isCorrect = selectedIndex == currentQuestion.correctAnswerIndex;
+        var response = currentQuestion.responses[selectedIndex];
 
-        if (isCorrect)
-        {
-            affection += currentQuestion.affectionChangeOnCorrect;
-            dialogueText.text = currentQuestion.correctReply;
-        }
-        else
-        {
-            affection += currentQuestion.affectionChangeOnWrong;
-            dialogueText.text = currentQuestion.wrongReply;
-        }
+        affection += response.affectionChange;
+        dialogueText.text = response.reply;
 
         UpdateAffectionText();
 

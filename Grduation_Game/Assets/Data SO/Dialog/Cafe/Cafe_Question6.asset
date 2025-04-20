@@ -17,8 +17,10 @@ MonoBehaviour:
   - "(\u62CD\u684C)\u5927\u6C5F\u5927\u6D77\u6C5F\u5927\u6D77"
   - "(\u7AD9\u8D77\u4F86\u5927\u53EB)\u79D8\u6708\u671F\u5077\u5077\uFF0C\u59B3\u4ECA\u5929\u5077\u5077\u4E86\u55CE"
   - "\u4F38\u624B\u628A Irene\u8033\u908A\u6389\u4E0B\u4F86\u7684\u4E00\u64AE\u982D\u9AEE\u8F15\u8F15\u64A9\u56DE\u53BB"
-  correctAnswerIndex: 2
-  affectionChangeOnCorrect: 10
-  affectionChangeOnWrong: -5
-  correctReply: "Irene\u624B\u9813\u4E86\u4E00\u4E0B\uFF0C\u4F4E\u982D\u5047\u88DD\u770B\u624B\u6A5F\uFF0C\u8033\u6839\u6084\u6084\u8B8A\u7D05\u3002"
-  wrongReply: "\u4F60\u5E79\u9EBB\u8FA3!!"
+  responses:
+  - reply: "\u4F60\u5E79\u561B????"
+    affectionChange: -10
+  - reply: "\u86E4....\u4F60\u5728\u8AAA\u4EC0\u9EBC"
+    affectionChange: -5
+  - reply: "(////\u5BB3\u7F9E////)"
+    affectionChange: 10

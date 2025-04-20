@@ -7223,6 +7223,52 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 15
   m_TargetDisplay: 0
+--- !u!1 &298625994
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 298625996}
+  - component: {fileID: 298625995}
+  m_Layer: 0
+  m_Name: QuestionGameController (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &298625995
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 298625994}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4ea5edf53bfcdad4c850bbc39cd6c8fd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  onDialogEndEvent: {fileID: 11400000, guid: 9b0030f4733054648b442de17490fdb0, type: 2}
+  questionGameRoot: {fileID: 828275422}
+--- !u!4 &298625996
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 298625994}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -13.618175, y: -64.033676, z: 0.3913458}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &307622896
 GameObject:
   m_ObjectHideFlags: 0
@@ -7274,7 +7320,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   goHomeEvent: {fileID: 11400000, guid: 8e4300285ab8c3142a25901137ababd8, type: 2}
   loadRandomSceneEvent: {fileID: 11400000, guid: 381f9febe87016148a8902e5ff57fe6f, type: 2}
-  dialogueList: []
+  dialogueList:
+  - {fileID: 11400000, guid: 45fa1b7acc4e9cf4e9f7fde3f787a197, type: 2}
+  - {fileID: 11400000, guid: 5b320b33fa426b44fb920d435ea213ff, type: 2}
+  - {fileID: 11400000, guid: 01fe33d70d5192f4687960291aa380ec, type: 2}
+  - {fileID: 11400000, guid: 14ea293d23de19c4db113893862c63d7, type: 2}
+  - {fileID: 11400000, guid: fa92182bc09c66b40b845fd0cb986e38, type: 2}
+  - {fileID: 11400000, guid: 3c8ae164f55857d4a8948eac4973e43a, type: 2}
+  - {fileID: 11400000, guid: 0d9641241d952d84599d2363a47d8edb, type: 2}
+  - {fileID: 11400000, guid: 8498b4bad7d6554418fecaf0eabe8d66, type: 2}
   optionButtons:
   - {fileID: 138066299}
   - {fileID: 1556696726}
@@ -10345,4 +10399,5 @@ SceneRoots:
   - {fileID: 1446156613}
   - {fileID: 437184143}
   - {fileID: 795044561}
+  - {fileID: 298625996}
   - {fileID: 828275423}
