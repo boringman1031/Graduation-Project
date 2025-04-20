@@ -9,6 +9,7 @@ public class TutorialSystem : MonoBehaviour
     public VoidEventSO tutorialMoveEvent;
     public VoidEventSO tutorialJumpEvent;
     public VoidEventSO tutorialAttackEvent;
+    public VoidEventSO tutorialDefeatEnemy;
     public VoidEventSO tutorialBossSummonEvent;
     public VoidEventSO tutorialBoss2SummonEvent;
     public VoidEventSO tutorialBossAttackEvent;
@@ -41,6 +42,7 @@ public class TutorialSystem : MonoBehaviour
         tutorialMoveEvent.OnEventRaised += ShowMoveTutorial;
         tutorialJumpEvent.OnEventRaised += ShowJumpTutorial;
         tutorialAttackEvent.OnEventRaised += ShowAttackTutorial;
+        tutorialDefeatEnemy.OnEventRaised += ShowDefeatEnemyTutorial;
         dialogEndEvent.OnEventRaised += OnDialogEnd;
         sceneLoadedEvent.OnSceneLoaded += OnSceneLoaded;
         tutorialBossSummonEvent.OnEventRaised += ShowBossSummonTutorial;
@@ -128,6 +130,9 @@ public class TutorialSystem : MonoBehaviour
                 case TutorialType.Attack:
                     ShowAttackTutorial();
                     break;
+                case TutorialType.DefeatEnemy:
+                    ShowDefeatEnemyTutorial();
+                    break;
                 case TutorialType.MusicGame:
                     ShowMusicGameTutorial();
                     break;
@@ -193,6 +198,11 @@ public class TutorialSystem : MonoBehaviour
         ShowTutorial("按下 滑鼠右鍵 攻擊");
     }
 
+    private void ShowDefeatEnemyTutorial()
+    {
+        currentTutorialType = TutorialType.DefeatEnemy;
+        ShowTutorial("擊敗10名敵人吧");
+    }
     private void ShowMusicGameTutorial()
     {
         currentTutorialType = TutorialType.MusicGame;
