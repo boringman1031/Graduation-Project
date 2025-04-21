@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 053e45de69710934f9aa722d36fe60a7, type: 3}
+  m_Name: KTV_5
+  m_EditorClassIdentifier: 
+  question: "\u8473\u8473:\u9019\u6BB5\u526F\u6B4C\u6211\u4F86\u5531\u5566\uFF5E\u4F60\u90A3\u7A2E\u8D70\u97F3\u6211\u5FEB\u807D\u4E0D\u4E0B\u53BB\uFF01"
+  options:
+  - "\u6B38\u6B38\u6B38\uFF5E\u9019\u662F\u6211\u7684solo\u6B38\uFF01"
+  - "\u6C92\u95DC\u4FC2\u5566\uFF0C\u8DDF\u59B3\u5408\u5531\u5C31\u503C\u4E86\u3002\u2705"
+  - "\u9019\u9996\u6B4C\u8AAA\u4E0D\u5B9A\u4F60\u5531\u5F97\u6BD4\u6211\u96E3\u807D\uFF0C\u9084\u7D66\u4F60solo!"
+  responses:
+  - reply: "\u4F60\u90A3\u53EBsolo\uFF1F\u4F60\u662Fsolong\u6211\u8033\u6735\u624D\u5C0D\u5427\u54C8\u54C8\u54C8\uFF5E"
+    affectionChange: -10
+  - reply: "\u5509\u5537\uFF5E\u6703\u4E0D\u6703\u8B1B\u8A71\u5594\uFF0C\u9019\u7A2E\u4EBA\u8A2D\u6211\u559C\u6B61\uFF5E"
+    affectionChange: 10
+  - reply: "\u6211KTV\u5973\u738B\u4F60\u8AAA\u6211\u5531\u6B4C\u96E3\u807D?\u4F60\u8D70\u97F3\u8D70\u5230\u6211\u90FD\u61F7\u7591\u4EBA\u751F\u4E86\u6B38\uFF01"
+    affectionChange: -5
