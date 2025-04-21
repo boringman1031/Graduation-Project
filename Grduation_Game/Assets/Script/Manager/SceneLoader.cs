@@ -265,6 +265,13 @@ public class SceneLoader : MonoBehaviour, ISaveable
     private IEnumerator UnLoadPreviousScene()
     {
         yield return new WaitForSeconds(fadeTime);
+        foreach (var obj in FindObjectsOfType<MonoBehaviour>())
+        {
+            if (obj is ISkillEffect)
+            {
+                Destroy(obj.gameObject);
+            }
+        }
         if (fadeScreen) transitionEvent.TransitionIn();
         unLoadSceneEvent.RaiseLoadRequestEvent(sceneToLoad, positionToGo, true);
         yield return currentLoadScene.sceneReference.UnLoadScene();

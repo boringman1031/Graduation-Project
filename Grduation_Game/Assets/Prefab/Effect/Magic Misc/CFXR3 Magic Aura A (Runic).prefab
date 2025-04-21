@@ -4866,7 +4866,7 @@ ParticleSystemRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -2003198267
-  m_SortingLayer: 3
+  m_SortingLayer: 4
   m_SortingOrder: 0
   m_RenderMode: 0
   m_MeshDistribution: 0
@@ -9766,7 +9766,7 @@ ParticleSystemRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -2003198267
-  m_SortingLayer: 3
+  m_SortingLayer: 4
   m_SortingOrder: 0
   m_RenderMode: 0
   m_MeshDistribution: 0
@@ -14608,7 +14608,7 @@ ParticleSystemRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -2003198267
-  m_SortingLayer: 3
+  m_SortingLayer: 4
   m_SortingOrder: 0
   m_RenderMode: 1
   m_MeshDistribution: 0
@@ -14654,6 +14654,7 @@ GameObject:
   - component: {fileID: 3280519133390621043}
   - component: {fileID: 3280519133390621004}
   - component: {fileID: 3280519133390621041}
+  - component: {fileID: 7455882249090107313}
   m_Layer: 0
   m_Name: CFXR3 Magic Aura A (Runic)
   m_TagString: Untagged
@@ -14720,7 +14721,7 @@ ParticleSystemRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -2003198267
-  m_SortingLayer: 3
+  m_SortingLayer: 4
   m_SortingOrder: 0
   m_RenderMode: 4
   m_MeshDistribution: 0
@@ -19625,6 +19626,18 @@ MonoBehaviour:
     perlinColor: 0
     perlinColorSpeed: 1
   fadeOutReference: {fileID: 3280519133390621004}
+--- !u!114 &7455882249090107313
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3280519133390621005}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a0fb8c221f7adb2459e6bf4281b16694, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &3280519133430969738
 GameObject:
   m_ObjectHideFlags: 0

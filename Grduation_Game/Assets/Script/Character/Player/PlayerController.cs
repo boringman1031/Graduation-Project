@@ -31,7 +31,7 @@ public class PlayerController : MonoBehaviour
 
     [Header("玩家物理數值")]
     public PlayerStats playerStats;
-    public float Speed = 10f;
+    //public float Speed = 10f;
     public float jampforce = 16.5f;
     public float Hurtforce; // 被擊退力道
 
@@ -56,7 +56,9 @@ public class PlayerController : MonoBehaviour
     public SkillData activeSkillData; // 當前動畫事件即將觸發的技能
     public Transform effectSpawnPoint; // 技能特效生成位置
     private float[] skillLastUsedTime; // 上次使用技能的時間，用來控制冷卻
-    
+
+    [Header("普攻攻擊區塊")]
+    public GameObject[] attackObjects; // 對應 Attack1, Attack2, ...
 
     private void Awake()
     {
@@ -236,7 +238,7 @@ public class PlayerController : MonoBehaviour
     // 玩家移動邏輯
     public void Player_Move()
     {
-        float currentSpeed = playerStats != null ? playerStats.speed : Speed;
+        float currentSpeed = playerStats.speed;
         rb.velocity = new Vector2(inputDirection.x * currentSpeed, rb.velocity.y);
 
         int faceDir = (int)transform.localScale.x;
@@ -277,6 +279,25 @@ public class PlayerController : MonoBehaviour
             return;
         playerAnimation.OnPlayerAttack();
         isAttack = true;     
+    }
+    public void EnableAttack(int index)
+    {
+        if (index < 0 || index >= attackObjects.Length) return;
+
+        GameObject atk = attackObjects[index];
+        atk.SetActive(true);
+
+        var atkScript = atk.GetComponent<Attack>();
+        if (atkScript != null)
+        {
+            atkScript.Init(this.transform, atkScript.baseDamage, true);
+        }
+    }
+
+    public void DisableAttack(int index)
+    {
+        if (index < 0 || index >= attackObjects.Length) return;
+        attackObjects[index].SetActive(false);
     }
 
     private void ShowComboText(int count)
