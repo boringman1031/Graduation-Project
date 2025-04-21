@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2066771653057842340}
   - component: {fileID: 7636633968100650063}
+  - component: {fileID: 3219249509331698801}
   m_Layer: 10
   m_Name: SkillEmo
   m_TagString: Untagged
@@ -51,4 +52,20 @@ MonoBehaviour:
   spawnRangeX: 20
   spawnOffsetY: -3.5
   negativeEffectPrefab: {fileID: 5390606795631161828, guid: 3ebe76368cdf683478744a2029094a06, type: 3}
+  audioPlayer: {fileID: 3219249509331698801}
   skillSound: {fileID: 8300000, guid: 87fdf9a35703dc7428abf569b4af5a9d, type: 3}
+--- !u!114 &3219249509331698801
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 163793990866670272}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 382469160c5fb1044b544fb3b962a440, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playAudioEvent: {fileID: 11400000, guid: 65ebe43ce1b57af42838ea556ca8530e, type: 2}
+  audioClip: {fileID: 0}
+  playOnEnable: 0

@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 498695280321835193}
   - component: {fileID: 8674019485142933465}
+  - component: {fileID: 6051000617883206287}
   m_Layer: 10
   m_Name: Skill_FinalDance
   m_TagString: Untagged
@@ -48,7 +49,23 @@ MonoBehaviour:
   damagePerSecond: 100
   energyCost: 50
   auraRadius: 5
+  audioPlayer: {fileID: 6051000617883206287}
   backgroundMusic: {fileID: 8300000, guid: 32016db439565ba4ab8e78d2c3e84f3f, type: 3}
   finalDanceEffectPrefab: {fileID: 3280519133390621005, guid: a71be3e7990efb040a07565c43cbb198, type: 3}
   effectSpawnOffset: {x: 0, y: -4, z: 0}
   powerChangeEvent: {fileID: 11400000, guid: 23ace04ac57acc84ba84cb726bb38260, type: 2}
+--- !u!114 &6051000617883206287
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4033722154546908824}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 382469160c5fb1044b544fb3b962a440, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playAudioEvent: {fileID: 11400000, guid: 65ebe43ce1b57af42838ea556ca8530e, type: 2}
+  audioClip: {fileID: 0}
+  playOnEnable: 0

@@ -16,6 +16,7 @@ public class DialogData : ScriptableObject
         public List<string> sentences;  // 該對話的句子列表
         public List<bool> shouldFocusCamera; // 每個句子是否需要運鏡
         public List<Vector2> focusCameraPositions; // FocusCamera 的目標位置（2D）
+        public List<bool> shouldShakeCamera; // 是否要鏡頭震動
     }
 
     public List<DialogEntry> dialogs = new List<DialogEntry>();

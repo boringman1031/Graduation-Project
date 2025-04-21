@@ -27,7 +27,8 @@ public class UIManager : MonoBehaviour
     [Header("廣播事件")]
     public VoidEventSO pasueEvent;
     public VoidEventSO loadRandomSceneEvent; //隨機場景加載事件
-   
+    public VoidEventSO gotoNesserySceneEvent;//進入必要場景事件
+
     [Header("面板組件")]
     public PlayerStatBar playerStatBar;//玩家狀態條(血條、能量條)
     public GameObject GameOverPanel;//遊戲結束面板
@@ -192,7 +193,7 @@ public class UIManager : MonoBehaviour
 
     private void OnLoadSceneEvent(GameSceneSO _sceneToLoad, Vector3 arg1, bool arg2)//讀取場景事件判斷是否顯示玩家狀態條
     {
-        var isMenu=_sceneToLoad.sceneName == SceneName.Menu;
+        var isMenu=_sceneToLoad.sceneType == SceneType.Menu;
         playerStatBar.gameObject.SetActive(!isMenu);
     }
 
@@ -211,6 +212,10 @@ public class UIManager : MonoBehaviour
         // 如果 SceneLoader 有選項正在準備，從它那邊拿來用
         var loader = FindObjectOfType<SceneLoader>();
 
+        if (loader.challengeCount == loader.maxChallenges)
+        {
+            gotoNesserySceneEvent.RaiseEvent();
+        }
         if (loader != null && loader.selectedSceneChoices != null && loader.selectedSceneChoices.Count == 3)
         {
             ShowRandomChallengeOptions(loader.selectedSceneChoices);
@@ -219,6 +224,7 @@ public class UIManager : MonoBehaviour
         {
             Debug.LogWarning("SceneLoader 沒有提供三選一選項，無法顯示隨機挑戰面板！");
         }
+
     }
     private void OnOpenGoHomeCanvaEvents()
     {

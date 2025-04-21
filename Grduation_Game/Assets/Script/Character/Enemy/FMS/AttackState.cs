@@ -1,4 +1,4 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -12,7 +12,7 @@ public class AttackState : BaseState
         currentEnemy = enemy;
         currentEnemy.currentSpeed = 0;
         player = GameObject.FindGameObjectWithTag("Player")?.transform;
-        currentEnemy.isAttacking = false; // ¶i¤J§ðÀ»ª¬ºA®É­«³]§ðÀ»¤¤ª¬ºA     
+        currentEnemy.isAttacking = false;
     }
 
     public override void LogicUpdate()
@@ -21,35 +21,32 @@ public class AttackState : BaseState
 
         float distance = Vector2.Distance(currentEnemy.transform.position, player.position);
 
-        // ¶W¥X§ðÀ»¶ZÂ÷´N¤Á¦^°lÀ»ª¬ºA
         if (distance > currentEnemy.attackRange && !currentEnemy.isAttacking)
         {
             currentEnemy.SwitchState(EenemyState.Chase);
             return;
         }
 
-        // ¦pªG§N«o®É¶¡¨ì¡A¥B·í«e¨S¦³¦b§ðÀ»¤¤¡A´N¶i¦æ§ðÀ»
         if (Time.time >= lastAttackTime + currentEnemy.attackCooldown && !currentEnemy.isAttacking)
         {
             lastAttackTime = Time.time;
             currentEnemy.isAttacking = true;
+
+            // âœ… åªæ’­æ”¾æ”»æ“Šå‹•ç•«ï¼Œç”±å‹•ç•«äº‹ä»¶æŽ§åˆ¶è“„åŠ›èˆ‡ç™¼å°„
             currentEnemy.anim.SetTrigger("Attack");
         }
 
-        // ­±¦Vª±®a¤è¦V
+        // é¢å‘çŽ©å®¶æ–¹å‘
         if (player.position.x - currentEnemy.transform.position.x > 0)
             currentEnemy.transform.localScale = new Vector3(-1.6f, 1.6f, 1.6f);
         else
             currentEnemy.transform.localScale = new Vector3(1.6f, 1.6f, 1.6f);
     }
 
-    public override void PhysicsUpdate()
-    {
-       
-    }
+    public override void PhysicsUpdate() { }
 
     public override void OnExit()
     {
-        currentEnemy.isAttacking = false; // Â÷¶}§ðÀ»ª¬ºA®É«OÀI²M°£
+        currentEnemy.isAttacking = false;
     }
 }

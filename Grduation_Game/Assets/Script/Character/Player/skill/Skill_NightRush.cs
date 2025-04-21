@@ -10,6 +10,7 @@ public class Skill_NightRush : MonoBehaviour, ISkillEffect
     public float energyCost = 10f;
 
     [Header("音效設定")]
+    public AudioDefination audioPlayer;
     public AudioClip spawnSound;
     public AudioClip hitSound;
 
@@ -47,8 +48,11 @@ public class Skill_NightRush : MonoBehaviour, ISkillEffect
 
         costPower(character);
 
-        if (spawnSound != null)
-            AudioSource.PlayClipAtPoint(spawnSound, origin.position);
+        if (audioPlayer != null && spawnSound != null)
+        {
+            audioPlayer.audioClip = spawnSound;
+            audioPlayer.PlayAudioClip();
+        }
 
         transform.position = origin.position;
 
@@ -115,8 +119,11 @@ public class Skill_NightRush : MonoBehaviour, ISkillEffect
         if (target != null && !target.CompareTag("Player"))
         {
             hasHit = true;
-            if (hitSound != null)
-                AudioSource.PlayClipAtPoint(hitSound, collision.transform.position);
+            if (audioPlayer != null && hitSound != null)
+            {
+                audioPlayer.audioClip = hitSound;
+                audioPlayer.PlayAudioClip();
+            }
 
             target.TakeDamage(damage, transform);
         }

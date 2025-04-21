@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2378013412120777104}
   - component: {fileID: 6885395630625093579}
+  - component: {fileID: 1239436376586396092}
   m_Layer: 10
   m_Name: SkillQiZaiLai
   m_TagString: Untagged
@@ -44,9 +45,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9951ac930bb228a4e9cd23ac7c27f5d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  audioPlayer: {fileID: 1239436376586396092}
   activationSound: {fileID: 8300000, guid: 3a42c3856cf2c2d45814776913218271, type: 3}
   buffDuration: 15
   speedBuffAmount: 6
   attackBuffAmount: 66
   energyCost: 30
   hpDeductPercentage: 0.1
+  powerChangeEvent: {fileID: 11400000, guid: 23ace04ac57acc84ba84cb726bb38260, type: 2}
+--- !u!114 &1239436376586396092
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5844054705001736840}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 382469160c5fb1044b544fb3b962a440, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playAudioEvent: {fileID: 11400000, guid: 65ebe43ce1b57af42838ea556ca8530e, type: 2}
+  audioClip: {fileID: 0}
+  playOnEnable: 0

@@ -14,6 +14,7 @@ public class Skill_SlackOff : MonoBehaviour, ISkillEffect
     public float auraRadius = 5f;          // 技能效果範圍
 
     [Header("音效設定")]
+    public AudioDefination audioPlayer;// 音效播放器
     public AudioClip activationSound;      // 技能激活音效
     public AudioClip auraDamageSound;      // 每次傷害播放的音效 (可選)
 
@@ -42,9 +43,10 @@ public class Skill_SlackOff : MonoBehaviour, ISkillEffect
         origin = originTransform;
 
         // 播放激活音效
-        if (activationSound != null)
+        if (audioPlayer != null && activationSound != null)
         {
-            AudioSource.PlayClipAtPoint(activationSound, origin.position);
+            audioPlayer.audioClip = activationSound;
+            audioPlayer.PlayAudioClip();
         }
 
         // 取得玩家的生命與能量管理組件 (例如 CharactorBase)
@@ -110,9 +112,10 @@ public class Skill_SlackOff : MonoBehaviour, ISkillEffect
             if (enemy != null && !enemy.CompareTag("Player"))
             {
                 // 播放傷害音效 (可選)
-                if (auraDamageSound != null)
+                if (audioPlayer != null && auraDamageSound != null)
                 {
-                    AudioSource.PlayClipAtPoint(auraDamageSound, hit.transform.position);
+                    audioPlayer.audioClip = auraDamageSound;
+                    audioPlayer.PlayAudioClip();
                 }
                 // 傳遞傷害數值
                 enemy.TakeDamage(damagePerSecond, transform);

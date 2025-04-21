@@ -17,8 +17,10 @@ MonoBehaviour:
   - "(\u767C\u51FA\u75DB\u82E6\u7684\u5C16\u53EB)"
   - "\u4F60\u662F\u600E\u6A23\u5566\uFF1F\u5DEE\u9EDE\u628A\u98F2\u6599\u7051\u51FA\u4F86\uFF01"
   - "(\u727D\u8D77Irene\u7684\u624B)"
-  correctAnswerIndex: 2
-  affectionChangeOnCorrect: 10
-  affectionChangeOnWrong: -5
-  correctReply: "(/////\u5BB3\u7F9E//////)"
-  wrongReply: ...........
+  responses:
+  - reply: "\u5435\u4EC0\u9EBC\u5566???"
+    affectionChange: -5
+  - reply: .......
+    affectionChange: -10
+  - reply: "(///\u5BB3\u7F9E///)"
+    affectionChange: 10

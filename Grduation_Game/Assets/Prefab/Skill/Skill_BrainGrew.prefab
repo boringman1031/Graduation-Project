@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2312208825817776422}
   - component: {fileID: 7929979885134447225}
+  - component: {fileID: 6650817749349059593}
   m_Layer: 10
   m_Name: Skill_BrainGrew
   m_TagString: Untagged
@@ -47,7 +48,23 @@ MonoBehaviour:
   attackIncrease: 10
   healAmount: 50
   energyCost: 30
+  audioPlayer: {fileID: 6650817749349059593}
   activationSound: {fileID: 8300000, guid: 88443c0fe1d6ea94dbb865ce4536e6e2, type: 3}
   specialEffectPrefab: {fileID: 4206873631345827968, guid: aa9b19b4e95ee3d428142c8a4fd4d2f6, type: 3}
   effectSpawnOffset: {x: 0, y: 1, z: 0}
   powerChangeEvent: {fileID: 11400000, guid: 23ace04ac57acc84ba84cb726bb38260, type: 2}
+--- !u!114 &6650817749349059593
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5945355311154786360}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 382469160c5fb1044b544fb3b962a440, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playAudioEvent: {fileID: 11400000, guid: 65ebe43ce1b57af42838ea556ca8530e, type: 2}
+  audioClip: {fileID: 0}
+  playOnEnable: 0

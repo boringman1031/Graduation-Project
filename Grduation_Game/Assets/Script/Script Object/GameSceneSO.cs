@@ -6,9 +6,6 @@ public class GameSceneSO : ScriptableObject
 {
    
     [Header("場景名稱")]
-    public SceneName sceneName;
-
-    [Header("BUTTON顯示名稱")]
     public string displayName;
 
     [Header("場景類型")]

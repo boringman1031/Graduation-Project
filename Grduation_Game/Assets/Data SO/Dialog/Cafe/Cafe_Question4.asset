@@ -17,9 +17,10 @@ MonoBehaviour:
   - "\u559C\u6B61\u554A\u8F15\u97F3\u6A02\u8B93\u4EBA\u5F88\u653E\u9B06\uFF0C\u9069\u5408\u73FE\u5728\u7684\u6C1B\u570D\u3002"
   - "\u6211\u6BD4\u8F03\u559C\u6B61\u807D\u516C\u4E3B\u8ACB\u4E0A\u8ECA\u3002"
   - "Super Idol\u7684\u7B11\u5BB9\u90FD\u6C92\u4F60\u7684\u751C~"
-  correctAnswerIndex: 0
-  affectionChangeOnCorrect: 10
-  affectionChangeOnWrong: -5
-  correctReply: "\u8DDF\u6211\u4E00\u6A23\u6B38!!\u6211\u8D85\u611B\u9019\u7A2Echill
-    chill\u7684\u97F3\u6A02"
-  wrongReply: "....\u86E4"
+  responses:
+  - reply: "(\u773C\u775B\u653E\u5927)\u4F60\u5F88\u6709\u54C1\u5473\u311F"
+    affectionChange: 10
+  - reply: ........
+    affectionChange: -10
+  - reply: "\u6296\u97F3\u770B\u592A\u591A......"
+    affectionChange: -5

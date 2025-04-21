@@ -8,6 +8,7 @@ public class Skill_BrainGrew : MonoBehaviour, ISkillEffect
     public float energyCost = 30f;       // 消耗能量
 
     [Header("音效設定")]
+    public AudioDefination audioPlayer; // 音效播放器
     public AudioClip activationSound;    // 技能激活時播放的音效
 
     [Header("特效設定")]
@@ -51,9 +52,10 @@ public class Skill_BrainGrew : MonoBehaviour, ISkillEffect
         }
 
         // 播放激活音效
-        if (activationSound != null)
+        if (audioPlayer != null && activationSound != null)
         {
-            AudioSource.PlayClipAtPoint(activationSound, origin.position);
+            audioPlayer.audioClip = activationSound;
+            audioPlayer.PlayAudioClip();
         }
 
         // 生成特效，特效位置加上偏移

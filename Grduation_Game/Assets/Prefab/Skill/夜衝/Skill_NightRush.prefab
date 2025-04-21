@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 1486171035149414408}
   - component: {fileID: 2934225550985277767}
   - component: {fileID: 582842486815876412}
+  - component: {fileID: 6128174545219133488}
   m_Layer: 0
   m_Name: Skill_NightRush
   m_TagString: Untagged
@@ -53,6 +54,7 @@ MonoBehaviour:
   duration: 2
   damage: 30
   energyCost: 30
+  audioPlayer: {fileID: 6128174545219133488}
   spawnSound: {fileID: 8300000, guid: 979daff0e34c9954d89c0795d378093a, type: 3}
   hitSound: {fileID: 8300000, guid: 79428469137cbe94598e6b38a04181b2, type: 3}
   playerMountPoint: {fileID: 7138435216908889626}
@@ -99,7 +101,7 @@ BoxCollider2D:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 128
   m_LayerOverridePriority: 0
   m_ForceSendLayers:
     serializedVersion: 2
@@ -164,6 +166,21 @@ CapsuleCollider2D:
   m_Offset: {x: 0.13064755, y: -0.9472085}
   m_Size: {x: 8.817919, y: 3.918692}
   m_Direction: 1
+--- !u!114 &6128174545219133488
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 234172852894800666}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 382469160c5fb1044b544fb3b962a440, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playAudioEvent: {fileID: 11400000, guid: 65ebe43ce1b57af42838ea556ca8530e, type: 2}
+  audioClip: {fileID: 0}
+  playOnEnable: 0
 --- !u!1 &7421739285888107802
 GameObject:
   m_ObjectHideFlags: 0

@@ -9,6 +9,7 @@ public class TutorialSystem : MonoBehaviour
     public VoidEventSO tutorialMoveEvent;
     public VoidEventSO tutorialJumpEvent;
     public VoidEventSO tutorialAttackEvent;
+    public VoidEventSO tutorialDefeatEnemy;
     public VoidEventSO tutorialBossSummonEvent;
     public VoidEventSO tutorialBoss2SummonEvent;
     public VoidEventSO tutorialBossAttackEvent;
@@ -41,6 +42,7 @@ public class TutorialSystem : MonoBehaviour
         tutorialMoveEvent.OnEventRaised += ShowMoveTutorial;
         tutorialJumpEvent.OnEventRaised += ShowJumpTutorial;
         tutorialAttackEvent.OnEventRaised += ShowAttackTutorial;
+        tutorialDefeatEnemy.OnEventRaised += ShowDefeatEnemyTutorial;
         dialogEndEvent.OnEventRaised += OnDialogEnd;
         sceneLoadedEvent.OnSceneLoaded += OnSceneLoaded;
         tutorialBossSummonEvent.OnEventRaised += ShowBossSummonTutorial;
@@ -128,6 +130,9 @@ public class TutorialSystem : MonoBehaviour
                 case TutorialType.Attack:
                     ShowAttackTutorial();
                     break;
+                case TutorialType.DefeatEnemy:
+                    ShowDefeatEnemyTutorial();
+                    break;
                 case TutorialType.MusicGame:
                     ShowMusicGameTutorial();
                     break;
@@ -193,6 +198,11 @@ public class TutorialSystem : MonoBehaviour
         ShowTutorial("按下 滑鼠右鍵 攻擊");
     }
 
+    private void ShowDefeatEnemyTutorial()
+    {
+        currentTutorialType = TutorialType.DefeatEnemy;
+        ShowTutorial("擊敗10名敵人吧");
+    }
     private void ShowMusicGameTutorial()
     {
         currentTutorialType = TutorialType.MusicGame;
@@ -202,7 +212,7 @@ public class TutorialSystem : MonoBehaviour
     private void ShowMusicGameTutorial2()
     {
         currentTutorialType = TutorialType.MusicGame;
-        ShowTutorial("在愛心到左側位置時按下鍵盤QWE");
+        ShowTutorial("在愛心到左側位置時按下鍵盤ZXC");
     }
 
     private void ShowTriviaGameTutorial()
@@ -265,52 +275,16 @@ public class TutorialSystem : MonoBehaviour
         // 若有解鎖職業
         if (!string.IsNullOrEmpty(className))
         {
-            SkillManager.Instance.UnlockClass(className);
-
-            // 嘗試找出這個職業
-            ClassData unlockedClass = SkillManager.Instance.allClasses.Find(c => c.className == className);
-            if (unlockedClass != null)
-            {
-                // 切換成新職業
-                SkillManager.Instance.selectedClass = unlockedClass;
-
-                // ✅ 自動裝備 ultimateSkill 到 R 鍵
-                if (unlockedClass.ultimateSkill != null && unlockedClass.ultimateSkill.isUnlocked)
-                {
-                    SkillManager.Instance.EquipSkill(unlockedClass.ultimateSkill, 3);
-                }
-            }
-
-            // ✅ 顯示提示
-            ShowTutorial($"你解鎖了新職業：{className}\n大招已自動裝備！", 3f);
+            SkillManager.Instance.UnlockClassAndEquip(className);
+            ShowTutorial($"你解鎖了新職業：{className}！", 3f);
         }
 
         // 若有解鎖一般技能
         if (!string.IsNullOrEmpty(skillName))
         {
             SkillManager.Instance.UnlockSkill(skillName);
-
-            // 嘗試找出這個技能
-            SkillData unlockedSkill = SkillManager.Instance.allSkills.Find(s => s.skillName == skillName);
-            if (unlockedSkill != null)
-            {
-                // ✅ 自動裝到 Q/W/E 任一個空位
-                for (int i = 0; i < 3; i++)
-                {
-                    if (SkillManager.Instance.equippedSkills[i] == null)
-                    {
-                        SkillManager.Instance.EquipSkill(unlockedSkill, i);
-                        break;
-                    }
-                }
-            }
-
-            ShowTutorial($"你解鎖了新技能：{skillName}\n已自動裝備在快捷鍵！", 3f);
+            ShowTutorial($"你解鎖了新技能：{skillName}！", 3f);
         }
-
-        // ✅ 更新技能 UI 和玩家大招資料
-        FindObjectOfType<PlayerController>()?.UpdateUltimateSkill();
-        FindObjectOfType<SkillUIController>()?.RefreshSkillIcons();
     }
 
 }

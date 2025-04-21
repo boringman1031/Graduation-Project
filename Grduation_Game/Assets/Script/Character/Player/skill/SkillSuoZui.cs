@@ -4,6 +4,7 @@ public class SkillSuoZui : MonoBehaviour, ISkillEffect
 {
     [Header("技能設定")]
     public GameObject vomitProjectilePrefab;  // 嘔吐攻擊預置物
+    public AudioDefination audioPlayer;// 音效播放器
     public AudioClip activationSound;           // 技能啟動時的音效
 
     // 這邊記錄技能是否應該隨著玩家移動，宿醉這招不需要跟隨玩家，所以不設為子物件
@@ -50,9 +51,10 @@ public class SkillSuoZui : MonoBehaviour, ISkillEffect
         }
 
         // 播放技能啟動音效（在玩家位置播放）
-        if (activationSound != null)
+        if (audioPlayer != null && activationSound != null)
         {
-            AudioSource.PlayClipAtPoint(activationSound, origin.position);
+            audioPlayer.audioClip = activationSound;
+            audioPlayer.PlayAudioClip();
         }
 
         // 根據玩家朝向決定預置物的移動方向（假設 localScale.x 大於0表示朝右）

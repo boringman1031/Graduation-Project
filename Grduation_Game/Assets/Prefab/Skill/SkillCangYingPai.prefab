@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 9214294917871286081}
   - component: {fileID: 4256784430982916699}
   - component: {fileID: 8645548402333996150}
+  - component: {fileID: 7782734930016954736}
   m_Layer: 10
   m_Name: SkillCangYingPai
   m_TagString: Untagged
@@ -51,6 +52,7 @@ MonoBehaviour:
   damage: 50
   speedBuff: 10
   buffDuration: 3
+  audioPlayer: {fileID: 7782734930016954736}
   triggerSound: {fileID: 8300000, guid: 29445bcbcf35a4845aa9b5a485d1c561, type: 3}
   impactSound: {fileID: 8300000, guid: 65fb4ad89a9879040b9954c2f6f176a6, type: 3}
   impactEffectPrefab: {fileID: 5655678921531048338, guid: 5544ddd92205cd84ebf31036e69e2d07, type: 3}
@@ -163,3 +165,18 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 2.585
+--- !u!114 &7782734930016954736
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5699872770275859787}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 382469160c5fb1044b544fb3b962a440, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playAudioEvent: {fileID: 11400000, guid: 65ebe43ce1b57af42838ea556ca8530e, type: 2}
+  audioClip: {fileID: 0}
+  playOnEnable: 0

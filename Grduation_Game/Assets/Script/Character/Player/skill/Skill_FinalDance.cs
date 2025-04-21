@@ -10,6 +10,7 @@ public class Skill_FinalDance : MonoBehaviour, ISkillEffect
     public float auraRadius = 5f;             // 技能影響範圍
 
     [Header("音樂與特效設定")]
+    public AudioDefination audioPlayer;// 音效播放器
     public AudioClip backgroundMusic;         // 技能期間播放的背景音樂
     public GameObject finalDanceEffectPrefab;   // 持續特效預製物
     public Vector3 effectSpawnOffset = new Vector3(0, -1f, 0); // 特效生成位置偏移
@@ -64,12 +65,10 @@ public class Skill_FinalDance : MonoBehaviour, ISkillEffect
         }
 
         // 播放背景音樂：在玩家上新增一個 AudioSource 來播放音樂，並設置為循環
-        if (backgroundMusic != null)
+        if (audioPlayer != null && backgroundMusic != null)
         {
-            musicSource = origin.gameObject.AddComponent<AudioSource>();
-            musicSource.clip = backgroundMusic;
-            musicSource.loop = true;
-            musicSource.Play();
+            audioPlayer.audioClip = backgroundMusic;
+            audioPlayer.PlayAudioClip();
         }
 
         // 啟動持續傷害效果

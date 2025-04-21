@@ -66,7 +66,8 @@ public class MusicGameManager : MonoBehaviour
     public List<NoteData> beatMap = new List<NoteData>();
 
     private void Start()
-    {      
+    {
+      
         // 設定音符對應 Prefab
         notePrefabs = new Dictionary<KeyCode, GameObject>()
         {
@@ -82,9 +83,7 @@ public class MusicGameManager : MonoBehaviour
             { KeyCode.X, spawnPointX },
             { KeyCode.C, spawnPointC }
         };       
-        LoadBeatMap(currentSongIndex); // 讀取對應的 Beatmap
-        StartCoroutine(SpawnNotes());
-        StartCoroutine(WaitForLastNote()); // 監測最後一個音符      
+        LoadBeatMap(currentSongIndex); // 讀取對應的 Beatmap           
     }
 
     private void OnEnable()
@@ -103,9 +102,12 @@ public class MusicGameManager : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.L))
         {
+            PlayerController.Instance.canMove = false;
             startPlaying = true;
             beatScroller.hasStarted = true;
             audioDefination.PlayAudioClip();
+            StartCoroutine(SpawnNotes());
+            StartCoroutine(WaitForLastNote()); // 監測最後一個音符   
         }
 
     }
@@ -234,14 +236,7 @@ public class MusicGameManager : MonoBehaviour
         else if (accuracy >= 85) rank = "A";
         else if (accuracy >= 70) rank = "B";
         else if (accuracy >= 50) rank = "C";
-        else rank = "D";
-
-        /*Debug.Log(accuracy);
-        Debug.Log("遊戲結束");
-        Debug.Log($"總分數: {currentScore}");
-        Debug.Log($"最高連擊: {maxCombo}");
-        Debug.Log($"準確率: {accuracy:F2}%");
-        Debug.Log($"評價: {rank}");*/
+        else rank = "D";   
 
         // **顯示結算畫面**
         scoreBoard.SetActive(true);
@@ -251,6 +246,8 @@ public class MusicGameManager : MonoBehaviour
         Rank_text.text = $"{rank}";
         //ShowResults(currentScore, maxCombo, accuracy, rank);
 
-        unlockSkillEvent.RaiseEvent();
+        unlockSkillEvent.RaiseEvent(); // 解鎖技能
+
+        PlayerController.Instance.canMove = true;
     }
 }

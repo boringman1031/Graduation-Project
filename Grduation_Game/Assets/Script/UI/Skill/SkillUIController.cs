@@ -52,7 +52,7 @@ public class SkillUIController : MonoBehaviour
         for (int i = 0; i < skillSlots.Length; i++)
         {
             var skill = GetSkillByIndex(i);
-            if (skill != null)
+            if (skill != null && skill.isUnlocked)
             {
                 skillSlots[i].skillIcon.sprite = skill.icon;
             }

@@ -6,11 +6,14 @@ using UnityEngine;
 public class QuestionDataSO : ScriptableObject
 {
     public string question;
-    public List<string> options = new List<string>(3); // 選項
-    public int correctAnswerIndex;
-    public int affectionChangeOnCorrect = 10;
-    public int affectionChangeOnWrong = -5;
+    public List<string> options = new List<string>(3); // 選項文字
 
-    public string correctReply; // 答對時女生的回應
-    public string wrongReply;   // 答錯時女生的回應
+    [System.Serializable]
+    public class AnswerResponse
+    {
+        public string reply;        // 女生回應
+        public int affectionChange; // 對應好感度變化
+    }
+
+    public List<AnswerResponse> responses = new List<AnswerResponse>(3);
 }

@@ -4,6 +4,7 @@ using UnityEngine;
 public class SkillQiZaiLai : MonoBehaviour, ISkillEffect
 {
     [Header("技能設定")]
+    public AudioDefination audioPlayer;// 音效播放器
     public AudioClip activationSound;          // 技能啟動時音效
     public float buffDuration = 15f;              // 增益持續時間
     public float speedBuffAmount = 6f;          // 增加的速度值
@@ -71,8 +72,11 @@ public class SkillQiZaiLai : MonoBehaviour, ISkillEffect
         }
 
         // 播放啟動音效
-        if (activationSound != null)
-            AudioSource.PlayClipAtPoint(activationSound, origin.position);
+        if (audioPlayer != null && activationSound != null)
+        {
+            audioPlayer.audioClip = activationSound;
+            audioPlayer.PlayAudioClip();
+        }
 
         // 假設玩家上有一個 PlayerStats 組件，儲存速度與攻擊值
         PlayerStats stats = origin.GetComponent<PlayerStats>();
