@@ -48,15 +48,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e7c8ec20cc4eb934db6eb6981af198e4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 50
+  baseDamage: 20
   energyCost: 10
   audioPlayer: {fileID: 9141946475162438019}
   skillSound: {fileID: 8300000, guid: fe0b1f9aeb45b41b089175aeeabd5d95, type: 3}
   skillEffect: {fileID: 5035338686032660460}
-  animator: {fileID: 2993434078183897089, guid: 8fe606f421d465a43860c97bb139a223, type: 3}
+  overrideAnimator: {fileID: 0}
   spawnOffset: {x: -4, y: 0, z: 0}
-  origin: {fileID: 0}
-  playerAnimator: {fileID: 0}
   powerChangeEvent: {fileID: 11400000, guid: 23ace04ac57acc84ba84cb726bb38260, type: 2}
 --- !u!114 &8775224071233543567
 MonoBehaviour:
@@ -70,9 +68,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 85d3d60e7f15db042890957a805cedbe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Damage: 30
-  attackRange: 0
-  attackRate: 0
+  baseDamage: 20
 --- !u!58 &1419601260964012213
 CircleCollider2D:
   m_ObjectHideFlags: 0

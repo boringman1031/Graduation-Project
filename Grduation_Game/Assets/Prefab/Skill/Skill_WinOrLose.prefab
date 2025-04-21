@@ -1,0 +1,69 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &156106187746912375
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6122896660361692138}
+  - component: {fileID: 2556549366917534354}
+  - component: {fileID: 3640378326949952228}
+  m_Layer: 0
+  m_Name: Skill_WinOrLose
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6122896660361692138
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 156106187746912375}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -5.0457034, y: -74.7366, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2556549366917534354
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 156106187746912375}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 15936bb046340624dab1c97d3c754f62, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  minion1Prefab: {fileID: 8776772028683974640, guid: 0263d9ba2c6ddd4409b53384aae22eb1, type: 3}
+  minion2Prefab: {fileID: 2532667260250111483, guid: 240987286ec1e36489390eb1c738135f, type: 3}
+  summonOffsetX: 1.5
+  summonSound: {fileID: 0}
+  audioPlayer: {fileID: 3640378326949952228}
+  energyCost: 50
+  powerChangeEvent: {fileID: 11400000, guid: 23ace04ac57acc84ba84cb726bb38260, type: 2}
+--- !u!114 &3640378326949952228
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 156106187746912375}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 382469160c5fb1044b544fb3b962a440, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playAudioEvent: {fileID: 11400000, guid: 65ebe43ce1b57af42838ea556ca8530e, type: 2}
+  audioClip: {fileID: 0}
+  playOnEnable: 0
