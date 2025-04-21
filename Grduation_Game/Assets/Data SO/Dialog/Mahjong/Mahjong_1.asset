@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 053e45de69710934f9aa722d36fe60a7, type: 3}
+  m_Name: Mahjong_1
+  m_EditorClassIdentifier: 
+  question: "\u5979\u6478\u5230\u4E00\u5F35\u724C\u5F8C\uFF0C\u6C89\u9ED8\u4E86\u4E09\u79D2\u3002"
+  options:
+  - "\u9019\u7A2E\u6C89\u9ED8\uFF0C\u662F\u807D\u724C\u7684\u524D\u5146\u55CE\u2026\u2026"
+  - "\u59B3\u662F\u4E0D\u662F\u5DF2\u7D93\u6E96\u5099\u8981\u653E\u69CD\u4E86\uFF1F"
+  - "\u6211\u4E5F\u6703\u9019\u62DB\uFF0C\u88DD\u6C89\u7A69\u8B93\u4EBA\u4EE5\u70BA\u81EA\u5DF1\u5F88\u53B2\u5BB3\u3002"
+  responses:
+  - reply: "\u4E0D\uFF0C\u662F\u6211\u5728\u60F3\u665A\u9910\u8981\u5403\u4EC0\u9EBC\uFF0C\u4F60\u8981\u4E0D\u8981\u9806\u4FBF\u5E6B\u6211\u6C7A\u5B9A\uFF1F"
+    affectionChange: -5
+  - reply: "\u4F60\u518D\u9019\u6A23\u8B1B\uFF0C\u6211\u771F\u7684\u4E0D\u5BA2\u6C23\u4E86\u5594\uFF0C\u9019\u628A\u6211\u4E00\u5B9A\u80E1\u4F60\uFF01"
+    affectionChange: 10
+  - reply: "\u4F60\u90A3\u662F\u767C\u5446\u597D\u55CE\uFF1F\u5225\u81EA\u4EE5\u70BA\u81EA\u5DF1\u5728\u6F14\u8A08\u8B00\u3002"
+    affectionChange: -10
