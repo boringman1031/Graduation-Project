@@ -1,0 +1,72 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &3127402665597819722
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8096270386640455035}
+  - component: {fileID: 5504160188094741834}
+  - component: {fileID: 8328816093323273935}
+  m_Layer: 0
+  m_Name: Skill_LongHairWhip
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8096270386640455035
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3127402665597819722}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 30.102974, y: -69.24846, z: -0.014485864}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5504160188094741834
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3127402665597819722}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 64248502d362a4d488feefb07c310920, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  energyCost: 20
+  damage: 100
+  radius: 10
+  buffDuration: 10
+  speedBuff: 4
+  healthBuff: 50
+  effectPrefab: {fileID: 4583090943668258508, guid: 86cb0ac16a61b044d9ca8a2c658e68ff, type: 3}
+  effectOffset: {x: 0, y: 0, z: 0}
+  whipSound: {fileID: 0}
+  audioPlayer: {fileID: 0}
+--- !u!114 &8328816093323273935
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3127402665597819722}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 382469160c5fb1044b544fb3b962a440, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playAudioEvent: {fileID: 11400000, guid: 65ebe43ce1b57af42838ea556ca8530e, type: 2}
+  audioClip: {fileID: 0}
+  playOnEnable: 0

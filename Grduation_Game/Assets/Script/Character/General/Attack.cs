@@ -1,26 +1,43 @@
-/*--------by017--------*/
-/*----------�����P�w--------------*/
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Attack : MonoBehaviour
 {
-    public float Damage;
-    public float attackRange;//�����d��
-    public float attackRate;//�����t��
+    [Header("基本傷害")]
+    public float baseDamage = 20f;
 
-    private void OnTriggerStay2D(Collider2D other)//�����P�w
-    {       
-        //other.GetComponent<CharactorBase>()?.TakeDamage(this);
+    private Transform attacker;
+    private bool usePlayerStats = false;
+
+    /// <summary>
+    /// 初始化攻擊資訊
+    /// </summary>
+    /// <param name="origin">攻擊者</param>
+    /// <param name="damage">基礎傷害</param>
+    /// <param name="useStats">是否加上 PlayerStats.attack</param>
+    public void Init(Transform origin, float damage, bool useStats)
+    {
+        attacker = origin;
+        baseDamage = damage;
+        usePlayerStats = useStats;
+    }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
         CharactorBase target = other.GetComponent<CharactorBase>();
+        if (target == null || other.transform == attacker) return;
 
-        if (target == null) // �T�O target ���� null
-        {            
-            return;
+        float finalDamage = baseDamage;
+
+        if (usePlayerStats && attacker != null)
+        {
+            PlayerStats stats = attacker.GetComponent<PlayerStats>();
+            if (stats != null)
+            {
+                finalDamage += stats.attack;
+            }
         }
-
-        target.TakeDamage(Damage, transform);
-    } 
+        Debug.Log("造成傷害:" + finalDamage + "baseDamage" + baseDamage);
+        target.TakeDamage(finalDamage, transform);
+    }
 }
-

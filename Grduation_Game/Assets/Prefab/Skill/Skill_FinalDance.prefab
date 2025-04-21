@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 498695280321835193}
   - component: {fileID: 8674019485142933465}
   - component: {fileID: 6051000617883206287}
+  - component: {fileID: 2909235718962386608}
   m_Layer: 10
   m_Name: Skill_FinalDance
   m_TagString: Untagged
@@ -46,7 +47,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   duration: 10
-  damagePerSecond: 100
+  baseDamagePerSecond: 100
   energyCost: 50
   auraRadius: 5
   audioPlayer: {fileID: 6051000617883206287}
@@ -69,3 +70,15 @@ MonoBehaviour:
   playAudioEvent: {fileID: 11400000, guid: 65ebe43ce1b57af42838ea556ca8530e, type: 2}
   audioClip: {fileID: 0}
   playOnEnable: 0
+--- !u!114 &2909235718962386608
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4033722154546908824}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a0fb8c221f7adb2459e6bf4281b16694, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
