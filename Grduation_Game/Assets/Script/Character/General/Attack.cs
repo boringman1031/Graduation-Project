@@ -36,8 +36,7 @@ public class Attack : MonoBehaviour
             {
                 finalDamage += stats.attack;
             }
-        }
-        Debug.Log("造成傷害:" + finalDamage + "baseDamage" + baseDamage);
+        }    
         target.TakeDamage(finalDamage, transform);
     }
 }

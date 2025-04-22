@@ -20,6 +20,7 @@ public class SceneLoader : MonoBehaviour, ISaveable
     public TransitionEventSO transitionEvent;
     public SceneLoadedEventSO sceneLoadedEvent;
     public VoidEventSO unlockSkillEvent;
+    public VoidEventSO disablePlayerEvent;
 
     [Header("事件監聽")]
     public SceneLoadEventSO loadEventSO;
@@ -289,7 +290,18 @@ public class SceneLoader : MonoBehaviour, ISaveable
     {
         currentLoadScene = sceneToLoad;
         playerTrans.position = positionToGo;
-        playerTrans.gameObject.SetActive(true);
+
+        // ✅ 根據 GameSceneSO 設定是否開啟 Player
+        if (sceneToLoad.hidePlayerOnLoad)
+        {
+            playerTrans.gameObject.SetActive(false);  // 關閉 Player
+            disablePlayerEvent?.RaiseEvent();         // 廣播事件，通知關閉控制
+        }
+        else
+        {
+            playerTrans.gameObject.SetActive(true);   // 正常場景開啟 Player
+        }
+
         isLoading = false;
         sceneLoadedEvent.RaiseEvent(currentLoadScene);
         StartCoroutine(DelayRaiseAfterSceneLoaded());
@@ -298,7 +310,7 @@ public class SceneLoader : MonoBehaviour, ISaveable
     private IEnumerator DelayRaiseAfterSceneLoaded()
     {
         yield return null;
-        afterSceneLoadedEvent.RaiseEvent();
+        afterSceneLoadedEvent.RaiseEvent();      
     }
 
     public DataDefination GetDataID() => GetComponent<DataDefination>();
