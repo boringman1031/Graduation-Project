@@ -26,5 +26,8 @@ public class GameSceneSO : ScriptableObject
     [Header("教學設定")]
     public TutorialType tutorialType; // 新增：場景關聯的教學類型  
 
-   
+    [Header("是否隱藏玩家")]
+    public bool hidePlayerOnLoad = false;
+
+
 }

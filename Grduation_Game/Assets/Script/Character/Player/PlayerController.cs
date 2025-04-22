@@ -20,6 +20,8 @@ public class PlayerController : MonoBehaviour
     public VoidEventSO afterSceneLoadEvent;
     public VoidEventSO loadDataEvent;
     public VoidEventSO backToMenuEvent;
+    public VoidEventSO disablePlayerEvent;
+    public VoidEventSO enablePlayerEvent;
 
     public PlayerInput playerInput; // 輸入系統
 
@@ -98,6 +100,8 @@ public class PlayerController : MonoBehaviour
         afterSceneLoadEvent.OnEventRaised += OnAfterSceneLoadEvent;
         loadDataEvent.OnEventRaised += OnLoadDataEvent;
         backToMenuEvent.OnEventRaised += OnLoadDataEvent;
+        disablePlayerEvent.OnEventRaised += OnDisablePlayer;// 禁用玩家控制
+        enablePlayerEvent.OnEventRaised += OnEnablePlayer;// 啟用玩家控制
     }
 
     private void OnDisable()
@@ -108,6 +112,8 @@ public class PlayerController : MonoBehaviour
         afterSceneLoadEvent.OnEventRaised -= OnAfterSceneLoadEvent;
         loadDataEvent.OnEventRaised -= OnLoadDataEvent;
         backToMenuEvent.OnEventRaised -= OnLoadDataEvent;
+        disablePlayerEvent.OnEventRaised -= OnDisablePlayer;
+        enablePlayerEvent.OnEventRaised -= OnEnablePlayer;
     }
 
     private void Update()
@@ -294,6 +300,27 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    private void OnDisablePlayer()// 禁用玩家控制
+    {
+        canMove = false;
+        playerInput.GamePlay.Disable();
+
+        foreach (var sr in GetComponentsInChildren<SpriteRenderer>())
+        {
+            sr.enabled = false;
+        }
+    }
+
+    private void OnEnablePlayer()// 啟用玩家控制
+    {
+        canMove = true;
+        playerInput.GamePlay.Enable();
+
+        foreach (var sr in GetComponentsInChildren<SpriteRenderer>())
+        {
+            sr.enabled = true;
+        }
+    }
     public void DisableAttack(int index)
     {
         if (index < 0 || index >= attackObjects.Length) return;
