@@ -8,7 +8,7 @@ using UnityEditor.Search;
 // DialogSystem 只用來顯示對話
 
 public class DialogSystem : MonoBehaviour
-{
+{   
     [Header("廣播")]
     public VoidEventSO dialogEndEvent;
 
@@ -30,7 +30,6 @@ public class DialogSystem : MonoBehaviour
 
     bool textFinished; // 是否完成打字
     bool cancelTyping; // 取消打字
-
     void Awake()
     {
         dialogQueue = new Queue<(string, bool, Vector2, bool)> ();
@@ -47,18 +46,16 @@ public class DialogSystem : MonoBehaviour
         textLabel.text = "";
         dialogQueue.Clear();
 
-        // 加入句子
         for (int i = 0; i < dialogEntry.sentences.Count; i++)
         {
-                dialogQueue.Enqueue((
-            dialogEntry.sentences[i],
-            dialogEntry.shouldFocusCamera[i],
-            dialogEntry.focusCameraPositions[i],
-            dialogEntry.shouldShakeCamera[i]  // ✅ 新增震動欄位
-        ));
+            dialogQueue.Enqueue((
+                dialogEntry.sentences[i],
+                dialogEntry.shouldFocusCamera[i],
+                dialogEntry.focusCameraPositions[i],
+                dialogEntry.shouldShakeCamera[i]
+            ));
         }
 
-        // 禁止玩家移動
         PlayerController.Instance.canMove = false;
         Panel.gameObject.SetActive(true);
         StartCoroutine(DisplayText());

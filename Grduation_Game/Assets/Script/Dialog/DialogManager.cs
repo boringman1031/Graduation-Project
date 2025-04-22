@@ -61,17 +61,18 @@ public class DialogManager : MonoBehaviour
 
         if (dialogData == null)
         {
-            Debug.LogError("❌ DialogData 未連結到 DialogManager，請在 Inspector 設定！");
+            Debug.LogError("❌ DialogData 未連結到 DialogManager");
             return;
         }
 
         DialogData.DialogEntry dialogEntry = dialogData.GetDialog(key);
         if (dialogEntry == null || dialogEntry.sentences.Count == 0)
         {
-            Debug.LogError($"❌ 找不到對話 Key：{key}，請確認 DialogData 是否有設定！");
+            Debug.LogError($"❌ 找不到對話 Key：{key}");
             return;
         }
 
         dialogSystem.SetDialog(dialogEntry);
     }
 }
+
