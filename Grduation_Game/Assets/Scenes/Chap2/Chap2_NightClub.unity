@@ -2839,8 +2839,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   onAllEnemiesDefeated: {fileID: 11400000, guid: aeb5c483798026f42b4a8190bb79651d, type: 2}
   dialogEndEvent: {fileID: 11400000, guid: 9b0030f4733054648b442de17490fdb0, type: 2}
-  enemyReference:
-    m_AssetGUID: eaa9e0f86704b11468a5469a670f167c
+  enemyReferences:
+  - m_AssetGUID: eaa9e0f86704b11468a5469a670f167c
+    m_SubObjectName: 
+    m_SubObjectType: 
+    m_EditorAssetChanged: 0
+  - m_AssetGUID: 824e8502af14f2948a8964cd6d662e53
     m_SubObjectName: 
     m_SubObjectType: 
     m_EditorAssetChanged: 0

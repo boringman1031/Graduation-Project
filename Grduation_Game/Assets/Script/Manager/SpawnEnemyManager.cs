@@ -14,7 +14,7 @@ public class SpawnEnemyManager : MonoBehaviour
     public VoidEventSO dialogEndEvent; // ✅ 加入對話結束事件
 
     [Header("生成設定")]
-    public AssetReference enemyReference;
+    public List<AssetReference> enemyReferences; // ✅ 改為可以存放多種敵人的 List
     public Transform[] spawnPoints;
     public float spawnDelay = 1f;
 
@@ -69,7 +69,17 @@ public class SpawnEnemyManager : MonoBehaviour
 
     private IEnumerator SpawnEnemyAt(Vector3 position)
     {
-        AsyncOperationHandle<GameObject> handle = enemyReference.InstantiateAsync(position, Quaternion.identity);
+        if (enemyReferences == null || enemyReferences.Count == 0)
+        {
+            Debug.LogError("未指定任何敵人 AssetReference！");
+            yield break;
+        }
+
+        // ✅ 隨機挑選一個敵人 prefab
+        int randomIndex = Random.Range(0, enemyReferences.Count);
+        AssetReference selectedEnemy = enemyReferences[randomIndex];
+
+        AsyncOperationHandle<GameObject> handle = selectedEnemy.InstantiateAsync(position, Quaternion.identity);
         yield return handle;
 
         if (handle.Status == AsyncOperationStatus.Succeeded)
