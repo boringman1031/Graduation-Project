@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using UnityEngine;
 
 public class FallingNote : MonoBehaviour
@@ -26,7 +26,15 @@ public class FallingNote : MonoBehaviour
 
     private void Update()
     {
-        if (!isFalling || target == null) return;
+        if (!isFalling) return;
+
+        // ❗ 如果目標已不存在（死了或場景清除），直接爆炸
+        if (target == null)
+        {
+            Debug.Log("目標已消失，音符自爆");
+            HitTarget(); // 當作命中處理
+            return;
+        }
 
         Vector3 targetPos = target.position;
         transform.position = Vector3.MoveTowards(transform.position, targetPos, fallSpeed * Time.deltaTime);
@@ -37,15 +45,21 @@ public class FallingNote : MonoBehaviour
         }
     }
 
+
+
     private void HitTarget()
     {
         if (hitEffect)
             Instantiate(hitEffect, transform.position, Quaternion.identity);
 
-        CharactorBase enemy = target.GetComponent<CharactorBase>();
-        if (enemy != null)
-            enemy.TakeDamage(damage, transform);
+        if (target != null)
+        {
+            CharactorBase enemy = target.GetComponent<CharactorBase>();
+            if (enemy != null)
+                enemy.TakeDamage(damage, transform);
+        }
 
         Destroy(gameObject);
     }
+
 }
