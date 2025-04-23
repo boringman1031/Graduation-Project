@@ -33,7 +33,8 @@ public enum TutorialType
     DefeatEnemy,     // 打敗一定數量敵人教學
     Boss,           // boss戰教學
     UnlockSkill,    // 解鎖技能提醒
-    SkillAndClass   //更換職業教學
+    SkillAndClass,   //更換職業教學
+    Boss3
 }
 public enum SkillType
 {

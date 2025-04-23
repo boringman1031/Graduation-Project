@@ -33,6 +33,10 @@ public class BossController : MonoBehaviour
     public float skillInterval = 3f; // 每幾秒出一次招
     private float skillTimer;
     private int currentPattern = 0; // 可做輪播 or 隨機
+
+    [Header("戰鬥控制")]
+    public bool canAct = false; // 預設 false，等對話完才設為 true
+
     private void Start()
     {
         animator = GetComponent<Animator>();
@@ -41,6 +45,8 @@ public class BossController : MonoBehaviour
     
     private void Update()
     {
+        if (!canAct) return;
+
         skillTimer -= Time.deltaTime;
         if (skillTimer <= 0f)
         {

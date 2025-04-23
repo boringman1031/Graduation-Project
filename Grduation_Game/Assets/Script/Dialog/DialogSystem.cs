@@ -109,6 +109,9 @@ public class DialogSystem : MonoBehaviour
 
         // 對話完成後開啟玩家移動
         PlayerController.Instance.canMove = true;
+        // 對話完成後BOSS移動
+        var boss = FindObjectOfType<BossController>();
+        if (boss != null) boss.canAct = true;
     }
     // 設置 FocusCamera 的位置
     private void SetFocusCamera(Vector2 position)
