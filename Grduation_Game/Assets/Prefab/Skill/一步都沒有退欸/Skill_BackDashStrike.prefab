@@ -51,7 +51,7 @@ MonoBehaviour:
   baseDamage: 50
   energyCost: 10
   dashEffect: {fileID: 141433446842962269, guid: 9fe8f8b3288e45a44af36ff8aa04486e, type: 3}
-  dashSound: {fileID: 0}
+  dashSound: {fileID: 8300000, guid: 26611e2fc8523ee4fbdbec5a1d3feb2f, type: 3}
   audioPlayer: {fileID: 791348435136350581}
   attackTriggerPrefab: {fileID: 2730390775077052469, guid: 189014fd8de6ec547817cc9448b6976b, type: 3}
 --- !u!114 &1386897006642667828
@@ -78,6 +78,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 382469160c5fb1044b544fb3b962a440, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playAudioEvent: {fileID: 0}
+  playAudioEvent: {fileID: 11400000, guid: 65ebe43ce1b57af42838ea556ca8530e, type: 2}
   audioClip: {fileID: 0}
   playOnEnable: 0

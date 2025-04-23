@@ -55,7 +55,7 @@ MonoBehaviour:
   - {x: -2.5, y: 0}
   - {x: 2.5, y: 0}
   slashEffectPrefab: {fileID: 6175454383181442045, guid: 43fcef9072afd7c4cb91db65efa0672c, type: 3}
-  battleSound: {fileID: 0}
+  battleSound: {fileID: 8300000, guid: 0aa0de48c2331c44dbecdb655944b6b1, type: 3}
   audioPlayer: {fileID: 7880898088476429799}
 --- !u!114 &7880898088476429799
 MonoBehaviour:
@@ -69,6 +69,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 382469160c5fb1044b544fb3b962a440, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playAudioEvent: {fileID: 0}
+  playAudioEvent: {fileID: 11400000, guid: 65ebe43ce1b57af42838ea556ca8530e, type: 2}
   audioClip: {fileID: 0}
   playOnEnable: 0
