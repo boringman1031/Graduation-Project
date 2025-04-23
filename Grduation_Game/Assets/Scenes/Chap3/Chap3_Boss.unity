@@ -41872,6 +41872,8 @@ MonoBehaviour:
   tentacleSpawnPoint: {fileID: 1390201737}
   skillInterval: 3
   canAct: 0
+  bossFinalDialogEndEvent: {fileID: 11400000, guid: 773ebf53e6d0a8141bf296e92b137a29, type: 2}
+  dialogEndEvent: {fileID: 11400000, guid: 9b0030f4733054648b442de17490fdb0, type: 2}
 --- !u!114 &1182300175
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -41908,7 +41910,19 @@ MonoBehaviour:
       m_Calls: []
   OnDead:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1182300174}
+        m_TargetAssemblyTypeName: BossController, Assembly-CSharp
+        m_MethodName: OnBossDeath
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &1183420524
 GameObject:
   m_ObjectHideFlags: 0
