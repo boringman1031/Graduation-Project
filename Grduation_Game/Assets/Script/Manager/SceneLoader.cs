@@ -84,7 +84,7 @@ public class SceneLoader : MonoBehaviour, ISaveable
     private Vector3 positionToGo;
     private bool fadeScreen;
     private bool isLoading;
-    public float fadeTime;
+    private float fadeTime=0.5f;
 
     private void Start()
     {
