@@ -58,7 +58,7 @@ public class BossController : MonoBehaviour
     {
         if (hasDied) return;
         hasDied = true;
-
+        canAct = false;
         if (DialogManager.Instance != null)
         {
             waitingForDialog = true;
