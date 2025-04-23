@@ -151,6 +151,9 @@ public class TutorialSystem : MonoBehaviour
                 case TutorialType.UnlockSkill:
                     ShowUnlockSkillTutorial();
                     break;
+                case TutorialType.Boss3:
+                    ShowBoss3Tutorial();
+                    break;
             }
 
             tutorialShownDict[type] = true;
@@ -261,6 +264,11 @@ public class TutorialSystem : MonoBehaviour
     {
         currentTutorialType = TutorialType.SkillAndClass;
         ShowTutorial("按下衣櫃按鈕開啟職業選單");
+    }
+    private void ShowBoss3Tutorial()
+    {
+        currentTutorialType = TutorialType.SkillAndClass;
+        ShowTutorial("擊敗自己的心魔");
     }
 
     private void ShowUnlockSkillTutorial()

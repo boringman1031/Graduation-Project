@@ -304,6 +304,20 @@ public class SceneLoader : MonoBehaviour, ISaveable
 
         isLoading = false;
         sceneLoadedEvent.RaiseEvent(currentLoadScene);
+
+        if (currentLoadScene == Boss3Scene)
+        {
+            var boss = FindObjectOfType<BossController>();
+            if (boss != null) boss.canAct = false;
+
+            var player = FindObjectOfType<PlayerController>();
+            if (player != null) player.playerInput.GamePlay.Disable(); // 禁用控制
+
+            // 直接從這裡呼叫對話
+            DialogManager.Instance?.StartDialog(currentLoadScene.dialogKey); // 請確保這些 BOSS Scene 的 GameSceneSO 有 dialogKey
+        }
+
+
         StartCoroutine(DelayRaiseAfterSceneLoaded());
     }
 

@@ -28,7 +28,7 @@ public class Skill_KillTheBeat : MonoBehaviour, ISkillEffect
 
             foreach (var enemy in targets)
             {
-                Vector3 spawnPos = enemy.transform.position + new Vector3(0, 1.5f, 0);
+                Vector3 spawnPos = enemy.transform.position + new Vector3(0, 5f, 0);
                 GameObject note = Instantiate(notePrefab, spawnPos, Quaternion.identity);
 
                 FallingNote fn = note.GetComponent<FallingNote>();

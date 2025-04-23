@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 4985413691828939896}
   - component: {fileID: 6171433539271989816}
   - component: {fileID: 4806939531062312196}
+  - component: {fileID: 6634213881392239769}
   m_Layer: 0
   m_Name: NotePrefab
   m_TagString: Untagged
@@ -97,6 +98,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4dac8fad03c8664a9f67b287f90ede2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hitEffect: {fileID: 0}
+  hitEffect: {fileID: 5880797563127281583, guid: 265d3a5ba69981a4698ceabcedf368b0, type: 3}
   fallDelay: 0.3
   fallSpeed: 8
+--- !u!114 &6634213881392239769
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7395340972820522027}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a0fb8c221f7adb2459e6bf4281b16694, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
