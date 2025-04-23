@@ -590,6 +590,32 @@ MonoBehaviour:
     - {x: 0, y: 0}
     - {x: 0, y: 0}
     shouldShakeCamera: 
+  - key: 7-11
+    sentences:
+    - "(\u53EF\u60E1\u600E\u9EBC\u53C8\u662F\u9019\u7A2E\u7D50\u5C40....)"
+    - "(\u6211\u4EE5\u70BA\u9047\u5230\u6D77\u540E\u5DF2\u7D93\u5F88\u6158\u4E86)"
+    - "(\u7D50\u679C\u53C8\u4F86\u4E00\u500B\u8473\u8473.....)"
+    - "\u6211\u73FE\u5728\u771F\u7684\u597D\u60F3\u8A8D\u771F\u8AC7\u4E00\u6BB5\u611F\u60C5"
+    - "\u6211\u4E0D\u60F3\u5927\u5B78\u56DB\u5E74\u53EA\u80FD\u8DDF\u5DE6\u53F3\u624B\u8AC7\u6200\u611B\u3002"
+    - "\u7B49\u4E00\u4E0B\u90A3\u908A\u4EC0\u9EBC\u72C0\u6CC1"
+    - "8+9:\u6B38\u6B38\u6B38\u59B3\u9577\u5F97\u6EFF\u6B63\u7684\u6B38\uFF0C\u8981\u4E0D\u8981\u52A0\u500B
+      IG \u5566\uFF1F"
+    - "\u738B\u7487:\u4E0D\u597D\u610F\u601D\u6211\u4E0D\u592A\u65B9\u4FBF\uFF0C\u8ACB\u4F60\u5011\u8B93\u4E00\u4E0B\u3002"
+    - "8+9:\u5E79\u561B\u9019\u6A23\u561B~~\u4E00\u8D77\u53BB\u649E\u7403\u9928\u73A9\u554A"
+    - "\u6211\u7684\u6B63\u7FA9\u611F\u544A\u8A34\u6211\u5FC5\u9808\u4F86\u500B\u82F1\u96C4\u6551\u7F8E"
+    shouldFocusCamera: 00000000000001010100
+    focusCameraPositions:
+    - {x: 0, y: 0}
+    - {x: 0, y: 0}
+    - {x: 0, y: 0}
+    - {x: 0, y: 0}
+    - {x: 0, y: 0}
+    - {x: 0, y: 0}
+    - {x: 136.55, y: -65.89}
+    - {x: 136.55, y: -65.89}
+    - {x: 136.55, y: -65.89}
+    - {x: 0, y: 0}
+    shouldShakeCamera: 00000000000000000000
   - key: gohome
     sentences:
     - "(\u5929\u6C23\u8F49\u6DBC\u4F60\u7A81\u7136\u767C\u9AD8\u71D2)"
@@ -668,7 +694,7 @@ MonoBehaviour:
     - "\u738B\u7487:???"
     - "\u6211\u78BA\u5B9A\u6211\u5F88\u559C\u6B61\u73FE\u5728\u7684\u9019\u4E00\u523B\u3002"
     - "8+9:\u6B38\u600E\u9EBC\u53C8\u662F\u4F60\u554A"
-    - "8+9:\u5728\u649E\u7403\u9928\u9084\u6C92\u8B93\u4F60\u5B78\u4E56\u963F"
+    - "8+9:\u57287-11\u9084\u6C92\u8B93\u4F60\u5B78\u4E56\u963F"
     - "(\u53EF\u60E1\u6709\u5920\u89E3\u7684)"
     shouldFocusCamera: 00000000000000000000000000010101
     focusCameraPositions:
@@ -689,12 +715,3 @@ MonoBehaviour:
     - {x: 66.25, y: -70.59}
     - {x: 66.25, y: -70.59}
     shouldShakeCamera: 00000000000000000000000000000000
-  - key: NightView_Second
-    sentences:
-    - "\u738B\u7487:\u9019\u88E1\u771F\u7684\u5F88\u7F8E\u5427\uFF1F\u6211\u5F88\u559C\u6B61\u9019\u7A2E\u5BE7\u975C\u7684\u5730\u65B9\u3002"
-    - "\u55EF\u771F\u7684\u5F88\u68D2\u2026\u2026\u800C\u4E14\uFF0C\u6709\u59B3\u5728\u66F4\u7F8E\u4E86\u3002"
-    - "\u738B\u7487:\u5641\u5FC3\uFF01"
-    - "\u738B\u7487:\uFF08\u9813\u4E86\u9813\uFF09\u4F46\u2026\u2026\u8B1D\u8B1D\u3002"
-    shouldFocusCamera: 
-    focusCameraPositions: []
-    shouldShakeCamera: 
