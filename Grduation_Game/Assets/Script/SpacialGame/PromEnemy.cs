@@ -1,21 +1,21 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.AddressableAssets;
 using UnityEngine.ResourceManagement.AsyncOperations;
-using UnityEngine.UI;
 
-public class PoolHall : MonoBehaviour
+public class PromEnemy : MonoBehaviour
 {
     [Header("事件廣播")]
     public VoidEventSO onAllEnemiesDefeated;
-    public VoidEventSO gotoBoss2Event;
+    public VoidEventSO gotoBoss3Event;
 
     [Header("事件監聽")]
     public VoidEventSO dialogEndEvent;
 
     [Header("生成設定")]
-    public List<AssetReference> enemyReferences; // ✅ 改為可存放多種敵人的 List
+    public AssetReference enemyReference;
     public Transform[] spawnPoints;
     public float spawnDelay = 1f;
 
@@ -48,12 +48,14 @@ public class PoolHall : MonoBehaviour
     {
         if (!isWaitingForBossStory)
         {
+            // ✅ 播完開場對話 → 開始戰鬥
             StartCoroutine(SpawnEnemiesLoop());
         }
         else
         {
+            // ✅ 播完 Boss 前對話 → 進入 Boss
             Debug.Log("✅ Boss 對話結束，切換 Boss 場景！");
-            gotoBoss2Event.RaiseEvent();
+            gotoBoss3Event.RaiseEvent();
         }
     }
 
@@ -78,16 +80,7 @@ public class PoolHall : MonoBehaviour
 
     private IEnumerator SpawnEnemyAt(Vector3 position)
     {
-        if (enemyReferences == null || enemyReferences.Count == 0)
-        {
-            Debug.LogError("❌ 沒有可用的敵人資源！");
-            yield break;
-        }
-
-        int randomIndex = Random.Range(0, enemyReferences.Count);
-        AssetReference chosenEnemy = enemyReferences[randomIndex];
-
-        AsyncOperationHandle<GameObject> handle = chosenEnemy.InstantiateAsync(position, Quaternion.identity);
+        AsyncOperationHandle<GameObject> handle = enemyReference.InstantiateAsync(position, Quaternion.identity);
         yield return handle;
 
         if (handle.Status == AsyncOperationStatus.Succeeded)
@@ -161,4 +154,3 @@ public class PoolHall : MonoBehaviour
         }
     }
 }
-
