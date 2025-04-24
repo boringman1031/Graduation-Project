@@ -38,6 +38,7 @@ public class AlcoholManager : MonoBehaviour
             EnemyBase enemyBase = enemy.GetComponent<EnemyBase>();
             if (enemyBase != null)
             {
+                enemyBase.onEnemyDead -= OnEnemyDead; // 先移除（防止重複註冊）
                 enemyBase.onEnemyDead += OnEnemyDead;
             }
         }
@@ -45,9 +46,13 @@ public class AlcoholManager : MonoBehaviour
 
     private void OnEnemyDead(GameObject enemy)
     {
-        aliveEnemies.Remove(enemy);
-        Debug.Log($"💀 敵人死亡，剩下：{aliveEnemies.Count}");
+        EnemyBase enemyBase = enemy.GetComponent<EnemyBase>();
+        if (enemyBase != null)
+        {
+            enemyBase.onEnemyDead -= OnEnemyDead; // ✅ 先解除事件註冊
+        }
 
+        aliveEnemies.Remove(enemy);      
         if (aliveEnemies.Count == 0)
         {
             OnWaveCleared();

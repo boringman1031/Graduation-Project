@@ -88316,6 +88316,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f7ccd9e1a70dc214eb744793c3dbe75d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  onAcoholEnemyShowEvent: {fileID: 11400000, guid: 129fc7db035680b44a9fe1331aa74121, type: 2}
   enemyCount: 5
   enemyPrefabs:
   - {fileID: 3909400201757484023, guid: e995181ce3967d144ae7feed96c83832, type: 3}
@@ -88871,6 +88872,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f7ccd9e1a70dc214eb744793c3dbe75d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  onAcoholEnemyShowEvent: {fileID: 11400000, guid: 129fc7db035680b44a9fe1331aa74121, type: 2}
   enemyCount: 5
   enemyPrefabs:
   - {fileID: 3909400201757484023, guid: e995181ce3967d144ae7feed96c83832, type: 3}
@@ -89004,7 +89006,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   onAllEnemiesDefeated: {fileID: 11400000, guid: aeb5c483798026f42b4a8190bb79651d, type: 2}
-  maxStoreCount: 3
+  maxWaveCount: 3
 --- !u!1 &1337412024
 GameObject:
   m_ObjectHideFlags: 0
@@ -89178,6 +89180,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f7ccd9e1a70dc214eb744793c3dbe75d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  onAcoholEnemyShowEvent: {fileID: 11400000, guid: 129fc7db035680b44a9fe1331aa74121, type: 2}
   enemyCount: 5
   enemyPrefabs:
   - {fileID: 3909400201757484023, guid: e995181ce3967d144ae7feed96c83832, type: 3}

@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class StoreTrigger : MonoBehaviour
 {
+    [Header("事件廣播")]
+    public VoidEventSO onAcoholEnemyShowEvent; // 當敵人生成
     public int enemyCount = 5;
     public GameObject[] enemyPrefabs;
     public Transform[] spawnPoints;
@@ -14,7 +16,7 @@ public class StoreTrigger : MonoBehaviour
     {
         if (triggered || other.tag != "Player") return;
         triggered = true;
-
+        onAcoholEnemyShowEvent.OnEventRaised();
         List<GameObject> spawnedEnemies = new List<GameObject>();
 
         for (int i = 0; i < enemyCount; i++)

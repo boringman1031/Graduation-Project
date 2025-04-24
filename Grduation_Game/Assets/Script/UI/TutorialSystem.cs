@@ -17,8 +17,9 @@ public class TutorialSystem : MonoBehaviour
     public VoidEventSO dialogEndEvent;
     public SceneLoadedEventSO sceneLoadedEvent;
     public VoidEventSO unlockSkillEvent;
+    public VoidEventSO onAcoholEnemyShowEvent;
 
-    [Header("UI元件")]
+   [Header("UI元件")]
     public GameObject tutorialPanel;
     public Text tutorialText;
 
@@ -50,6 +51,7 @@ public class TutorialSystem : MonoBehaviour
         tutorialBossAttackEvent.OnEventRaised += ShowBossAttackTutorial;
         tutorialBossBrokenHeartEvent.OnEventRaised += ShowBosBrokenHeartTutorial;
         unlockSkillEvent.OnEventRaised += ShowUnlockSkillTutorial;
+        onAcoholEnemyShowEvent.OnEventRaised += ShowCleanEnemyTutorial;
     }
 
     private void OnDisable()
@@ -64,6 +66,8 @@ public class TutorialSystem : MonoBehaviour
         tutorialBossAttackEvent.OnEventRaised -= ShowBossAttackTutorial;
         tutorialBossBrokenHeartEvent.OnEventRaised -= ShowBosBrokenHeartTutorial;
         unlockSkillEvent.OnEventRaised -= ShowUnlockSkillTutorial;
+        onAcoholEnemyShowEvent.OnEventRaised -= ShowCleanEnemyTutorial;
+
     }
 
     private void Update()
@@ -285,6 +289,11 @@ public class TutorialSystem : MonoBehaviour
         {
             SkillManager.Instance.UnlockClassAndEquip(className);
             ShowTutorial($"你解鎖了新職業：{className}！", 3f);
+        }
+
+        if (string.IsNullOrEmpty(skillName))
+        {
+            Debug.Log("沒有"+skillName+"這個技能可以解鎖");
         }
 
         // 若有解鎖一般技能
