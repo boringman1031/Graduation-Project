@@ -45,9 +45,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 85d3d60e7f15db042890957a805cedbe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Damage: 20
-  attackRange: 0
-  attackRate: 0
+  baseDamage: 20
 --- !u!60 &6653393203203158409
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -4728,8 +4726,8 @@ ParticleSystemRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 1852130523
-  m_SortingLayer: 2
+  m_SortingLayerID: 415963227
+  m_SortingLayer: 3
   m_SortingOrder: 0
   m_RenderMode: 0
   m_MeshDistribution: 0

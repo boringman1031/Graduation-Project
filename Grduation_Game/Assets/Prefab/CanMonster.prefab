@@ -45,9 +45,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 85d3d60e7f15db042890957a805cedbe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Damage: 20
-  attackRange: 0
-  attackRate: 0
+  baseDamage: 20
 --- !u!60 &2792878101447823792
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -107,7 +105,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8653719598885068355, guid: 5141c8b60b1a54d44b8ca02f5036c85c, type: 3}
       propertyPath: m_Name
-      value: "\u5564\u9152\u602A"
+      value: CanMonster
       objectReference: {fileID: 0}
     - target: {fileID: -8653719598885068355, guid: 5141c8b60b1a54d44b8ca02f5036c85c, type: 3}
       propertyPath: m_Layer
@@ -345,7 +343,7 @@ PrefabInstance:
       addedObject: {fileID: 4254597969972308552}
     - targetCorrespondingSourceObject: {fileID: -8653719598885068355, guid: 5141c8b60b1a54d44b8ca02f5036c85c, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 1114538524526693640}
+      addedObject: {fileID: 5498112174110289774}
     - targetCorrespondingSourceObject: {fileID: -8653719598885068355, guid: 5141c8b60b1a54d44b8ca02f5036c85c, type: 3}
       insertIndex: -1
       addedObject: {fileID: 7745649565542869616}
@@ -420,7 +418,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.72, y: 0.45}
   m_EdgeRadius: 0
---- !u!70 &1114538524526693640
+--- !u!70 &5498112174110289774
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -452,8 +450,8 @@ CapsuleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -0.06}
-  m_Size: {x: 1.56, y: 4.97}
+  m_Offset: {x: 0, y: 0}
+  m_Size: {x: 0.5, y: 1}
   m_Direction: 0
 --- !u!50 &7745649565542869616
 Rigidbody2D:
@@ -587,7 +585,7 @@ MonoBehaviour:
   attacker: {fileID: 0}
   HitForce: 2
   attackRange: 10
-  attackCooldown: 0
+  attackCooldown: 1
   centerOffset: {x: 1, y: 1}
   checkSize: {x: 1, y: 1}
   checkDistance: 5
