@@ -1,3 +1,4 @@
+﻿using System.Collections;
 using UnityEngine;
 using UnityEngine.U2D.Animation;
 
@@ -17,8 +18,25 @@ public class PlayerCostumeChanger : MonoBehaviour
     public SpriteResolver left;
     public SpriteResolver right;
 
+    [Header("對應的 SpriteSkin（順序要和 Resolver 對應）")]
+    public SpriteSkin[] spriteSkins;
+
     public void ChangeCostume(string label)
     {
+        StartCoroutine(SafeChangeCostume(label));
+    }
+
+    private IEnumerator SafeChangeCostume(string label)
+    {
+        // 1. 停用所有 SpriteSkin 避免報錯
+        foreach (var skin in spriteSkins)
+        {
+            if (skin != null) skin.enabled = false;
+        }
+
+        yield return null; // 等一幀確保圖切換不被干擾
+
+        // 2. 安全換裝
         head.SetCategoryAndLabel("Head", label);
         body.SetCategoryAndLabel("Body", label);
         leftArmUp.SetCategoryAndLabel("Left Arm UP", label);
@@ -32,6 +50,14 @@ public class PlayerCostumeChanger : MonoBehaviour
         left.SetCategoryAndLabel("Left", label);
         right.SetCategoryAndLabel("Right", label);
 
-        Debug.Log("�w�����˧ꬰ�G" + label);
+        yield return null; // 再等一幀，讓新 Sprite 生效
+
+        // 3. 啟用 SpriteSkin，會自動更新骨架資料（相當於舊版 Bake）
+        foreach (var skin in spriteSkins)
+        {
+            if (skin != null) skin.enabled = true;
+        }
+
+        Debug.Log("✅ 換裝完成：" + label);
     }
 }
