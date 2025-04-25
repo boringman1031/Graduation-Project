@@ -392,7 +392,9 @@ public class PlayerController : MonoBehaviour
     {
         isDead = true;
         //playerInput.GamePlay.Disable(); 
-        FindObjectOfType<SceneLoader>().challengeCount = 0;
+        var challengeCount=FindObjectOfType<SceneLoader>().challengeCount;
+        challengeCount = 0;
+        FindObjectOfType<UIManager>().UpdateChallengeCountUI (challengeCount);
     }
 
     #endregion

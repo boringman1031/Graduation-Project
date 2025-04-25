@@ -498,19 +498,24 @@ MonoBehaviour:
     - "\u8473\u8473\u6253\u96FB\u8A71\u7D66\u6211\u5E79\u561B???"
     - "\u8473\u8473:\u51FA\u4F86\u591C\u5531\u5225\u5EE2\u8A71"
     - "(\u65BC\u662F\u4F60\u51FA\u73FE\u5728\u4E86KTV)"
-    - "\u8473\u8473:\u6B38\u6B38\u6B38\uFF5E\u4F60\u7D42\u65BC\u51FA\u73FE\u5566\uFF0C\u6211\u90FD\u5FEB\u8B8A\u5316\u77F3\u4E86\u6B38\uFF01"
-    - "\u8473\u8473:\u4E0D\u662F\u8AAA\u4F60\u5531\u6B4C\u5C4C\u70B8\u5929\uFF1F\u4ECA\u5929\u7D66\u6211\u98C6\u4E00\u6CE2\uFF5E"
-    - "(\u54C7\u5169\u500B\u4EBA\u55AE\u7368\u5531\u6B4C\u311F\u592A\u66D6\u6627\u4E86\u5427!!!!)"
-    shouldFocusCamera: 00000000000000
+    shouldFocusCamera: 00000000
     focusCameraPositions:
     - {x: 0, y: 0}
     - {x: 0, y: 0}
     - {x: 0, y: 0}
     - {x: 0, y: 0}
+    shouldShakeCamera: 00000000
+  - key: ktv_meetGirl
+    sentences:
+    - "\u8473\u8473:\u6B38\u6B38\u6B38\uFF5E\u4F60\u7D42\u65BC\u51FA\u73FE\u5566\uFF0C\u6211\u90FD\u5FEB\u8B8A\u5316\u77F3\u4E86\u6B38\uFF01"
+    - "\u8473\u8473:\u4E0D\u662F\u8AAA\u4F60\u5531\u6B4C\u5F88\u53B2\u5BB3\uFF1F\u4ECA\u5929\u7D66\u6211\u98C6\u4E00\u6CE2\uFF5E"
+    - "(\u54C7\u5169\u500B\u4EBA\u55AE\u7368\u5531\u6B4C\u311F\u592A\u66D6\u6627\u4E86\u5427!!!!)"
+    shouldFocusCamera: 000000
+    focusCameraPositions:
     - {x: 0, y: 0}
     - {x: 0, y: 0}
     - {x: 0, y: 0}
-    shouldShakeCamera: 00000000000000
+    shouldShakeCamera: 000000
   - key: PoolHall
     sentences:
     - "\uFF08\u7D93\u904E\u4E86\u4E00\u9663\u5B50 \u8473\u8473\u6700\u8FD1\u90FD\u6C92\u6709\u7D04\u4F60\u51FA\u53BB\u4E86\uFF09"
