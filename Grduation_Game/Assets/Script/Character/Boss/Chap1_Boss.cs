@@ -1,26 +1,31 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.AddressableAssets;
 using UnityEngine.ResourceManagement.AsyncOperations;
 
 public class Chap1_Boss : BossBase
 {
 
-    [Header("¤p©Ç¹w»sÅé")]
-    public string MinionPrefab="Goblin"; //¼È®É¨Ï¥ÎGoblin¥N´À¤p©Ç
-    public string HeartMinionPrefab = "Heart"; //¼È®É¨Ï¥ÎHeart¥N´À·R¤ß¤p©Ç
+    [Header("å°æ€ªé è£½é«”")]
+    public string MinionPrefab="Goblin"; //æš«æ™‚ä½¿ç”¨Goblinä»£æ›¿å°æ€ª
+    public string HeartMinionPrefab = "Heart"; //æš«æ™‚ä½¿ç”¨Heartä»£æ›¿æ„›å¿ƒå°æ€ª
 
-    [Header("¯S®Ä")]
-    public Transform attackEffectSpawnPoint;//§ğÀ»¯S®Ä¥Í¦¨¦ì¸m
-    public Transform HeartEffectSpawnPoint;//·R¤ß¯S®Ä¥Í¦¨¦ì¸m
-    public Transform summonEnemyPoint;//¥l³ê¼Ä¤H¥Í¦¨¦ì¸m
-    public GameObject AttackWarningEffect;//§ğÀ»¹wÄµ¯S®Ä
-    public GameObject attackEffectPrefab1;//§ğÀ»¯S®Ä
-    public GameObject attackEffectPrefab2;//§ğÀ»2¯S®Ä
+    [Header("ç‰¹æ•ˆ")]
+    public Transform attackEffectSpawnPoint;//æ”»æ“Šç‰¹æ•ˆç”Ÿæˆä½ç½®
+    public Transform HeartEffectSpawnPoint;//æ„›å¿ƒç‰¹æ•ˆç”Ÿæˆä½ç½®
+    public Transform summonEnemyPoint;//å¬å–šæ•µäººç”Ÿæˆä½ç½®
+    public GameObject AttackWarningEffect;//æ”»æ“Šé è­¦ç‰¹æ•ˆ
+    public GameObject attackEffectPrefab1;//æ”»æ“Šç‰¹æ•ˆ
+    public GameObject attackEffectPrefab2;//æ”»æ“Š2ç‰¹æ•ˆ
 
     [Header("BGM")]
-    public AudioDefination audioDefination;//­µ¼Ö©w¸q
+    public AudioDefination audioDefination;//éŸ³æ¨‚å®šç¾©
+
+    public Text EnemyCount;
+    private int aliveEnemyCount = 0;
+
 
     protected override void Awake()
     {
@@ -30,24 +35,24 @@ public class Chap1_Boss : BossBase
         summonState = new BossSummonState();
         summonHeartState = new BossSummonHeartState();
     }   
-    public void OnAttackEffect()//¦b°Êµe¬Y¶¥¬q¥Í¦¨§ğÀ»¯S®Ä
+    public void OnAttackEffect()//åœ¨å‹•ç•«æŸéšæ®µç”Ÿæˆæ”»æ“Šç‰¹æ•ˆ
     {
 
-        int effectCount = 8; // ±±¨î¯S®Äªº¼Æ¶q
-        float spacing = 20f; // ±±¨î¯S®Ä¤§¶¡ªº¶¡¶Z
+        int effectCount = 8; // æ§åˆ¶ç‰¹æ•ˆçš„æ•¸é‡
+        float spacing = 20f; // æ§åˆ¶ç‰¹æ•ˆä¹‹é–“çš„é–“è·
         for (int i = -effectCount / 2; i <= effectCount / 2; i++)
         {
             Vector3 spawnPosition = attackEffectSpawnPoint.position + new Vector3(i * spacing, 0, 0);
             Instantiate(AttackWarningEffect, spawnPosition, Quaternion.identity);
-            // ©µ¿ğ«á¥Í¦¨§ğÀ»¯S®Ä
+            // å»¶é²å¾Œç”Ÿæˆæ”»æ“Šç‰¹æ•ˆ
             StartCoroutine(SpawnAttackEffectWithDelay(spawnPosition, 1.0f));
         }
 
         /*else
         {
-            Debug.Log("§ğÀ»¯S®Ä2");
-            int effectCount = 5; // ±±¨î¯S®Äªº¼Æ¶q
-            float spacing = 5f; // ±±¨î¯S®Ä¤§¶¡ªº¶¡¶Z
+            Debug.Log("æ”»æ“Šç‰¹æ•ˆ2");
+            int effectCount = 5; // æ§åˆ¶ç‰¹æ•ˆçš„æ•¸é‡
+            float spacing = 5f; // æ§åˆ¶ç‰¹æ•ˆä¹‹é–“çš„é–“è·
 
             for (int i = 0; i < effectCount; i++)
             {
@@ -65,22 +70,22 @@ public class Chap1_Boss : BossBase
     }
     private IEnumerator SpawnAttackEffectWithDelay(Vector3 position, float delay)
     {
-        yield return new WaitForSeconds(delay); // µ¥«İ delay ¬í
+        yield return new WaitForSeconds(delay); // ç­‰å¾… delay ç§’
         Instantiate(attackEffectPrefab1, position, Quaternion.identity);     
     }
 
     /*private IEnumerator SpawnExplsionDelay(Vector3 position, float delay)
     {
-        yield return new WaitForSeconds(delay); // µ¥«İ delay ¬í
+        yield return new WaitForSeconds(delay); // ç­‰å¾… delay ç§’
         Instantiate(attackEffectPrefab2, position, Quaternion.identity);
     }*/
 
     public override void OnSummon()
     {
         base.OnSummon();
-        int minionCount = 5; // ³]©w­n¥Í¦¨ªº¤p©Ç¼Æ¶q
-        float minX = -53f; // ³]©w¥Í¦¨½d³òªº³Ì¤pX®y¼Ğ
-        float maxX = 53f; // ³]©w¥Í¦¨½d³òªº³Ì¤jX®y¼Ğ       
+        int minionCount = 5; // è¨­å®šè¦ç”Ÿæˆçš„å°æ€ªæ•¸é‡
+        float minX = -53f; // è¨­å®šç”Ÿæˆç¯„åœçš„æœ€å°Xåº§æ¨™
+        float maxX = 53f; // è¨­å®šç”Ÿæˆç¯„åœçš„æœ€å¤§Xåº§æ¨™       
 
         for (int i = 0; i < minionCount; i++)
         {
@@ -95,11 +100,22 @@ public class Chap1_Boss : BossBase
     {
         if (obj.Status == AsyncOperationStatus.Succeeded)
         {
-            obj.Result.tag = "Enemy";       
+            GameObject enemy = obj.Result;
+            enemy.tag = "Enemy";
+
+            EnemyBase enemyBase = enemy.GetComponent<EnemyBase>();
+            if (enemyBase != null)
+            {
+                aliveEnemyCount++;
+                UpdateEnemyCountText(); // âœ… æ›´æ–°é¡¯ç¤º
+
+                // è¨‚é–±æ­»äº¡äº‹ä»¶
+                enemyBase.onEnemyDead += OnMinionDead;
+            }
         }
         else
         {
-            Debug.LogError("µLªk¥[¸ü¤p©Ç¹w»sÅé¡I");
+            Debug.LogError("ç„¡æ³•åŠ è¼‰å°æ€ªé è£½é«”ï¼");
         }
     }
 
@@ -118,7 +134,7 @@ public class Chap1_Boss : BossBase
         }
         else
         {
-            Debug.LogError("µLªk¥[¸ü·R¤ß¹w»sÅé¡I");
+            Debug.LogError("ç„¡æ³•åŠ è¼‰æ„›å¿ƒé è£½é«”ï¼");
         }
     }
 
@@ -129,5 +145,25 @@ public class Chap1_Boss : BossBase
         isTalk = true;
        audioDefination.PlayAudioClip();
     }
-  
+
+    private void OnMinionDead(GameObject deadEnemy)
+    {
+        aliveEnemyCount--;
+        UpdateEnemyCountText();
+
+        if (aliveEnemyCount <= 0)
+        {
+            Debug.Log("âœ… æ‰€æœ‰å°æ€ªå·²è¢«æ“Šæ•—ï¼");
+            // TODO: å¯ä»¥é€²å…¥ä¸‹ä¸€éšæ®µæˆ–å»£æ’­äº‹ä»¶
+        }
+    }
+
+    private void UpdateEnemyCountText()
+    {
+        if (EnemyCount != null)
+        {
+            EnemyCount.text = $"å‰©é¤˜æ•µäººæ•¸é‡ï¼š{aliveEnemyCount}";
+        }
+    }
+
 }

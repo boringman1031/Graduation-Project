@@ -1,4 +1,4 @@
-/*------------BY017------------------*/
+ï»¿/*------------BY017------------------*/
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -6,21 +6,25 @@ using UnityEngine;
 
 public class EnemyManager : MonoBehaviour
 {
-    [Header("¨Æ¥ó¼s¼½")]
-    public VoidEventSO onAllEnemiesDefeated; // ·í©Ò¦³¼Ä¤H³QÀ»±Ñ®Éªº¨Æ¥ó
+    [Header("äº‹ä»¶å»£æ’­")]
+    public VoidEventSO onAllEnemiesDefeated;
 
-    private List<GameObject> enemies = new List<GameObject>(); // Àx¦s©Ò¦³¼Ä¤H
+    private List<GameObject> enemies = new List<GameObject>();
+    private bool hasTriggeredDefeatedEvent = false; // âœ… é˜²æ­¢é‡è¤‡è§¸ç™¼
 
     private void OnEnable()
     {
-        enemies.AddRange(GameObject.FindGameObjectsWithTag("Enemy")); // §ä¨ì©Ò¦³¼Ä¤H
-        Debug.Log($"§ä¨ì {enemies.Count} ­Ó¼Ä¤H");
+        enemies.Clear();
+        enemies.AddRange(GameObject.FindGameObjectsWithTag("Enemy"));
+        hasTriggeredDefeatedEvent = false; // âœ… æ¯æ¬¡å•Ÿç”¨æ™‚é‡è¨­
+        Debug.Log($"æ‰¾åˆ° {enemies.Count} å€‹æ•µäºº");
     }
+
     public void RegisterEnemy(GameObject enemy)
     {
         if (!enemies.Contains(enemy))
         {
-            enemies.Add(enemy);        
+            enemies.Add(enemy);
         }
     }
 
@@ -29,17 +33,18 @@ public class EnemyManager : MonoBehaviour
         if (enemies.Contains(enemy))
         {
             enemies.Remove(enemy);
-            Debug.Log($"¼Ä¤H¦º¤`¡A³Ñ¾l¼Ä¤H¼Æ¶q: {enemies.Count}");
+            Debug.Log($"æ•µäººæ­»äº¡ï¼Œå‰©é¤˜æ•µäººæ•¸é‡: {enemies.Count}");
         }
 
-        if (enemies.Count == 0)
+        if (enemies.Count == 0 && !hasTriggeredDefeatedEvent)
         {
-            Debug.Log("©Ò¦³¼Ä¤H¤w³QÀ»±Ñ¡A¼s¼½¨Æ¥ó¡I");
+            hasTriggeredDefeatedEvent = true; // âœ… è¨­å®šæ——æ¨™ï¼Œç¢ºä¿åªè§¸ç™¼ä¸€æ¬¡
+            Debug.Log("æ‰€æœ‰æ•µäººå·²è¢«æ“Šæ•—ï¼Œå»£æ’­äº‹ä»¶ï¼");
             StartCoroutine(AllEnemyDefeated());
         }
     }
 
-    private IEnumerator  AllEnemyDefeated()
+    private IEnumerator AllEnemyDefeated()
     {
         yield return new WaitForSeconds(2);
         onAllEnemiesDefeated.RaiseEvent();
