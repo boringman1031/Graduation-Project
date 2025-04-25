@@ -125,6 +125,7 @@ public class EnemyBase : MonoBehaviour
 
     public virtual void OnDead()
     {
+        if (isDead) return;
         gameObject.layer = 2;
         anim.SetBool("Dead", true);
         isDead = true;
