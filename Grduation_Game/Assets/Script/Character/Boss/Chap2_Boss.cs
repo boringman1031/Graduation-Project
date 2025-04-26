@@ -69,13 +69,13 @@ public class Chap2_Boss : BossBase
     {
         base.OnSummon();
         int minionCount = 5;
-        float minX = -53f;
-        float maxX = 53f;
+        float minX = -45f;
+        float maxX = 45f;
 
         for (int i = 0; i < minionCount; i++)
         {
             float randomX = Random.Range(minX, maxX);
-            Vector3 spawnPosition = summonEnemyPoint.position + new Vector3(randomX, 0, 0);
+            Vector3 spawnPosition = summonEnemyPoint.position + new Vector3(randomX, 3, 0);
 
             MinionPrefab.InstantiateAsync(spawnPosition, Quaternion.identity)
                 .Completed += OnMinionSpawned;
