@@ -25,6 +25,7 @@ public class CharactorBase : MonoBehaviour,ISaveable
     public float healthRegenAmount; // 每次回復的生命值
     public float powerRegenAmount; //每次回覆的能量
     public float healthRegenInterval; // 回血的時間間隔（秒）
+    public float powerRegenInterval; // 能量回復間隔
     private Coroutine regenCoroutine; // 用來存儲 Coroutine，確保不會多次啟動
 
     [Header("狀態")]
@@ -37,6 +38,8 @@ public class CharactorBase : MonoBehaviour,ISaveable
     public UnityEvent<Transform> OnTakeDamage;
     public UnityEvent OnDead;
 
+    private Coroutine powerRegenCoroutine; // 新增
+
     private void OnEnable()
     {
         newGameEvent.OnEventRaised += NewGame;
@@ -44,7 +47,7 @@ public class CharactorBase : MonoBehaviour,ISaveable
         ISaveable saveable = this;
         saveable.RegisterSaveData();
         regenCoroutine = StartCoroutine(AutoRegenHealth());//啟動自動回血
-
+        powerRegenCoroutine = StartCoroutine(AutoRegenPower()); // 回能量
         if (CurrentHealth <= 0)//如果血量小於等於0
             NewGame();
     }
@@ -52,6 +55,12 @@ public class CharactorBase : MonoBehaviour,ISaveable
     {
         goHomeEvent.OnEventRaised -= NewGame;
         newGameEvent.OnEventRaised -= NewGame;
+
+        if (regenCoroutine != null)
+            StopCoroutine(regenCoroutine);
+        if (powerRegenCoroutine != null)
+            StopCoroutine(powerRegenCoroutine);
+
 
         ISaveable saveable = this;
         if (DataManager.instance != null)
@@ -184,6 +193,19 @@ public class CharactorBase : MonoBehaviour,ISaveable
         }
 
     }
+    private IEnumerator AutoRegenPower()
+    {
+        while (true)
+        {
+            yield return new WaitForSeconds(powerRegenInterval); // 每 powerRegenInterval 秒回一次
+            if (CurrentPower < MaxPower)
+            {
+                AddPower(powerRegenAmount);
+                OnPowerChange?.Invoke(this); // 廣播給 UI
+            }
+        }
+    }
+
 
     public void LoadData(Data _data)
     {

@@ -41811,7 +41811,7 @@ Transform:
   m_GameObject: {fileID: 1182300170}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 26.1, y: -70.1, z: 0}
+  m_LocalPosition: {x: -10.8, y: -70.1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -41871,6 +41871,9 @@ MonoBehaviour:
   tentaclePrefab: {fileID: 8956848728119489544, guid: 9531e260e4d02194891656b042d8a19e, type: 3}
   tentacleSpawnPoint: {fileID: 1390201737}
   skillInterval: 3
+  canAct: 0
+  bossFinalDialogEndEvent: {fileID: 11400000, guid: 773ebf53e6d0a8141bf296e92b137a29, type: 2}
+  dialogEndEvent: {fileID: 11400000, guid: 9b0030f4733054648b442de17490fdb0, type: 2}
 --- !u!114 &1182300175
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -41894,6 +41897,7 @@ MonoBehaviour:
   healthRegenAmount: 0
   powerRegenAmount: 0
   healthRegenInterval: 0
+  powerRegenInterval: 0
   SuperArmourTime: 0
   SuperArmour: 0
   OnHealthChange:
@@ -41907,7 +41911,19 @@ MonoBehaviour:
       m_Calls: []
   OnDead:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1182300174}
+        m_TargetAssemblyTypeName: BossController, Assembly-CSharp
+        m_MethodName: OnBossDeath
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &1183420524
 GameObject:
   m_ObjectHideFlags: 0
@@ -42112,7 +42128,7 @@ Transform:
   m_GameObject: {fileID: 1420372676}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 30.2, y: -68.3, z: 0}
+  m_LocalPosition: {x: -6.700001, y: -68.3, z: 0}
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -45560,6 +45576,53 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
+--- !u!1 &1578017084
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1578017086}
+  - component: {fileID: 1578017085}
+  m_Layer: 0
+  m_Name: music
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1578017085
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1578017084}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 382469160c5fb1044b544fb3b962a440, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playAudioEvent: {fileID: 11400000, guid: 6aff32dae6df38b4fba8844a79657b49, type: 2}
+  audioClip: {fileID: 8300000, guid: 20b4f68f2c4395e448bb9c5ef3d5d16d, type: 3}
+  playOnEnable: 1
+--- !u!4 &1578017086
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1578017084}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1941090809
 GameObject:
   m_ObjectHideFlags: 0
@@ -45601,7 +45664,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1932148801348654921, guid: 7f1b8319f9357134ca2fb028838b51df, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 30.2
+      value: -6.700001
       objectReference: {fileID: 0}
     - target: {fileID: 1932148801348654921, guid: 7f1b8319f9357134ca2fb028838b51df, type: 3}
       propertyPath: m_LocalPosition.y
@@ -45662,7 +45725,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2050085392946271903, guid: 9531e260e4d02194891656b042d8a19e, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 35.42
+      value: -1.4800034
       objectReference: {fileID: 0}
     - target: {fileID: 2050085392946271903, guid: 9531e260e4d02194891656b042d8a19e, type: 3}
       propertyPath: m_LocalPosition.y
@@ -45789,7 +45852,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 344124753897930805, guid: 002e7539212fa53498ccc473df3d7d3b, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 21.38
+      value: -15.520002
       objectReference: {fileID: 0}
     - target: {fileID: 344124753897930805, guid: 002e7539212fa53498ccc473df3d7d3b, type: 3}
       propertyPath: m_LocalPosition.y
@@ -45858,7 +45921,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8796182184972118888, guid: dd13e64eca42523409e1c47d86b78080, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 30.2
+      value: -6.700001
       objectReference: {fileID: 0}
     - target: {fileID: 8796182184972118888, guid: dd13e64eca42523409e1c47d86b78080, type: 3}
       propertyPath: m_LocalPosition.y
@@ -45913,3 +45976,4 @@ SceneRoots:
   - {fileID: 5365338572152159529}
   - {fileID: 476917749}
   - {fileID: 1183420528}
+  - {fileID: 1578017086}

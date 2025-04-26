@@ -2687,7 +2687,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dialogEndEvent: {fileID: 11400000, guid: 9b0030f4733054648b442de17490fdb0, type: 2}
   QuestionGamePanel: {fileID: 1887353349}
-  Key: Cafe_meetGirl
+  Key: ktv_meetGirl
 --- !u!61 &507299674
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -2871,7 +2871,6 @@ Transform:
   m_Children:
   - {fileID: 1880986994}
   - {fileID: 143424097}
-  - {fileID: 1132811450}
   - {fileID: 1093904742}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -3492,7 +3491,7 @@ PolygonCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -3525,7 +3524,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 875821288}
+  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1314511859
 GameObject:
@@ -11504,5 +11503,6 @@ SceneRoots:
   m_Roots:
   - {fileID: 875821288}
   - {fileID: 1314511861}
+  - {fileID: 1132811450}
   - {fileID: 1887353350}
   - {fileID: 507299675}

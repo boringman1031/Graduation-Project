@@ -52,6 +52,7 @@ public class EnemyBase : MonoBehaviour
     protected BaseState attackerState;//攻擊狀態
     [HideInInspector] public BaseState idleState;//空閒狀態
     public event Action OnDeath;//死亡事件
+    public event System.Action<GameObject> onEnemyDead;
     protected virtual void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -124,11 +125,13 @@ public class EnemyBase : MonoBehaviour
 
     public virtual void OnDead()
     {
+        if (isDead) return;
         gameObject.layer = 2;
         anim.SetBool("Dead", true);
         isDead = true;
 
         OnDeath?.Invoke(); // 觸發死亡事件
+        onEnemyDead?.Invoke(this.gameObject);
         FindObjectOfType<EnemyManager>()?.HandleEnemyDeath(gameObject);
     }
     public void TimeCounter()

@@ -90,9 +90,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 85d3d60e7f15db042890957a805cedbe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Damage: 30
-  attackRange: 0
-  attackRate: 0
+  baseDamage: 20
 --- !u!1 &8010673831216747164
 GameObject:
   m_ObjectHideFlags: 0
@@ -183,9 +181,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 85d3d60e7f15db042890957a805cedbe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Damage: 10
-  attackRange: 0
-  attackRate: 0
+  baseDamage: 20
 --- !u!1001 &2648706656114220102
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -472,6 +468,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: -8653719598885068355, guid: 2f30e17278156b84f8b445295dcc2852, type: 3}
       insertIndex: -1
       addedObject: {fileID: 4412100267620860870}
+    - targetCorrespondingSourceObject: {fileID: -8653719598885068355, guid: 2f30e17278156b84f8b445295dcc2852, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: -6093379286972243178}
   m_SourcePrefab: {fileID: 4843985084834002234, guid: 2f30e17278156b84f8b445295dcc2852, type: 3}
 --- !u!1 &2532667260250111483 stripped
 GameObject:
@@ -629,6 +628,7 @@ MonoBehaviour:
   healthRegenAmount: 0
   powerRegenAmount: 0
   healthRegenInterval: 0
+  powerRegenInterval: 0
   SuperArmourTime: 0
   SuperArmour: 0
   OnHealthChange:
@@ -740,6 +740,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f5e34014aba4dee49a9fc96aeeea836f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &-6093379286972243178
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2532667260250111483}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a0fb8c221f7adb2459e6bf4281b16694, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!4 &3741874054319269272 stripped

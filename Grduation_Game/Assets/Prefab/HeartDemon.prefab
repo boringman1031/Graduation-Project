@@ -491,6 +491,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: -8653719598885068355, guid: b8cd5c78805f2224b9c06835f63acb9e, type: 3}
       insertIndex: -1
       addedObject: {fileID: 3940693410494835940}
+    - targetCorrespondingSourceObject: {fileID: -8653719598885068355, guid: b8cd5c78805f2224b9c06835f63acb9e, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: -6326283616100028011}
   m_SourcePrefab: {fileID: 4843985084834002234, guid: b8cd5c78805f2224b9c06835f63acb9e, type: 3}
 --- !u!4 &419363840174925024 stripped
 Transform:
@@ -653,6 +656,7 @@ MonoBehaviour:
   healthRegenAmount: 0
   powerRegenAmount: 0
   healthRegenInterval: 0
+  powerRegenInterval: 0
   SuperArmourTime: 0
   SuperArmour: 0
   OnHealthChange:
@@ -766,6 +770,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f5e34014aba4dee49a9fc96aeeea836f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &-6326283616100028011
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3770735115970506509}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a0fb8c221f7adb2459e6bf4281b16694, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!4 &4936020936511014370 stripped

@@ -90,9 +90,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 85d3d60e7f15db042890957a805cedbe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Damage: 20
-  attackRange: 0
-  attackRate: 0
+  baseDamage: 20
 --- !u!1001 &280343614754159142
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -392,6 +390,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: -8653719598885068355, guid: 43919d1b565d57f4bac33ca25eb7455d, type: 3}
       insertIndex: -1
       addedObject: {fileID: 2041488380120533383}
+    - targetCorrespondingSourceObject: {fileID: -8653719598885068355, guid: 43919d1b565d57f4bac33ca25eb7455d, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 7938544132982680299}
   m_SourcePrefab: {fileID: 4843985084834002234, guid: 43919d1b565d57f4bac33ca25eb7455d, type: 3}
 --- !u!1 &289414376478661531 stripped
 GameObject:
@@ -547,10 +548,15 @@ MonoBehaviour:
   CurrentHealth: 0
   CurrentPower: 0
   healthRegenAmount: 0
+  powerRegenAmount: 0
   healthRegenInterval: 0
+  powerRegenInterval: 0
   SuperArmourTime: 0
   SuperArmour: 0
   OnHealthChange:
+    m_PersistentCalls:
+      m_Calls: []
+  OnPowerChange:
     m_PersistentCalls:
       m_Calls: []
   OnTakeDamage:
@@ -656,6 +662,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f5e34014aba4dee49a9fc96aeeea836f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &7938544132982680299
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 289414376478661531}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a0fb8c221f7adb2459e6bf4281b16694, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!4 &1498622268432811000 stripped

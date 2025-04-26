@@ -84,7 +84,7 @@ public class SceneLoader : MonoBehaviour, ISaveable
     private Vector3 positionToGo;
     private bool fadeScreen;
     private bool isLoading;
-    public float fadeTime;
+    private float fadeTime=0.5f;
 
     private void Start()
     {
@@ -169,11 +169,13 @@ public class SceneLoader : MonoBehaviour, ISaveable
     {
         if (challengeCount < maxChallenges)
         {
+            unlockSkillEvent.RaiseEvent();
             selectedSceneChoices = GetThreeRandomScenes();
             FindObjectOfType<UIManager>().ShowRandomChallengeOptions(selectedSceneChoices);
         }
         else
         {
+            unlockSkillEvent.RaiseEvent();
             sceneToLoad = currentChapter switch
             {
                 Chapter.Chap1 => NecessaryScene,
@@ -236,7 +238,7 @@ public class SceneLoader : MonoBehaviour, ISaveable
             currentLoadScene.sceneType != SceneType.Necessary)
         {
             // 第一關結束時顯示回家面板
-            if (currentLoadScene.displayName == "教學關卡"|| currentLoadScene.displayName == "夜店")
+            if (currentLoadScene.displayName == "教學關卡"|| currentLoadScene.displayName == "夜店"|| currentLoadScene.displayName == "7-11")
             {
                 unlockSkillEvent.RaiseEvent();
                 openGoHomeEvent.RaiseEvent(); // ✅ 顯示回家面板
@@ -244,7 +246,8 @@ public class SceneLoader : MonoBehaviour, ISaveable
             else
             {
                 unlockSkillEvent.RaiseEvent();
-                openRandomCanvaEvent.RaiseEvent(); // 顯示挑戰面板
+                //openRandomCanvaEvent.RaiseEvent(); // 顯示挑戰面板
+                OnLoadRandomScene();
             }
         }
     }
@@ -304,6 +307,20 @@ public class SceneLoader : MonoBehaviour, ISaveable
 
         isLoading = false;
         sceneLoadedEvent.RaiseEvent(currentLoadScene);
+
+        if (currentLoadScene == Boss3Scene)
+        {
+            var boss = FindObjectOfType<BossController>();
+            if (boss != null) boss.canAct = false;
+
+            var player = FindObjectOfType<PlayerController>();
+            if (player != null) player.playerInput.GamePlay.Disable(); // 禁用控制
+
+            // 直接從這裡呼叫對話
+            DialogManager.Instance?.StartDialog(currentLoadScene.dialogKey); // 請確保這些 BOSS Scene 的 GameSceneSO 有 dialogKey
+        }
+
+
         StartCoroutine(DelayRaiseAfterSceneLoaded());
     }
 

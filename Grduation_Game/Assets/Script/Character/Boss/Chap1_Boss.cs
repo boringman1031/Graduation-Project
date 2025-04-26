@@ -1,26 +1,36 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.AddressableAssets;
 using UnityEngine.ResourceManagement.AsyncOperations;
 
 public class Chap1_Boss : BossBase
 {
 
-    [Header("¤p©Ç¹w»sÅé")]
-    public string MinionPrefab="Goblin"; //¼È®É¨Ï¥ÎGoblin¥N´À¤p©Ç
-    public string HeartMinionPrefab = "Heart"; //¼È®É¨Ï¥ÎHeart¥N´À·R¤ß¤p©Ç
+    [Header("å°æ€ªé è£½é«”")]
+    public string MinionPrefab = "Goblin";
+    public string HeartMinionPrefab = "Heart";
 
-    [Header("¯S®Ä")]
-    public Transform attackEffectSpawnPoint;//§ğÀ»¯S®Ä¥Í¦¨¦ì¸m
-    public Transform HeartEffectSpawnPoint;//·R¤ß¯S®Ä¥Í¦¨¦ì¸m
-    public Transform summonEnemyPoint;//¥l³ê¼Ä¤H¥Í¦¨¦ì¸m
-    public GameObject AttackWarningEffect;//§ğÀ»¹wÄµ¯S®Ä
-    public GameObject attackEffectPrefab1;//§ğÀ»¯S®Ä
-    public GameObject attackEffectPrefab2;//§ğÀ»2¯S®Ä
+    [Header("ç‰¹æ•ˆ")]
+    public Transform attackEffectSpawnPoint;
+    public Transform HeartEffectSpawnPoint;
+    public Transform summonEnemyPoint;
+    public GameObject AttackWarningEffect;
+    public GameObject attackEffectPrefab1;
+    public GameObject attackEffectPrefab2;
 
     [Header("BGM")]
-    public AudioDefination audioDefination;//­µ¼Ö©w¸q
+    public AudioDefination audioDefination;
+
+    [Header("UI é¡¯ç¤º")]
+    public Text EnemyCount;
+
+    private bool stateInitialized = false; //åˆå§‹åŒ–
+
+    // å°æ€ªæ•¸é‡ç®¡ç†
+    private int aliveEnemyCount = 0;
+    private HashSet<GameObject> trackedEnemies = new HashSet<GameObject>();
 
     protected override void Awake()
     {
@@ -29,64 +39,44 @@ public class Chap1_Boss : BossBase
         attackState = new BossAttackState();
         summonState = new BossSummonState();
         summonHeartState = new BossSummonHeartState();
-    }   
-    public void OnAttackEffect()//¦b°Êµe¬Y¶¥¬q¥Í¦¨§ğÀ»¯S®Ä
+    }
+    private void OnEnable()
     {
-
-        int effectCount = 8; // ±±¨î¯S®Äªº¼Æ¶q
-        float spacing = 20f; // ±±¨î¯S®Ä¤§¶¡ªº¶¡¶Z
-        for (int i = -effectCount / 2; i <= effectCount / 2; i++)
+        if (!stateInitialized)
         {
-            Vector3 spawnPosition = attackEffectSpawnPoint.position + new Vector3(i * spacing, 0, 0);
-            Instantiate(AttackWarningEffect, spawnPosition, Quaternion.identity);
-            // ©µ¿ğ«á¥Í¦¨§ğÀ»¯S®Ä
-            StartCoroutine(SpawnAttackEffectWithDelay(spawnPosition, 1.0f));
+            idleState = new BossIdelState();
+            attackState = new BossAttackState();
+            summonState = new BossSummonState();
+            summonHeartState = new BossSummonHeartState();
+            stateInitialized = true;
         }
 
-        /*else
-        {
-            Debug.Log("§ğÀ»¯S®Ä2");
-            int effectCount = 5; // ±±¨î¯S®Äªº¼Æ¶q
-            float spacing = 5f; // ±±¨î¯S®Ä¤§¶¡ªº¶¡¶Z
+        currentState = idleState;
+        currentState?.OnEnter(this); // åŠ ä¸Š null æª¢æŸ¥ï¼Œé¿å…å†çˆ†ç‚¸
 
-            for (int i = 0; i < effectCount; i++)
-            {
-                Vector3 spawnPosition = attackEffectSpawnPoint.position + new Vector3(i * spacing, 0, 0);
-                SpawnExplsionDelay(spawnPosition, 1.0f);
-            }
-
-            for (int i = 0; i < effectCount; i++)
-            {
-                Vector3 spawnPosition = attackEffectSpawnPoint.position + new Vector3(i * -spacing, 0, 0);
-                SpawnExplsionDelay(spawnPosition, 1.0f);
-            }
-
-        }*/
+        AttackBossEvent.OnEventRaised += OnTakeDamage;
+        dialogEndEvent.OnEventRaised += OnDialogEnd;
     }
-    private IEnumerator SpawnAttackEffectWithDelay(Vector3 position, float delay)
+    public override void OnBossShow()
     {
-        yield return new WaitForSeconds(delay); // µ¥«İ delay ¬í
-        Instantiate(attackEffectPrefab1, position, Quaternion.identity);     
+        base.OnBossShow();
+        DialogManager.Instance.StartDialog("Boss_Show");
+        isTalk = true;
+        audioDefination.PlayAudioClip();
     }
-
-    /*private IEnumerator SpawnExplsionDelay(Vector3 position, float delay)
-    {
-        yield return new WaitForSeconds(delay); // µ¥«İ delay ¬í
-        Instantiate(attackEffectPrefab2, position, Quaternion.identity);
-    }*/
 
     public override void OnSummon()
     {
         base.OnSummon();
-        int minionCount = 5; // ³]©w­n¥Í¦¨ªº¤p©Ç¼Æ¶q
-        float minX = -53f; // ³]©w¥Í¦¨½d³òªº³Ì¤pX®y¼Ğ
-        float maxX = 53f; // ³]©w¥Í¦¨½d³òªº³Ì¤jX®y¼Ğ       
+        int minionCount = 5;
+        float minX = -53f;
+        float maxX = 53f;
 
         for (int i = 0; i < minionCount; i++)
         {
             float randomX = Random.Range(minX, maxX);
             Vector3 spawnPosition = summonEnemyPoint.position + new Vector3(randomX, 0, 0);
-            Addressables.InstantiateAsync(MinionPrefab, spawnPosition, Quaternion.Euler(0, 0, 0))
+            Addressables.InstantiateAsync(MinionPrefab, spawnPosition, Quaternion.identity)
                 .Completed += OnMinionSpawned;
         }
     }
@@ -95,11 +85,47 @@ public class Chap1_Boss : BossBase
     {
         if (obj.Status == AsyncOperationStatus.Succeeded)
         {
-            obj.Result.tag = "Enemy";       
+            GameObject enemy = obj.Result;
+            enemy.tag = "Enemy";
+
+            EnemyBase enemyBase = enemy.GetComponent<EnemyBase>();
+            if (enemyBase != null && !trackedEnemies.Contains(enemy))
+            {
+                trackedEnemies.Add(enemy);
+                aliveEnemyCount++;
+                UpdateEnemyCountText();
+
+                enemyBase.onEnemyDead += OnMinionDead;
+            }
         }
         else
         {
-            Debug.LogError("µLªk¥[¸ü¤p©Ç¹w»sÅé¡I");
+            Debug.LogError("ç„¡æ³•åŠ è¼‰å°æ€ªé è£½é«”ï¼");
+        }
+    }
+
+    private void OnMinionDead(GameObject deadEnemy)
+    {
+        if (trackedEnemies.Contains(deadEnemy))
+        {
+            trackedEnemies.Remove(deadEnemy);
+            aliveEnemyCount--;
+            UpdateEnemyCountText();
+
+            if (aliveEnemyCount <= 0)
+            {
+                Debug.Log("âœ… æ‰€æœ‰å°æ€ªå·²è¢«æ“Šæ•—ï¼");
+                // ğŸ‘‰ åœ¨é€™è£¡å¯ä»¥åˆ‡æ›ä¸‹ä¸€éšæ®µï¼Œä¾‹å¦‚ï¼š
+                // SwitchState(BossState.SummonHeart);
+            }
+        }
+    }
+
+    private void UpdateEnemyCountText()
+    {
+        if (EnemyCount != null)
+        {
+            EnemyCount.text = $"é‚„éœ€æ“Šæ•—ï¼š{aliveEnemyCount} åæ•µäºº";
         }
     }
 
@@ -107,27 +133,37 @@ public class Chap1_Boss : BossBase
     {
         base.SpawnHeartMinion();
         Addressables.InstantiateAsync(HeartMinionPrefab, HeartEffectSpawnPoint.position + Vector3.left * 2, Quaternion.identity)
-             .Completed += OnHeartSpawned;      
+            .Completed += OnHeartSpawned;
     }
 
     private void OnHeartSpawned(AsyncOperationHandle<GameObject> obj)
     {
         if (obj.Status == AsyncOperationStatus.Succeeded)
         {
-            obj.Result.tag = "Heart";      
+            obj.Result.tag = "Heart";
         }
         else
         {
-            Debug.LogError("µLªk¥[¸ü·R¤ß¹w»sÅé¡I");
+            Debug.LogError("ç„¡æ³•åŠ è¼‰æ„›å¿ƒé è£½é«”ï¼");
         }
     }
 
-    public override void OnBossShow()
+    public void OnAttackEffect()
     {
-       base.OnBossShow();
-       DialogManager.Instance.StartDialog("Boss_Show");
-        isTalk = true;
-       audioDefination.PlayAudioClip();
+        int effectCount = 8;
+        float spacing = 20f;
+
+        for (int i = -effectCount / 2; i <= effectCount / 2; i++)
+        {
+            Vector3 spawnPosition = attackEffectSpawnPoint.position + new Vector3(i * spacing, 0, 0);
+            Instantiate(AttackWarningEffect, spawnPosition, Quaternion.identity);
+            StartCoroutine(SpawnAttackEffectWithDelay(spawnPosition, 1.0f));
+        }
     }
-  
+
+    private IEnumerator SpawnAttackEffectWithDelay(Vector3 position, float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        Instantiate(attackEffectPrefab1, position, Quaternion.identity);
+    }
 }

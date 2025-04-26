@@ -5,32 +5,74 @@ using UnityEngine;
 public class AlcoholManager : MonoBehaviour
 {
     [Header("事件廣播")]
-    public VoidEventSO onAllEnemiesDefeated; // 敵人全部被擊敗（模擬廣播）
+    public VoidEventSO onAllEnemiesDefeated;
 
     [Header("便利商店相關")]
-    public int maxStoreCount = 3;
-    private int currentStoreCount = 0;
+    public int maxWaveCount = 3;
+    private int currentWave = 0;
+
+    private List<GameObject> aliveEnemies = new();
 
     private void OnEnable()
     {
-        currentStoreCount = 0;
+        currentWave = 0;
+        aliveEnemies.Clear();
     }
 
-    public void TriggerStore()
+    /// <summary>
+    /// 每次 StoreTrigger 呼叫這個來註冊敵人
+    /// </summary>
+    public void SpawnEnemies(List<GameObject> enemies)
     {
-        currentStoreCount++;
-        Debug.Log($"🏪 已觸發便利商店：{currentStoreCount}/{maxStoreCount}");
+        currentWave++;
+        bool isFinalWave = currentWave == maxWaveCount;
 
-        if (currentStoreCount >= maxStoreCount)
+        Debug.Log($"🧟‍♂️ 生成第 {currentWave} 波敵人，是否為最後一波：{isFinalWave}");
+
+        aliveEnemies.Clear();
+
+        foreach (var enemy in enemies)
         {
-            Debug.Log("✅ 達成條件，觸發 AllEnemyDefeated()");
-            StartCoroutine(AllEnemyDefeated());
+            aliveEnemies.Add(enemy);
+
+            EnemyBase enemyBase = enemy.GetComponent<EnemyBase>();
+            if (enemyBase != null)
+            {
+                enemyBase.onEnemyDead -= OnEnemyDead; // 先移除（防止重複註冊）
+                enemyBase.onEnemyDead += OnEnemyDead;
+            }
         }
     }
 
-    private IEnumerator AllEnemyDefeated()
+    private void OnEnemyDead(GameObject enemy)
     {
-        yield return new WaitForSeconds(1.5f); // 可以讓動畫/音效有點空間
+        EnemyBase enemyBase = enemy.GetComponent<EnemyBase>();
+        if (enemyBase != null)
+        {
+            enemyBase.onEnemyDead -= OnEnemyDead; // ✅ 先解除事件註冊
+        }
+
+        aliveEnemies.Remove(enemy);      
+        if (aliveEnemies.Count == 0)
+        {
+            OnWaveCleared();
+        }
+    }
+
+    private void OnWaveCleared()
+    {
+        Debug.Log($"✅ 第 {currentWave} 波敵人已清除！");
+
+        if (currentWave >= maxWaveCount)
+        {
+            Debug.Log("🎉 最後一波敵人被擊敗，觸發結束事件！");
+            StartCoroutine(AllEnemiesDefeated());
+        }
+    }
+
+    private IEnumerator AllEnemiesDefeated()
+    {
+        yield return new WaitForSeconds(1.5f);
         onAllEnemiesDefeated?.RaiseEvent();
     }
 }

@@ -16,13 +16,23 @@ public class BottonMonster : EnemyBase
         attackerState = new AttackState();
     }
 
-    public void  OnAttackEffectShow()
+    public void OnAttackEffectShow()
     {
         if (AttackEffectPrefab != null && AttackEffectSpawnPoint != null)
         {
             Instantiate(AttackEffectPrefab, AttackEffectSpawnPoint.position, Quaternion.identity);
+            Debug.Log("³]¤E");
+        }
+
+    }
+
+    private void OnDrawGizmosSelected()
+    {
+        if (AttackEffectSpawnPoint != null)
+        {
+            Gizmos.color = Color.red;
+            Gizmos.DrawSphere(AttackEffectSpawnPoint.position, 0.15f);
         }
     }
-   
 }
 
