@@ -11,7 +11,7 @@ public class NightViewEnemyManager : MonoBehaviour
     public VoidEventSO onAllEnemiesDefeated;
 
     [Header("事件監聽")]
-    public VoidEventSO dialogEndEvent; // 對話結束事件（包含多段）
+    public VoidEventSO dialogEndEvent;
 
     [Header("生成設定")]
     public List<AssetReference> enemyReferences;
@@ -27,7 +27,7 @@ public class NightViewEnemyManager : MonoBehaviour
     private int currentKillCount = 0;
     private List<GameObject> aliveEnemies = new();
     private bool spawning = false;
-    private bool isReadyToSpawn = false; // ✅ 控制是否可啟動生成
+    private bool isReadyToSpawn = false;
 
     private void OnEnable()
     {
@@ -43,7 +43,6 @@ public class NightViewEnemyManager : MonoBehaviour
             dialogEndEvent.OnEventRaised -= OnDialogEnd;
     }
 
-    // ✅ 讓 TriggerBox 在第二段對話前呼叫
     public void ReadyToSpawnEnemy()
     {
         isReadyToSpawn = true;
@@ -51,7 +50,6 @@ public class NightViewEnemyManager : MonoBehaviour
 
     private void OnDialogEnd()
     {
-        // ✅ 僅當設定為可生成後，才開始生成敵人
         if (isReadyToSpawn)
         {
             StartCoroutine(SpawnEnemiesLoop());
@@ -68,7 +66,7 @@ public class NightViewEnemyManager : MonoBehaviour
             {
                 if (currentKillCount >= targetKillCount) break;
 
-                yield return StartCoroutine(SpawnEnemyAt(point.position));
+                yield return SpawnEnemyAt(point.position);
                 yield return new WaitForSeconds(spawnDelay);
             }
 
@@ -82,12 +80,18 @@ public class NightViewEnemyManager : MonoBehaviour
     {
         if (enemyReferences == null || enemyReferences.Count == 0)
         {
-            Debug.LogError("未指定任何敵人 AssetReference！");
+            Debug.LogError("NightViewEnemyManager ❌ 沒有敵人 AssetReference！");
             yield break;
         }
 
         int randomIndex = Random.Range(0, enemyReferences.Count);
         AssetReference selectedEnemy = enemyReferences[randomIndex];
+
+        if (selectedEnemy == null)
+        {
+            Debug.LogError($"NightViewEnemyManager ❌ enemyReferences[{randomIndex}] 是空的！");
+            yield break;
+        }
 
         AsyncOperationHandle<GameObject> handle = selectedEnemy.InstantiateAsync(position, Quaternion.identity);
         yield return handle;
@@ -97,15 +101,19 @@ public class NightViewEnemyManager : MonoBehaviour
             GameObject enemy = handle.Result;
             aliveEnemies.Add(enemy);
 
-            EnemyBase enemyScript = enemy.GetComponent<EnemyBase>();
+            var enemyScript = enemy.GetComponent<EnemyBase>();
             if (enemyScript != null)
             {
                 enemyScript.OnDeath += () => HandleEnemyDeath(enemy);
             }
+            else
+            {
+                Debug.LogWarning($"NightViewEnemyManager ⚠️ 生成的敵人 {enemy.name} 沒有 EnemyBase 腳本！");
+            }
         }
         else
         {
-            Debug.LogError("敵人載入失敗！");
+            Debug.LogError($"NightViewEnemyManager ❌ 敵人生成失敗！Handle Status: {handle.Status}");
         }
     }
 
@@ -113,8 +121,8 @@ public class NightViewEnemyManager : MonoBehaviour
     {
         if (killCountText != null)
         {
-            targetKillCount = Mathf.Max(0, targetKillCount - currentKillCount);
-            killCountText.text = $"還需擊敗:{targetKillCount}名敵人";
+            int remaining = Mathf.Max(0, targetKillCount - currentKillCount);
+            killCountText.text = $"還需擊敗:{remaining}名敵人";
         }
     }
 
@@ -123,7 +131,9 @@ public class NightViewEnemyManager : MonoBehaviour
         foreach (var enemy in aliveEnemies)
         {
             if (enemy != null)
+            {
                 Destroy(enemy);
+            }
         }
         aliveEnemies.Clear();
     }
@@ -134,16 +144,16 @@ public class NightViewEnemyManager : MonoBehaviour
         {
             aliveEnemies.Remove(enemy);
             currentKillCount++;
-            Debug.Log($"擊殺 {currentKillCount}/{targetKillCount}");
+            Debug.Log($"🧟‍♂️ 擊殺 {currentKillCount}/{targetKillCount}");
 
             UpdateKillCountUI();
 
             if (currentKillCount >= targetKillCount)
             {
-                Debug.Log("擊殺目標達成！");
+                Debug.Log("🌟 擊殺目標達成！");
                 StopAllCoroutines();
                 ClearAllRemainingEnemies();
-                onAllEnemiesDefeated.RaiseEvent();
+                onAllEnemiesDefeated?.RaiseEvent();
             }
         }
     }
