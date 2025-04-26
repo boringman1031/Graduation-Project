@@ -8,8 +8,8 @@ using UnityEngine.ResourceManagement.AsyncOperations;
 public class Chap2_Boss : BossBase
 {
     [Header("小怪預製體")]
-    public string MinionPrefab = "Goblin";
-    public string HeartMinionPrefab = "Heart";
+    public AssetReference MinionPrefab;             // ✅ 改為 AssetReference
+    public AssetReference HeartMinionPrefab;        // ✅ 改為 AssetReference
 
     [Header("特效")]
     public Transform attackEffectSpawnPoint;
@@ -57,7 +57,8 @@ public class Chap2_Boss : BossBase
         {
             float randomX = Random.Range(minX, maxX);
             Vector3 spawnPosition = summonEnemyPoint.position + new Vector3(randomX, 0, 0);
-            Addressables.InstantiateAsync(MinionPrefab, spawnPosition, Quaternion.identity)
+
+            MinionPrefab.InstantiateAsync(spawnPosition, Quaternion.identity)
                 .Completed += OnMinionSpawned;
         }
     }
@@ -81,7 +82,7 @@ public class Chap2_Boss : BossBase
         }
         else
         {
-            Debug.LogError("無法加載小怪預製體！");
+            Debug.LogError("❌ 無法加載小怪預製體！");
         }
     }
 
@@ -96,7 +97,7 @@ public class Chap2_Boss : BossBase
             if (aliveEnemyCount <= 0)
             {
                 Debug.Log("✅ Chap2 所有小怪已被擊敗！");
-                // 👉 這裡可以進入下一階段，例如切換狀態：
+                // 👉 可以切換到下一階段
                 // SwitchState(BossState.SummonHeart);
             }
         }
@@ -113,7 +114,7 @@ public class Chap2_Boss : BossBase
     public override void SpawnHeartMinion()
     {
         base.SpawnHeartMinion();
-        Addressables.InstantiateAsync(HeartMinionPrefab, HeartEffectSpawnPoint.position + Vector3.left * 2, Quaternion.identity)
+        HeartMinionPrefab.InstantiateAsync(HeartEffectSpawnPoint.position + Vector3.left * 2, Quaternion.identity)
             .Completed += OnHeartSpawned;
     }
 
@@ -125,7 +126,7 @@ public class Chap2_Boss : BossBase
         }
         else
         {
-            Debug.LogError("無法加載愛心預製體！");
+            Debug.LogError("❌ 無法加載愛心小怪！");
         }
     }
 
@@ -149,5 +150,4 @@ public class Chap2_Boss : BossBase
         yield return new WaitForSeconds(delay);
         Instantiate(attackEffectPrefab1, position, Quaternion.identity);
     }
-
 }

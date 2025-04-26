@@ -391,11 +391,23 @@ public class PlayerController : MonoBehaviour
     public void Player_Dead()
     {
         isDead = true;
-        //playerInput.GamePlay.Disable(); 
-        var challengeCount=FindObjectOfType<SceneLoader>().challengeCount;
-        challengeCount = 0;
-        FindObjectOfType<UIManager>().UpdateChallengeCountUI (challengeCount);
-    }
 
+        var sceneLoader = FindObjectOfType<SceneLoader>();
+        sceneLoader.challengeCount = 0;
+        FindObjectOfType<UIManager>().UpdateChallengeCountUI(sceneLoader.challengeCount);
+
+        StartCoroutine(ReviveAtHome());
+    }
+    private IEnumerator ReviveAtHome()
+    {
+        yield return new WaitForSeconds(1f); // 讓死亡動畫等一下
+
+        isDead = false;     // ✅ 重設死亡狀態
+        ishurt = false;
+        isAttack = false;
+
+        playerInput.GamePlay.Enable(); // ✅ 開啟控制
+        enablePlayerEvent?.RaiseEvent(); // ✅ 廣播啟用事件
+    }
     #endregion
 }
