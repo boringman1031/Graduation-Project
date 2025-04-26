@@ -31,7 +31,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 2, y: 2, z: 1}
+  m_LocalScale: {x: 2, y: 4, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 8018385630816773119}
@@ -227,8 +227,8 @@ ParticleSystem:
     startColor:
       serializedVersion: 2
       minMaxState: 2
-      minColor: {r: 0.4210465, g: 0.51, b: 0.2905814, a: 1}
-      maxColor: {r: 0.2781078, g: 0.336, b: 0.192528, a: 1}
+      minColor: {r: 0.19638325, g: 0.21698111, b: 0.16682982, a: 1}
+      maxColor: {r: 0.9716981, g: 0.050418302, b: 0.050418302, a: 1}
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}
@@ -5018,9 +5018,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 85d3d60e7f15db042890957a805cedbe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Damage: 20
-  attackRange: 0
-  attackRate: 0
+  baseDamage: 20
 --- !u!1 &8018385630816773088
 GameObject:
   m_ObjectHideFlags: 0
@@ -5243,8 +5241,8 @@ ParticleSystem:
     startColor:
       serializedVersion: 2
       minMaxState: 2
-      minColor: {r: 0.25454548, g: 0.35, b: 0.10181819, a: 1}
-      maxColor: {r: 0.39215687, g: 0.54901963, b: 0.16078432, a: 1}
+      minColor: {r: 0.3301887, g: 0.076317206, b: 0.09867068, a: 1}
+      maxColor: {r: 0, g: 0, b: 0, a: 1}
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}
