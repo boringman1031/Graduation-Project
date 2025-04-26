@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class TriggerDialogBox : MonoBehaviour
 {
-    public string dialogKey; // 第二段對話的 key，例如 "BeforeFight"
+    public string dialogKey; // 這段對話 key
     private bool triggered = false;
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -13,6 +13,7 @@ public class TriggerDialogBox : MonoBehaviour
         triggered = true;
 
         Debug.Log($"🎬 玩家觸發對話 {dialogKey}");
-        DialogManager.Instance.StartDialog(dialogKey); // 播放第二段對話
+        DialogManager.Instance.StartDialog(dialogKey); // 只播放對話就好，不要管敵人
+        FindAnyObjectByType<NightViewEnemyManager>().ReadyToSpawnEnemy();
     }
 }
