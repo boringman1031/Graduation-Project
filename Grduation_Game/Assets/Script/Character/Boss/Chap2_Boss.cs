@@ -28,6 +28,25 @@ public class Chap2_Boss : BossBase
     private int aliveEnemyCount = 0;
     private HashSet<GameObject> trackedEnemies = new HashSet<GameObject>();
 
+    private bool stateInitialized = false;
+
+    private void OnEnable()
+    {
+        if (!stateInitialized)
+        {
+            idleState = new BossIdelState();
+            attackState = new BossAttackState();
+            summonState = new BossSummonState();
+            summonHeartState = new BossSummonHeartState();
+            stateInitialized = true;
+        }
+
+        currentState = idleState;
+        currentState?.OnEnter(this); // 加上 null 檢查，避免再爆炸
+
+        AttackBossEvent.OnEventRaised += OnTakeDamage;
+        dialogEndEvent.OnEventRaised += OnDialogEnd;
+    }
     protected override void Awake()
     {
         base.Awake();

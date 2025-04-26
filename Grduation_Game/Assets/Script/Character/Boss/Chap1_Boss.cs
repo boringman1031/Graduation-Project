@@ -26,6 +26,8 @@ public class Chap1_Boss : BossBase
     [Header("UI 顯示")]
     public Text EnemyCount;
 
+    private bool stateInitialized = false; //初始化
+
     // 小怪數量管理
     private int aliveEnemyCount = 0;
     private HashSet<GameObject> trackedEnemies = new HashSet<GameObject>();
@@ -38,7 +40,23 @@ public class Chap1_Boss : BossBase
         summonState = new BossSummonState();
         summonHeartState = new BossSummonHeartState();
     }
+    private void OnEnable()
+    {
+        if (!stateInitialized)
+        {
+            idleState = new BossIdelState();
+            attackState = new BossAttackState();
+            summonState = new BossSummonState();
+            summonHeartState = new BossSummonHeartState();
+            stateInitialized = true;
+        }
 
+        currentState = idleState;
+        currentState?.OnEnter(this); // 加上 null 檢查，避免再爆炸
+
+        AttackBossEvent.OnEventRaised += OnTakeDamage;
+        dialogEndEvent.OnEventRaised += OnDialogEnd;
+    }
     public override void OnBossShow()
     {
         base.OnBossShow();

@@ -31,7 +31,7 @@ public class BossBase :MonoBehaviour
     public bool SuperArmour;//¬O§_¦bÅQÅéª¬ºA
     public bool isTalk = false;
 
-    private BossBaseState currentState;
+    public BossBaseState currentState;
     protected BossBaseState idleState;//¶¢¸mª¬ºA
     protected BossBaseState attackState;//§ðÀ»ª¬ºA
     protected BossBaseState summonState;//¥l³êª¬ºA  

@@ -234,6 +234,8 @@ public class PlayerController : MonoBehaviour
     private void OnLoadDataEvent()
     {
         isDead = false;
+        canMove = true;
+        playerInput.GamePlay.Enable(); // ← 把輸入打開
     }
 
     private void OnAfterSceneLoadEvent()
@@ -409,5 +411,6 @@ public class PlayerController : MonoBehaviour
         playerInput.GamePlay.Enable(); // ✅ 開啟控制
         enablePlayerEvent?.RaiseEvent(); // ✅ 廣播啟用事件
     }
+
     #endregion
 }
