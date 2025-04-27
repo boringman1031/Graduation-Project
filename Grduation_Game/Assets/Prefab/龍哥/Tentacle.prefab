@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5596634877945025258}
   - component: {fileID: 7317580195512487112}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: "\u9F8D\u54E5\u89F8\u624B"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -98,9 +98,9 @@ GameObject:
   - component: {fileID: 8965586373571261877}
   - component: {fileID: 2870237602512383063}
   - component: {fileID: 8287571744157646047}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Tentacle
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -216,6 +216,7 @@ MonoBehaviour:
   healthRegenAmount: 0
   powerRegenAmount: 0
   healthRegenInterval: 0
+  powerRegenInterval: 0
   SuperArmourTime: 0
   SuperArmour: 0
   OnHealthChange:
@@ -254,9 +255,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 85d3d60e7f15db042890957a805cedbe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Damage: 20
-  attackRange: 0
-  attackRate: 0
+  baseDamage: 20
 --- !u!114 &8287571744157646047
 MonoBehaviour:
   m_ObjectHideFlags: 0

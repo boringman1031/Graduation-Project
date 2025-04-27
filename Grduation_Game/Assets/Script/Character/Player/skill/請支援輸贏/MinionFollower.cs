@@ -60,6 +60,8 @@ public class MinionFollower : MonoBehaviour
                 {
                     lastAttackTime = Time.time;
 
+                    
+
                     float finalDamage = baseDamage;
                     if (playerStats != null)
                         finalDamage += playerStats.attack;
@@ -67,6 +69,7 @@ public class MinionFollower : MonoBehaviour
                     var enemy = target.GetComponent<CharactorBase>();
                     if (enemy != null)
                         enemy.TakeDamage(finalDamage, transform);
+                    
                 }
             }
         }
@@ -80,7 +83,7 @@ public class MinionFollower : MonoBehaviour
 
         foreach (var enemy in enemies)
         {
-            if (enemy.CompareTag("Player")) continue;
+            if (!enemy.CompareTag("Enemy")) continue;
 
             float dist = Vector2.Distance(transform.position, enemy.transform.position);
             if (dist < closestDist)
