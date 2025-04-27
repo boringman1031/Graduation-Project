@@ -55,6 +55,7 @@ public class MusicGameManager : MonoBehaviour
     private Dictionary<KeyCode, GameObject> notePrefabs;
     private Dictionary<KeyCode, Transform> spawnPoints;
 
+    bool isStart = false;
 
     [System.Serializable]
     public class NoteData
@@ -67,7 +68,7 @@ public class MusicGameManager : MonoBehaviour
 
     private void Start()
     {
-      
+        isStart = false;
         // 設定音符對應 Prefab
         notePrefabs = new Dictionary<KeyCode, GameObject>()
         {
@@ -100,8 +101,9 @@ public class MusicGameManager : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.L))
+        if (Input.GetKeyDown(KeyCode.L) && !isStart)
         {
+            isStart = true;
             PlayerController.Instance.canMove = false;
             startPlaying = true;
             beatScroller.hasStarted = true;

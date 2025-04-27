@@ -9,10 +9,13 @@ public class EnemyProjectile : MonoBehaviour
     public float damage = 10f;
     private Vector2 direction;
 
+    private void Start()
+    {
+        Destroy(gameObject, 2f); // 自動消失
+    }
     public void Initialize(Vector2 dir)
     {
         direction = dir.normalized;
-        Destroy(gameObject, 5f); // 自動消失
     }
 
     void Update()
